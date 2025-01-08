@@ -6,11 +6,11 @@ In AWS IAM policies, Deny takes precedence over Allow, meaning that if a policy 
 
 The evaluation of permissions in IAM follows a priority order:
 
-- 1. **Explicit Deny**: If a policy explicitly denies an action or resource, the request will be blocked, regardless of any Allow permissions elsewhere.
+1. **Explicit Deny**: If a policy explicitly denies an action or resource, the request will be blocked, regardless of any Allow permissions elsewhere.
 
-- 2. **Explicit Allow**: If a policy explicitly allows an action or resource, access is granted, but only if there is no conflicting Deny.
+2. **Explicit Allow**: If a policy explicitly allows an action or resource, access is granted, but only if there is no conflicting Deny.
 
-- 3. **Implicit Deny**: If there is no explicit Allow or Deny for an action, the default behavior is an implicit Deny, meaning access is automatically denied.
+3. **Implicit Deny**: If there is no explicit Allow or Deny for an action, the default behavior is an implicit Deny, meaning access is automatically denied.
 
 For example, consider the following IAM policy that grants full access to all S3 resources but explicitly denies access to the sensitive-data bucket:
 
