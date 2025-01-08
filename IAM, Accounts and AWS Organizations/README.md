@@ -211,7 +211,7 @@ Key Features of AWS CloudTrail:
 
 - **Regional and Global Configurations**: CloudTrail is a regional service but can be configured to record events across all regions.
 
-- **Trails for Customization**: Trails allow you to customize CloudTrail by defining how and where events are logged. By default, trails store only management events. Without a trail, logs are only stored for 90 days. Trails can save logs to:
+- **Trails for Customization**: Trails allow you to customize CloudTrail by defining how and where events are logged, without a trail, logs are only stored for 90 days. By default, trails store only management events. Trails can save logs to:
 
   - Amazon S3 buckets for long-term storage.
   - CloudWatch Logs for monitoring and real-time alerting.
