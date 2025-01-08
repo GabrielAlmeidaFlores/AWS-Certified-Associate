@@ -80,3 +80,75 @@ Here are some key points to remember:
 - Groups cannot contain other groups, ensuring that each group only holds IAM users, not other groups.
 - An AWS account can have up to 300 IAM groups, which sets a limit on how many distinct access groups you can have.
 - IAM groups are not considered IAM entities that can be assigned permissions or referenced in policies as principals (e.g., you cannot grant permissions to a group directly in a policy). They serve only as a way to manage users.
+
+## IAM Roles
+
+IAM Roles are a way to delegate permissions to entities within AWS without using long-term credentials. Unlike IAM users, roles are not directly associated with a single user or group but are temporarily assumed by trusted entities such as users, applications, or services. When an entity assumes a role, it temporarily gains the permissions defined by that role, enabling it to perform specific actions in AWS.
+
+For example, if an EC2 instance needs to access an S3 bucket, it can assume a role that has the necessary permissions to access the bucket. By using sts:AssumeRole, the EC2 instance avoids needing long-term credentials stored in the instance itself.
+
+### Security Token Service (STS)
+
+The Security Token Service (STS) is an AWS service that provides temporary security credentials for users or services to access AWS resources. These credentials consist of an access key, a secret access key, and a session token. STS is a critical component for enabling secure and temporary access to AWS resources without the need for long-term credentials.
+
+Key Features of STS:
+
+- Allows users, applications, or services to assume roles and gain specific permissions defined in the role.
+- Credentials are short-lived and expire after a specified duration, enhancing security.
+- Enables federated access for users from external identity providers to access AWS resources.
+- Facilitates access to resources in another AWS account by assuming roles in that account.
+
+### Service-linked Roles
+
+Service-linked roles are special IAM roles that are directly associated with a specific AWS service. These roles provide the service with the permissions it needs to manage resources on your behalf. Service-linked roles are predefined by the AWS service, and the trust and permission policies are automatically managed by AWS.
+
+Key Features of Service-linked Roles:
+
+- The service creates and manages the role, or you can create it during setup.
+- You cannot delete a service-linked role until it is no longer required by the service.
+
+### Trust Policy vs. Permission Policy
+
+#### Trust Policy
+
+A trust policy defines who or what can assume a role. It specifies the trusted entities (principals) that are allowed to use the role. These principals can include AWS accounts, services, or federated users.
+
+Example of a Trust Policy:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+In this example, the role can be assumed by the EC2 service (ec2.amazonaws.com).
+
+#### Permission Policy
+
+A permission policy defines what actions an entity can perform once it has assumed the role. It specifies the resources the role can access and the actions it can perform on those resources.
+
+Example of a Permission Policy:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::example-bucket"
+    }
+  ]
+}
+```
+
+In this example, the role can list the contents of the specified S3 bucket.
