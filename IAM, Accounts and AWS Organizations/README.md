@@ -203,6 +203,8 @@ Key Features of AWS CloudTrail:
 
 - **Logs API Calls/Activities**: CloudTrail records actions taken by users, roles, or AWS services as events.
 
+- **Enabled by Default**: CloudTrail is enabled automatically for all AWS accounts, providing the 90-day Event History. To customize the service beyond this, you need to create one or more Trails.
+
 - **Event History**: By default, CloudTrail provides 90 days of event history, accessible through the Event History console. This history is stored at no additional cost.
 
 - **Management Events**: Management Events are logged by default. These are actions performed on AWS resources (e.g., creating an instance, deleting a bucket).
