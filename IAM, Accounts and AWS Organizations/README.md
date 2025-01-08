@@ -171,6 +171,26 @@ Key Features of AWS Organizations:
 
 Service Control Policies (SCPs) are permission boundaries that define the maximum permissions available to accounts within an organization. SCPs apply to all users, roles, and entities within an account, including the root user. However, SCPs do not grant permissions; they only restrict them.
 
+#### SCPs are Not Enabled by Default
+
+SCPs are not enabled by default when you create an AWS Organization. If SCPs are enabled, each account in the organization receives a default policy called FullAWSAccess.
+
+The FullAWSAccess SCP allows all actions and is defined as:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
 Key Characteristics of SCPs:
 
 - SCPs do not apply to the management account.
