@@ -152,3 +152,29 @@ Example of a Permission Policy:
 ```
 
 In this example, the role can list the contents of the specified S3 bucket.
+
+## AWS Organizations
+
+AWS Organizations is a service that enables centralized management of multiple AWS accounts. It provides features like consolidated billing, hierarchical account organization, and the ability to apply policies across accounts for governance and compliance.
+
+Key Features of AWS Organizations:
+
+- **Management Account**: AWS Organizations has a single management account (previously known as the master account). The management account can invite other AWS accounts to join the organization as member accounts. It has elevated privileges to manage the organization and apply policies across accounts.
+
+- **Member Accounts**: Member accounts are AWS accounts that join the organization. These accounts can be managed centrally by the management account but retain the ability to define their own IAM policies within the boundaries set by Service Control Policies (SCPs).
+
+- **Consolidated Billing**: AWS Organizations enables consolidated billing, combining charges from multiple accounts into a single bill. This simplifies payment management and allows for volume discounts based on aggregated usage.
+
+- **Organizational Units (OUs)**: Organizational Units (OUs) are logical groupings of AWS accounts within an organization. OUs allow hierarchical organization and policy application at different levels.
+
+### Service Control Policies (SCP)
+
+Service Control Policies (SCPs) are permission boundaries that define the maximum permissions available to accounts within an organization. SCPs apply to all users, roles, and entities within an account, including the root user. However, SCPs do not grant permissions; they only restrict them.
+
+Key Characteristics of SCPs:
+
+- SCPs do not apply to the management account.
+- SCPs limit the actions that IAM policies can grant within an account.
+- SCPs applied at a parent OU are automatically inherited by child OUs and accounts.
+- Actions granted by IAM policies are still subject to SCP restrictions.
+- Use the AWS Organizations policy simulator to evaluate the impact of SCPs before implementation.
