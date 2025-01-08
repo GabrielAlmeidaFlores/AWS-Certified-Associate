@@ -66,3 +66,17 @@ Here are some key points to remember:
 - The format includes the service name, region, account ID, and resource details.
 - ARNs are used to specify resources in IAM policies, defining access control
 - Examples of ARNs: S3 Bucket ARN: `arn:aws:s3:::my-bucket`, EC2 Instance ARN: `arn:aws:ec2:us-west-2:123456789012:instance/i-1234567890abcdef0`
+
+## IAM Groups
+
+IAM Groups is a feature in AWS that helps organize and manage IAM users more efficiently. A group acts as a container for users who share similar permission requirements, simplifying the assignment of permissions. While IAM groups do not provide direct login access, they allow you to apply policies to a collection of users at once, instead of managing permissions individually for each user.
+
+Here are some key points to remember:
+
+- IAM groups are used to group IAM users with similar access needs, allowing for centralized permission management.
+- Groups themselves cannot log in or authenticate; they are only a means of organizing users for permission management.
+- Groups streamline the process of assigning permissions by allowing policies to be applied to all members of the group, reducing the complexity of individual user permission management.
+- Groups can have inline policies (specific to the group) or managed policies (reusable across multiple entities) attached to them.
+- Groups cannot contain other groups, ensuring that each group only holds IAM users, not other groups.
+- An AWS account can have up to 300 IAM groups, which sets a limit on how many distinct access groups you can have.
+- IAM groups are not considered IAM entities that can be assigned permissions or referenced in policies as principals (e.g., you cannot grant permissions to a group directly in a policy). They serve only as a way to manage users.
