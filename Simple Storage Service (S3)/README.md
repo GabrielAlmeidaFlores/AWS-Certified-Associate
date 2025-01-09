@@ -70,3 +70,15 @@ Key features of ACLs:
   - **WRITE_ACP**: Grants permission to modify the Access Control List of the bucket or object.
 
   - **FULL_CONTROL**: Grants all the above permissions.
+
+## S3 Static Hosting
+
+Amazon S3 Static Hosting allows you to use an S3 bucket to host static websites accessible over HTTP. This feature is ideal for hosting HTML, CSS, JavaScript files, and other static assets.
+
+- When enabled, the bucket serves content directly via an HTTP-based website endpoint. This makes S3 a cost-effective solution for hosting static sites.
+
+- The file displayed when a user accesses the root or any folder of the website (e.g., index.html). The file displayed when a requested page or resource is not found (e.g., 404.html).
+
+- S3 creates a unique website endpoint for the bucket, which is used to access the hosted site.
+
+- The bucket serves HTML files and other static assets directly from the specified website endpoint, making S3 an easy option for hosting small-scale websites or assets.
