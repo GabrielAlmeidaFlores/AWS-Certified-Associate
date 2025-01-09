@@ -73,12 +73,14 @@ Key features of ACLs:
 
 ## S3 Static Hosting
 
-Amazon S3 Static Hosting allows you to use an S3 bucket to host static websites accessible over HTTP. This feature is ideal for hosting HTML, CSS, JavaScript files, and other static assets.
+Amazon S3 (Simple Storage Service) allows you to host static websites directly from an S3 bucket. This feature is designed for serving static assets such as HTML, CSS, JavaScript, images, and other files.
 
-- When enabled, the bucket serves content directly via an HTTP-based website endpoint. This makes S3 a cost-effective solution for hosting static sites.
+Key features of S3 Static Hosting:
 
-- The file displayed when a user accesses the root or any folder of the website (e.g., index.html). The file displayed when a requested page or resource is not found (e.g., 404.html).
+- By default, S3 is accessed using AWS APIs for object storage and retrieval.
 
-- S3 creates a unique website endpoint for the bucket, which is used to access the hosted site.
+- When S3 Static Website Hosting is enabled, the bucket contents can be accessed directly over HTTP through a website endpoint.
 
-- The bucket serves HTML files and other static assets directly from the specified website endpoint, making S3 an easy option for hosting small-scale websites or assets.
+- When hosting is enabled, AWS provides a public HTTP endpoint to access your website.
+
+- To serve your website on a custom domain, the S3 bucket name must exactly match the domain name (e.g., example.com). Use AWS Route 53 (or another DNS service) to configure the domain's DNS settings. This typically involves setting up an Alias Record pointing to the S3 website endpoint.
