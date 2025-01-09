@@ -130,3 +130,5 @@ Additionally, MFA is required to permanently delete object versions. To delete a
 ### Accelerated Transfer
 
 Accelerated Transfer uses Amazon S3 Transfer Acceleration to enable faster data transfers over long distances. This feature leverages Amazon CloudFront’s globally distributed edge locations to reduce latency and optimize transfer speed by routing data through the fastest network paths. It is particularly beneficial for time-sensitive or high-volume uploads. To use this feature, Transfer Acceleration must be enabled for the S3 bucket.
+
+<!-- TODO: continue S3 module - next chapter is Key Management Service (KMS) -->
