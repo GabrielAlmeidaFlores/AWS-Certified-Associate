@@ -191,12 +191,12 @@ This AWS IAM policy defines permissions related to the S3 bucket cl-animals4life
 
 - Effect: `Allow`
 - Action: `s3:ListBucket` – Lets the user list objects within the bucket.
-- Resource: `arn:aws:s3:::cl-animals4life` – Applies specifically to the cl-animals4life bucket.
+- Resource: `arn:aws:s3:::cl-animals4life` – Applies specifically to the `cl-animals4life` bucket.
 - Condition:
   - Restricts the listing to objects that match the specified prefixes:
-    - "": The bucket root.
-    - "home/": The home directory.
-    - "home/${aws:username}/\*": The user's personal directory within home/, where ${aws:username} dynamically resolves to the IAM user's name.
+    - `""`: The bucket root.
+    - `home/`: The home directory.
+    - `home/${aws:username}/*`: The user's personal directory within `home/`, where `${aws:username}` dynamically resolves to the IAM user's name.
 - This ensures users can only list the root, the home directory, and their own subdirectory under home.
 
 #### Statement 3: Full Access to Personal Directory
