@@ -30,63 +30,13 @@
 }
 ```
 
-This AWS IAM policy defines permissions and conditions for accessing objects in the S3 bucket `holidaygifts`.
+Users can upload, delete, and manage objects in the `holidaygifts` S3 bucket at all times. However, between December 1, 2022, and December 25, 2022, at 6:00 AM UTC, they are explicitly denied the ability to read or view objects in the bucket. Outside of this time frame, they have full access as permitted.
 
-#### First Statement: Allow Access
+Permissions:
 
-```json
-{
-  "Effect": "Allow",
-  "Action": [
-    "s3:PutObject",
-    "s3:PutObjectAcl",
-    "s3:GetObject",
-    "s3:GetObjectAcl",
-    "s3:DeleteObject"
-  ],
-  "Resource": "arn:aws:s3:::holidaygifts/*"
-}
-```
+- **Allow**: Users can upload, read, and delete objects in the holidaygifts bucket (`PutObject`, `GetObject`, `DeleteObject`, and their ACLs).
 
-- Effect: `Allow`
-- Actions: The user is allowed to:
-  - Upload objects (`s3:PutObject`),
-  - Modify the permissions (ACL) of objects (`s3:PutObjectAcl`),
-  - Read objects (`s3:GetObject`),
-  - Read ACLs (`s3:GetObjectAcl`), and
-  - Delete objects (`s3:DeleteObject`).
-- Resource: The policy applies to all objects within the holidaygifts bucket (`arn:aws:s3:::holidaygifts/*`).
-
-#### Second Statement: Deny Access with a Condition
-
-```json
-{
-  "Effect": "Deny",
-  "Action": ["s3:GetObject", "s3:GetObjectAcl"],
-  "Resource": "arn:aws:s3:::holidaygifts/*",
-  "Condition": {
-    "DateGreaterThan": { "aws:CurrentTime": "2022-12-01T00:00:00Z" },
-    "DateLessThan": { "aws:CurrentTime": "2022-12-25T06:00:00Z" }
-  }
-}
-```
-
-- Effect: `Deny`
-- Actions: The user is denied:
-  - Reading objects (`s3:GetObject`),
-  - Reading ACLs of objects (`s3:GetObjectAcl`).
-  - Resource: Applies to all objects within the holidaygifts bucket.
-- Condition: The deny applies only between:
-  - Start Date: 2022-12-01T00:00:00Z (December 1, 2022, at midnight UTC),
-  - End Date: 2022-12-25T06:00:00Z (December 25, 2022, at 6:00 AM UTC).
-
-#### Policy Behavior
-
-- Outside the specified date range (before December 1, 2022, or after December 25, 2022, 6:00 AM UTC):
-  - The `Allow` statement applies, so the user can perform all specified actions (`PutObject`, `GetObject`, `DeleteObject`, etc.).
-- Within the specified date range (from December 1 to December 25, 2022, 6:00 AM UTC):
-  - The `Deny` statement takes precedence over the `Allow` because `Deny` always overrides Allow in AWS policies.
-  - The user is denied access to `GetObject` and `GetObjectAcl` during this period, meaning they cannot read objects or view their ACLs.
+- **Deny**: During a specific time frame (from December 1, 2022, to December 25, 2022, at 6:00 AM UTC), users are explicitly denied the ability to read objects (`GetObject` and `GetObjectAcl`).
 
 ### Example 2
 
@@ -109,20 +59,11 @@ This AWS IAM policy defines permissions and conditions for accessing objects in 
 }
 ```
 
-This AWS policy aims to deny access to AWS services that are not in the list of explicitly allowed regions, with some exceptions for specific AWS services. Here's a detailed breakdown:
+Users are denied access to most AWS services if the request comes from a region other than `ap-southeast-2` (Sydney) or `eu-west-1` (Ireland). However, global services such as CloudFront, IAM, Route 53, and Support are exempt from this restriction and remain accessible from any region.
 
-- `NotAction` specifies actions that are excluded from the deny. In this case, the policy will not deny actions for:
+Permissions:
 
-  - CloudFront (`cloudfront:*`)
-  - IAM (`iam:*`)
-  - Route 53 (`route53:*`)
-  - AWS Support (`support:*`)
-
-- The policy applies to all resources across the account.
-
-- The `Condition` specifies that the deny applies if the requested AWS region is not one of the approved regions:
-  - ap-southeast-2 (Sydney),
-  - eu-west-1 (Ireland).
+- **Deny**: For all actions except services like CloudFront, IAM, Route 53, and Support, access is denied unless the requested region is ap-southeast-2 (Sydney) or eu-west-1 (Ireland).
 
 ### Example 3
 
@@ -157,79 +98,13 @@ This AWS policy aims to deny access to AWS services that are not in the list of 
 }
 ```
 
-This AWS IAM policy defines permissions related to the S3 bucket cl-animals4life and provides fine-grained control for users based on their identity.
+Users can view all S3 buckets and their locations. In the `cl-animals4life` bucket, they can list objects but only under the `home/` prefix or their personal folder (`home/${aws:username}`). They also have full permissions, including upload, download, and delete, for their specific personal folder (`home/${aws:username}`).
 
-#### Statement 1: General Permissions
+Permissions:
 
-```json
-{
-  "Effect": "Allow",
-  "Action": ["s3:ListAllMyBuckets", "s3:GetBucketLocation"],
-  "Resource": "*"
-}
-```
-
-- Effect: `Allow`
-- Actions:
-  - `s3:ListAllMyBuckets`: Lets the user list all S3 buckets in their account.
-  - `s3:GetBucketLocation`: Lets the user retrieve the region where a bucket is hosted.
-- Resource: `"*"` – Applies to all S3 buckets.
-- This statement provides global permissions to access bucket metadata but not the contents of any bucket.
-
-#### Statement 2: Listing Contents of a Specific Bucket
-
-```json
-{
-  "Effect": "Allow",
-  "Action": "s3:ListBucket",
-  "Resource": "arn:aws:s3:::cl-animals4life",
-  "Condition": {
-    "StringLike": {
-      "s3:prefix": ["", "home/", "home/${aws:username}/*"]
-    }
-  }
-}
-```
-
-- Effect: `Allow`
-- Action: `s3:ListBucket` – Lets the user list objects within the bucket.
-- Resource: `arn:aws:s3:::cl-animals4life` – Applies specifically to the `cl-animals4life` bucket.
-- Condition:
-  - Restricts the listing to objects that match the specified prefixes:
-    - `""`: The bucket root.
-    - `home/`: The home directory.
-    - `home/${aws:username}/*`: The user's personal directory within `home/`, where `${aws:username}` dynamically resolves to the IAM user's name.
-- This ensures users can only list the root, the home directory, and their own subdirectory under home.
-
-#### Statement 3: Full Access to Personal Directory
-
-```json
-{
-  "Effect": "Allow",
-  "Action": "s3:*",
-  "Resource": [
-    "arn:aws:s3:::cl-animals4life/home/${aws:username}",
-    "arn:aws:s3:::cl-animals4life/home/${aws:username}/*"
-  ]
-}
-```
-
-- Effect: `Allow`
-- Action: `s3:*` – Grants all S3 actions (e.g., `PutObject`, `GetObject`, `DeleteObject`) for the specified resources.
-- Resource:
-  - The user's directory (`home/${aws:username}`).
-  - All objects within their directory (`home/${aws:username}/*`).
-- This gives users full control over their own directory and its contents within the `cl-animals4life` bucket.
-
-#### Policy Behavior
-
-- Users can list all buckets in their account (`s3:ListAllMyBuckets`).
-- Users can retrieve the region of any bucket (`s3:GetBucketLocation`).
-- Users can list objects within:
-  - The bucket root (`""`),
-  - The `home/` directory,
-  - Their own subdirectory under `home/` (e.g., `home/johndoe`).
-- Users have full permissions (`s3:*`) for their specific subdirectory in `home/` and all objects within it.
+- **Allow**: List all buckets (`ListAllMyBuckets`) and get their locations.
+- **Allow**: List objects in the `cl-animals4life` bucket, but only for specific prefixes (`home/`, `home/${aws:username}/*`, or no prefix).
+- **Allow**: Full access (`s3:*`) to the user's personal folder (`home/${aws:username}`) and its contents.
 
 ## CloudHSM (Hardware Security Module)
 
