@@ -230,3 +230,27 @@ This AWS IAM policy defines permissions related to the S3 bucket cl-animals4life
   - The `home/` directory,
   - Their own subdirectory under `home/` (e.g., `home/johndoe`).
 - Users have full permissions (`s3:*`) for their specific subdirectory in `home/` and all objects within it.
+
+## CloudHSM (Hardware Security Module)
+
+CloudHSM is a hardware security module (HSM) service provided by AWS that offers a secure and dedicated hardware solution for managing and protecting cryptographic keys. Here's a breakdown of its key features and functionalities:
+
+- **Single-Tenant HSM**: Unlike AWS Key Management Service (KMS), which is a shared but logically separated service, CloudHSM provides a true single-tenant hardware solution, ensuring complete isolation for your cryptographic operations.
+
+- **AWS-Managed but Customer-Controlled**: AWS provisions the HSMs, but they are fully managed by the customer, giving complete control over cryptographic operations and the key material.
+
+- **FIPS 140-2 Compliance**: CloudHSM is fully compliant with FIPS 140-2 Level 3, a stringent security standard for cryptographic modules. In contrast, KMS is certified at Level 2 overall, with some Level 3 components.
+
+- **Industry-Standard APIs**: CloudHSM supports standard cryptographic libraries such as PKCS#11, Java Cryptography Extensions (JCE), and Microsoft CryptoNG (CNG), enabling seamless integration with various applications.
+
+- **KMS Integration**: CloudHSM can be used as a custom key store for KMS, combining the benefits of KMS’s native integration with the security of CloudHSM.
+
+- **Not High-Available**: Unlike KMS, CloudHSM does not offer built-in high availability. You need to configure redundancy and clustering for resilience.
+
+- **Network Integration**: The HSMs operate in an AWS-managed HSM Virtual Private Cloud (VPC), but interfaces are added to your customer-managed VPC for secure communication.
+
+- **AWS Has No Access to Secure Areas**: While AWS provisions the HSMs, it does not have access to the secure area where your cryptographic key material is stored.
+
+- **No Native AWS Integration**: CloudHSM does not natively integr**No Native AWS Integration**ate with AWS services like S3 for server-side encryption (SSE). You must handle these integrations yourself.
+
+CloudHSM is ideal for organizations needing strong cryptographic control, compliance with strict security standards, and integration with custom applications while maintaining full responsibility for the HSM’s operation and redundancy.
