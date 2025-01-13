@@ -30,6 +30,8 @@
 }
 ```
 
+This AWS IAM policy defines permissions and conditions for accessing objects in the S3 bucket `holidaygifts`.
+
 #### First Statement: Allow Access
 
 ```json
