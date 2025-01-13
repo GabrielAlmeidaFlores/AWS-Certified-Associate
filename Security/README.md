@@ -111,10 +111,10 @@ This AWS policy aims to deny access to AWS services that are not in the list of 
 
 - `NotAction` specifies actions that are excluded from the deny. In this case, the policy will not deny actions for:
 
-  - CloudFront (cloudfront:\*)
-  - IAM (iam:\*)
-  - Route 53 (route53:\*)
-  - AWS Support (support:\*)
+  - CloudFront (`cloudfront:*`)
+  - IAM (`iam:*`)
+  - Route 53 (`route53:*`)
+  - AWS Support (`support:*`)
 
 - The policy applies to all resources across the account.
 
@@ -171,7 +171,7 @@ This AWS IAM policy defines permissions related to the S3 bucket cl-animals4life
 - Actions:
   - `s3:ListAllMyBuckets`: Lets the user list all S3 buckets in their account.
   - `s3:GetBucketLocation`: Lets the user retrieve the region where a bucket is hosted.
-- Resource: "\*" – Applies to all S3 buckets.
+- Resource: `"*"` – Applies to all S3 buckets.
 - This statement provides global permissions to access bucket metadata but not the contents of any bucket.
 
 #### Statement 2: Listing Contents of a Specific Bucket
