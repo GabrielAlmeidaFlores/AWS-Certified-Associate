@@ -323,7 +323,7 @@ AWS Key Management Service (KMS) and AWS CloudHSM are both services offered by A
 
 #### AWS CloudHSM
 
-- Scalable, but more complex: While you can scale CloudHSM, it requires manual intervention to add more HSM devices, and you're responsible for configuring them.
+- While you can scale CloudHSM, it requires manual intervention to add more HSM devices, and you're responsible for configuring them.
 - Suitable for workloads where you need to handle high-throughput cryptographic operations, but scaling requires more effort compared to KMS.
 
 ### Integration with AWS Services
