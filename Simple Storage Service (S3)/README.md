@@ -131,4 +131,33 @@ Additionally, MFA is required to permanently delete object versions. To delete a
 
 Accelerated Transfer uses Amazon S3 Transfer Acceleration to enable faster data transfers over long distances. This feature leverages Amazon CloudFront’s globally distributed edge locations to reduce latency and optimize transfer speed by routing data through the fastest network paths. It is particularly beneficial for time-sensitive or high-volume uploads. To use this feature, Transfer Acceleration must be enabled for the S3 bucket.
 
-<!-- TODO: continue S3 module - next chapter is Key Management Service (KMS) -->
+## S3 Object Encryption
+
+S3 buckets themselves aren’t encrypted, but the objects stored within them are always encrypted. Encryption is applied at the object level, ensuring that each individual object within the bucket is encrypted based on the chosen encryption method. There are two types of encryption available: Client-Side Encryption (CSE), where the data is encrypted before it is uploaded to S3, and Server-Side Encryption (SSE), where the encryption and decryption processes are handled by S3 once the data is stored.
+
+### Server-Side Encryption (SSE)
+
+Mandatory encryption: Objects stored in S3 must be encrypted. You can choose which process to use for encryption. The default encryption method is SSE-S3. There are three types of SSE: SSE-C, SSE-S3 and SSE-KMS,
+
+#### SSE-C (Customer-Provided Keys)
+
+- **How it works**: You provide a key each time you upload an object to S3. This key is used for encryption and is destroyed by AWS after the encryption process.
+- **When to use it**: Use SSE-C when you need to manage the encryption key yourself.
+- **Important**: You must provide the same key again to decrypt the object later, as AWS does not store the key.
+
+#### SSE-S3 (Amazon S3-Managed Keys)
+
+- **How it works**: This is the default encryption method, where S3 manages the encryption and decryption processes using AES-256 encryption.
+- **Key management**: S3 handles both the encryption keys and the entire process, making it the simplest option for users.
+
+#### SSE-KMS (AWS Key Management Service)
+
+- **How it works**: S3 uses AWS KMS to manage the encryption keys. KMS handles both encryption and decryption.
+- **Key management**: You can use an AWS-managed KMS key, or you can bring your own customer-managed KMS key, which gives you more control over key management and permissions.
+- **When to use it**: Use SSE-KMS when you need more control over key access and want to enforce stricter security policies.
+
+### Client-Side Encryption (CSE)
+
+- **How it works**: The object is encrypted before being uploaded to S3, and only the client with the decryption key can access the data in its original form.
+
+- **Management**: involves encrypting the object before it is uploaded to S3. This means the encryption and decryption process happens on the client side, not in the cloud. This method offers more control over the encryption process, but it also requires more management from the user.
