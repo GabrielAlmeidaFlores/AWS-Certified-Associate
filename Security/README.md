@@ -126,7 +126,7 @@ CloudHSM is a hardware security module (HSM) service provided by AWS that offers
 
 - **AWS Has No Access to Secure Areas**: While AWS provisions the HSMs, it does not have access to the secure area where your cryptographic key material is stored.
 
-- **No Native AWS Integration**: CloudHSM does not natively integr**No Native AWS Integration**ate with AWS services like S3 for server-side encryption (SSE). You must handle these integrations yourself.
+- **No Native AWS Integration**: CloudHSM does not natively integrate with AWS services like S3 for server-side encryption (SSE). You must manually handle these integrations.
 
 CloudHSM is ideal for organizations needing strong cryptographic control, compliance with strict security standards, and integration with custom applications while maintaining full responsibility for the HSM’s operation and redundancy.
 
