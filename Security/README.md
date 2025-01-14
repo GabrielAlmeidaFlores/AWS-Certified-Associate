@@ -129,3 +129,64 @@ CloudHSM is a hardware security module (HSM) service provided by AWS that offers
 - **No Native AWS Integration**: CloudHSM does not natively integr**No Native AWS Integration**ate with AWS services like S3 for server-side encryption (SSE). You must handle these integrations yourself.
 
 CloudHSM is ideal for organizations needing strong cryptographic control, compliance with strict security standards, and integration with custom applications while maintaining full responsibility for the HSM’s operation and redundancy.
+
+## AWS KMS (Key Management Service)
+
+AWS KMS is a regional, public service designed to securely create, store, and manage cryptographic keys. It supports both symmetric keys (a single key for encryption and decryption) and asymmetric keys (a public/private key pair). You can use KMS for a range of cryptographic operations, such as encrypting data, decrypting it, and managing digital signatures.
+
+KMS ensures the keys never leave the service, which makes it highly secure and compliant with standards like FIPS 140-2 Level 2.
+
+Key features of KMS:
+
+- **Logical Keys**: A KMS key is represented as a logical entity containing metadata such as:
+
+  - **Key ID**: A unique identifier for the key.
+  - **Creation Date**: When the key was created.
+  - **Policy**: Permissions defining who can use or manage the key.
+  - **Description**: Information about the key's purpose.
+  - **State**: The status of the key (enabled, disabled, or pending deletion).
+
+- **Physical Material**: Backed by secure key material, which can be either:
+
+  - Generated within KMS for maximum security.
+  - Imported by the user to meet specific compliance or interoperability needs.
+
+- **Key Size Limitations**: KMS keys can directly encrypt data up to 4 KB. For larger data, a `Data Encryption Key (DEK)` is used.
+
+- **Regional Isolation**: Each key is tied to a specific AWS region and never leaves it, ensuring local compliance and performance.
+
+- **Ownership Types**:
+
+  - **AWS-Managed Keys**: Automatically managed by AWS for simplicity.
+  - **Customer-Managed Keys**: Provide more customization, including the ability to define policies, enable key rotation, and control lifecycle.
+
+- **Key Rotation**: Customer-managed keys can be configured for automatic rotation every year, creating a new backing key while retaining access to previously encrypted data.
+
+### Key Policies and Security
+
+KMS uses key policies to control access to encryption keys. These policies are:
+
+- **Resource-Based**: Directly attached to the key, defining who can use or manage it.
+- **Explicit**: Access must be explicitly allowed; even the AWS account owner isn’t granted implicit access.
+
+Every KMS key requires a key policy to function. For example, a policy might allow specific IAM roles or users to:
+
+- Use the key for encryption/decryption.
+- Rotate the key.
+- Schedule deletion.
+
+Policies are written in JSON and support conditions for fine-grained access control.
+
+### AWS DEKs (Data Encryption Keys)
+
+Data Encryption Keys (DEKs) are temporary keys used to encrypt data that exceeds the 4 KB limit of KMS keys.
+
+- How They Work
+  - KMS generates a DEK, which includes two parts:
+    - **Plaintext Key**: Used for actual data encryption.
+    - **Encrypted Key**: Safely stored and used later to re-encrypt the plaintext key.
+  - The plaintext DEK encrypts your data.
+  - The plaintext DEK is discarded immediately after use.
+  - The encrypted DEK is stored alongside the encrypted data, enabling future decryption.
+
+This ensures secure management of large datasets without exposing the plaintext DEK for longer than necessary.
