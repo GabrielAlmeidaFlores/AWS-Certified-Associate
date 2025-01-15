@@ -188,3 +188,151 @@ S3 Bucket Keys address these challenges by introducing a bucket-level key. Here'
 - **Seamless Integration**: Can be enabled without major changes to your existing workflows.
 
 By enabling S3 Bucket Keys, you maintain strong encryption while optimizing both cost and efficiency.
+
+## S3 Storage-Classes
+
+### S3 Standard
+
+- **Durability**: 99.999999999% (11 nines) for 10,000 objects—equivalent to losing one object every 10,000 years.
+
+- **Availability**: Replicated across 3+ Availability Zones (AZs) within the region to ensure high fault tolerance.
+
+- **Performance**: Millisecond first-byte latency for fast data access. Supports virtually unlimited storage with seamless scaling for high-performance applications.
+
+- **Cost**:
+
+  - **Storage**: Charged per GB/month.
+  - **Transfer**:
+    - **Inbound**: Free.
+    - **Outbound**: Charged per GB.
+  - **Requests**: Charged per 1,000 PUT, GET, and other requests.
+  - **Flexibility**: No retrieval fees, no minimum duration, or object size constraints.
+
+- **Use Case**: Frequently accessed, critical, and irreplaceable data (e.g., real-time analytics, websites, mobile applications).
+
+### S3 Standard-IA
+
+- **Durability**: Same as S3 Standard.
+
+- **Availability**: Data is replicated across 3+ AZs for resilience.
+
+- **Performance**:
+
+  - Millisecond first-byte latency ensures fast access when needed.
+  - Designed for less frequent access compared to S3 Standard.
+
+- **Costs**:
+
+  - Lower storage cost than S3 Standard but includes a retrieval fee per GB.
+
+  - **Minimum charges**:
+
+    - **Duration**: 30 days (billed even if deleted earlier).
+
+    - **Object size**: 128 KB (smaller objects are charged as 128 KB).
+
+- **Use Case**: Long-lived data that is important but accessed less frequently (e.g., backups, disaster recovery).
+
+### S3 One Zone-IA
+
+- **Durability**: Same as Standard-IA, but data is stored in a single AZ, increasing risk in case of an AZ outage.
+
+- **Performance**: Millisecond first-byte latency.
+
+- **Costs**:
+
+  - Lower storage costs than Standard-IA.
+
+  - Retrieval fees, 30-day minimum duration, and 128 KB minimum object size apply.
+
+- **Use Case**: Long-lived data that is non-critical and easily replaceable. Suitable for scenarios where cost is prioritized over resilience (e.g., secondary backups, non-essential logs).
+
+### S3 Glacier Instant Retrieval
+
+- **Durability**: Same as S3 Standard.
+
+- **Availability**: Replicated across 3+ AZs.
+
+- **Performance**: Millisecond first-byte latency, designed for archival data with infrequent but immediate access needs.
+
+- **Costs**:
+
+  - Lowest storage cost for immediate retrieval class.
+
+  - **Minimum charges**:
+
+    - **Duration**: 90 days.
+
+    - **Object size**: 128 KB.
+
+  - Retrieval incurs a per GB fee.
+
+- **Use Case**: Archive data that is accessed occasionally (e.g., quarterly reports, compliance data).
+
+### S3 Glacier Flexible Retrieval
+
+- **Durability**: Same as S3 Standard.
+
+- **Availability**: Replicated across 3+ AZs.
+
+- **Performance**: Retrieval requires time:
+
+  - **Expedited**: 1–5 minutes (higher cost).
+
+  - **Standard**: 3–5 hours (cost-effective).
+
+  - **Bulk**: 5–12 hours (lowest cost).
+
+- **Costs**:
+
+  - Lower storage cost than Glacier Instant.
+
+  - **Minimum charges**:
+
+    - **Duration**: 90 days.
+
+    - **Object size**: 40 KB.
+
+  - Retrieval incurs additional costs.
+
+- **Use Case**: Archival data where access is infrequent, and retrieval latency of minutes to hours is acceptable (e.g., historical records, legal archives).
+
+### S3 Glacier Deep Archive
+
+- **Durability**: Same as S3 Standard.
+
+- **Availability**: Replicated across 3+ AZs.
+
+- **Performance**: Retrieval requires hours to days:
+
+  - **Standard**: 12 hours.
+
+  - **Bulk**: Up to 48 hours.
+
+- **Costs**:
+
+  - Lowest storage cost across all S3 classes.
+
+  - **Minimum charges**:
+
+    - **Duration**: 180 days.
+
+    - **Object size**: 40 KB.
+
+- **Use Case**: Rarely accessed, long-term archival data where retrieval time in hours or days is acceptable (e.g., compliance records, tax documents).
+
+### S3 Intelligent-Tiering
+
+- **Key Features**: Automatically transitions objects between frequent and infrequent access tiers based on usage patterns. Supports additional archival tiers (Glacier and Glacier Deep Archive) for further cost optimization.
+
+- **Durability**: Same as S3 Standard.
+
+- **Availability**: Replicated across 3+ AZs.
+
+- **Costs**:
+
+  - Monitoring and automation fee per object.
+
+  - No retrieval fees or minimum duration/object size.
+
+- **Use Case**: Data with unpredictable or changing access patterns, such as machine learning datasets, media libraries, or user-generated content.
