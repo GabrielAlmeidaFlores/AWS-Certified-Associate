@@ -345,6 +345,46 @@ S3 Lifecycle helps you store objects cost effectively throughout their lifecycle
 
 - **Expiration actions**: These actions define when objects expire. Amazon S3 deletes expired objects on your behalf. For example, you might to choose to expire objects after they have been stored for a regulatory compliance period. For more information, see Expiring objects. There are potential costs associated with lifecycle expiration only when you expire objects in a storage class with a minimum storage duration.
 
-### Existing and new objects
+### Existing and New Objects
 
 When you add a Lifecycle configuration to a bucket, the configuration rules apply to both existing objects and objects that you add later. For example, if you add a Lifecycle configuration rule today with an expiration action that causes objects to expire 30 days after creation, Amazon S3 will queue for removal any existing objects that are more than 30 days old.
+
+## S3 Replication
+
+You can use replication to enable automatic, asynchronous copying of objects across Amazon S3 buckets. Buckets that are configured for object replication can be owned by the same AWS account or by different accounts. You can replicate objects to a single destination bucket or to multiple destination buckets. The destination buckets can be in different AWS Regions or within the same Region as the source bucket.
+
+### Types of Replication
+
+- **Live replication**: To automatically replicate new and updated objects as they are written to the source bucket, use live replication. Live replication doesn't replicate any objects that existed in the bucket before you set up replication. To replicate objects that existed before you set up replication, use on-demand replication.
+
+- **On-demand replication**: To replicate existing objects from the source bucket to one or more destination buckets on demand, use S3 Batch Replication. Batch Replication replicates existing objects to different buckets as an on-demand option. Unlike live replication, these jobs can be run as needed.
+
+### Forms of Replication
+
+- **Cross-Region Replication (CRR)**: Facilitates the replication of objects between buckets located in different AWS Regions. Buckets can belong to the same AWS account or different AWS accounts.
+
+- **Same-Region Replication (SRR)**: Enables replication of objects between buckets in the same AWS Region. Buckets can be in the same AWS account or across different AWS accounts.
+
+### Key Features and Options
+
+- **Replication Scope**: You can replicate all objects in a bucket or define replication rules to replicate a subset of objects based on object prefixes or tags.
+
+- **Storage Class**: By default, the replicated objects retain the same storage class as the source object. You can configure replication to use a different storage class (e.g., Standard-IA or One Zone-IA) to optimize costs for the replicated data.
+
+- **Object Ownership**: Replicated objects are owned by the source account by default. When replicating objects to a bucket in a different AWS account, ensure that the destination account owns the objects. Misconfigured ownership can result in access issues where the destination account cannot access or read the replicated objects. To avoid this, configure Bucket Ownership Controls or enable the BucketOwnerFullControl ACL during replication.
+
+- **Replication Time Control (RTC)**: RTC provides predictable replication performance with a service level agreement (SLA) of replicating 99.99% of objects within 15 minutes. RTC is beneficial for use cases requiring low-latency replication, such as applications with stringent RTO (Recovery Time Objective) requirements.
+
+- **Non-Retroactive Replication**: Replication applies only to objects created or updated after replication is enabled. Existing objects present in the source bucket before replication setup are not replicated automatically.
+
+- **Versioning Requirement**: Both the source and destination buckets must have versioning enabled for replication to function. Versioning ensures that object versions and delete markers are handled correctly during replication.
+
+- **Batch Replication**: To replicate objects that existed before replication was enabled, use Batch Replication, which is a separate feature from regular replication. Batch Replication enables one-time replication of objects created before the replication configuration was applied. It can also be used to re-replicate objects in cases of replication failures.
+
+- **One-Way Replication**: Replication is a unidirectional process, meaning data flows from the source bucket to the destination bucket. Reverse replication must be explicitly configured if needed.
+
+### Limitations and Exclusions
+
+- **Unsupported Storage Classes**: Objects stored in Glacier or Glacier Deep Archive storage classes are not replicated. To replicate these objects, transition them to a supported storage class before replication.
+
+- **Delete Operations**: By default, delete operations are not replicated to the destination bucket. If desired, you can enable Delete Marker Replication to replicate delete markers. Delete marker replication is particularly useful when synchronizing lifecycle policies between source and destination buckets.
