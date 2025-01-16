@@ -388,3 +388,40 @@ You can use replication to enable automatic, asynchronous copying of objects acr
 - **Unsupported Storage Classes**: Objects stored in Glacier or Glacier Deep Archive storage classes are not replicated. To replicate these objects, transition them to a supported storage class before replication.
 
 - **Delete Operations**: By default, delete operations are not replicated to the destination bucket. If desired, you can enable Delete Marker Replication to replicate delete markers. Delete marker replication is particularly useful when synchronizing lifecycle policies between source and destination buckets.
+
+## S3 Select and Glacier Select
+
+### S3 Select
+
+S3 Select is a feature of Amazon S3 that allows you to query and retrieve a subset of data from an S3 object using standard SQL expressions. This reduces the amount of data transferred and speeds up data analysis by working directly within the object.
+
+S3 Select Key Features:
+
+- **Query Efficiency**: Supports querying structured data formats such as CSV, JSON, and Parquet stored in S3. Reduces network bandwidth by retrieving only the required data instead of the entire object.
+
+- **Standard SQL Support**: Use SQL expressions to filter, project, and aggregate data.
+  Examples include selecting specific columns, filtering rows based on conditions, and performing basic aggregations.
+
+- **Performance Benefits**: Speeds up data analysis by processing the data server-side within S3 before transferring it to the client. Particularly beneficial for large datasets.
+
+### Glacier Select
+
+Glacier Select enables you to perform SQL-based queries directly on data stored in Amazon S3 Glacier. This allows you to retrieve only the required data without restoring the entire archive object, optimizing retrieval costs and efficiency.
+
+Glacier Select Key Features:
+
+- **SQL-Based Queries**: Supports querying archived data using standard SQL expressions, similar to S3 Select. Query formats include CSV and JSON.
+
+- **Query Tiers**:
+
+  - Retrievals can be performed using three access tiers to balance speed and cost:
+    - **Expedited**: Fastest, suitable for small objects or urgent queries.
+    - **Standard**: Cost-effective with moderate retrieval times.
+    - **Bulk**: Lowest cost, best for non-urgent, large-scale queries.
+
+- **Cost Efficiency**: Minimizes the cost of querying archived data by retrieving only the required subset instead of restoring entire archives.
+
+- **Use Cases**:
+  - Searching archived logs for compliance audits.
+  - Extracting specific fields from historical data for analysis.
+  - Cost-effective querying of infrequently accessed data.
