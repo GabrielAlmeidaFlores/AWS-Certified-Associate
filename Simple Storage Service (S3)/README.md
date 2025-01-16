@@ -458,3 +458,26 @@ Currently, Amazon S3 can publish notifications for the following events:
 - **Notification Rules**: Each S3 bucket can have multiple notification configurations, but each must be uniquely defined (e.g., by event type or destination).
 
 - **Region-Specific Behavior**: Notifications work within the same AWS Region. If the destination is cross-region, additional setup is required.
+
+## Requester Pays
+
+In general, bucket owners pay for all Amazon S3 storage and data transfer costs that are associated with their bucket. However, you can configure a bucket to be a Requester Pays bucket. With Requester Pays buckets, the requester instead of the bucket owner pays the cost of the request and the data download from the bucket. The bucket owner always pays the cost of storing data.
+
+Typically, you configure buckets to be Requester Pays buckets when you want to share data but not incur charges associated with others accessing the data. For example, you might use Requester Pays buckets when making available large datasets, such as zip code directories, reference data, geospatial information, or web crawling data.
+
+> [!IMPORTANT]
+> If you enable Requester Pays on a bucket, anonymous access to that bucket is not allowed.
+
+After you configure a bucket to be a Requester Pays bucket, requesters must show they understand that they will be charged for the request and for the data download. To show they accept the charges, requesters must either include x-amz-request-payer as a header in their API request for DELETE, GET, HEAD, POST, and PUT requests, or add the RequestPayer parameter in their REST request. For CLI requests, requesters can use the --request-payer parameter.
+
+Example – Using Requester Pays when deleting an object:
+
+```curl
+
+DELETE /Key+?versionId=VersionId HTTP/1.1
+Host: Bucket.s3.amazonaws.com
+x-amz-mfa: MFA
+x-amz-request-payer: RequestPayer
+x-amz-bypass-governance-retention: BypassGovernanceRetention
+x-amz-expected-bucket-owner: ExpectedBucketOwner
+```
