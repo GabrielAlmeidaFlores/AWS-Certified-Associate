@@ -336,3 +336,15 @@ By enabling S3 Bucket Keys, you maintain strong encryption while optimizing both
   - No retrieval fees or minimum duration/object size.
 
 - **Use Case**: Data with unpredictable or changing access patterns, such as machine learning datasets, media libraries, or user-generated content.
+
+## S3 Lifecycle
+
+S3 Lifecycle helps you store objects cost effectively throughout their lifecycle by transitioning them to lower-cost storage classes, or, deleting expired objects on your behalf. To manage the lifecycle of your objects, create an S3 Lifecycle configuration for your bucket. An S3 Lifecycle configuration is a set of rules that define actions that Amazon S3 applies to a group of objects. There are two types of actions:
+
+- **Transition actions**: These actions define when objects transition to another storage class. For example, you might choose to transition objects to the S3 Standard-IA storage class 30 days after creating them, or archive objects to the S3 Glacier Flexible Retrieval storage class one year after creating them. For more information, see Understanding and managing Amazon S3 storage classes. There are costs associated with lifecycle transition requests.
+
+- **Expiration actions**: These actions define when objects expire. Amazon S3 deletes expired objects on your behalf. For example, you might to choose to expire objects after they have been stored for a regulatory compliance period. For more information, see Expiring objects. There are potential costs associated with lifecycle expiration only when you expire objects in a storage class with a minimum storage duration.
+
+### Existing and new objects
+
+When you add a Lifecycle configuration to a bucket, the configuration rules apply to both existing objects and objects that you add later. For example, if you add a Lifecycle configuration rule today with an expiration action that causes objects to expire 30 days after creation, Amazon S3 will queue for removal any existing objects that are more than 30 days old.
