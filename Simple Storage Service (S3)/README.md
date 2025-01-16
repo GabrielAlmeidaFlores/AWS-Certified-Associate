@@ -425,3 +425,36 @@ Glacier Select Key Features:
   - Searching archived logs for compliance audits.
   - Extracting specific fields from historical data for analysis.
   - Cost-effective querying of infrequently accessed data.
+
+## S3 Events Notifications
+
+S3 Event Notifications allow you to automatically trigger actions or workflows in response to specific events in your S3 bucket, such as object uploads, deletions, or updates. These notifications integrate seamlessly with various AWS services to enable event-driven architectures.
+
+Currently, Amazon S3 can publish notifications for the following events:
+
+- New object created events
+- Object removal events
+- Restore object events
+- Reduced Redundancy Storage (RRS) object lost events
+- Replication events
+- S3 Lifecycle expiration events
+- S3 Lifecycle transition events
+- S3 Intelligent-Tiering automatic archival events
+- Object tagging events
+- Object ACL PUT events
+
+### Destinations for Notifications
+
+- **Amazon Simple Notification Service (SNS)**: Used for sending notifications to subscribers via email, SMS, or HTTP endpoints. Ideal for broadcasting events to multiple endpoints.
+
+- **Amazon Simple Queue Service (SQS)**: Sends event messages to an SQS queue for asynchronous processing. Suitable for decoupled workflows with reliable message delivery.
+
+- **AWS Lambda**: Invokes a Lambda function for serverless processing of the event. Commonly used for data processing, triggering workflows, or running custom logic.
+
+### Configuration
+
+- **Permissions**: The bucket must have a properly configured bucket policy granting permissions to the destination service (e.g., Lambda, SQS, SNS).
+
+- **Notification Rules**: Each S3 bucket can have multiple notification configurations, but each must be uniquely defined (e.g., by event type or destination).
+
+- **Region-Specific Behavior**: Notifications work within the same AWS Region. If the destination is cross-region, additional setup is required.
