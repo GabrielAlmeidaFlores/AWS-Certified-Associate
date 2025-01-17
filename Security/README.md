@@ -267,95 +267,24 @@ This ensures secure management of large datasets without exposing the plaintext 
 
 AWS Key Management Service (KMS) and AWS CloudHSM are both services offered by AWS for key management and cryptographic operations, but they serve different purposes and offer different levels of control, flexibility, and security.
 
-### Purpose & Use Cases
+Key Differences between AWS KMS and AWS CloudHSM:
 
-#### AWS KMS
-
-- Fully managed key management service for encryption keys.
-- Designed for use cases where you need to manage and use encryption keys easily with integrated AWS services.
-- Supports symmetric and asymmetric keys.
-- Ideal for general-purpose key management, automatic key rotation, and integration with various AWS services (e.g., S3, RDS, EBS).
-
-#### AWS CloudHSM
-
-- Dedicated hardware security module (HSM) in the cloud that provides more granular control over cryptographic operations.
-- Provides a physical device (HSM) for secure key storage and cryptographic operations.
-- You fully manage the HSMs, including the keys and the cryptographic operations.
-- Advanced use cases where you need full control over the cryptographic module, such as custom encryption, digital signing, or if you're using legacy systems that require HSMs. Ideal for applications requiring FIPS 140-2 Level 3 compliance.
-
-### Key Management and Control
-
-#### AWS KMS
-
-- AWS takes care of key generation, storage, rotation, and management.
-- Key management is easier because it integrates directly with AWS services.
-- While you can manage key policies and lifecycle, you don't control the underlying hardware where the keys are stored.
-- Supports automatic key rotation for customer-managed keys.
-
-#### AWS CloudHSM
-
-- You have full control over the keys, including the HSM device itself and the cryptographic operations.
-- You can generate, store, and manage your own keys within the HSM.
-- You must manually rotate keys and manage their lifecycle.
-- You can perform operations that require fine-tuned control over cryptographic algorithms or custom implementations.
-
-### Security and Compliance
-
-#### AWS KMS
-
-- FIPS 140-2 Level 2 compliant for the underlying hardware.
-- Offers high security but not at the same level of physical separation or control as CloudHSM.
-- Encryption and key access policies are managed using IAM (Identity and Access Management).
-- Ideal for most general-purpose use cases and integrated with AWS services for compliance (e.g., GDPR, HIPAA).
-
-#### AWS CloudHSM
-
-- FIPS 140-2 Level 3 compliant (higher level of physical security and control than KMS).
-- Offers the highest level of security for cryptographic operations because of dedicated HSM hardware.
-- You control the HSM and the keys it stores, which can be essential for high-security environments or compliance with stricter regulations.
-
-### Performance and Scalability
-
-#### AWS KMS
-
-- Scalable and supports high-throughput use cases like encrypting large volumes of data (up to 4 KB per operation for KMS keys, or using DEKs for larger data).
-- Managed by AWS, so scaling is automatic as your usage grows.
-
-#### AWS CloudHSM
-
-- While you can scale CloudHSM, it requires manual intervention to add more HSM devices, and you're responsible for configuring them.
-- Suitable for workloads where you need to handle high-throughput cryptographic operations, but scaling requires more effort compared to KMS.
-
-### Integration with AWS Services
-
-#### AWS KMS
-
-- Seamless integration with a wide range of AWS services like Amazon S3, RDS, Lambda, and EC2.
-- Supports encryption and key management in a centralized, easy-to-use way for AWS services.
-
-#### AWS CloudHSM
-
-- Requires more custom integration.
-- Used in applications that require direct access to HSMs and custom cryptographic operations.
-- Not as tightly integrated with AWS services as KMS is.
-
-### Key Differences
-
-| **Aspect**                             | **AWS CloudHSM**                                                                                                                         | **AWS KMS**                                                                                                                                     |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Purpose**                            | Provides dedicated Hardware Security Module (HSM) instances for key storage and cryptographic operations.                                | Provides managed service to create and control encryption keys used to encrypt data.                                                            |
-| **Tenancy**                            | Single-Tenant                                                                                                                            | Multi-Tenant                                                                                                                                    |
-| **High Availability: How to achieve?** | Create multiple HSMs (manually) over different AZs                                                                                       | Managed (automatically) by AWS                                                                                                                  |
-| **Scaling/Performance Responsibility** | Scaling requires manual effort as it involves provisioning additional physical HSM instances.                                            | Highly scalable and can handle higher workloads without manual intervention.                                                                    |
-| **Key Management**                     | Users have exclusive control over key management, including key generation, storage, and cryptographic operations.                       | AWS manages the hardware and underlying infrastructure, but users control cryptographic keys and their use.                                     |
-| **Key Access: Who controls it?**       | You                                                                                                                                      | You + AWS                                                                                                                                       |
-| **Keys: How to use?**                  | Customer code + Safenet APIs                                                                                                             | AWS Management Console                                                                                                                          |
-| **Keys: Where to use?**                | AWS & Your Network (VPN)                                                                                                                 | AWS                                                                                                                                             |
-| **AWS Services Integration**           | Integration is more complex and limited. Often used in conjunction with other AWS services for enhanced security.                        | Deeply integrated with AWS services like S3, EBS, RDS, and Redshift, allowing for easy encryption key management.                               |
-| **Compliance Standards**               | Meets high regulatory and compliance requirements, including FIPS 140-2 Level 3, suitable for highly regulated industries.               | Meets various compliance standards, typically FIPS 140-2 Level 2, offering a balance between security and convenience.                          |
-| **Access & Authentication Policy**     | Quorum-based K of N                                                                                                                      | AWS IAM Policy                                                                                                                                  |
-| **Use Case**                           | Ideal for organizations with strict regulatory requirements or those needing to manage their encryption environment closely.             | Best suited for organizations looking for an easy-to-use, integrated solution for managing encryption keys across a wide range of AWS services. |
-| **Ease of Use**                        | Requires specialized knowledge for setup and management, which might be complex for users without prior experience in hardware security. | User-friendly with simplified key management, ideal for users who want to manage keys without the complexity of managing physical hardware.     |
-| **Physical Control**                   | Provides exclusive, single-tenant access to physical HSM devices, offering higher isolation and control.                                 | As a managed, multi-tenant service, physical control is handled by AWS, reducing the level of user control over hardware.                       |
-| **Cost**                               | Higher cost due to dedicated hardware.                                                                                                   | Lower cost compared to CloudHSM due to the shared environment.                                                                                  |
-| **FIPS 140-2 Compliance**              | Level 3                                                                                                                                  | Level 3                                                                                                                                         |
+| **Aspect**                             | **AWS CloudHSM**                                                                                                                                                              | **AWS KMS**                                                                                                                                                             |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Purpose**                            | Dedicated hardware security module (HSM) in the cloud that provides granular control over cryptographic operations.                                                           | Fully managed key management service for encryption keys, designed for easy use with integrated AWS services.                                                           |
+| **Use Cases**                          | Advanced use cases requiring full control over cryptographic modules, such as custom encryption, digital signing, or legacy systems. Ideal for FIPS 140-2 Level 3 compliance. | General-purpose key management, automatic key rotation, and integration with AWS services like S3, RDS, and EBS.                                                        |
+| **Tenancy**                            | Single-Tenant                                                                                                                                                                 | Multi-Tenant                                                                                                                                                            |
+| **High Availability: How to achieve?** | Create multiple HSMs (manually) over different AZs                                                                                                                            | Managed (automatically) by AWS                                                                                                                                          |
+| **Scaling/Performance Responsibility** | Scaling requires manual intervention to add and configure additional HSM devices.                                                                                             | Highly scalable with automatic handling of higher workloads.                                                                                                            |
+| **Key Management**                     | Full control over the keys, including HSM devices and cryptographic operations. Key rotation and lifecycle must be managed manually.                                          | AWS manages key generation, storage, rotation, and management, while you control key policies and lifecycle. Supports automatic key rotation for customer-managed keys. |
+| **Key Access: Who controls it?**       | You                                                                                                                                                                           | You + AWS                                                                                                                                                               |
+| **Keys: How to use?**                  | Customer code + Safenet APIs                                                                                                                                                  | AWS Management Console                                                                                                                                                  |
+| **Keys: Where to use?**                | AWS & Your Network (VPN)                                                                                                                                                      | AWS                                                                                                                                                                     |
+| **AWS Services Integration**           | Requires more custom integration. Used in applications requiring direct access to HSMs and custom cryptographic operations.                                                   | Seamless integration with a wide range of AWS services like S3, RDS, Lambda, and EC2 for centralized encryption and key management.                                     |
+| **Compliance Standards**               | FIPS 140-2 Level 3 compliant, offering high physical security and control.                                                                                                    | FIPS 140-2 Level 2 compliant, providing a balance of security and convenience.                                                                                          |
+| **Access & Authentication Policy**     | Quorum-based K of N                                                                                                                                                           | AWS IAM Policy                                                                                                                                                          |
+| **Security**                           | Provides the highest level of security for cryptographic operations with dedicated HSM hardware and full user control.                                                        | High security with encryption and key access policies managed via AWS IAM, suitable for most general-purpose use cases.                                                 |
+| **Performance**                        | Suitable for high-throughput cryptographic operations but scaling requires effort.                                                                                            | Scalable for high-throughput use cases like encrypting large volumes of data.                                                                                           |
+| **Ease of Use**                        | Requires specialized knowledge for setup and management. Complexity is higher due to full user control over hardware and keys.                                                | Simplified key management, ideal for users who want to manage encryption keys without dealing with the underlying hardware.                                             |
+| **Physical Control**                   | Provides exclusive, single-tenant access to physical HSM devices, offering higher isolation and control.                                                                      | As a managed, multi-tenant service, physical control is handled by AWS, reducing user control over hardware.                                                            |
+| **Cost**                               | Higher cost due to dedicated hardware.                                                                                                                                        | Lower cost compared to CloudHSM due to the shared environment.                                                                                                          |
