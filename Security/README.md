@@ -253,15 +253,14 @@ Policies are written in JSON and support conditions for fine-grained access cont
 
 Data Encryption Keys (DEKs) are temporary keys used to encrypt data that exceeds the 4 KB limit of KMS keys.
 
-- How They Work
-  - KMS generates a DEK, which includes two parts:
-    - **Plaintext Key**: Used for actual data encryption.
-    - **Encrypted Key**: Safely stored and used later to re-encrypt the plaintext key.
-  - The plaintext DEK encrypts your data.
-  - The plaintext DEK is discarded immediately after use.
-  - The encrypted DEK is stored alongside the encrypted data, enabling future decryption.
+> [!IMPORTANT]
+> DEKs do not perform encryption themselves; they are simply the keys you use to encrypt or decrypt data. You are responsible for using the DEKs to perform the actual encryption or decryption process, either within your application or using supported AWS services.
 
-This ensures secure management of large datasets without exposing the plaintext DEK for longer than necessary.
+DEKs key features:
+
+- **Ephemeral Nature**: DEKs are temporary keys generated to encrypt specific pieces of data. They are often disposed of after use, ensuring minimal exposure.
+- **Key Hierarchy**: DEKs are protected by AWS Key Management Service (KMS) Customer Master Keys (CMKs). DEKs are encrypted with CMKs before being stored or transmitted.
+- **Automatic Management**: AWS services (e.g., S3, RDS, and DynamoDB) can automatically handle DEK generation, encryption, and decryption. Users can also generate and manage DEKs manually through AWS KMS APIs.
 
 ## AWS KMS vs. AWS CloudHSM
 
