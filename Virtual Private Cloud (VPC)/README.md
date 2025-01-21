@@ -12,6 +12,14 @@ VPC Key Points:
 
 - **Highly Flexible**: AWS VPCs are highly adaptable, supporting network architectures ranging from simple single-tier deployments to complex multi-tier designs. You can create public and private subnets, customize routing tables, and implement hybrid connectivity through VPN or AWS Direct Connect for seamless integration with on-premises networks.
 
+- **Primary Private IPv4 CIDR Block**: Every VPC must have one primary private IPv4 CIDR block defined during its creation. This CIDR block specifies the range of private IP addresses available for resources within the VPC. The size of the CIDR block must be between /28 (16 IP addresses) and /16 (65,536 IP addresses). The primary CIDR block is a mandatory configuration and cannot be removed, but additional secondary CIDR blocks can be added later to expand the address space if needed.
+
+- **DNS Settings**
+
+  - **enableDnsSupport**: The `enableDnsSupport` attribute, when enabled (default setting), allows instances in the VPC to resolve public domain names using AWS DNS servers. This feature is essential for workloads that need to access external services, such as internet-based APIs or other AWS services. If disabled, DNS resolution within the VPC is restricted, and resources cannot resolve domain names to IP addresses. You cannot disable `enableDnsSupport` once the VPC is created, as it is enabled by default for all VPCs.
+
+  - **enableDnsHostnames**: The `enableDnsHostnames` attribute, when enabled, assigns public DNS hostnames to instances with public IP addresses. This setting is particularly useful for accessing instances over the internet using easily recognizable names instead of IP addresses. By default, this attribute is disabled in custom VPCs and enabled in the default VPC. For `enableDnsHostnames` to work, `enableDnsSupport` must also be enabled. If needed, you can enable `enableDnsHostnames` at any time via the AWS Management Console, CLI, or SDKs by modifying the VPC settings.
+
 - **Tenancy Options**: VPCs offer two tenancy options—Default Tenancy and Dedicated Tenancy—to meet different operational and compliance requirements.
 
   - **Default Tenancy**: Instances are hosted on shared hardware, providing a cost-effective solution for most workloads. Resources share the underlying physical infrastructure with other AWS customers but maintain logical isolation.
