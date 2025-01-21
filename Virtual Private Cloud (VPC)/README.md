@@ -47,7 +47,8 @@ Subnet Key Concepts:
 - **IPv4 CIDR Block**: Each subnet is assigned a CIDR block that is a subset of the VPC's CIDR block. The subnet CIDR block defines the range of IP addresses available within that subnet.
 
 - **No Overlap**: The CIDR block of a subnet cannot overlap with other subnets in the same VPC. Proper planning is essential to avoid IP conflicts.
-  Default Communication: By default, all subnets within a VPC can communicate with each other, unless restricted by security groups, network ACLs, or route tables.
+
+- **Default Communication**: By default, all subnets within a VPC can communicate with each other, unless restricted by security groups, network ACLs, or route tables.
 
 - **Subnet routing**: Each subnet must be associated with a route table, which specifies the allowed routes for outbound traffic leaving the subnet. Every subnet that you create is automatically associated with the main route table for the VPC. You can change the association, and you can change the contents of the main route table.
 
