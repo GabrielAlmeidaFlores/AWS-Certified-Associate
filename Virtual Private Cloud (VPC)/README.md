@@ -63,3 +63,23 @@ Subnet Key Concepts:
   - **Future Use (10.16.16.3)**: The fourth IP address is reserved for future AWS use. While it is currently unused, AWS may utilize this address for future features or network management.
 
   - **Broadcast Address (10.16.31.255)**: The last IP address is the broadcast address, which is the last IP in the subnet range. This address is used for broadcast communication across the subnet, though AWS does not use this feature in VPCs (unlike traditional networking). It's reserved to conform to networking standards.
+
+## Internet Gateway (IGW)
+
+An internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. It supports IPv4 and IPv6 traffic. It does not cause availability risks or bandwidth constraints on your network traffic.
+
+An internet gateway enables resources in your public subnets (such as EC2 instances) to connect to the internet if the resource has a public IPv4 address or an IPv6 address. Similarly, resources on the internet can initiate a connection to resources in your subnet using the public IPv4 address or IPv6 address. For example, an internet gateway enables you to connect to an EC2 instance in AWS using your local computer.
+
+An internet gateway provides a target in your VPC route tables for internet-routable traffic. For communication using IPv4, the internet gateway also performs network address translation (NAT).
+
+Key Features of Internet Gateway:
+
+- **High Availability**: Designed to be horizontally scalable and redundant, ensuring uninterrupted service. Operates across multiple Availability Zones within a region.
+
+- **Exclusive Attachment**: Can only be attached to one VPC at a time. This exclusivity ensures that no overlapping traffic occurs between VPCs.
+
+- **Network Address Translation (NAT)**: Performs NAT for IPv4 traffic to map private IPs in the VPC to public IPs for internet communication. Does not require NAT functionality for IPv6 traffic as it is inherently internet-routable.
+
+- **AWS Public Zone Integration**: Provides connectivity to AWS public services like Amazon S3, SQS, SNS, and others via internet-routable endpoints. Supports secure access to these services when configured with security groups and network ACLs.
+
+- **Cost-Efficiency**: There is no additional cost for using an IGW itself. You only pay for the associated data transfer out of the VPC and other internet-based AWS services.
