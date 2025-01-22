@@ -125,3 +125,31 @@ Security group basics:
 - **Default Outbound Rules**: A newly created security group includes a default outbound rule that allows all outbound traffic from the resource. You can modify this by removing the default rule and adding specific outbound rules. If there are no outbound rules, all outbound traffic is denied.
 
 - **Aggregation of Rules**: When multiple security groups are associated with a resource, the rules from each group are aggregated into a single set. This combined set of rules determines whether to allow or deny traffic to and from the resource.
+
+## NAT Gateways
+
+A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT gateway so that instances in a private subnet can connect to services outside your VPC but external services cannot initiate a connection with those instances.
+
+When you create a NAT gateway, you specify one of the following connectivity types:
+
+- **Public (Default)**: Instances in private subnets can connect to the internet through a public NAT gateway, but cannot receive unsolicited inbound connections from the internet. You create a public NAT gateway in a public subnet and must associate an elastic IP address with the NAT gateway at creation. You route traffic from the NAT gateway to the internet gateway for the VPC. Alternatively, you can use a public NAT gateway to connect to other VPCs or your on-premises network. In this case, you route traffic from the NAT gateway through a transit gateway or a virtual private gateway.
+
+- **Private**: Instances in private subnets can connect to other VPCs or your on-premises network through a private NAT gateway. You can route traffic from the NAT gateway through a transit gateway or a virtual private gateway. You cannot associate an elastic IP address with a private NAT gateway. You can attach an internet gateway to a VPC with a private NAT gateway, but if you route traffic from the private NAT gateway to the internet gateway, the internet gateway drops the traffic.
+
+A NAT gateway is for use with IPv4 traffic only. To enable outbound-only internet communication over IPv6, use an egress-only internet gateway instead.
+
+NAT Gateway Key Points:
+
+- **Public Subnet Deployment**: NAT Gateways are designed to run in a public subnet within your VPC. This means they have direct access to the internet through an Internet Gateway, allowing them to route traffic from private subnets to the internet while hiding the source IP addresses of instances in private subnets.
+
+- **Elastic IPs (Static IPv4 Public)**: Each NAT Gateway is associated with an Elastic IP address, which is a static, public IPv4 address. This ensures that the NAT Gateway has a persistent public IP that does not change, allowing reliable communication between instances in private subnets and external resources on the internet.
+
+- **Availability Zone Resilience**: NAT Gateways are highly available within the Availability Zone (AZ) in which they are deployed. However, if the AZ itself experiences issues, the NAT Gateway may become unavailable. For high availability within the same AZ, AWS ensures that NAT Gateways are resilient by maintaining the required infrastructure for their operation.
+
+- **Regional Resilience (Multiple NAT Gateways)**: To ensure fault tolerance across Availability Zones, AWS recommends deploying a separate NAT Gateway in each AZ of your VPC. This way, if one AZ becomes unavailable, the NAT Gateways in other AZs can continue to provide internet access to private subnets. This architecture improves overall resilience at the regional level, ensuring minimal downtime in case of AZ failure.
+
+- **Route Table Configuration**: Each Availability Zone within the VPC should have a separate route table that directs outbound internet traffic from instances in private subnets to the corresponding NAT Gateway. This ensures that private instances can communicate with the internet without directly exposing them to inbound traffic from external sources. When setting up the route tables, the NAT Gateway’s Elastic IP should be set as the target for internet-bound traffic from private subnets.
+
+- **Cost Consideration**: NAT Gateways are not included in AWS’s free tier. They incur costs based on both the amount of data processed (measured in GBs) and the number of hours the NAT Gateway is running. Costs can add up quickly depending on the traffic flow, so careful monitoring and optimization are recommended. Consider using alternatives like NAT instances for smaller or less complex setups if cost is a significant concern.
+
+- **IPv4 and IPv6 Compatibility**: While NAT Gateways are required for private IPv4 traffic to access the internet, they do not support IPv6 traffic. If your VPC uses IPv6 addressing, you will need to use alternative solutions, such as a proxy or IPv6-specific routing mechanisms, as NAT Gateways cannot perform the address translation for IPv6 traffic.
