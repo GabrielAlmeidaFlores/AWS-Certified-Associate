@@ -97,3 +97,20 @@ NACL Key Points:
 - A network ACL has inbound rules and outbound rules. Each rule can either allow or deny traffic. Each rule has a number from 1 to 32766. We evaluate the rules in order, starting with the lowest numbered rule, when deciding whether allow or deny traffic. If the traffic matches a rule, the rule is applied and we do not evaluate any additional rules. We recommend that you start by creating rules in increments (for example, increments of 10 or 100) so that you can insert new rules later on, if needed.
 - We evaluate the network ACL rules when traffic enters and leaves the subnet, not as it is routed within a subnet.
 - NACLs are stateless, which means that information about previously sent or received traffic is not saved. If, for example, you create a NACL rule to allow specific inbound traffic to a subnet, responses to that traffic are not automatically allowed. This is in contrast to how security groups work. Security groups are stateful, which means that information about previously sent or received traffic is saved. If, for example, a security group allows inbound traffic to an EC2 instance, responses are automatically allowed regardless of outbound security group rules.
+
+## Security Groups
+
+A security group controls the inbound and outbound traffic for the resources it is associated with. For example, when you associate a security group with an EC2 instance, it determines the traffic allowed to reach and leave the instance.
+
+The rules of a security group specify the inbound traffic permitted to access resources and the outbound traffic allowed to leave them. You can configure these rules by defining the source, port range, and protocol for inbound traffic, as well as the destination, port range, and protocol for outbound traffic.
+
+When you create a VPC, it comes with a default security group. You can also create additional security groups within a VPC, each with its own customizable rules to meet specific security requirements.
+
+Security group basics:
+
+- You can assign a security group only to resources created in the same VPC as the security group. You can assign multiple security groups to a resource.
+- Security groups are stateful. For example, if you send a request from an instance, the response traffic for that request is allowed to reach the instance regardless of the inbound security group rules. Responses to allowed inbound traffic are allowed to leave the instance, regardless of the outbound rules.
+- You can configure security groups to include rules that explicitly allow specific types of traffic, but they do not support rules to explicitly deny traffic; any traffic not explicitly allowed is automatically denied by default.
+- When you first create a security group, it has no inbound rules. Therefore, no inbound traffic is allowed until you add inbound rules to the security group.
+- When you first create a security group, it has an outbound rule that allows all outbound traffic from the resource. You can remove the rule and add outbound rules that allow specific outbound traffic only. If your security group has no outbound rules, no outbound traffic is allowed.
+- When you associate multiple security groups with a resource, the rules from each security group are aggregated to form a single set of rules that are used to determine whether to allow access.
