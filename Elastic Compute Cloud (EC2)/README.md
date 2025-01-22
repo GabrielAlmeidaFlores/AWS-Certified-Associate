@@ -10,13 +10,13 @@ O Amazon EC2 fornece uma ampla seleção de tipos de instância otimizadas para 
 
 Here is a table summarizing the different EC2 instance families, their associated storage types, and ideal use cases.
 
-| **Instance Family**       | **Instance Type**      | **Storage**           | **Use Case**                                                                      |
-| ------------------------- | ---------------------- | --------------------- | --------------------------------------------------------------------------------- |
-| **General Purpose**       | t4g, t3, t3a, t2       | EBS only              | Balanced compute, memory, and networking. Ideal for small to medium apps.         |
-|                           | m6g, m5, m5a, m5n, m4  | EBS only              | For workloads that require a balance of compute, memory, and networking.          |
-| **Compute Optimized**     | c7g, c6g, c6i, c5n, c5 | EBS only              | High-performance compute for applications like batch processing and gaming.       |
-| **Memory Optimized**      | r6g, r5, r5a, r5n, r4  | EBS only              | Memory-intensive workloads like high-performance databases and analytics.         |
-|                           | x2idn, x2iezn          | EBS only              | Extreme memory requirements, such as in-memory databases and big data.            |
-| **Accelerated Computing** | inf1, f1, dl1          | EBS only              | Specialized hardware acceleration for ML inference and custom computing tasks.    |
-| **Storage Optimized**     | i4i, i3, i3en          | Instance store (NVMe) | High I/O operations for workloads like NoSQL databases and data warehousing.      |
-|                           | d2, h1                 | Instance store (HDD)  | For large-scale data processing and data lakes requiring high storage throughput. |
+| **Instance Family**       | **Instance Type**      | **Use Case**                                                                      |
+| ------------------------- | ---------------------- | --------------------------------------------------------------------------------- |
+| **General Purpose**       | t4g, t3, t3a, t2       | Balanced compute, memory, and networking. Ideal for small to medium apps.         |
+|                           | m6g, m5, m5a, m5n, m4  | For workloads that require a balance of compute, memory, and networking.          |
+| **Compute Optimized**     | c7g, c6g, c6i, c5n, c5 | High-performance compute for applications like batch processing and gaming.       |
+| **Memory Optimized**      | r6g, r5, r5a, r5n, r4  | Memory-intensive workloads like high-performance databases and analytics.         |
+|                           | x2idn, x2iezn          | Extreme memory requirements, such as in-memory databases and big data.            |
+| **Accelerated Computing** | inf1, f1, dl1          | Specialized hardware acceleration for ML inference and custom computing tasks.    |
+| **Storage Optimized**     | i4i, i3, i3en          | High I/O operations for workloads like NoSQL databases and data warehousing.      |
+|                           | d2, h1                 | For large-scale data processing and data lakes requiring high storage throughput. |
