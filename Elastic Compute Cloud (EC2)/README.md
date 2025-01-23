@@ -71,4 +71,18 @@ Consider an online transaction processing (OLTP) system, where thousands of cust
 
 Throughput refers to the total amount of data that a storage system can transfer per second, typically measured in megabytes per second (MB/s) or gigabytes per second (GB/s). This metric is crucial for tasks that involve large, sequential data transfers, such as media rendering, video editing, or backing up large volumes of data. High throughput allows data to flow efficiently from the source to the storage system, minimizing bottlenecks.
 
-For example, if you're transferring a 10GB video file to a storage server, the throughput of the system directly impacts how quickly the transfer occurs. If the system's throughput is 100MB/s, the transfer would take approximately 100 seconds (10GB ÷ 100MB/s = 100s). However, if the throughput is higher, say 500MB/s, the same 10GB file would transfer in just 20 seconds. In high-throughput environments, where bulk data transfer is frequent, such as in video production or large-scale backups, the system’s throughput becomes a critical factor in determining performance.
+Throughput is typically calculated as the IO (Block) Size multiplied by the IOPS (Input/Output Operations Per Second). This means that throughput is directly dependent on both the size of each data block being transferred and the number of IO operations the system can handle per second.
+
+For example, if you're transferring a 10GB video file to a storage server, and the system's block size is 64KB with an IOPS of 1,000, the throughput would be:
+
+Throughput = IO (Block) Size × IOPS -> 64KB × 1,000 = 64MB/s
+
+With a throughput of 64MB/s, the transfer time for the 10GB file would be approximately 156.25 seconds (10GB ÷ 64MB/s).
+
+However, if the system can handle 5000 IOPS with the same block size (64KB), the throughput increases to:
+
+Throughput = 64KB × 5,000 = 320MB/s
+
+In this case, the transfer of the same 10GB file would only take approximately 31.25 seconds.
+
+In high-throughput environments, where bulk data transfer is frequent—such as in video production or large-scale backups—the system's throughput, which is the product of IO (Block) Size and IOPS, becomes a critical factor in determining overall performance.
