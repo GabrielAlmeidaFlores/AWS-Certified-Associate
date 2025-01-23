@@ -48,3 +48,27 @@ Key Takeaway:
 - **Block Storage**: Best for low-level access, OS booting, databases, and performance-critical applications where low latency is required.
 - **File Storage**: Ideal for collaborative workflows, shared access, hierarchical file structures, and applications using common file protocols.
 - **Object Storage**: Perfect for scalable, cloud-native applications, storing large amounts of unstructured data (e.g., photos, videos, backups), and metadata-rich use cases.
+
+### Storage Performance Concepts
+
+Storage performance is a critical factor in determining how effectively a system can handle data-intensive workloads. Whether you're working with databases, virtual machines, or media files, understanding key metrics such as IO (Block) Size, IOPS, and Throughput is essential for optimizing performance and selecting the right storage solution.
+
+Each of these concepts plays a unique role in how storage systems process and transfer data, influencing factors like speed, efficiency, and scalability.
+
+#### IO (Block) Size
+
+IO Size refers to the amount of data read from or written to the storage system in a single Input/Output (IO) operation. It represents how much data is handled per IO request. The size can vary from a few kilobytes (KB) to several megabytes (MB), depending on the task at hand. Smaller block sizes are best for random access tasks, while larger blocks are more efficient for sequential data processing.
+
+For instance, in a database environment like MySQL, transactions typically involve many small read and write operations, each in the range of 4KB to 8KB. This is due to the random access pattern of database operations, where specific rows or records need to be accessed frequently. On the other hand, when transferring large files such as videos or backups, using larger block sizes like 64KB or 1MB is more efficient. The reason is that large blocks can be read or written in a single operation, reducing overhead and optimizing the transfer speed, especially when dealing with large, sequential data.
+
+#### IOPS (Input/Output Operations Per Second)
+
+IOPS measures how many individual read or write operations a storage system can perform in one second. This is an important metric for systems with high-frequency, random access tasks such as databases, virtual machines, or any application that performs numerous small data operations. A higher IOPS count indicates better performance for workloads requiring frequent, small read and write operations.
+
+Consider an online transaction processing (OLTP) system, where thousands of customers make purchases every second. This system demands storage with high IOPS, as it has to handle many small, random read and write requests. For example, a system capable of 100,000 IOPS would efficiently support this environment by quickly processing each individual request. In contrast, older hard disk drives (HDDs) typically handle only around 100-200 IOPS, which would not be sufficient for high-demand systems, resulting in slow performance and potential delays.
+
+#### Throughput
+
+Throughput refers to the total amount of data that a storage system can transfer per second, typically measured in megabytes per second (MB/s) or gigabytes per second (GB/s). This metric is crucial for tasks that involve large, sequential data transfers, such as media rendering, video editing, or backing up large volumes of data. High throughput allows data to flow efficiently from the source to the storage system, minimizing bottlenecks.
+
+For example, if you're transferring a 10GB video file to a storage server, the throughput of the system directly impacts how quickly the transfer occurs. If the system's throughput is 100MB/s, the transfer would take approximately 100 seconds (10GB ÷ 100MB/s = 100s). However, if the throughput is higher, say 500MB/s, the same 10GB file would transfer in just 20 seconds. In high-throughput environments, where bulk data transfer is frequent, such as in video production or large-scale backups, the system’s throughput becomes a critical factor in determining performance.
