@@ -75,13 +75,13 @@ Throughput is typically calculated as the IO (Block) Size multiplied by the IOPS
 
 For example, if you're transferring a 10GB video file to a storage server, and the system's block size is 64KB with an IOPS of 1,000, the throughput would be:
 
-Throughput = IO (Block) Size × IOPS -> 64KB × 1,000 = 64MB/s
+_Throughput = IO (Block) Size × IOPS -> 64KB × 1,000 = 64MB/s_
 
 With a throughput of 64MB/s, the transfer time for the 10GB file would be approximately 156.25 seconds (10GB ÷ 64MB/s).
 
 However, if the system can handle 5000 IOPS with the same block size (64KB), the throughput increases to:
 
-Throughput = 64KB × 5,000 = 320MB/s
+_Throughput = 64KB × 5,000 = 320MB/s_
 
 In this case, the transfer of the same 10GB file would only take approximately 31.25 seconds.
 
