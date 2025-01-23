@@ -193,3 +193,66 @@ SSD-backed volumes are optimized for transactional workloads involving frequent 
     </tr>
   </tbody>
 </table>
+
+#### Hard disk drive (HDD) volumes
+
+HDD-backed volumes are optimized for large streaming workloads where the dominant performance attribute is throughput. HDD volume types include Throughput Optimized HDD and Cold HDD. The following is a summary of the use cases and characteristics of HDD-backed volumes.
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Throughput Optimized HDD volumes</th>
+      <th>Cold HDD volumes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td tabindex="-1"><b>Volume type</b></td>
+      <td tabindex="-1"><code>st1</code></td>
+      <td tabindex="-1"><code>sc1</code></td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Durability</b></td>
+      <td colspan="2" align="center" style="text-align: center;" tabindex="-1">99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Use cases</b></td>
+      <td tabindex="-1">
+        <ul>
+          <li>Big data</li>
+          <li>Data warehouses</li>
+          <li>Log processing</li>
+        </ul>
+      </td>
+      <td tabindex="-1">
+        <ul>
+          <li>Throughput-oriented storage for data that is infrequently accessed</li>
+          <li>Scenarios where the lowest storage cost is important</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Volume size</b></td>
+      <td colspan="2" align="center" style="text-align: center;" tabindex="-1">125 GiB - 16 TiB</td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Max IOPS per volume</b> (1 MiB I/O)</td>
+      <td tabindex="-1">500</td>
+      <td tabindex="-1">250</td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Max throughput per volume</b></td>
+      <td tabindex="-1">500 MiB/s</td>
+      <td tabindex="-1">250 MiB/s</td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Amazon EBS Multi-attach</b></td>
+      <td colspan="2" align="center" style="text-align: center;" tabindex="-1">Not supported</td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Boot volume</b></td>
+      <td colspan="2" align="center" style="text-align: center;" tabindex="-1">Not supported</td>
+    </tr>
+  </tbody>
+</table>
