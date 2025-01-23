@@ -107,13 +107,89 @@ Amazon EC2 provides you with flexible, cost effective, and easy-to-use data stor
 
 SSD-backed volumes are optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS. SSD-backed volume types include General Purpose SSD and Provisioned IOPS SSD . The following is a summary of the use cases and characteristics of SSD-backed volumes.
 
-| **Volume Type**             | **General Purpose SSD (gp3)**                                                                                                                                             | **General Purpose SSD (gp2)**                                                                                                                                             | **Provisioned IOPS SSD (io2 Block Express)**                                                                                   | **Provisioned IOPS SSD (io1)**                                                                               |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| **Durability**              | 99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)                                                                                                                | 99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)                                                                                                                | 99.999% durability (0.001% annual failure rate)                                                                                | 99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)                                                   |
-| **Use Cases**               | Transactional workloads, Virtual desktops, Medium-sized, single-instance databases, Low-latency interactive applications, Boot volumes, Development and test environments | Transactional workloads, Virtual desktops, Medium-sized, single-instance databases, Low-latency interactive applications, Boot volumes, Development and test environments | Workloads that require sub-millisecond latency, Sustained IOPS performance, More than 64,000 IOPS or 1,000 MiB/s of throughput | Workloads that require sustained IOPS performance or more than 16,000 IOPS, I/O-intensive database workloads |
-| **Volume Size**             | 1 GiB - 16 TiB                                                                                                                                                            | 1 GiB - 16 TiB                                                                                                                                                            | 4 GiB - 64 TiB                                                                                                                 | 4 GiB - 16 TiB                                                                                               |
-| **Max IOPS**                | 16,000 (64 KiB I/O)                                                                                                                                                       | 16,000 (16 KiB I/O)                                                                                                                                                       | 256,000 (16 KiB I/O)                                                                                                           | 64,000 (16 KiB I/O)                                                                                          |
-| **Max Throughput**          | 1,000 MiB/s                                                                                                                                                               | 250 MiB/s                                                                                                                                                                 | 4,000 MiB/s                                                                                                                    | 1,000 MiB/s                                                                                                  |
-| **Amazon EBS Multi-attach** | Not supported                                                                                                                                                             | Not supported                                                                                                                                                             | Supported                                                                                                                      | Supported                                                                                                    |
-| **NVMe Reservations**       | Not supported                                                                                                                                                             | Not supported                                                                                                                                                             | Supported                                                                                                                      | Not supported                                                                                                |
-| **Boot Volume**             | Supported                                                                                                                                                                 | Supported                                                                                                                                                                 | Supported                                                                                                                      | Supported                                                                                                    |
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" align="center" style="text-align: center;">Amazon EBS General Purpose SSD volumes</th>
+      <th colspan="2" align="center" style="text-align: center;">Amazon EBS Provisioned IOPS SSD volumes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td tabindex="-1"><b>Volume type</b></td>
+      <td tabindex="-1"><code>gp3</code></td>
+      <td tabindex="-1"><code>gp2</code></td>
+      <td tabindex="-1"><code>io2</code> Block Express <sup>3</sup></td>
+      <td tabindex="-1"><code>io1</code></td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Durability</b></td>
+      <td colspan="2" align="center" style="text-align: center;" tabindex="-1">99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+      <td tabindex="-1">99.999% durability (0.001% annual failure rate)</td>
+      <td tabindex="-1">99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)</td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Use cases</b></td>
+      <td colspan="2" tabindex="-1">
+        <ul>
+          <li>Transactional workloads</li>
+          <li>Virtual desktops</li>
+          <li>Medium-sized, single-instance databases</li>
+          <li>Low-latency interactive applications</li>
+          <li>Boot volumes</li>
+          <li>Development and test environments</li>
+        </ul>
+      </td>
+      <td tabindex="-1">
+        <p>Workloads that require:</p>
+        <ul>
+          <li>Sub-millisecond latency</li>
+          <li>Sustained IOPS performance</li>
+          <li>More than 64,000 IOPS or 1,000 MiB/s of throughput</li>
+        </ul>
+      </td>
+      <td tabindex="-1">
+        <ul>
+          <li>Workloads that require sustained IOPS performance or more than 16,000 IOPS</li>
+          <li>I/O-intensive database workloads</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Volume size</b></td>
+      <td colspan="2" align="center" style="text-align: center;" tabindex="-1">1 GiB - 16 TiB </td>
+      <td tabindex="-1">4 GiB - 64 TiB <sup>4</sup></td>
+      <td tabindex="-1">4 GiB - 16 TiB </td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Max IOPS</b></td>
+      <td tabindex="-1">16,000 (64 KiB I/O <sup>6</sup>)</td>
+      <td tabindex="-1">16,000 (16 KiB I/O <sup>6</sup>)</td>
+      <td tabindex="-1">256,000 <sup>5</sup> (16 KiB I/O <sup>6</sup>) </td>
+      <td tabindex="-1">64,000 (16 KiB I/O <sup>6</sup>)</td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Max throughput</b></td>
+      <td tabindex="-1">1,000 MiB/s</td>
+      <td tabindex="-1">250 MiB/s <sup>1</sup></td>
+      <td tabindex="-1">4,000 MiB/s</td>
+      <td tabindex="-1">1,000 MiB/s <sup>2</sup></td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Amazon EBS Multi-attach</b></td>
+      <td colspan="2" align="center" style="text-align: center;" tabindex="-1">Not supported</td>
+      <td colspan="2" align="center" style="text-align: center;" tabindex="-1">Supported</td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>NVMe reservations</b></td>
+      <td colspan="2" align="center" style="text-align: center;" tabindex="-1">Not supported</td>
+      <td tabindex="-1">Supported</td>
+      <td tabindex="-1">Not supported</td>
+    </tr>
+    <tr>
+      <td tabindex="-1"><b>Boot volume</b></td>
+      <td colspan="4" align="center" style="text-align: center;" tabindex="-1">Supported</td>
+    </tr>
+  </tbody>
+</table>
