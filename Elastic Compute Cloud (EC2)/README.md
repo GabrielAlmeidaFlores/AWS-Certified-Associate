@@ -6,9 +6,7 @@ Uma instância do EC2 é um servidor virtual na Nuvem AWS. Quando executa uma in
 
 ## EC2 Instance Types
 
-O Amazon EC2 fornece uma ampla seleção de tipos de instância otimizadas para de adequarem a diferentes casos de uso. Os tipos de instância incluem combinações variadas de capacidade de CPU, memória, armazenamento e redes e oferecem a flexibilidade de escolher a combinação de recursos adequada para suas aplicações. Cada tipo de instância inclui um ou mais tamanhos de instância, permitindo que você escale seus recursos de acordo com os requisitos de sua workload de destino.
-
-Here is a table summarizing the different EC2 instance families, their associated storage types, and ideal use cases.
+When you launch an instance, the instance type that you specify determines the hardware of the host computer used for your instance. Each instance type offers different compute, memory, and storage capabilities, and is grouped in an instance family based on these capabilities. Select an instance type based on the requirements of the application or software that you plan to run on your instance.
 
 | **Instance Family**       | **Instance Type**      | **Use Case**                                                                      |
 | ------------------------- | ---------------------- | --------------------------------------------------------------------------------- |
@@ -22,8 +20,6 @@ Here is a table summarizing the different EC2 instance families, their associate
 |                           | d2, h1                 | For large-scale data processing and data lakes requiring high storage throughput. |
 
 ## EC2 Storage Concepts
-
-Amazon EC2 provides you with flexible, cost effective, and easy-to-use data storage options for your instances. Each option has a unique combination of performance and durability. These storage options can be used independently or in combination to suit your requirements.
 
 ### Block Storage vs. File Storage vs. Object Storage
 
