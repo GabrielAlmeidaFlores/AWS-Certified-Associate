@@ -87,7 +87,11 @@ In high-throughput environments, where bulk data transfer is frequent—such as 
 
 Amazon EC2 provides you with flexible, cost effective, and easy-to-use data storage options for your instances. Each option has a unique combination of performance and durability. These storage options can be used independently or in combination to suit your requirements.
 
-### Elastic Block Storage
+### Elastic Block Storage (EBS)
+
+Amazon Elastic Block Store (Amazon EBS) provides scalable, high-performance block storage resources that can be used with Amazon Elastic Compute Cloud (Amazon EC2) instances.
+
+EBS Key Points:
 
 - **Block Storage**: EBS provides raw disk allocations (volumes) that can be encrypted using AWS Key Management Service (KMS) for security.
 
