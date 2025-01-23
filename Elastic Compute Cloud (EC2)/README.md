@@ -20,3 +20,24 @@ Here is a table summarizing the different EC2 instance families, their associate
 | **Accelerated Computing** | inf1, f1, dl1          | Specialized hardware acceleration for ML inference and custom computing tasks.    |
 | **Storage Optimized**     | i4i, i3, i3en          | High I/O operations for workloads like NoSQL databases and data warehousing.      |
 |                           | d2, h1                 | For large-scale data processing and data lakes requiring high storage throughput. |
+
+## EC2 Storage Types
+
+Amazon EC2 provides you with flexible, cost effective, and easy-to-use data storage options for your instances. Each option has a unique combination of performance and durability. These storage options can be used independently or in combination to suit your requirements.
+
+### Block Storage vs. File Storage vs. Object Storage
+
+Block, object, and cloud file storage are three ways of storing data in the cloud so that users and applications can access it remotely over a network connection. Object storage stores and manages all data in an unstructured format and in units called objects. Block storage takes any data, like a file or database entry, and divides it into blocks of equal sizes. It then stores the data block on underlying physical storage in a way that’s optimized for fast access and retrieval. Cloud file storage is another data storage method that provides servers and applications access to data through shared file systems. Each type offers its own unique advantages for various use cases.
+
+Key differences between object storage, block storage, and file storage:
+
+| **Aspect**        | **Block Storage**                                                                           | **File Storage**                                                     | **Object Storage**                                                               |
+| ----------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Definition**    | Stores data in fixed-sized blocks, accessible at the raw disk level.                        | Organizes data as files within a hierarchical directory structure.   | Stores data as objects, each containing data, metadata, and a unique identifier. |
+| **Access Method** | Low-level, block-by-block access. Requires a filesystem for readability (e.g., NTFS, ext4). | File-level access with a high-level interface (e.g., NFS, SMB).      | Accessed via APIs (e.g., REST, S3 API), not a traditional filesystem.            |
+| **Use Cases**     | Databases, virtual machines, OS boot drives, high-performance apps.                         | Shared file storage, backups, document storage, collaboration tools. | Cloud storage, backups, unstructured data (e.g., photos, videos, logs).          |
+| **Examples**      | HDD, SSD, SAN, iSCSI, AWS EBS, Azure Disk.                                                  | NFS, CIFS/SMB, Amazon FSx, Google Drive.                             | Amazon S3, Google Cloud Storage, Azure Blob Storage, MinIO.                      |
+| **Performance**   | Typically faster for random read/write operations.                                          | Optimized for file-level operations like sharing and collaboration.  | High scalability but may have higher latency for individual objects.             |
+| **Bootable**      | Yes, because it allows direct, raw access for bootloaders and OS installation.              | No, as it lacks raw access for booting.                              | No, designed for data storage rather than booting.                               |
+| **Scalability**   | Scales with storage volumes (block devices).                                                | Scales for user or application file access.                          | Highly scalable, designed for massive amounts of unstructured data.              |
+| **Management**    | Requires partitioning and formatting for use.                                               | Easier to use; already managed by a storage system.                  | Simple, managed via metadata and APIs, no partitioning needed.                   |
