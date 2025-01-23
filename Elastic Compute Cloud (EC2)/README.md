@@ -21,7 +21,7 @@ Here is a table summarizing the different EC2 instance families, their associate
 | **Storage Optimized**     | i4i, i3, i3en          | High I/O operations for workloads like NoSQL databases and data warehousing.      |
 |                           | d2, h1                 | For large-scale data processing and data lakes requiring high storage throughput. |
 
-## Storage Concepts
+## EC2 Storage Concepts
 
 Amazon EC2 provides you with flexible, cost effective, and easy-to-use data storage options for your instances. Each option has a unique combination of performance and durability. These storage options can be used independently or in combination to suit your requirements.
 
