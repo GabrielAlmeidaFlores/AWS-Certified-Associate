@@ -107,7 +107,11 @@ EBS Key Points:
 
 - **Billing**: EBS is billed based on GB per month, with additional charges for performance (IOPS, throughput) depending on the selected volume type.
 
-#### Solid state drive (SSD) volumes
+#### EBS volume types
+
+Amazon EBS provides the following volume types, which differ in performance characteristics and price, so that you can tailor your storage performance and cost to the needs of your applications.
+
+##### Solid state drive (SSD) volumes
 
 SSD-backed volumes are optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS. SSD-backed volume types include General Purpose SSD and Provisioned IOPS SSD . The following is a summary of the use cases and characteristics of SSD-backed volumes.
 
@@ -198,7 +202,7 @@ SSD-backed volumes are optimized for transactional workloads involving frequent 
   </tbody>
 </table>
 
-#### Hard disk drive (HDD) volumes
+##### Hard disk drive (HDD) volumes
 
 HDD-backed volumes are optimized for large streaming workloads where the dominant performance attribute is throughput. HDD volume types include Throughput Optimized HDD and Cold HDD. The following is a summary of the use cases and characteristics of HDD-backed volumes.
 
