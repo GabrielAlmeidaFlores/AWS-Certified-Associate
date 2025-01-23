@@ -82,3 +82,43 @@ _Throughput = 64KB × 5,000 = 320MB/s_
 In this case, the transfer of the same 10GB file would only take approximately 31.25 seconds.
 
 In high-throughput environments, where bulk data transfer is frequent—such as in video production or large-scale backups—the system's throughput, which is the product of IO (Block) Size and IOPS, becomes a critical factor in determining overall performance.
+
+## EC2 Storage Types
+
+Amazon EC2 provides you with flexible, cost effective, and easy-to-use data storage options for your instances. Each option has a unique combination of performance and durability. These storage options can be used independently or in combination to suit your requirements.
+
+### Elastic Block Storage
+
+- **Block Storage**: EBS provides raw disk allocations (volumes) that can be encrypted using AWS Key Management Service (KMS) for security.
+
+- **Instance-Level Storage**: Volumes are attached to EC2 instances or other services, where a file system (such as ext3, ext4, or XFS) can be created on the device.
+
+- **Availability Zone (AZ)**: EBS storage is provisioned within a specific AZ, offering resilience within that AZ, but not across multiple AZs by default.
+
+- **Attach & Detach Flexibility**: Volumes are attached to a single EC2 instance (or other supported services) over a storage network. EBS volumes can be detached from one instance and re-attached to another, with the data persisting throughout.
+
+- **Snapshots & Backup**: EBS volumes can be backed up to Amazon S3 as snapshots. Snapshots can be used to create new volumes and migrate data between AZs.
+
+- **Multiple Storage Options**: EBS provides various physical storage types, sizes, and performance profiles to suit different workloads (e.g., General Purpose SSD, Provisioned IOPS SSD).
+
+- **Billing**: EBS is billed based on GB per month, with additional charges for performance (IOPS, throughput) depending on the selected volume type.
+
+#### Solid state drive (SSD) volumes
+
+SSD-backed volumes are optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS. SSD-backed volume types include General Purpose SSD and Provisioned IOPS SSD . The following is a summary of the use cases and characteristics of SSD-backed volumes.
+
+## Amazon EBS Volume Types Comparison
+
+| **Volume Type**             | [Amazon EBS General Purpose SSD volumes](./general-purpose.html)                                                                                                          | [Amazon EBS Provisioned IOPS SSD volumes](./provisioned-iops.html)                                                             |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| **Volume Type**             | `gp3`                                                                                                                                                                     | `gp2`                                                                                                                          | `io2` Block Express<sup>3</sup>                                                                              | `io1`                                                      |
+| **Durability**              | 99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)                                                                                                                | 99.999% durability (0.001% annual failure rate)                                                                                | 99.8% - 99.9% durability (0.1% - 0.2% annual failure rate)                                                   | 99.8% - 99.9% durability (0.1% - 0.2% annual failure rate) |
+| **Use Cases**               | Transactional workloads, Virtual desktops, Medium-sized, single-instance databases, Low-latency interactive applications, Boot volumes, Development and test environments | Workloads that require sub-millisecond latency, Sustained IOPS performance, More than 64,000 IOPS or 1,000 MiB/s of throughput | Workloads that require sustained IOPS performance or more than 16,000 IOPS, I/O-intensive database workloads |
+| **Volume Size**             | 1 GiB - 16 TiB                                                                                                                                                            | 4 GiB - 64 TiB<sup>4</sup>                                                                                                     | 4 GiB - 16 TiB                                                                                               |
+| **Max IOPS**                | 16,000 (64 KiB I/O<sup>6</sup>)                                                                                                                                           | 16,000 (16 KiB I/O<sup>6</sup>)                                                                                                | 256,000<sup>5</sup> (16 KiB I/O<sup>6</sup>)                                                                 | 64,000 (16 KiB I/O<sup>6</sup>)                            |
+| **Max Throughput**          | 1,000 MiB/s                                                                                                                                                               | 250 MiB/s<sup>1</sup>                                                                                                          | 4,000 MiB/s                                                                                                  | 1,000 MiB/s<sup>2</sup>                                    |
+| **Amazon EBS Multi-attach** | Not supported                                                                                                                                                             | Supported                                                                                                                      | Supported                                                                                                    |
+| **NVMe Reservations**       | Not supported                                                                                                                                                             | Supported                                                                                                                      | Not supported                                                                                                |
+| **Boot Volume**             | Supported                                                                                                                                                                 | Supported                                                                                                                      | Supported                                                                                                    |
+
+-
