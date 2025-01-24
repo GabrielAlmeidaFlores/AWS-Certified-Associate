@@ -254,3 +254,21 @@ HDD-backed volumes are optimized for large streaming workloads where the dominan
     </tr>
   </tbody>
 </table>
+
+### Instance Store Volume
+
+An instance store provides temporary block-level storage for your EC2 instance. This storage is provided by disks that are physically attached to the host computer. Instance store is ideal for temporary storage of information that changes frequently, such as buffers, caches, scratch data, and other temporary content. It can also be used to store temporary data that you replicate across a fleet of instances, such as a load-balanced pool of web servers.
+
+An instance store consists of one or more instance store volumes exposed as block devices. The size of an instance store as well as the number of devices available varies by instance type and instance size. For example, not every instance type provides instance store volumes.
+
+Instance Store Volume Key Points:
+
+- **Ephemeral Storage**: Temporary, high-performance storage directly attached to an EC2 host.
+- **Performance**: Delivers the highest storage performance in AWS, with more IOPS and throughput than EBS.
+- **Attachment**: Available only at instance launch. Cannot be attached, detached, or moved after launch. Data persists during reboots but is lost if the instance is stopped, hibernated, terminated, resized, or if there is a hardware failure.
+- **Usage**: Ideal for temporary data such as caches, buffers, scratch data, or replicated data in a load-balanced pool. Not suitable for critical or long-term storage.
+- **Lifecycle**: Instance store volumes are tied to the lifetime of the instance. Data is cryptographically erased when the instance is stopped or terminated.
+- **Data Persistence Table**:
+  - **Reboot**: Data persists.
+  - **Stop/Hibernate/Terminate**: Data is erased.
+  - **Change Instance Type**: Data is erased.
