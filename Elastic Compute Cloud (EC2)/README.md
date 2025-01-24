@@ -89,23 +89,13 @@ Amazon EC2 provides you with flexible, cost effective, and easy-to-use data stor
 
 ### Elastic Block Storage (EBS)
 
-Amazon Elastic Block Store (Amazon EBS) provides scalable, high-performance block storage resources that can be used with Amazon Elastic Compute Cloud (Amazon EC2) instances.
+Amazon Elastic Block Store (EBS) is a high-performance block storage service designed for use with Amazon EC2 instances. It provides persistent, durable storage that retains data even when the associated EC2 instance is stopped or terminated. EBS is designed for 99.999% availability and automatically replicates data within the same Availability Zone for high durability. It supports a wide range of volume types, including General Purpose SSD (gp3, gp2), Provisioned IOPS SSD (io2, io1), Throughput Optimized HDD (st1), and Cold HDD (sc1), catering to different performance and cost requirements.
 
-EBS Key Points:
+EBS volumes can be provisioned with up to 64 TiB of storage and support features like Elastic Volumes, which allow resizing and changing volume types without downtime. Performance can be tailored with options like gp3, which provides separate provisioning for IOPS and throughput, and io2, designed for latency-sensitive, high-performance workloads. Multi-Attach is supported for io1/io2 volumes, enabling shared read/write access across multiple EC2 instances within the same Availability Zone.
 
-- **Block Storage**: EBS provides raw disk allocations (volumes) that can be encrypted using AWS Key Management Service (KMS) for security.
+Snapshots are an integral part of EBS, offering point-in-time backups stored in Amazon S3. They are incremental, capturing only changes made since the last snapshot, which reduces storage costs. Snapshots can also be used to create new volumes in different Availability Zones or regions, enabling data migration and disaster recovery. Fast Snapshot Restore (FSR) accelerates the restoration process, making it quicker to provision new volumes from snapshots.
 
-- **Instance-Level Storage**: Volumes are attached to EC2 instances or other services, where a file system (such as ext3, ext4, or XFS) can be created on the device.
-
-- **Availability Zone (AZ)**: EBS storage is provisioned within a specific AZ, offering resilience within that AZ, but not across multiple AZs by default.
-
-- **Attach & Detach Flexibility**: Volumes are attached to a single EC2 instance (or other supported services) over a storage network. EBS volumes can be detached from one instance and re-attached to another, with the data persisting throughout.
-
-- **Snapshots & Backup**: EBS volumes can be backed up to Amazon S3 as snapshots. Snapshots can be used to create new volumes and migrate data between AZs.
-
-- **Multiple Storage Options**: EBS provides various physical storage types, sizes, and performance profiles to suit different workloads (e.g., General Purpose SSD, Provisioned IOPS SSD).
-
-- **Billing**: EBS is billed based on GB per month, with additional charges for performance (IOPS, throughput) depending on the selected volume type.
+EBS integrates seamlessly with other AWS services, such as CloudWatch for monitoring, AWS Backup for automated backups, and AWS Key Management Service (KMS) for encryption. All data on EBS volumes can be encrypted at rest, in transit, and in snapshots using AWS-managed or customer-managed keys. The service is ideal for a variety of use cases, including boot volumes, high-performance databases, and big data workloads. Understanding EBS features and their practical applications is essential for optimizing storage solutions in AWS.
 
 #### EBS volume types
 
