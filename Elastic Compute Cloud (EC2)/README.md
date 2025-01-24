@@ -97,7 +97,7 @@ Snapshots are an integral part of EBS, offering point-in-time backups stored in 
 
 EBS integrates seamlessly with other AWS services, such as CloudWatch for monitoring, AWS Backup for automated backups, and AWS Key Management Service (KMS) for encryption. All data on EBS volumes can be encrypted at rest, in transit, and in snapshots using AWS-managed or customer-managed keys. The service is ideal for a variety of use cases, including boot volumes, high-performance databases, and big data workloads. Understanding EBS features and their practical applications is essential for optimizing storage solutions in AWS.
 
-#### EBS volume types
+#### EBS Volume Types
 
 Amazon EBS provides the following volume types, which differ in performance characteristics and price, so that you can tailor your storage performance and cost to the needs of your applications.
 
@@ -265,7 +265,7 @@ Snapshot data is automatically replicated across all Availability Zones in the R
 
 Each snapshot contains all of the information that is needed to restore your data (from the moment when the snapshot was taken) to a new EBS volume. When you create an EBS volume from a snapshot, the new volume begins as an exact replica of the volume that was used to create the snapshot.
 
-##### How Amazon EBS snapshots work
+##### How Amazon EBS Snapshots Work
 
 The first snapshot that you create from a volume is always a full snapshot. It includes all of the data blocks written to the volume at the time of creating the snapshot. Subsequent snapshots of the same volume are incremental snapshots. They include only changed and new data blocks written to the volume since the last snapshot was created
 
@@ -273,7 +273,7 @@ The size of a full snapshot is determined by the size of the data being backed u
 
 Similarly, the size and storage costs of an incremental snapshot are determined by the size of any data that was written to the volume since the previous snapshot was created. Continuing this example, if you create a second snapshot of the 200 GiB volume after changing 20 GiB of data and adding 10 GiB of data, the incremental snapshot is 30 GiB in size. You are then billed for that additional 30 GiB snapshot storage.
 
-##### EBS fast snapshot restore
+##### EBS Fast Snapshot Restore (FSR)
 
 Amazon EBS Fast Snapshot Restore (FSR) allows you to create a volume from a snapshot that is fully initialized at the time of creation. This ensures that all blocks are ready to use, eliminating the latency caused by initializing I/O operations when accessing a block for the first time. Volumes created with FSR deliver their full provisioned performance instantly.
 
@@ -281,7 +281,7 @@ To use FSR, you must explicitly enable it for specific snapshots in specific Ava
 
 Without FSR, volumes created from snapshots experience initialization latency. When a block of the volume is accessed for the first time, it must be initialized before use, which can degrade performance temporarily. This initialization delay can impact applications that rely on immediate and consistent performance, particularly for workloads requiring high throughput or low-latency access.
 
-##### EBS snapshot lock
+##### EBS Snapshot Lock
 
 You can lock your Amazon EBS snapshots to protect them against accidental or malicious deletions, or to store them in WORM (write-once-read-many) format for a specific duration. While a snapshot is locked, it can't be deleted by any user, regardless of their IAM permissions. You can continue to use a locked snapshot in the same way that you would use any other snapshot.
 
