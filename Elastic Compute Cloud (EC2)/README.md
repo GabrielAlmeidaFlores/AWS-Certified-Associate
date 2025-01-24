@@ -255,6 +255,38 @@ HDD-backed volumes are optimized for large streaming workloads where the dominan
   </tbody>
 </table>
 
+#### EBS Snapshots
+
+You can back up the data on your Amazon EBS volumes by making point-in-time copies, known as Amazon EBS snapshots. A snapshot is an incremental backup, which means that we save only the blocks on the volume that have changed since the most recent snapshot. This minimizes the time required to create the snapshot and saves on storage costs by not duplicating data.
+
+Snapshots are stored in Amazon S3, in S3 buckets that you can't access directly. You can create and manage your snapshots using the Amazon EC2 console or the Amazon EC2 API. You can't access your snapshots using the Amazon S3 console or the Amazon S3 API.
+
+Snapshot data is automatically replicated across all Availability Zones in the Region. This provides high availability and durability for snapshot data, and enables you to restore volumes in any Availability Zones in that Region.
+
+Each snapshot contains all of the information that is needed to restore your data (from the moment when the snapshot was taken) to a new EBS volume. When you create an EBS volume from a snapshot, the new volume begins as an exact replica of the volume that was used to create the snapshot.
+
+##### How Amazon EBS snapshots work
+
+The first snapshot that you create from a volume is always a full snapshot. It includes all of the data blocks written to the volume at the time of creating the snapshot. Subsequent snapshots of the same volume are incremental snapshots. They include only changed and new data blocks written to the volume since the last snapshot was created
+
+The size of a full snapshot is determined by the size of the data being backed up, not the size of the source volume. Similarly, the storage costs associated with a full snapshot is determined by the size of the snapshot, not the size of the source volume. For example, you create the first snapshot of a 200 GiB Amazon EBS volume that contains only 50 GiB of data. This results in a full snapshot that is 50 GiB in size, and you are billed for 50 GiB snapshot storage.
+
+Similarly, the size and storage costs of an incremental snapshot are determined by the size of any data that was written to the volume since the previous snapshot was created. Continuing this example, if you create a second snapshot of the 200 GiB volume after changing 20 GiB of data and adding 10 GiB of data, the incremental snapshot is 30 GiB in size. You are then billed for that additional 30 GiB snapshot storage.
+
+##### EBS fast snapshot restore
+
+Amazon EBS Fast Snapshot Restore (FSR) allows you to create a volume from a snapshot that is fully initialized at the time of creation. This ensures that all blocks are ready to use, eliminating the latency caused by initializing I/O operations when accessing a block for the first time. Volumes created with FSR deliver their full provisioned performance instantly.
+
+To use FSR, you must explicitly enable it for specific snapshots in specific Availability Zones. Each snapshot and Availability Zone pair counts as one fast snapshot restore. When you create a volume from a snapshot that has FSR enabled in its specified Availability Zone, the volume is restored using FSR.
+
+Without FSR, volumes created from snapshots experience initialization latency. When a block of the volume is accessed for the first time, it must be initialized before use, which can degrade performance temporarily. This initialization delay can impact applications that rely on immediate and consistent performance, particularly for workloads requiring high throughput or low-latency access.
+
+##### EBS snapshot lock
+
+You can lock your Amazon EBS snapshots to protect them against accidental or malicious deletions, or to store them in WORM (write-once-read-many) format for a specific duration. While a snapshot is locked, it can't be deleted by any user, regardless of their IAM permissions. You can continue to use a locked snapshot in the same way that you would use any other snapshot.
+
+You can lock snapshots in one of two modes: compliance mode or governance mode, and they can be locked for a specific duration or until a specific date.
+
 ### Instance Store Volume
 
 An instance store provides temporary block-level storage for your EC2 instance. This storage is provided by disks that are physically attached to the host computer. Instance store is ideal for temporary storage of information that changes frequently, such as buffers, caches, scratch data, and other temporary content. It can also be used to store temporary data that you replicate across a fleet of instances, such as a load-balanced pool of web servers.
