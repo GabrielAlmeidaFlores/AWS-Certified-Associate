@@ -1,6 +1,8 @@
 ## Policy Interpretation
 
-### Example 1
+Policy interpretation in AWS refers to how AWS evaluates and enforces policies (such as Identity and Access Management [IAM] policies) to determine whether a specific action is allowed or denied for a user, group, or role. AWS uses policies to control access to resources.
+
+### Policy Example 1
 
 ```json
 {
@@ -38,7 +40,7 @@ Permissions:
 
 - **Deny**: During a specific time frame (from December 1, 2022, to December 25, 2022, at 6:00 AM UTC), users are explicitly denied the ability to read objects (`GetObject` and `GetObjectAcl`).
 
-### Example 2
+### Policy Example 2
 
 ```json
 {
@@ -65,7 +67,7 @@ Permissions:
 
 - **Deny**: For all actions except services like CloudFront, IAM, Route 53, and Support, access is denied unless the requested region is ap-southeast-2 (Sydney) or eu-west-1 (Ireland).
 
-### Example 3
+### Policy Example 3
 
 ```json
 {
