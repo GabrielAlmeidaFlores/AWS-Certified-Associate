@@ -153,7 +153,7 @@ Example of a Permission Policy:
 
 In this example, the role can list the contents of the specified S3 bucket.
 
-## AWS Organizations
+## Organizations
 
 AWS Organizations is a service that enables centralized management of multiple AWS accounts. It provides features like consolidated billing, hierarchical account organization, and the ability to apply policies across accounts for governance and compliance.
 
