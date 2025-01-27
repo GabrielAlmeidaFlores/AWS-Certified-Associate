@@ -287,6 +287,21 @@ You can lock your Amazon EBS snapshots to protect them against accidental or mal
 
 You can lock snapshots in one of two modes: compliance mode or governance mode, and they can be locked for a specific duration or until a specific date.
 
+#### EBS Encryption
+
+Use Amazon EBS encryption as a straight-forward encryption solution for your Amazon EBS resources associated with your Amazon EC2 instances. With Amazon EBS encryption, you aren't required to build, maintain, and secure your own key management infrastructure. Amazon EBS encryption uses AWS KMS keys when creating encrypted volumes and snapshots.
+
+Encryption operations occur on the servers that host EC2 instances, ensuring the security of both data-at-rest and data-in-transit between an instance and its attached EBS storage.
+
+You can attach both encrypted and unencrypted volumes to an instance simultaneously. All Amazon EC2 instance types support Amazon EBS encryption.
+
+EBS Encryption Key Points:
+
+- **Default Encryption**: You can configure your account to encrypt EBS volumes by default using a default KMS key, or you can specify a custom KMS key for encryption.
+- **Data Encryption Key (DEK)**: Each EBS volume is encrypted with a unique DEK. Snapshots and volumes created from those snapshots share the same DEK.
+- **Encryption Permanence**: Once a volume is encrypted, it cannot be changed to an unencrypted state.
+- **Performance Impact**: Encryption and decryption processes occur transparently between the storage and the host, with no impact on operating system performance or awareness.
+
 ### Instance Store Volume
 
 An instance store provides temporary block-level storage for your EC2 instance. This storage is provided by disks that are physically attached to the host computer. Instance store is ideal for temporary storage of information that changes frequently, such as buffers, caches, scratch data, and other temporary content. It can also be used to store temporary data that you replicate across a fleet of instances, such as a load-balanced pool of web servers.
