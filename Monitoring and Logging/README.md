@@ -1,6 +1,6 @@
-## AWS CoudTrail
+## CoudTrail
 
-AWS CloudTrail is an AWS service that enables operational and risk auditing, governance, and compliance for your AWS account. It provides visibility into user and service actions by logging API calls and activities as CloudTrail events. These events include actions taken through the AWS Management Console, AWS Command Line Interface, and AWS SDKs and APIs.
+CloudTrail is an AWS service that enables operational and risk auditing, governance, and compliance for your AWS account. It provides visibility into user and service actions by logging API calls and activities as CloudTrail events. These events include actions taken through the AWS Management Console, AWS Command Line Interface, and AWS SDKs and APIs.
 
 When activity occurs in your AWS account, it is automatically recorded as a CloudTrail event. By tracking these actions, CloudTrail helps ensure compliance, supports operational troubleshooting, and enhances security monitoring.
 

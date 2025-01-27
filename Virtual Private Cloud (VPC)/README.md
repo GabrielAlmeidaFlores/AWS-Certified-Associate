@@ -1,6 +1,6 @@
-# AWS Virtual Private Cloud (VPC)
+# Virtual Private Cloud (VPC)
 
-AWS Virtual Private Cloud (VPC) allows you to create a secure, isolated, and customizable network environment within the AWS Cloud. It provides complete control over your virtual networking resources, enabling you to define your IP address range, create subnets, configure route tables, and establish gateways for seamless and secure communication.
+Virtual Private Cloud (VPC) allows you to create a secure, isolated, and customizable network environment within the AWS Cloud. It provides complete control over your virtual networking resources, enabling you to define your IP address range, create subnets, configure route tables, and establish gateways for seamless and secure communication.
 
 VPC Key Points:
 
