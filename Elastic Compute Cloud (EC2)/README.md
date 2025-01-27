@@ -323,3 +323,19 @@ Instance Store Volume Key Points:
 ## EC2 Instance Interfaces
 
 An elastic network interface is a logical networking component in a VPC that represents a virtual network card. You can create and configure network interfaces and attach them to instances that you launch in the same Availability Zone. The attributes of a network interface follow it as it's attached or detached from an instance and reattached to another instance. When you move a network interface from one instance to another, network traffic is redirected from the original instance to the new instance.
+
+## Amazon Machine Images (AMI)
+
+An Amazon Machine Image (AMI) is an image that provides the software needed to configure and launch an Amazon EC2 instance. Each AMI also contains a block device mapping that specifies the block devices to attach to the instances you launch. You specify an AMI when you launch an instance. This AMI must be compatible with the instance type you choose for your instance. You can use an AWS-provided AMI, a public AMI, an AMI that someone shared with you, or an AMI that you purchased from AWS Marketplace.
+
+An AMI is specific to the following:
+
+- Region
+- Operating system
+- Processor architecture
+- Root device type
+- Virtualization type
+
+You can launch multiple instances from a single AMI when you need multiple instances with the same configuration. You can use different AMIs to launch instances when you need instances with different configurations, as shown in the following diagram.
+
+You can create an AMI from your Amazon EC2 instances and then use it to launch instances with the same configuration. You can copy an AMI to another AWS Region and use it to launch instances in that Region. You can also share an AMI that you create with other accounts so that they can launch instances with the same configuration. You can sell your AMI using AWS Marketplace.
