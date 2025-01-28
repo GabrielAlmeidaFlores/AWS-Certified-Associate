@@ -43,7 +43,7 @@ A namespace is a container for CloudWatch metrics. Metrics in different namespac
 
 #### Datapoint
 
-Represents a single data entry in a metric, consisting of:
+A CloudWatch datapoint is a single data element representing a measurement collected from a CloudWatch metric at a specific time. Datapoints are used to monitor and analyze the performance and health of AWS resources or custom metrics. A Datapoint consisting of:
 
 - **Timestamp**: The time the data point was recorded.
 
