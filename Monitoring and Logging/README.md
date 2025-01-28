@@ -150,9 +150,9 @@ Key Concepts and Features:
 
 - **Log Management Components**: CloudWatch Logs provides a structured approach to organizing and managing log data through its core components: Log Streams and Log Groups. These components work together to ensure logs are stored efficiently, categorized logically, and accessible for analysis and monitoring.
 
-  - **Log Streams**: Each log stream corresponds to a specific logging source (e.g., an EC2 instance or application). A log stream is a sequence of log events ordered by timestamp.
+  - **Log Streams**: A log stream is a sequence of log events that share the same source. Each separate source of logs in CloudWatch Logs makes up a separate log stream.
 
-  - **Log Groups**: A log group is a collection of related log streams, typically grouped by an application, service, or environment. Log groups serve as containers for managing log retention, permissions, and metric filters.
+  - **Log Groups**: A log group is a group of log streams that share the same retention, monitoring, and access control settings. You can define log groups and specify which streams to put into each group. There is no limit on the number of log streams that can belong to one log group.
 
 - **Metric Filters**: Metric filters analyze log data in real time to extract key performance indicators or errors and convert them into metrics. These metrics can be used for monitoring and triggering alarms.
 
