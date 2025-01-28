@@ -169,3 +169,39 @@ AWS services that are integrated with X-Ray can add tracing headers to incoming 
 Instead of sending trace data directly to X-Ray, each client SDK sends JSON segment documents to a daemon process listening for UDP traffic. The X-Ray daemon buffers segments in a queue and uploads them to X-Ray in batches. The daemon is available for Linux, Windows, and macOS, and is included on AWS Elastic Beanstalk and AWS Lambda platforms.
 
 X-Ray uses trace data from the AWS resources that power your cloud applications to generate a detailed trace map. The trace map shows the client, your front-end service, and backend services that your front-end service calls to process requests and persist data. Use the trace map to identify bottlenecks, latency spikes, and other issues to solve to improve the performance of your applications.
+
+## VPC Flow Logs
+
+VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. Flow log data can be published to the following locations: Amazon CloudWatch Logs, Amazon S3, or Amazon Data Firehose. After you create a flow log, you can retrieve and view the flow log records in the log group, bucket, or delivery stream that you configured.
+
+Flow log data is collected outside of the path of your network traffic, and therefore does not affect network throughput or latency. You can create or delete flow logs without any risk of impact to network performance.
+
+VPC Flow Logs Key Concepts:
+
+- **Purpose**: Capture metadata only (not packet contents) for network traffic in a VPC.
+
+- **Attachment Levels**:
+
+  - **VPC level**: Logs all ENIs in the VPC.
+
+  - **Subnet level**: Logs all ENIs in the subnet.
+
+  - **ENI level**: Logs traffic specific to an individual ENI.
+
+- **Traffic Types**: Can log ACCEPTED, REJECTED, or ALL traffic.
+
+- **Log Destinations**:
+
+  - **Amazon S3**: Long-term storage.
+
+  - **CloudWatch Logs**: Real-time monitoring and alerting.
+
+  - **Amazon Athena**: Interactive querying of logs.
+
+- **Limitations**:
+
+  - Logs are not real-time (processing delay).
+
+  - Certain traffic is excluded by default (e.g., AWS DNS queries, traffic to/from the instance metadata service).
+
+- **Use Cases**: Troubleshooting, compliance, network traffic analysis, and security auditing.
