@@ -159,3 +159,13 @@ Key Concepts and Features:
 - **On-Premises and AWS Compatibility**: CloudWatch Logs can be used for log management scenarios across both AWS and on-premises environments, making it a versatile solution for hybrid setups.
 
 - **Default for Log Management**: For any log management needs within AWS, CloudWatch Logs is the default choice due to its seamless integration with AWS services, scalability, and robust feature set.
+
+## X-Ray
+
+AWS X-Ray receives traces from your application, in addition to AWS services your application uses that are already integrated with X-Ray. Instrumenting your application involves sending trace data for incoming and outbound requests and other events within your application, along with metadata about each request. Many instrumentation scenarios require only configuration changes. For example, you can instrument all incoming HTTP requests and downstream calls to AWS services that your Java application makes.
+
+AWS services that are integrated with X-Ray can add tracing headers to incoming requests, send trace data to X-Ray, or run the X-Ray daemon. For example, AWS Lambda can send trace data about requests to your Lambda functions, and run the X-Ray daemon on workers to make it simpler to use the X-Ray SDK.
+
+Instead of sending trace data directly to X-Ray, each client SDK sends JSON segment documents to a daemon process listening for UDP traffic. The X-Ray daemon buffers segments in a queue and uploads them to X-Ray in batches. The daemon is available for Linux, Windows, and macOS, and is included on AWS Elastic Beanstalk and AWS Lambda platforms.
+
+X-Ray uses trace data from the AWS resources that power your cloud applications to generate a detailed trace map. The trace map shows the client, your front-end service, and backend services that your front-end service calls to process requests and persist data. Use the trace map to identify bottlenecks, latency spikes, and other issues to solve to improve the performance of your applications.
