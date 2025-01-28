@@ -39,7 +39,7 @@ You can configure alarm actions to stop, start, or terminate an Amazon EC2 insta
 
 #### Namespace
 
-A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. The AWS namespaces typically use the following naming convention: `AWS/service`. For example, Amazon EC2 uses the AWS/EC2 namespace. For the list of AWS namespaces, see AWS services that publish CloudWatch metrics.
+A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. The AWS namespaces typically use the following naming convention: `AWS/service`. For example, Amazon EC2 uses the `AWS/EC2` namespace. For the list of AWS namespaces, see AWS services that publish CloudWatch metrics.
 
 #### Datapoint
 
