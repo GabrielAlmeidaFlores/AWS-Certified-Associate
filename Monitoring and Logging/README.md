@@ -125,3 +125,37 @@ ou can use an alarm to automatically initiate actions on your behalf. An alarm w
 Alarms invoke actions for sustained state changes only. CloudWatch alarms do not invoke actions simply because they are in a particular state. The state must have changed and been maintained for a specified number of periods.
 
 When creating an alarm, select an alarm monitoring period that is greater than or equal to the metrics resolution. For example, basic monitoring for Amazon EC2 provides metrics for your instances every 5 minutes. When setting an alarm on a basic monitoring metric, select a period of at least 300 seconds (5 minutes). Detailed monitoring for Amazon EC2 provides metrics for your instances with a resolution of 1 minute. When setting an alarm on a detailed monitoring metric, select a period of at least 60 seconds (1 minute).
+
+### CloudWatch Logs
+
+Amazon CloudWatch Logs is a regional, public service that allows users to store, monitor, and access logging data from various sources. It is designed to provide a centralized logging solution for applications, systems, and services across AWS, on-premises environments, IoT devices, or any application capable of generating logs.
+
+Key Concepts and Features:
+
+- **Regional Service**: CloudWatch Logs operates within specific AWS regions, ensuring that log data remains within the designated region for compliance and performance reasons.
+
+- **Public Service**: It is publicly accessible to store, monitor, and access log data from multiple environments, whether in the cloud or on-premises.
+
+- **Log Ingestion**: CloudWatch Logs can ingest logs from:
+
+  - AWS services (e.g., Lambda, EC2, RDS)
+
+  - On-premises servers and applications using CloudWatch Agent or APIs
+
+  - IoT devices or custom applications
+
+- **CloudWatch Agent (CWAgent)**: The CloudWatch Agent enables system and custom application logging, allowing for seamless integration of application-specific logs with CloudWatch Logs.
+
+- **Integration with AWS Services**: CloudWatch Logs integrates with various AWS services like Lambda, S3, Kinesis, and SNS for processing, storage, and alerting on log data.
+
+- **Log Management Components**: CloudWatch Logs provides a structured approach to organizing and managing log data through its core components: Log Streams and Log Groups. These components work together to ensure logs are stored efficiently, categorized logically, and accessible for analysis and monitoring.
+
+  - **Log Streams**: Each log stream corresponds to a specific logging source (e.g., an EC2 instance or application). A log stream is a sequence of log events ordered by timestamp.
+
+  - **Log Groups**: A log group is a collection of related log streams, typically grouped by an application, service, or environment. Log groups serve as containers for managing log retention, permissions, and metric filters.
+
+- **Metric Filters**: Metric filters analyze log data in real time to extract key performance indicators or errors and convert them into metrics. These metrics can be used for monitoring and triggering alarms.
+
+- **On-Premises and AWS Compatibility**: CloudWatch Logs can be used for log management scenarios across both AWS and on-premises environments, making it a versatile solution for hybrid setups.
+
+- **Default for Log Management**: For any log management needs within AWS, CloudWatch Logs is the default choice due to its seamless integration with AWS services, scalability, and robust feature set.
