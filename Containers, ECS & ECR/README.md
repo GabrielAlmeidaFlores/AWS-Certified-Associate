@@ -62,8 +62,6 @@ EKS Key Points:
 
   - **Fargate**: With AWS Fargate, you can run your Kubernetes pods without needing to manage underlying EC2 instances, enabling serverless computing for Kubernetes workloads.
 
-- **Managed VPC for Control Plane**: The EKS control plane runs in a managed AWS VPC, ensuring that your Kubernetes cluster is securely isolated and that traffic between the control plane and your worker nodes is private and protected. The managed VPC also simplifies networking setup, as it ensures proper networking configurations (e.g., routing, security groups, and subnets) are set up to work optimally with Kubernetes workloads.
-
 ## Elastic Container Registry (ECR)
 
 An Amazon ECR private registry hosts your container images in a highly available and scalable architecture. You can use your private registry to manage private image repositories consisting of Docker and Open Container Initiative (OCI) images and artifacts. Each AWS account is provided with a default private Amazon ECR registry. For more information about Amazon ECR public registries, see Public registries in the Amazon Elastic Container Registry Public User Guide.
