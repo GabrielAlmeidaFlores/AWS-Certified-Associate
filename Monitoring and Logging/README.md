@@ -81,8 +81,6 @@ High-resolution metrics can give you more immediate insight into your applicatio
 
 If you set an alarm on a high-resolution metric, you can specify a high-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds. There is a higher charge for high-resolution alarms with a period of 10 or 30 seconds.
 
-##### Metrics Retention
-
 CloudWatch retains metric data as follows:
 
 - Data points with a period of less than 60 seconds are available for 3 hours. These data points are high-resolution custom metrics.
