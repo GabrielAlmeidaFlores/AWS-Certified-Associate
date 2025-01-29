@@ -32,6 +32,38 @@ In this mode, ECS schedules tasks to run on the EC2 instances in the cluster, an
 
 Fargate mode is a serverless option where AWS automatically manages the infrastructure needed to run containers. You don’t need to provision or manage EC2 instances yourself. Fargate takes care of provisioning compute resources, scaling, and ensuring the containers run smoothly. You simply specify the CPU and memory requirements for your tasks, and Fargate handles the rest, making it a great choice for users who prefer a fully managed container service with minimal infrastructure management.
 
+## Elastic Kubernetes Service (EKS)
+
+Amazon Elastic Kubernetes Service (Amazon EKS) is a fully-managed, certified Kubernetes conformant service that simplifies the process of building, securing, operating, and maintaining Kubernetes clusters on AWS. Amazon EKS integrates with core AWS services such as CloudWatch, Auto Scaling Groups, and IAM to provide a seamless experience for monitoring, scaling, and load balancing your containerized applications.
+
+Amazon EKS provides a scalable, highly-available control plane for Kubernetes workloads. When you run applications on Amazon EKS, as with Amazon ECS, you can choose to provide the underlying compute power for your containers with Amazon EC2 instances or with AWS Fargate.
+
+EKS Key Points:
+
+- **AWS Managed Kubernetes**: Amazon EKS is a fully managed Kubernetes service that simplifies the deployment, management, and scaling of Kubernetes clusters. It runs open-source Kubernetes and is designed to be cloud-agnostic, ensuring compatibility with other environments and workloads. EKS automates key tasks such as patching, scaling, and cluster management, allowing you to focus on your applications and workloads rather than infrastructure maintenance.
+
+- **Scalable Control Plane**: The control plane of EKS is highly available and scalable across multiple Availability Zones (AZs), providing fault tolerance and improved resilience. EKS automatically manages the control plane's availability and scaling, which reduces the operational burden of setting up and managing the Kubernetes control plane.
+
+- **Integration with AWS Services**: EKS is seamlessly integrated with a variety of AWS services, including:
+
+  - **ECR (Elastic Container Registry)**: For storing and retrieving container images used in your Kubernetes workloads.
+
+  - **ELB (Elastic Load Balancing)**: For distributing traffic to your Kubernetes pods.
+
+  - **IAM (Identity and Access Management)**: For controlling access to your Kubernetes resources and ensuring security with fine-grained permissions.
+
+  - **VPC (Virtual Private Cloud)**: For securely isolating and managing network traffic between your Kubernetes resources and other AWS services.
+
+- **Node Management**: Nodes in EKS can be managed in several ways:
+
+  - **Self-managed nodes**: You can manually configure and manage EC2 instances as nodes in your Kubernetes cluster.
+
+  - **Managed node groups**: EKS provides managed node groups where AWS handles the provisioning and scaling of EC2 instances, simplifying node management.
+
+  - **Fargate**: With AWS Fargate, you can run your Kubernetes pods without needing to manage underlying EC2 instances, enabling serverless computing for Kubernetes workloads.
+
+- **Managed VPC for Control Plane**: The EKS control plane runs in a managed AWS VPC, ensuring that your Kubernetes cluster is securely isolated and that traffic between the control plane and your worker nodes is private and protected. The managed VPC also simplifies networking setup, as it ensures proper networking configurations (e.g., routing, security groups, and subnets) are set up to work optimally with Kubernetes workloads.
+
 ## Elastic Container Registry (ECR)
 
 An Amazon ECR private registry hosts your container images in a highly available and scalable architecture. You can use your private registry to manage private image repositories consisting of Docker and Open Container Initiative (OCI) images and artifacts. Each AWS account is provided with a default private Amazon ECR registry. For more information about Amazon ECR public registries, see Public registries in the Amazon Elastic Container Registry Public User Guide.
