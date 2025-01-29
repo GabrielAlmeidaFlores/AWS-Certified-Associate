@@ -51,6 +51,15 @@ A CloudWatch datapoint is a single data element representing a measurement colle
 
 - **(Optional) Unit of Measure**: Describes the metric's unit, such as Percent or Bytes.
 
+CloudWatch retains metric data as follows:
+
+- Data points with a period of less than 60 seconds are available for 3 hours. These data points are high-resolution custom metrics.
+- Data points with a period of 60 seconds (1 minute) are available for 15 days
+- Data points with a period of 300 seconds (5 minutes) are available for 63 days
+- Data points with a period of 3600 seconds (1 hour) are available for 455 days (15 months)
+
+Data points that are initially published with a shorter period are aggregated together for long-term storage. For example, if you collect data using a period of 1 minute, the data remains available for 15 days with 1-minute resolution. After 15 days this data is still available, but is aggregated and is retrievable only with a resolution of 5 minutes. After 63 days, the data is further aggregated and is available with a resolution of 1 hour.
+
 #### Metrics
 
 Metrics are the fundamental concept in CloudWatch. A metric represents a time-ordered set of data points that are published to CloudWatch. Think of a metric as a variable to monitor, and the data points as representing the values of that variable over time. For example, the CPU usage of a particular EC2 instance is one metric provided by Amazon EC2. The data points themselves can come from any application or business activity from which you collect data.
@@ -80,15 +89,6 @@ Metrics produced by AWS services are standard resolution by default. When you pu
 High-resolution metrics can give you more immediate insight into your application's sub-minute activity. Keep in mind that every PutMetricData call for a custom metric is charged, so calling PutMetricData more often on a high-resolution metric can lead to higher charges.
 
 If you set an alarm on a high-resolution metric, you can specify a high-resolution alarm with a period of 10 seconds or 30 seconds, or you can set a regular alarm with a period of any multiple of 60 seconds. There is a higher charge for high-resolution alarms with a period of 10 or 30 seconds.
-
-CloudWatch retains metric data as follows:
-
-- Data points with a period of less than 60 seconds are available for 3 hours. These data points are high-resolution custom metrics.
-- Data points with a period of 60 seconds (1 minute) are available for 15 days
-- Data points with a period of 300 seconds (5 minutes) are available for 63 days
-- Data points with a period of 3600 seconds (1 hour) are available for 455 days (15 months)
-
-Data points that are initially published with a shorter period are aggregated together for long-term storage. For example, if you collect data using a period of 1 minute, the data remains available for 15 days with 1-minute resolution. After 15 days this data is still available, but is aggregated and is retrievable only with a resolution of 5 minutes. After 63 days, the data is further aggregated and is available with a resolution of 1 hour.
 
 #### Percentile
 
