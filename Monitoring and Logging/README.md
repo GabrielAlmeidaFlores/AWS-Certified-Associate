@@ -190,7 +190,7 @@ VPC Flow Logs Key Concepts:
 
 - **Traffic Types**: Can log ACCEPTED, REJECTED, or ALL traffic.
 
-- **Log Destinations**:
+- **Log Destinations**: AWS VPC Flow Logs can be stored and analyzed using different destinations based on your logging and monitoring requirements.
 
   - **Amazon S3**: Long-term storage.
 
@@ -198,7 +198,7 @@ VPC Flow Logs Key Concepts:
 
   - **Amazon Athena**: Interactive querying of logs.
 
-- **Limitations**:
+- **Limitations**: There are a few limitations when using AWS VPC Flow Logs that may affect the granularity and timeliness of the captured data.
 
   - Logs are not real-time (processing delay).
 
