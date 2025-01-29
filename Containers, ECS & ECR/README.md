@@ -31,3 +31,35 @@ In this mode, ECS schedules tasks to run on the EC2 instances in the cluster, an
 #### Fargate Mode
 
 Fargate mode is a serverless option where AWS automatically manages the infrastructure needed to run containers. You don’t need to provision or manage EC2 instances yourself. Fargate takes care of provisioning compute resources, scaling, and ensuring the containers run smoothly. You simply specify the CPU and memory requirements for your tasks, and Fargate handles the rest, making it a great choice for users who prefer a fully managed container service with minimal infrastructure management.
+
+## Elastic Container Registry (ECR)
+
+An Amazon ECR private registry hosts your container images in a highly available and scalable architecture. You can use your private registry to manage private image repositories consisting of Docker and Open Container Initiative (OCI) images and artifacts. Each AWS account is provided with a default private Amazon ECR registry. For more information about Amazon ECR public registries, see Public registries in the Amazon Elastic Container Registry Public User Guide.
+
+ECR Key Points:
+
+- **Public and Private Registries**: Each AWS account can have both public and private registries, allowing users to decide whether to share images with the public or restrict them to specific users or services within the account. Public repositories are open for everyone to pull images, while private repositories require explicit permission for access.
+
+- **Repositories and Images**: An ECR registry can host multiple repositories, each of which can hold multiple images. This allows for flexible organization of images according to application, version, or environment.
+
+- **Integrated with IAM**: ECR is tightly integrated with AWS Identity and Access Management (IAM), enabling you to manage access to repositories and images at a granular level. Permissions can be granted for specific actions, such as pulling images, pushing images, or managing repositories, and can be scoped to users, roles, or services.
+
+- **Image Scanning**: ECR supports image scanning to check for security vulnerabilities in stored images.
+
+  - **Basic scanning**: is available by default and checks for known vulnerabilities from the Common Vulnerability and Exposure (CVE) database.
+
+  - **Enhanced scanning**: leverages Amazon Inspector to provide deeper insights into security issues, helping to detect more subtle vulnerabilities within container images.
+
+- **Metrics and Monitoring**: ECR provides near real-time metrics via Amazon CloudWatch, allowing you to monitor activities such as:
+
+  - Authentication requests (failed/successful logins)
+
+  - Push and Pull events (when images are uploaded or downloaded)
+
+  - Repository activity (e.g., number of images, storage usage)
+
+- **Replication**: ECR offers replication for improving availability and redundancy:
+
+  - **Cross-region replication**: allows images to be replicated across multiple AWS regions, reducing latency for image pulls in different geographical areas and providing disaster recovery options.
+
+  - **Cross-account replication**: allows you to automatically replicate images to other AWS accounts, which is useful in multi-account environments where different teams or applications need access to the same images.
