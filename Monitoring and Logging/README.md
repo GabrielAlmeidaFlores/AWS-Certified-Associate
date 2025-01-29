@@ -180,7 +180,7 @@ VPC Flow Logs Key Concepts:
 
 - **Purpose**: Capture metadata only (not packet contents) for network traffic in a VPC.
 
-- **Attachment Levels**:
+- **Attachment Levels**: AWS VPC Flow Logs can be attached at different levels to capture network traffic based on your monitoring needs. These attachment levels define the scope of logging.
 
   - **VPC level**: Logs all ENIs in the VPC.
 
