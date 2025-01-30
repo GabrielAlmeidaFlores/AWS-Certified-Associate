@@ -59,13 +59,13 @@ Throttling and rate limiting control how many API requests a client can make wit
 
 API Gateway supports two main types of throttling:
 
-- Per-client throttling: Limits requests per API key or IAM user.
-- Global throttling: Sets a general limit on API requests to prevent system overload.
+- **Per-client throttling**: Limits requests per API key or IAM user.
+- **Global throttling**: Sets a general limit on API requests to prevent system overload.
 
 These settings include:
 
-- Rate limit: The maximum number of requests per second.
-- Burst limit: The maximum number of requests allowed in a short burst.
+- **Rate limit**: The maximum number of requests per second.
+- **Burst limit**: The maximum number of requests allowed in a short burst.
 
 #### Usage Plans & API Keys
 
