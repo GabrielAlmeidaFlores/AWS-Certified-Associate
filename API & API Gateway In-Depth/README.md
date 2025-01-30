@@ -2,6 +2,26 @@
 
 Amazon API Gateway is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale. APIs act as the "front door" for applications to access data, business logic, or functionality from your backend services. Using API Gateway, you can create RESTful APIs and WebSocket APIs that enable real-time two-way communication applications. API Gateway supports containerized and serverless workloads, as well as web applications.
 
+## API Gateway Types
+
+API Gateway supports different types of APIs, each designed for specific use cases, scalability needs, and security requirements.
+
+### REST API Gateway
+
+REST API Gateway is a fully managed service for creating RESTful APIs. It provides powerful features such as authentication, request validation, transformation, throttling, caching, and monitoring. REST APIs in API Gateway can integrate with Lambda functions, HTTP backends, and AWS services. This type is best suited for applications requiring a structured, request-response API architecture.
+
+### REST API (Private)
+
+A Private REST API allows secure communication within an Amazon Virtual Private Cloud (VPC), making it accessible only from within the VPC or through AWS PrivateLink. It does not expose endpoints to the public internet, ensuring internal applications, microservices, and backend systems can communicate securely. Private REST APIs are ideal for internal APIs, microservices communication, and hybrid cloud architectures.
+
+### HTTP API Gateway
+
+HTTP API Gateway is a lightweight alternative to REST API Gateway, optimized for low-latency and cost-effective API operations. It supports JWT authentication, CORS configuration, and integration with AWS Lambda and HTTP backends but lacks advanced features such as request validation, API keys, and caching. HTTP APIs are best suited for microservices-based architectures where performance and cost optimization are key factors.
+
+### WebSocket API Gateway
+
+WebSocket API Gateway enables real-time, bidirectional communication between clients and backend services. Unlike REST and HTTP APIs, which use a request-response model, WebSocket APIs maintain a persistent connection, allowing the server to push data to clients as events occur. This API type is useful for applications requiring real-time updates, such as chat applications, live notifications, and stock market tracking.
+
 ## Resources & Methods
 
 API Gateway provides a structured way to manage APIs by defining resources and methods. A resource represents an endpoint (such as /users or /orders), while a method (such as GET, POST, or DELETE) defines the allowed operations on that resource. Each method can have specific configurations, including authorization, request validation, and backend integration. API Gateway allows fine-grained control over access and behavior for each resource and method.
