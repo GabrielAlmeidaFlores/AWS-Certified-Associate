@@ -38,6 +38,6 @@ EC2 Instance Roles Key Concepts:
 - **Instance Metadata Service (IMDS)**: The IMDS provides a secure way for instances to retrieve metadata, including IAM role credentials. Access to IMDS can be controlled using IMDSv2, which adds an additional layer of security by requiring a token for access.
 
 - **Limitations**
-  - Role Attachment Limit: An EC2 instance can have only one IAM role attached at a time.
-  - Credential Lifetime: Temporary credentials provided by the role are valid for a maximum of 6 hours.
-  - IMDS Access: If IMDS is disabled, the instance cannot retrieve role credentials.
+  - **Role Attachment Limit**: An EC2 instance can have only one IAM role attached at a time.
+  - **Credential Lifetime**: Temporary credentials provided by the role are valid for a maximum of 6 hours.
+  - **IMDS Access**: If IMDS is disabled, the instance cannot retrieve role credentials.
