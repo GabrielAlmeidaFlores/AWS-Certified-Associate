@@ -105,3 +105,21 @@ CloudWatch Agent Key Features:
 - **Multi-Platform Compatibility**: Supports Linux, Windows Server, and macOS environments, making it versatile for various IT infrastructures.
 - **Aggregation and Filtering**: Provides advanced aggregation and filtering options for both logs and metrics, enabling precise data analysis.
 - **Integration with AWS Services**: Works seamlessly with Amazon CloudWatch, AWS X-Ray, AWS Systems Manager, and AWS Lambda for comprehensive monitoring and troubleshooting.
+
+## EC2 Placement Groups
+
+AWS Placement Groups are a feature that lets you control how EC2 instances are placed on the underlying hardware to optimize performance, latency, or fault tolerance based on your workload needs.
+
+### Placement Group Types
+
+#### Cluster
+
+Cluster placement groups pack instances close together inside a single Availability Zone, enabling workloads to achieve low-latency network performance suitable for tightly-coupled node-to-node communication, which is essential for high-performance computing (HPC) applications. These placement groups cannot span multiple Availability Zones, as they are locked to a single AZ when the first instance is launched. While they can span VPC peers, doing so may impact performance. Using a supported instance type is required, and although it is not mandatory to use the same type of instance, it is recommended for optimal performance. Cluster placement groups support 10 Gbps single-stream performance, making them ideal for applications requiring high speed and low latency, such as HPC workloads.
+
+#### Spread
+
+Spread placement groups ensure that a small number of instances are placed across distinct underlying hardware to minimize correlated failures. Each Availability Zone allows a maximum of seven instances within a spread placement group, ensuring infrastructure isolation by running each instance on a separate rack, each with its own network and power source. This type of placement group is not supported for Dedicated Instances or Dedicated Hosts. Spread placement groups are best suited for applications that require critical instances to be kept as separate as possible to maximize availability and fault tolerance.
+
+#### Partition
+
+Partition placement groups allow instances to be placed in one of seven partitions per Availability Zone. Instances can either be assigned to specific partitions manually or automatically placed by the system. This placement strategy is designed for topology-aware applications such as Apache Cassandra, HDFS, and Hadoop, where data distribution and fault tolerance are critical. By distributing instances across partitions, partition placement groups contain the impact of failures to specific partitions, reducing the overall risk to the application. This strategy is particularly useful for large distributed and replicated workloads that require high availability and fault isolation.
