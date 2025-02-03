@@ -46,7 +46,7 @@ EC2 Instance Roles Key Concepts:
 
 AWS Systems Manager Parameter Store is a secure, scalable, and hierarchical storage service for configuration data and secrets. It enables developers and administrators to centrally manage application parameters, environment variables, and sensitive information across AWS services.
 
-SSM Key Features
+SSM Key Features:
 
 - **Storage for Configuration & Secrets**: Stores configuration values, secrets, API keys, database connection strings, and other sensitive data. Reduces the need to hardcode sensitive information in applications.
 
