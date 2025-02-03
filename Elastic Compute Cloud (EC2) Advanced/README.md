@@ -69,7 +69,9 @@ SSM Key Features:
 
 ## CloudWatch Agent
 
-The Amazon CloudWatch Agent enables you to collect and monitor metrics, logs, and custom application data from your servers. It supports both Amazon EC2 instances and on-premises servers running Linux, Windows Server, or macOS. When installed on an EC2 instance, it extends the default EC2 metrics by capturing additional system-level data. These are the most common collected data:
+The Amazon CloudWatch Agent enables you to collect and monitor metrics, logs, and custom application data from your servers. It supports both Amazon EC2 instances and on-premises servers running Linux, Windows Server, or macOS. When installed on an EC2 instance, it extends the default EC2 metrics by capturing additional system-level data.
+
+These are the most common collected data:
 
 - **System Metrics**
 
