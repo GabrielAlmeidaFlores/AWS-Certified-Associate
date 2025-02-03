@@ -41,3 +41,34 @@ EC2 Instance Roles Key Concepts:
   - **Role Attachment Limit**: An EC2 instance can have only one IAM role attached at a time.
   - **Credential Lifetime**: Temporary credentials provided by the role are valid for a maximum of 6 hours.
   - **IMDS Access**: If IMDS is disabled, the instance cannot retrieve role credentials.
+
+## SSM Parameter Store
+
+AWS Systems Manager Parameter Store is a secure, scalable, and hierarchical storage service for configuration data and secrets. It enables developers and administrators to centrally manage application parameters, environment variables, and sensitive information across AWS services.
+
+SSM Key Features
+
+- **Storage for Configuration & Secrets**: Stores configuration values, secrets, API keys, database connection strings, and other sensitive data. Reduces the need to hardcode sensitive information in applications.
+
+- **Parameter Types**
+
+  - **String**: Stores plaintext values (e.g., "AppConfig=Enabled").
+  - **StringList**: Stores comma-separated values (e.g., "us-east-1,us-west-2").
+  - **SecureString**: Encrypted values using AWS KMS, ideal for passwords and secrets.
+
+- **Use Cases**
+
+  - Storing API keys, database credentials, and tokens securely.
+  - Centralized configuration management for applications across environments.
+  - Dynamic configuration updates without modifying application code.
+  - Secret management without additional services like AWS Secrets Manager.
+
+- **Hierarchical Structure (Folder-like)**: Uses a slash-separated naming convention for better organization. Allows retrieving all parameters under a specific path (`/my-app/prod/`) using APIs or AWS CLI. Example:
+
+```path
+/my-app/prod/db-password
+/my-app/staging/db-password
+/my-app/common/config
+```
+
+- **Versioning**: Each parameter is versioned, enabling rollback and tracking of changes. Example: `/my-app/prod/db-password` may have versions 1, 2, 3.
