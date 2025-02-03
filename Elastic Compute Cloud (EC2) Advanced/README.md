@@ -1,6 +1,6 @@
 ## EC2 Bootstrap
 
-Bootstrapping in Amazon EC2 (Elastic Compute Cloud) is a powerful feature that enables automation of instance configuration during the launch process. By leveraging User Data, administrators can automate tasks such as software installation, configuration updates, and system initialization. This documentation provides a detailed explanation of EC2 bootstrapping, its capabilities, limitations, and best practices.
+Bootstrapping in Amazon EC2 (Elastic Compute Cloud) is a powerful feature that enables automation of instance configuration during the launch process. By leveraging User Data, administrators can automate tasks such as software installation, configuration updates, and system initialization.
 
 Key Concepts:
 
