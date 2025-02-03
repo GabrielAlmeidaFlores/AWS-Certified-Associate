@@ -65,10 +65,4 @@ SSM Key Features:
 
 - **Hierarchical Structure (Folder-like)**: Uses a slash-separated naming convention for better organization. Allows retrieving all parameters under a specific path (`/my-app/prod/`) using APIs or AWS CLI. Example:
 
-```path
-/my-app/prod/db-password
-/my-app/staging/db-password
-/my-app/common/config
-```
-
 - **Versioning**: Each parameter is versioned, enabling rollback and tracking of changes. Example: `/my-app/prod/db-password` may have versions 1, 2, 3.
