@@ -69,11 +69,37 @@ SSM Key Features:
 
 ## CloudWatch Agent
 
-You can collect metrics from servers by installing the CloudWatch agent on the server. You can install the agent on both Amazon EC2 instances and on-premises servers. You can also install the agent on computers running Linux, Windows Server, or macOS. If you install the agent on an Amazon EC2 instance, the metrics the agent collects are in addition to the metrics enabled by default on Amazon EC2 instances.
+The Amazon CloudWatch Agent enables you to collect and monitor metrics, logs, and custom application data from your servers. It supports both Amazon EC2 instances and on-premises servers running Linux, Windows Server, or macOS. When installed on an EC2 instance, it extends the default EC2 metrics by capturing additional system-level data. These are the most common collected data:
 
-The unified CloudWatch agent enables you to do the following:
+- **System Metrics**
 
-- Collect internal system-level metrics from Amazon EC2 instances across operating systems. The metrics can include in-guest metrics, in addition to the metrics for EC2 instances. The additional metrics that can be collected are listed in Metrics collected by the CloudWatch agent.
-- Collect system-level metrics from on-premises servers. These can include servers in a hybrid environment as well as servers not managed by AWS.
-- Retrieve custom metrics from your applications or services using the StatsD and collectd protocols. StatsD is supported on both Linux servers and servers running Windows Server. collectd is supported only on Linux servers.
-- Collect logs from Amazon EC2 instances and on-premises servers, running either Linux or Windows Server.
+  - **CPU Usage**: Utilization percentage, idle time, user/system breakdown.
+  - **Memory Metrics**: Available memory, swap usage, page faults.
+  - **Disk Metrics**: Read/write operations, disk space usage, IOPS.
+  - **Network Metrics**: Bandwidth consumption, dropped packets, TCP connections.
+  - **Process Monitoring**: Active processes, CPU and memory usage per process.
+
+- **Custom Metrics**
+
+  - **Application Performance Data**: Request count, response times, error rates.
+  - **Queue Metrics**: Message queue depth, processing latency.
+  - **Database Performance**: Query response times, connection pool utilization.
+  - **Microservices Monitoring**: API request rates, service dependencies, error tracking.
+
+- **Log Collection**
+
+  - **Application Logs**: Custom application logs for debugging and performance analysis.
+  - **System Logs**: Syslog, Windows event logs, and application-specific logs.
+  - **Security Logs**: Authentication attempts, access logs, firewall logs.
+  - **AWS Service Logs**: Lambda function logs, API Gateway logs, RDS logs.
+
+CloudWatch Agent Key Features:
+
+- **Comprehensive System Metrics**: Collects internal system-level metrics, including CPU, memory, disk, and network usage, from Amazon EC2 instances and on-premises servers.
+- **Hybrid Environment Support**: Works on cloud, on-premises, and hybrid environments, allowing seamless monitoring across infrastructure.
+- **Custom Metrics Collection**: Supports custom application metrics using StatsD (Linux and Windows) and collectd (Linux only).
+- **Log Collection and Monitoring**: Collects logs from Amazon EC2 instances and on-premises servers running Linux or Windows Server, enabling centralized log analysis and insights.
+- **Enhanced EC2 Monitoring**: Supplements the default EC2 instance metrics with in-depth insights, such as in-guest CPU, memory, and disk utilization.
+- **Multi-Platform Compatibility**: Supports Linux, Windows Server, and macOS environments, making it versatile for various IT infrastructures.
+- **Aggregation and Filtering**: Provides advanced aggregation and filtering options for both logs and metrics, enabling precise data analysis.
+- **Integration with AWS Services**: Works seamlessly with Amazon CloudWatch, AWS X-Ray, AWS Systems Manager, and AWS Lambda for comprehensive monitoring and troubleshooting.
