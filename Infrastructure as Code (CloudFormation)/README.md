@@ -6,7 +6,7 @@ AWS CloudFormation is a service that helps you model and set up your AWS resourc
 
 In AWS CloudFormation, a CloudFormation template is a JSON or YAML file that defines the resources you want to create and configure in your AWS environment. It acts as a blueprint for CloudFormation to provision and manage your infrastructure. It describes things like EC2 instances, S3 buckets, IAM roles, and other AWS resources, as well as their properties and dependencies.
 
-There are multiple primary sections that make up a CloudFormation template: Resources, Outputs, Conditions, Mappings, and Parameters
+There are multiple primary sections that make up a CloudFormation template: `Resources`, `Outputs`, `Conditions`, `Mappings`, and `Parameters`
 
 ### Resources
 
