@@ -34,7 +34,7 @@ You can also use outputs to provide references to other stacks in a cross-stack 
 
 Example:
 
-```JSON
+```YAML
 Outputs:
   BucketName:
     Description: "Name of the S3 bucket"
@@ -51,7 +51,7 @@ You can specify things like instance sizes, AMI IDs, or key names as parameters.
 
 Example:
 
-```JSON
+```YAML
 Parameters:
   InstanceType:
     Type: String
@@ -73,7 +73,7 @@ For example, you might use a condition to create a resource only if the stack is
 
 Example:
 
-```JSON
+```YAML
 Conditions:
   CreateProdResources: !Equals [!Ref Environment, "prod"]
 
@@ -86,29 +86,3 @@ Resources:
 ```
 
 In this example, the `ProdBucket` resource will only be created if the Environment parameter is set to `"prod"`.
-
-### Mappings
-
-The Mappings section allows you to define conditional values based on a specific key, such as a region, operating system, or environment. Mappings are typically used to specify region-specific values, such as AMI IDs for different regions.
-
-Unlike parameters, mappings are not dynamic—values are fixed within the template.
-
-Example:
-
-```JSON
-Mappings:
-  RegionMap:
-    us-east-1:
-      AMI: "ami-12345678"
-    us-west-2:
-      AMI: "ami-87654321"
-
-Resources:
-  MyInstance:
-    Type: "AWS::EC2::Instance"
-    Properties:
-      ImageId: !FindInMap [RegionMap, !Ref AWS::Region, AMI]
-      InstanceType: t2.micro
-```
-
-In this example, the `FindInMap` function is used to retrieve the appropriate AMI ID for the region the stack is being deployed in (either `us-east-1` or `us-west-2`).
