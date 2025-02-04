@@ -128,3 +128,31 @@ The following table summarizes the key features, use cases, limitations, and bes
 | **Additional Key Points** | **Placement Group Creation:** Must be created before launching instances. Cannot add existing instances. <br> **Instance Types:** Not all instance types support placement groups. <br> **Resizing Limitations:** Cannot merge or move instances between placement groups after launch. <br> **Capacity Considerations:** May fail if insufficient capacity in the AZ.                  | **Placement Group Creation:** Must be created before launching instances. Cannot add existing instances. <br> **Instance Types:** Not all instance types support placement groups. <br> **Resizing Limitations:** Cannot merge or move instances between placement groups after launch. <br> **Capacity Considerations:** May fail if insufficient capacity in the AZ. | **Placement Group Creation:** Must be created before launching instances. Cannot add existing instances. <br> **Instance Types:** Not all instance types support placement groups. <br> **Resizing Limitations:** Cannot merge or move instances between placement groups after launch. <br> **Capacity Considerations:** May fail if insufficient capacity in the AZ. |
 | **Best Practices**        | **Use for:** Tightly coupled workloads needing low latency and high throughput. <br> **Launch Timing:** Launch all instances simultaneously for optimal placement. <br> **Monitoring:** Use CloudWatch to monitor performance.                                                                                                                                                          | **Use for:** Fault-tolerant workloads with a small number of instances. <br> **Launch Timing:** N/A <br> **Monitoring:** Use CloudWatch to monitor performance.                                                                                                                                                                                                        | **Use for:** Large-scale, distributed applications requiring fault isolation and scalability. <br> **Launch Timing:** N/A <br> **Monitoring:** Use CloudWatch to monitor performance.                                                                                                                                                                                  |
 | **Limitations**           | **AZ Constraints:** Limited to a single AZ. <br> **Instance Type Restrictions:** Some instance types may not support placement groups. <br> **Dedicated Hosts:** Not compatible with dedicated hosts or instances.                                                                                                                                                                      | **AZ Constraints:** Can span multiple AZs but limited to 7 instances per AZ. <br> **Instance Type Restrictions:** Some instance types may not support placement groups. <br> **Dedicated Hosts:** Not compatible with dedicated hosts or instances.                                                                                                                    | **AZ Constraints:** Limited to a single AZ. <br> **Instance Type Restrictions:** Some instance types may not support placement groups. <br> **Dedicated Hosts:** Not compatible with dedicated hosts or instances.                                                                                                                                                     |
+
+## EC2 Enhanced Networking
+
+Enhanced Networking is a feature on Amazon EC2 that enables higher performance, lower latency, and more consistent network performance for your instances. It achieves this by leveraging advanced network virtualization technologies, such as Single Root I/O Virtualization (SR-IOV), to bypass the hypervisor and provide direct access to the network hardware. This results in improved packet-per-second (PPS) performance, lower jitter, and reduced latency compared to traditional networking.
+
+Enhanced Networking is particularly beneficial for applications that require high network performance, such as high-performance computing (HPC), real-time data processing, and latency-sensitive workloads.
+
+Enhanced Networking Key Concepts:
+
+- **What is Enhanced Networking**: Enhanced Networking is a feature that improves network performance on EC2 instances by using SR-IOV, a hardware virtualization technology that allows direct access to the network interface card (NIC) from the instance, bypassing the hypervisor.
+
+- **How Does Enhanced Networking Work**: Enhanced Networking relies on SR-IOV to provide direct access to the physical network adapter. Here’s how it works:
+
+  - **Traditional Networking**: Network traffic passes through the hypervisor, which introduces overhead and can lead to higher latency and lower performance.
+
+  - **Enhanced Networking**: With SR-IOV, the instance has direct access to the physical NIC, bypassing the hypervisor. This reduces overhead and improves performance.
+
+- **Benefits of Enhanced Networking**
+
+  - **Higher Bandwidth**: Supports up to 100 Gbps, depending on the instance type.
+
+  - **Lower Latency**: Reduces network latency by bypassing the hypervisor.
+
+  - **Improved PPS**: Handles more packets per second, which is critical for high-throughput workloads.
+
+  - **Consistent Performance**: Provides more predictable network performance with lower jitter.
+
+  - **No Additional Cost**: Enhanced Networking is available at no extra charge.
