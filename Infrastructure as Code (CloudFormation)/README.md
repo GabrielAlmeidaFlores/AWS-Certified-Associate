@@ -161,7 +161,7 @@ Resources:
 
 In this example, the `!If` function is not explicitly used in the resource, but it is implied by the Condition key. If the parameter `Environment` equals `'prod'`, the `MyBucket` resource is created. Otherwise, it is skipped. The `!If` function can be used to return different values in more complex scenarios, allowing for resource creation or properties to vary based on the evaluation of conditions.
 
-#### !Join (Join) Function
+#### `!Join` (Join) Function
 
 The `!Join` function is used to concatenate multiple strings together into a single string. This is useful when constructing resource properties or ARNs that require multiple strings to be joined, such as appending prefixes or suffixes to a name. `!Join` takes two arguments: the delimiter (e.g., a space, comma, or slash) and a list of strings to join.
 
