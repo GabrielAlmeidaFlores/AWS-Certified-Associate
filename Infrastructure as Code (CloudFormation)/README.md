@@ -16,7 +16,7 @@ Each resource is defined by its logical ID and resource type. The logical ID is 
 
 Example:
 
-```JSON
+```YAML
 Resources:
   MyBucket:
     Type: "AWS::S3::Bucket"
