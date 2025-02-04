@@ -8,7 +8,9 @@ In AWS CloudFormation, a CloudFormation template is a JSON or YAML file that def
 
 There are multiple primary sections that make up a CloudFormation template: `Resources`, `Outputs`, `Conditions`, `Mappings`, and `Parameters`
 
-### Resources
+### Template Structure
+
+#### Resources
 
 The Resources section is the core part of a CloudFormation template. It defines the AWS resources that CloudFormation will create, such as EC2 instances, S3 buckets, Lambda functions, security groups, and more.
 
@@ -26,7 +28,7 @@ Resources:
 
 In this example, a new S3 bucket (`AWS::S3::Bucket`) is defined with the logical ID MyBucket, and its name is specified in the properties.
 
-### Output
+#### Output
 
 The Outputs section specifies the values that CloudFormation returns when a stack is successfully created or updated. Outputs are useful for displaying values you may want to reference later, such as resource identifiers (e.g., S3 bucket name, EC2 instance ID).
 
@@ -43,7 +45,7 @@ Outputs:
 
 In this example, the output `BucketName` returns the name of the `MyBucket` S3 bucket that was created.
 
-### Parameters
+#### Parameters
 
 The Parameters section allows you to define inputs to your CloudFormation stack. These are values you can specify when you create or update the stack, making the template dynamic and flexible. Parameters allow you to reuse the same template for different environments or configurations.
 
@@ -65,7 +67,7 @@ Parameters:
 
 In this example, the `InstanceType` parameter allows the user to specify an EC2 instance type, with a default of `t2.micro`.
 
-### Conditions
+#### Conditions
 
 The Conditions section defines conditions that control when certain resources are created or modified. Conditions can be used to create resources only if specific criteria are met, allowing for more flexible stack deployments based on parameters or other values.
 
