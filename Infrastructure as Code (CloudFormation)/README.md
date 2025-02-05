@@ -298,12 +298,11 @@ In this example, the `!Or` function checks whether the `Environment` is either `
 With the `DependsOn` attribute you can specify that the creation of a specific resource follows another. When you add a `DependsOn` attribute to a resource, that resource is created only after the creation of the resource specified in the `DependsOn` attribute.
 
 > [!IMPORTANT]
-
 > Dependent stacks also have implicit dependencies in the form of target properties `!Ref`, `!GetAtt`, and !Sub. For example, if the properties of resource A use a `!Ref` to resource B, the following rules apply:
 >
-> - Resource B is created before resource A.
-> - Resource A is deleted before resource B.
-> - Resource B is updated before resource A.
+> 1. Resource B is created before resource A.
+> 2. Resource A is deleted before resource B.
+> 3. Resource B is updated before resource A.
 
 The following template contains an `AWS::EC2::Instance` resource with a `DependsOn` attribute that specifies `myDB`, an `AWS::RDS::DBInstance`. When `CloudFormation` creates this stack, it first creates `myDB`, then creates `Ec2Instance`.
 
