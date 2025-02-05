@@ -200,3 +200,35 @@ Resources:
 ```
 
 In this example, `!FindInMap` retrieves the AMI ID based on the current AWS region. If the stack is deployed in `us-east-1`, the instance will use `ami-12345678`, whereas in `us-west-2`, it will use `ami-87654321`. This function is helpful for managing environment-specific configurations within a single CloudFormation template.
+
+#### `!Base64` (Base64) Function
+
+The `!Base64` function in CloudFormation is used to encode a string into Base64 format. This is commonly used when passing UserData to an EC2 instance to run commands during the instance’s bootstrap process. UserData is typically used for instance initialization tasks, such as installing software, configuring the system, or executing scripts at launch time. The `!Base64` function allows you to pass these scripts in a format that EC2 can interpret and execute.
+
+The `!Base64` function takes a single argument: the string (or UserData script) to be encoded in Base64 format.
+
+Example:
+
+```YAML
+Resources:
+  MyInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0cb91c7de36eed2cb
+      UserData: !Base64 |
+        #!/bin/bash
+        yum update -y
+        yum install -y httpd
+        systemctl start httpd
+        systemctl enable httpd
+      Tags:
+        - Key: Name
+          Value: "MyEC2Instance"
+```
+
+In this example, the `!Base64` function is used to encode a simple shell script into Base64. This script installs and starts the Apache HTTP server (`httpd`) on the EC2 instance during boot. The `|` symbol in YAML preserves the multi-line formatting of the script.
+
+When the instance starts, AWS will decode the Base64 string and execute the commands in the `UserData` section. This is essential for configuring the instance to run specific applications or services right after launch.
+
+By using `!Base64`, you can easily provide and execute custom initialization scripts on EC2 instances without manually encoding them yourself, streamlining the process of automating server configuration.
