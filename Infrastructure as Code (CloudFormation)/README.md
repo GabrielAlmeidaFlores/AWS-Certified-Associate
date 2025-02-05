@@ -143,24 +143,6 @@ Resources:
 
 In this example, the `!Sub` function dynamically creates a bucket name based on the AWS region and account ID. When the stack is deployed, CloudFormation will replace `${AWS::Region}` and `${AWS::AccountId}` with the current region and account ID, respectively. This allows for flexible and unique resource naming based on the environment where the stack is deployed.
 
-#### `!If` (Conditional) Function
-
-The `!If` function is used to perform conditional logic within a CloudFormation template. It enables you to evaluate a condition and return different values based on the result of that evaluation. This is particularly useful when you need to create resources or set properties conditionally based on parameters or environment-specific values.
-
-Example:
-
-```YAML
-Conditions:
-  CreateProdResources: !Equals [!Ref Environment, 'prod']
-
-Resources:
-  MyBucket:
-    Type: 'AWS::S3::Bucket'
-    Condition: CreateProdResources
-```
-
-In this example, the `!If` function is not explicitly used in the resource, but it is implied by the Condition key. If the parameter `Environment` equals `'prod'`, the `MyBucket` resource is created. Otherwise, it is skipped. The `!If` function can be used to return different values in more complex scenarios, allowing for resource creation or properties to vary based on the evaluation of conditions.
-
 #### `!Join` (Join) Function
 
 The `!Join` function is used to concatenate multiple strings together into a single string. This is useful when constructing resource properties or ARNs that require multiple strings to be joined, such as appending prefixes or suffixes to a name. `!Join` takes two arguments: the delimiter (e.g., a space, comma, or slash) and a list of strings to join.
@@ -232,3 +214,79 @@ In this example, the `!Base64` function is used to encode a simple shell script 
 When the instance starts, AWS will decode the Base64 string and execute the commands in the `UserData` section. This is essential for configuring the instance to run specific applications or services right after launch.
 
 By using `!Base64`, you can easily provide and execute custom initialization scripts on EC2 instances without manually encoding them yourself, streamlining the process of automating server configuration.
+
+#### `!Equals` (Comparison) Function
+
+The `!Equals` function is used to compare two values and return `true` if they are equal, or `false` if they are not. This is useful for conditions where you need to check if two values, such as parameters or resource properties, match exactly.
+
+Example:
+
+```YAML
+Conditions:
+  IsProdEnvironment: !Equals [!Ref Environment, 'prod']
+
+Resources:
+  MyBucket:
+    Type: 'AWS::S3::Bucket'
+    Condition: IsProdEnvironment
+```
+
+In this example, the `!Equals` function compares the Environment parameter with the string `'prod'`. If they are equal, the condition `IsProdEnvironment` is evaluated as `true`, and the `MyBucket` resource is created.
+
+#### `!Not` (Logical) Function
+
+The `!Not` function is used to negate a condition or expression. It returns `true` if the given condition is `false` and returns `false` if the condition is `true`. This is useful for cases where you need the opposite result of a condition.
+
+Example:
+
+```YAML
+Conditions:
+  IsNotProdEnvironment: !Not [!Equals [!Ref Environment, 'prod']]
+
+Resources:
+  MyBucket:
+    Type: 'AWS::S3::Bucket'
+    Condition: IsNotProdEnvironment
+```
+
+In this example, the `!Not` function negates the result of the `!Equals` function. If the Environment is not `'prod'`, the condition `IsNotProdEnvironment` becomes true, and the `MyBucket` resource is created.
+
+#### `!And` (Logical) Function
+
+The `!And` function is used to combine multiple conditions and returns `true` only if all the conditions evaluate to `true`. If any condition evaluates to `false`, the result will be `false`. This is useful when you need to check for multiple conditions simultaneously.
+
+Example:
+
+```YAML
+Conditions:
+  IsProdAndHighTraffic: !And
+    - !Equals [!Ref Environment, 'prod']
+    - !GreaterThan [!Ref TrafficLevel, 1000]
+
+Resources:
+  MyBucket:
+    Type: 'AWS::S3::Bucket'
+    Condition: IsProdAndHighTraffic
+```
+
+In this example, the `!And` function checks two conditions: whether the `Environment` is `'prod'` and whether the `TrafficLevel` is greater than `1000`. If both conditions are `true`, the `MyBucket` resource is created.
+
+#### `!Or` (Logical) Function
+
+The `!Or` function is used to combine multiple conditions and returns `true` if at least one of the conditions evaluates to `true`. If all conditions evaluate to `false`, the result will be `false`. This is useful when you want to allow for multiple valid scenarios.
+
+Example:
+
+```YAML
+Conditions:
+  IsProdOrDevEnvironment: !Or
+    - !Equals [!Ref Environment, 'prod']
+    - !Equals [!Ref Environment, 'dev']
+
+Resources:
+  MyBucket:
+    Type: 'AWS::S3::Bucket'
+    Condition: IsProdOrDevEnvironment
+```
+
+In this example, the `!Or` function checks whether the `Environment` is either `'prod'` or `'dev'`. If either condition is `true`, the `MyBucket` resource will be created.
