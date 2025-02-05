@@ -176,3 +176,27 @@ Resources:
 ```
 
 In this example, `!Join` is used to combine the prefix `mybucket` and the region value dynamically, creating a bucket name like `mybucket-us-east-1`. This function allows you to generate more complex resource names or other properties by joining multiple string values together.
+
+#### `!FindInMap` (Find) Function
+
+The `!FindInMap` function is used to retrieve values from a `Mappings` section in a CloudFormation template. This is useful when defining static configurations, such as AMI IDs per region, environment-specific settings, or other lookup tables. `!FindInMap` takes three arguments: the map name, the top-level key, and the second-level key.
+
+Example:
+
+```YAML
+Mappings:
+  RegionMap:
+    us-east-1:
+      AMI: ami-12345678
+    us-west-2:
+      AMI: ami-87654321
+
+Resources:
+  MyInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: !FindInMap [RegionMap, !Ref AWS::Region, AMI]
+      InstanceType: t2.micro
+```
+
+In this example, `!FindInMap` retrieves the AMI ID based on the current AWS region. If the stack is deployed in `us-east-1`, the instance will use `ami-12345678`, whereas in `us-west-2`, it will use `ami-87654321`. This function is helpful for managing environment-specific configurations within a single CloudFormation template.
