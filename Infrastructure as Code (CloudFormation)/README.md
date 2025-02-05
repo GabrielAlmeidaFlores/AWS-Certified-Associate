@@ -297,7 +297,7 @@ In this example, the `!Or` function checks whether the `Environment` is either `
 
 With the `DependsOn` attribute you can specify that the creation of a specific resource follows another. When you add a `DependsOn` attribute to a resource, that resource is created only after the creation of the resource specified in the `DependsOn` attribute.
 
-!> [!IMPORTANT]
+> [!IMPORTANT]
 
 > Dependent stacks also have implicit dependencies in the form of target properties `!Ref`, `!GetAtt`, and !Sub. For example, if the properties of resource A use a `!Ref` to resource B, the following rules apply:
 >
