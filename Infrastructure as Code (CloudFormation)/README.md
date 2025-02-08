@@ -442,3 +442,80 @@ curl -X PUT -H 'Content-Type:' --data-binary '{"Status":"SUCCESS","UniqueId":"my
 ```
 
 CloudFormation will wait until the specified number of success signals (defined in the `Count` property) are received or until the timeout period (defined in the `Timeout` property) expires. Once the required signals are received, CloudFormation will proceed with the next steps in the stack creation. If the timeout expires or insufficient signals are received, the stack creation will fail and roll back.
+
+### Nested Stacks
+
+Nested stacks are stacks created as part of other stacks. You create a nested stack within another stack by using the `AWS::CloudFormation::Stack` resource.
+
+As your infrastructure grows, common patterns can emerge in which you declare the same components in multiple templates. You can separate out these common components and create dedicated templates for them. Then, use the resource in your template to reference other templates, creating nested stacks.
+
+For example, assume that you have a load balancer configuration that you use for most of your stacks. Instead of copying and pasting the same configurations into your templates, you can create a dedicated template for the load balancer. Then, you just use the resource to reference that template from within other templates.
+
+Nested stacks can themselves contain other nested stacks, resulting in a hierarchy of stacks, as in the diagram below. The root stack is the top-level stack to which all the nested stacks ultimately belong. In addition, each nested stack has an immediate parent stack. For the first level of nested stacks, the root stack is also the parent stack. in the diagram below, for example:
+
+- Stack A is the root stack for all the other, nested, stacks in the hierarchy.
+- For stack B, stack A is both the parent stack, and the root stack.
+- For stack D, stack C is the parent stack; while for stack C, stack B is the parent stack.
+
+#### Splitting a CloudFormation template
+
+This example demonstrates how to take a single, large CloudFormation template and reorganize it into a more structured and reusable design using nested templates. Initially, the "Before nesting stacks" template shows all the resources defined in one file. This can become messy and hard to manage as the number of resources grows. The "After nesting stacks" template splits up the resources into smaller, separate templates called nested stacks. Each nested stack handles a specific set of related resources, making the overall structure more organized and easier to maintain.
+
+<table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th style="padding: 8px; text-align: left;">Before nesting stacks</th>
+            <th style="padding: 8px; text-align: left;">After nesting stacks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 8px; vertical-align: top;">
+                <pre style="white-space: pre-wrap; word-wrap: break-word;">
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  InstanceType:
+    Type: String
+    Default: 't2.micro'
+    Description: 'The EC2 instance type'
+  
+  Environment:
+    Type: String
+    Default: 'Production'
+    Description: 'The deployment environment'
+
+Resources:
+MyEC2Instance:
+Type: AWS::EC2::Instance
+Properties:
+ImageId: ami-1234567890abcdef0
+InstanceType: !Ref InstanceType
+
+MyS3Bucket:
+Type: AWS::S3::Bucket
+</pre>
+</td>
+<td style="padding: 8px; vertical-align: top;">
+<pre style="white-space: pre-wrap; word-wrap: break-word;">
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+MyFirstNestedStack:
+Type: AWS::CloudFormation::Stack
+Properties:
+TemplateURL: 'https://s3.amazonaws.com/amzn-s3-demo-bucket/first-nested-stack.yaml'
+Parameters:
+InstanceType: 't3.micro'
+
+MySecondNestedStack:
+Type: AWS::CloudFormation::Stack
+Properties:
+TemplateURL: 'https://s3.amazonaws.com/amzn-s3-demo-bucket/second-nested-stack.yaml'
+Parameters:
+Environment: 'Testing'
+DependsOn: MyFirstNestedStack
+</pre>
+</td>
+</tr>
+</tbody>
+
+</table>
