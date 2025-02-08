@@ -386,6 +386,9 @@ This CloudFormation template creates an EC2 instance (`MyEC2Instance`) using `am
 
 The `AWS::CloudFormation::WaitCondition` resource is used to pause the execution of a CloudFormation stack until a specified number of success signals are received within a given timeout period. This is useful when you need to ensure that an external process or resource initialization completes before proceeding with further stack creation.
 
+> [!IMPORTANT]
+> Use `CreationPolicy` when you need a simple, automated way to ensure an EC2 instance or Auto Scaling group is fully set up before continuing stack creation, typically with `cfn-signal` in a startup script. Use `AWS::CloudFormation::WaitCondition` when you need to pause stack creation for manual approvals, third-party service integrations, or external processes, and when waiting for multiple success signals from different sources (like EC2 instances, Lambda functions, or external APIs). This provides more control, especially when signals cannot be sent using `cfn-signal` and the process happens outside an EC2 instance.
+
 Key Properties:
 
 - **Handle (required)**: A reference to an AWS::CloudFormation::WaitConditionHandle, which provides a pre-signed URL for signaling.
@@ -426,9 +429,6 @@ The `AWS::CloudFormation::WaitCondition` in the YAML template ensures that the E
 - **MyWaitCondition**: This resource defines the condition CloudFormation will wait for. It is associated with the `MyWaitHandle` (created in step 1), and specifies two success signals (`Count: 2`) are required before CloudFormation continues. The Timeout: `'4500'` means that CloudFormation will wait for up to 4500 seconds (75 minutes) for the signals.
 - **MyEC2Instance**: The EC2 instance creation is dependent on the `MyWaitCondition`. The `DependsOn` attribute ensures that the instance is only created after receiving the required success signals.
 - **Outputs**: The `WaitConditionUrl` output provides the URL for sending success signals. External systems can use this URL to notify CloudFormation when the conditions are met.
-
-> [!NOTE]
-> Use `CreationPolicy` when you need a simple, automated way to ensure an EC2 instance or Auto Scaling group is fully set up before continuing stack creation, typically with `cfn-signal` in a startup script. Use `AWS::CloudFormation::WaitCondition` when you need to pause stack creation for manual approvals, third-party service integrations, or external processes, and when waiting for multiple success signals from different sources (like EC2 instances, Lambda functions, or external APIs). This provides more control, especially when signals cannot be sent using `cfn-signal` and the process happens outside an EC2 instance.
 
 ##### How to Use the Pre-Signed URL (WaitConditionUrl)
 
