@@ -293,7 +293,7 @@ In this example, the `!Or` function checks whether the `Environment` is either `
 
 ### Template Build
 
-#### DependsOn attribute
+#### DependsOn Attribute
 
 With the `DependsOn` attribute you can specify that the creation of a specific resource follows another. When you add a `DependsOn` attribute to a resource, that resource is created only after the creation of the resource specified in the `DependsOn` attribute.
 
@@ -322,6 +322,7 @@ Mappings:
       AMI: ami-08569b978cc4dfa10
 Resources:
   Ec2Instance:
+    DependsOn: myDB
     Type: AWS::EC2::Instance
     Properties:
       ImageId:
@@ -329,7 +330,6 @@ Resources:
         - RegionMap
         - Ref: AWS::Region
         - AMI
-    DependsOn: myDB
   myDB:
     Type: AWS::RDS::DBInstance
     Properties:
