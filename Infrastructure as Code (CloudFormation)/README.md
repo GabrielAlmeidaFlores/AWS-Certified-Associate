@@ -340,3 +340,44 @@ Resources:
       MasterUsername: MyName
       MasterUserPassword: MyPassword
 ```
+
+#### CreationPolicy Attribute
+
+Associate the `CreationPolicy` attribute with a resource to prevent its status from reaching create complete until AWS CloudFormation receives a specified number of success signals or the timeout period is exceeded. To signal a resource, you can use the `cfn-signal` helper script or `SignalResource API`. CloudFormation publishes valid signals to the stack events so that you track the number of signals sent.
+
+The creation policy is invoked only when CloudFormation creates the associated resource. Currently, the only CloudFormation resources that support creation policies are:
+
+- `AWS::AppStream::Fleet`
+- `AWS::AutoScaling::AutoScalingGroup`
+- `AWS::EC2::Instance`
+- `AWS::CloudFormation::WaitCondition`
+
+Use the `CreationPolicy` attribute when you want to wait on resource configuration actions before stack creation proceeds. For example, if you install and configure software applications on an EC2 instance, you might want those applications to be running before proceeding. In such cases, you can add a `CreationPolicy` attribute to the instance, and then send a success signal to the instance after the applications are installed and configured.
+
+Example of CreationPolicy for an EC2 instance:
+
+```YAML
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-12345678
+      InstanceType: t2.micro
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install -y httpd
+          systemctl enable httpd
+          systemctl start httpd
+          /opt/aws/bin/cfn-signal -e $? \
+            --stack ${AWS::StackName} \
+            --resource MyEC2Instance \
+            --region ${AWS::Region}
+    CreationPolicy:
+      ResourceSignal:
+        Count: 1
+        Timeout: PT15M
+```
+
+This CloudFormation template creates an EC2 instance (`MyEC2Instance`) using `ami-12345678` and `t2.micro`. A user data script updates packages, installs Apache, enables it on boot, and starts the service. The instance then sends a success or failure signal to CloudFormation using `cfn-signal`. The `CreationPolicy` requires one signal within 15 minutes (`PT15M`), ensuring the instance is fully initialized before the stack proceeds. If no signal is received, the stack creation fails.
