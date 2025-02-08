@@ -461,61 +461,51 @@ Nested stacks can themselves contain other nested stacks, resulting in a hierarc
 
 This example demonstrates how to take a single, large CloudFormation template and reorganize it into a more structured and reusable design using nested templates. Initially, the "Before nesting stacks" template shows all the resources defined in one file. This can become messy and hard to manage as the number of resources grows. The "After nesting stacks" template splits up the resources into smaller, separate templates called nested stacks. Each nested stack handles a specific set of related resources, making the overall structure more organized and easier to maintain.
 
-<table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
-    <thead>
-        <tr>
-            <th style="padding: 8px; text-align: left;">Before nesting stacks</th>
-            <th style="padding: 8px; text-align: left;">After nesting stacks</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 8px; vertical-align: top;">
-                <pre style="white-space: pre-wrap; word-wrap: break-word;">
+Before nesting stacks:
+
+```YAML
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   InstanceType:
     Type: String
     Default: 't2.micro'
     Description: 'The EC2 instance type'
-  
+
   Environment:
     Type: String
     Default: 'Production'
     Description: 'The deployment environment'
 
 Resources:
-MyEC2Instance:
-Type: AWS::EC2::Instance
-Properties:
-ImageId: ami-1234567890abcdef0
-InstanceType: !Ref InstanceType
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-1234567890abcdef0
+      InstanceType: !Ref InstanceType
 
-MyS3Bucket:
-Type: AWS::S3::Bucket
-</pre>
-</td>
-<td style="padding: 8px; vertical-align: top;">
-<pre style="white-space: pre-wrap; word-wrap: break-word;">
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+```
+
+After nesting stacks:
+
+```YAML
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
-MyFirstNestedStack:
-Type: AWS::CloudFormation::Stack
-Properties:
-TemplateURL: 'https://s3.amazonaws.com/amzn-s3-demo-bucket/first-nested-stack.yaml'
-Parameters:
-InstanceType: 't3.micro'
+  MyFirstNestedStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: 'https://s3.amazonaws.com/amzn-s3-demo-bucket/first-nested-stack.yaml'
+      Parameters:
+        # Pass parameters to the nested stack if needed
+        InstanceType: 't3.micro'
 
-MySecondNestedStack:
-Type: AWS::CloudFormation::Stack
-Properties:
-TemplateURL: 'https://s3.amazonaws.com/amzn-s3-demo-bucket/second-nested-stack.yaml'
-Parameters:
-Environment: 'Testing'
-DependsOn: MyFirstNestedStack
-</pre>
-</td>
-</tr>
-</tbody>
-
-</table>
+  MySecondNestedStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: 'https://s3.amazonaws.com/amzn-s3-demo-bucket/second-nested-stack.yaml'
+      Parameters:
+        # Pass parameters to the nested stack if needed
+        Environment: 'Testing'
+    DependsOn: MyFirstNestedStack
+```
