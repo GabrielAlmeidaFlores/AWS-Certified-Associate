@@ -381,3 +381,64 @@ Resources:
 ```
 
 This CloudFormation template creates an EC2 instance (`MyEC2Instance`) using `ami-12345678` and `t2.micro`. A user data script updates packages, installs Apache, enables it on boot, and starts the service. The instance then sends a success or failure signal to CloudFormation using `cfn-signal`. The `CreationPolicy` requires one signal within 15 minutes (`PT15M`), ensuring the instance is fully initialized before the stack proceeds. If no signal is received, the stack creation fails.
+
+#### WaitCondition
+
+The `AWS::CloudFormation::WaitCondition` resource is used to pause the execution of a CloudFormation stack until a specified number of success signals are received within a given timeout period. This is useful when you need to ensure that an external process or resource initialization completes before proceeding with further stack creation.
+
+Key Properties:
+
+- **Handle (required)**: A reference to an AWS::CloudFormation::WaitConditionHandle, which provides a pre-signed URL for signaling.
+- **Timeout (required)**: The time (in seconds) that CloudFormation waits for the required success signals before timing out. The maximum allowed value is 43,200 seconds (12 hours).
+- **Count (optional)**: The number of success signals required to proceed. If omitted, the default is 1.
+
+Example Usage:
+
+```YAML
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyWaitHandle:
+    Type: AWS::CloudFormation::WaitConditionHandle
+
+  MyWaitCondition:
+    Type: AWS::CloudFormation::WaitCondition
+    Properties:
+      Handle: !Ref MyWaitHandle
+      Timeout: '4500'
+      Count: 2
+
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-12345678
+      InstanceType: t2.micro
+    DependsOn: MyWaitCondition
+
+Outputs:
+  WaitConditionUrl:
+    Description: "The URL to send success signals to"
+    Value: !Ref MyWaitHandle
+```
+
+The `AWS::CloudFormation::WaitCondition` in the YAML template ensures that the EC2 instance creation waits until specific conditions are met. Here's how it works:
+
+- **MyWaitHandle**: This resource creates a `WaitConditionHandle`, which provides a URL used by external systems to send success signals to CloudFormation.
+- **MyWaitCondition**: This resource defines the condition CloudFormation will wait for. It is associated with the `MyWaitHandle` (created in step 1), and specifies two success signals (`Count: 2`) are required before CloudFormation continues. The Timeout: `'4500'` means that CloudFormation will wait for up to 4500 seconds (75 minutes) for the signals.
+- **MyEC2Instance**: The EC2 instance creation is dependent on the `MyWaitCondition`. The `DependsOn` attribute ensures that the instance is only created after receiving the required success signals.
+- **Outputs**: The `WaitConditionUrl` output provides the URL for sending success signals. External systems can use this URL to notify CloudFormation when the conditions are met.
+
+> [!NOTE]
+> Use `CreationPolicy` when you need a simple, automated way to ensure an EC2 instance or Auto Scaling group is fully set up before continuing stack creation, typically with `cfn-signal` in a startup script. Use `AWS::CloudFormation::WaitCondition` when you need to pause stack creation for manual approvals, third-party service integrations, or external processes, and when waiting for multiple success signals from different sources (like EC2 instances, Lambda functions, or external APIs). This provides more control, especially when signals cannot be sent using `cfn-signal` and the process happens outside an EC2 instance.
+
+##### How to Use the Pre-Signed URL (WaitConditionUrl)
+
+External processes, such as EC2 instances, Lambda functions, or external HTTP-enabled systems, need to send a success signal to this URL to indicate that a task has completed. You can send the signal using a `PUT` request with the required data.
+
+Example using `curl`:
+
+```bash
+curl -X PUT -H 'Content-Type:' --data-binary '{"Status":"SUCCESS","UniqueId":"my-instance-1"}' https://cloudformation.us-east-1.amazonaws.com/.../waitcondition-url
+curl -X PUT -H 'Content-Type:' --data-binary '{"Status":"SUCCESS","UniqueId":"my-instance-2"}' https://cloudformation.us-east-1.amazonaws.com/.../waitcondition-url
+```
+
+CloudFormation will wait until the specified number of success signals (defined in the `Count` property) are received or until the timeout period (defined in the `Timeout` property) expires. Once the required signals are received, CloudFormation will proceed with the next steps in the stack creation. If the timeout expires or insufficient signals are received, the stack creation will fail and roll back.
