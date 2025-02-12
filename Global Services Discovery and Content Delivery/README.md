@@ -65,3 +65,11 @@ Weighted routing in Amazon Route 53 is a DNS-based traffic distribution strategy
 One of the key advantages of weighted routing is its flexibility in directing traffic based on business needs. For example, a company can assign a higher weight to a primary server and a lower weight to a backup server, ensuring most requests go to the primary resource while keeping the backup available if needed. Similarly, during application rollouts, traffic can be incrementally shifted to a new version by adjusting the weights, allowing controlled testing and reducing the risk of failures.
 
 Weighted routing can be combined with Route 53 health checks to improve reliability. If a resource becomes unhealthy, Route 53 automatically removes it from DNS responses, ensuring that only healthy resources receive traffic. This makes weighted routing a useful solution for managing traffic distribution, performing canary deployments, and maintaining high availability in cloud-based applications.
+
+#### Latency-based routing
+
+Latency-based routing in Amazon Route 53 is a DNS routing policy that directs user requests to the AWS region with the lowest latency. When a client queries a domain, Route 53 evaluates the network latency between the user's location and multiple AWS regions, then returns the IP address of the resource that provides the fastest response time. This helps optimize performance by reducing delays and improving the user experience.
+
+Latency-based routing is particularly useful for global applications that serve users from multiple geographical locations. By directing users to the nearest and fastest-performing region, it minimizes network lag and enhances application responsiveness. This approach is commonly used for services such as web applications, APIs, and content delivery networks that require low-latency interactions.
+
+To ensure reliability, latency-based routing can be combined with Route 53 health checks. If a resource in the lowest-latency region becomes unhealthy, Route 53 automatically removes it from DNS responses and directs traffic to the next best-performing region. This ensures that users always connect to the most responsive and available endpoint, maintaining high availability and optimal performance for distributed applications.
