@@ -243,3 +243,13 @@ By default, each file automatically expires after 24 hours, but you can change t
 
 - To change the cache duration for all files with the same path pattern, you can change the CloudFront settings for Minimum TTL , Maximum TTL , and Default TTL for a cache behavior.
 - To change the cache duration for an individual file, you can configure your origin to add a header with the or Cache-Controldirective , or a header to the file.
+
+### Invalidate files to remove content
+
+If you need to remove a file from CloudFront edge caches before it expires, you can do one of the following:
+
+- Invalidate the file from edge caches. The next time a viewer requests the file, CloudFront returns to the origin to fetch the latest version of the file.
+- Use file versioning to serve a different version of the file that has a different name. For example, instead of naming a graphic file `image.jpg`, you might call it `image_1.jpg`. When you want to start serving a new version of the file, you'd name the new file `image_2.jpg`, and you'd update the links in your web application or website to point to `image_2.jpg`. Alternatively, you might put all graphics in an `images_v1` directory and, when you want to start serving new versions of one or more graphics, you'd create a new `images_v2` directory, and you'd update your links to point to that directory. With versioning, you don't have to wait for an object to expire before CloudFront begins to serve a new version of it, and you don't have to pay for object invalidation.
+
+> [!NOTE]
+> To control file versions in your distribution, you can either invalidate files or use versioned file names. However, versioning is recommended for frequent updates as it ensures users receive the correct file despite caching, simplifies log analysis, enables serving different versions to different users, facilitates rolling updates, and is more cost-effective by avoiding invalidation fees.
