@@ -96,3 +96,21 @@ Key Differences Between Geolocation and Geoproximity Routing:
 | **Routing Basis**   | Predefined geographic rules (state, country, continent) | Physical proximity of users to resources      |
 | **Traffic Control** | Static assignments                                      | Dynamic, adjustable using bias values         |
 | **Use Case**        | Compliance, localization                                | Performance, load balancing, and optimization |
+
+## CloudFront
+
+Amazon CloudFront is a global content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to users with low latency and high transfer speeds. It works seamlessly with AWS services such as Amazon S3, EC2, and Lambda@Edge, ensuring optimized performance and security. By caching content at various geographical locations, CloudFront reduces the load on origin servers and improves availability.
+
+### CloudFront Architecture
+
+CloudFront's architecture consists of multiple key components that work together to optimize content delivery. The primary components include the origin, distribution, regional edge caches, and edge locations.
+
+- **Origin**: The origin is the source of the content, which can be an Amazon S3 bucket, an EC2 instance, an Elastic Load Balancer, or a custom origin such as an on-premises server. The origin stores the original version of the content and serves it to CloudFront when requested. When using a custom origin, it must be publicly accessible and properly configured to handle CloudFront requests efficiently.
+
+- **Distribution**: The distribution is the configuration entity that tells CloudFront how to distribute content from the origin to the users. It includes settings such as caching behavior, security configurations, SSL/TLS certificates, and price classes. There are two types of distributions: web distributions for static and dynamic content and RTMP distributions for media streaming, though RTMP distributions have been deprecated in favor of HTTP-based streaming solutions.
+
+- **Edge Locations**: Edge locations are strategically placed data centers worldwide that cache copies of content closer to end users. When a user requests content, CloudFront automatically routes the request to the nearest edge location, minimizing latency and improving load times. If the requested content is not available in the edge location, CloudFront retrieves it from a regional edge cache or directly from the origin.
+
+- **Regional Edge Cache**: The regional edge cache acts as an intermediary layer between edge locations and the origin to further optimize performance by reducing the frequency of direct origin requests. It helps improve cache hit ratios by retaining less frequently accessed content for a longer period, reducing the number of times CloudFront must go back to the origin for content that may not be in high demand.
+
+<img src="https://docs.aws.amazon.com/images/whitepapers/latest/amazon-cloudfront-media/images/media-delivery-reference-architecture.png" alt="CloudFront Architecture">
