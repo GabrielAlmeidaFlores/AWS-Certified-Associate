@@ -116,3 +116,11 @@ CloudFront's architecture consists of multiple key components that work together
 This image illustrates Amazon CloudFront's Content Delivery Network (CDN) and how it distributes content from origin services to end users:
 
 <img src="https://docs.aws.amazon.com/images/whitepapers/latest/amazon-cloudfront-media/images/media-delivery-reference-architecture.png" alt="CloudFront Architecture">
+
+### How CloudFront Caching Works
+
+CloudFront employs a multi-tier caching system to efficiently serve content while reducing the load on the origin. When a user requests content, CloudFront first checks whether the requested object is available in the nearest edge location. If the object is cached, CloudFront immediately delivers it, ensuring low latency.
+
+If the object is not found at the edge location, CloudFront queries a regional edge cache, which is a larger cache tier that holds recently accessed objects from multiple edge locations. If the object is found there, it is served to the user and copied to the edge location for future requests. If neither the edge location nor the regional cache has the object, CloudFront fetches it from the origin, stores it in the caches, and then delivers it to the user.
+
+Caching behavior in CloudFront is determined by cache-control headers set by the origin. These headers dictate how long an object should be stored at edge locations before being refreshed. Additionally, CloudFront allows cache invalidation, which enables administrators to remove outdated content from the cache without waiting for the expiration time to lapse. This is particularly useful for time-sensitive content updates.
