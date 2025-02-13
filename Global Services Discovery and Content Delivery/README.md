@@ -129,11 +129,11 @@ Caching behavior in CloudFront is determined by cache-control headers set by the
 
 CloudFront Price Classes allow you to control the balance between cost and performance by selecting the regions from which CloudFront serves your content. There are three Price Classes: Price Class 100, Price Class 200, and Price Class All. Each class determines which edge locations will be used to serve your content, impacting both cost and performance.
 
-> [!NOTE]
-> You can change the Price Class for a CloudFront distribution at any time through the AWS Management Console.
-
 - **Price Class 100**: Price Class 100 is the most cost-effective option. It includes only the least expensive regions for data transfer, such as edge locations in the United States, Canada, Europe, and Israel. This price class is ideal for applications with a primary audience in North America and Europe, where cost savings are prioritized over global coverage. While it offers lower data transfer costs, it may result in higher latency for users in regions not covered by this price class, such as Asia, Australia, South America, and Africa.
 
 - **Price Class 200**: Price Class 200 includes a broader set of edge locations compared to Price Class 100, excluding only the most expensive regions. It covers all edge locations in Price Class 100, plus additional locations in Asia, Australia, and South America. This price class is suitable for applications with a global audience but where cost optimization is still important. It excludes the most expensive regions, such as the Middle East and Africa, offering a balance between cost and performance. Users in Asia, Australia, and South America will experience better latency compared to Price Class 100.
 
 - **Price Class All**: Price Class All is the most comprehensive and expensive option. It includes all CloudFront edge locations worldwide, including the most expensive regions like the Middle East and Africa. This price class is ideal for applications with a truly global audience where performance and low latency are critical, regardless of cost. While it provides the best possible latency and performance for users in all regions, it comes with higher data transfer costs due to the inclusion of all regions.
+
+> [!NOTE]
+> You can change the Price Class for a CloudFront distribution at any time through the AWS Management Console.
