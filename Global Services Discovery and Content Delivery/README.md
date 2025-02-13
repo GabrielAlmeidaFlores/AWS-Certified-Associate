@@ -140,7 +140,7 @@ CloudFront Price Classes allow you to control the balance between cost and perfo
 
 ### Cache Behaviors
 
-In Amazon CloudFront, cache behaviors define how CloudFront handles requests for specific content paths, allowing you to customize delivery and caching based on your application's requirements. Each cache behavior associates a path pattern (e.g., /images/\*.jpg) with specific settings and an origin from which to fetch the content. This enables fine-grained control over how different types of content are served.
+In Amazon CloudFront, cache behaviors define how CloudFront handles requests for specific content paths, allowing you to customize delivery and caching based on your application's requirements. Each cache behavior associates a path pattern (e.g., `/images/*.jpg`) with specific settings and an origin from which to fetch the content. This enables fine-grained control over how different types of content are served.
 
 Key Components of Cache Behaviors:
 
