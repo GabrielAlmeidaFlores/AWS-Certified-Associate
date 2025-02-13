@@ -73,3 +73,11 @@ Latency-based routing in Amazon Route 53 is a DNS routing policy that directs us
 Latency-based routing is particularly useful for global applications that serve users from multiple geographical locations. By directing users to the nearest and fastest-performing region, it minimizes network lag and enhances application responsiveness. This approach is commonly used for services such as web applications, APIs, and content delivery networks that require low-latency interactions.
 
 To ensure reliability, latency-based routing can be combined with Route 53 health checks. If a resource in the lowest-latency region becomes unhealthy, Route 53 automatically removes it from DNS responses and directs traffic to the next best-performing region. This ensures that users always connect to the most responsive and available endpoint, maintaining high availability and optimal performance for distributed applications.
+
+#### Geolocation routing
+
+AWS Route 53 Geolocation Routing allows DNS queries to be answered based on the geographic location of the requestor. When a user makes a DNS request, Route 53 determines their location using the source IP address and responds with the DNS record that matches that location. You can configure records at different levels, including state (for the U.S.), country, or continent, allowing precise traffic direction. This is useful for content localization, regulatory compliance, and distributing traffic based on user location. If no matching geolocation record is found, Route 53 returns a default record if configured; otherwise, the query fails.
+
+!> [!IMPORTANT]
+
+> Geolocation Routing does not route users to the closest server geographically. Instead, it searches for a matching record in a specific order: first, it looks for a record at the state level (if applicable), then the country level, followed by the continent level. If no record is found for the user's location, Route 53 returns the default record (if configured). This means a user in one country may not be routed to a physically closer server but rather to a server designated for their specific country or continent.
