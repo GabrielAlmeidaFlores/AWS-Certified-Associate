@@ -227,3 +227,19 @@ Configuration Levels in CloudFront:
 | **Geo-Restrictions**          | - Restrict content access by country                                                                                                                                                                  | - Override distribution-level restrictions for specific paths                                                                               |
 | **Logging & Monitoring**      | - Enable standard or real-time logs <br> - Choose log bucket destination (S3) <br> - Enable logging for entire distribution                                                                           | - Enable/disable logging per behavior <br> - Configure CloudFront Functions or Lambda@Edge for request modifications                        |
 | **Function Execution**        | - Enable Lambda@Edge for custom processing                                                                                                                                                            | - Attach Lambda@Edge or CloudFront Functions to modify requests and responses                                                               |
+
+### Manage how long content remains in the cache (expiration)
+
+You can control how long files remain in a CloudFront cache before CloudFront forwards another request to your origin. Decreasing the duration allows you to serve dynamic content. Increasing the duration means that users get better performance because their files are more likely to be served directly from the edge cache. A longer duration also reduces the load on your origin.
+
+Typically, CloudFront serves a file from an edge location until the specified cache duration passes, that is, until the file expires. After the cache expires, the next time the edge location receives a request for the file, CloudFront forwards the request to the origin to check whether the cache contains the latest version of the file. The origin's response depends on whether the file has changed or not:
+
+- If the CloudFront cache already has the latest version, the origin returns a status code 304 Not Modified.
+- If the CloudFront cache does not have the latest version, the origin returns a status code 200 OKand the latest version of the file.
+
+If a file in an edge location is not requested frequently, CloudFront might delete it (remove it before its expiration date) to make room for more recently requested files.
+
+By default, each file automatically expires after 24 hours, but you can change the default behavior in two ways:
+
+- To change the cache duration for all files with the same path pattern, you can change the CloudFront settings for Minimum TTL , Maximum TTL , and Default TTL for a cache behavior.
+- To change the cache duration for an individual file, you can configure your origin to add a header with the or Cache-Controldirective , or a header to the file.
