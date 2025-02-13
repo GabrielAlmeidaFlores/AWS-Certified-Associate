@@ -137,3 +137,31 @@ CloudFront Price Classes allow you to control the balance between cost and perfo
 
 > [!NOTE]
 > You can change the Price Class for a CloudFront distribution at any time through the AWS Management Console.
+
+### Cache Behaviors
+
+In Amazon CloudFront, cache behaviors define how CloudFront handles requests for specific content paths, allowing you to customize delivery and caching based on your application's requirements. Each cache behavior associates a path pattern (e.g., /images/\*.jpg) with specific settings and an origin from which to fetch the content. This enables fine-grained control over how different types of content are served.
+
+Key Components of Cache Behaviors:
+
+- **Path Pattern** : Specifies the URL paths to which the cache behavior applies. For example, `images/*.jpg` targets all `.jpg` files within the images directory and its subdirectories. You can also specify the path pattern `"*"` to match all requests. This acts as the default cache behavior, which is mandatory in every CloudFront distribution and applies when no other path patterns match a request. You can define multiple cache behaviors, each with a different path pattern. If multiple behaviors could match a request, CloudFront evaluates them in priority order, from most specific to least specific. For example, if you have `/img/*` and `/img/cats/*`, a request for `/img/cats/kitten.jpg` will match `/img/cats/*` first because it is more specific.
+
+- **Target Origin**: Defines the origin server (e.g., an Amazon S3 bucket or a custom HTTP server) from which CloudFront retrieves content when a request matches the path pattern.
+
+- **Viewer Protocol Policy** : Determines the protocols (HTTP and/or HTTPS) that viewers can use to access your content. Options include:
+
+  - **allow-all**: Viewers can use both HTTP and HTTPS.
+  - **redirect-to-https**: HTTP requests are redirected to HTTPS.
+  - **https-only**: Only HTTPS requests are allowed; HTTP requests receive a 403 Forbidden response.
+
+- **Allowed HTTP Methods**: Specifies which HTTP methods (e.g., GET, HEAD, POST) CloudFront processes and forwards to your origin.
+
+- **Cache Policy**: Defines how CloudFront caches content, including settings for TTL (Time to Live) and the inclusion of headers, cookies, and query strings in the cache key.
+
+- **Origin Request Policy**: Controls the information (headers, cookies, query strings) that CloudFront includes in requests to your origin.
+
+- **Function Associations**: Allows the association of CloudFront Functions or Lambda@Edge functions with specific cache behaviors to execute custom code in response to viewer or origin requests.
+
+- **Response Headers Policy**: Enables the addition or modification of HTTP response headers before CloudFront returns the response to the viewer.
+
+By configuring cache behaviors, you can optimize performance, enhance security, and tailor content delivery to meet the specific needs of your application. For instance, you might create a cache behavior that requires HTTPS for all requests to a `/secure/*` path, forwards specific headers to the origin, and associates a Lambda@Edge function to handle authentication.
