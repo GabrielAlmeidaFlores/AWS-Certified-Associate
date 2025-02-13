@@ -138,6 +138,52 @@ CloudFront Price Classes allow you to control the balance between cost and perfo
 > [!NOTE]
 > You can change the Price Class for a CloudFront distribution at any time through the AWS Management Console.
 
+### Distributions
+
+An Amazon CloudFront distribution defines how CloudFront delivers content from your origin servers to users. It also specifies how CloudFront manages and tracks content delivery.
+
+When creating a CloudFront distribution, you can customize the following settings:
+
+- **Content Origin**: Choose one or more origins from which CloudFront retrieves content. A single distribution can have up to 25 origins, allowing for flexible content sourcing. Supported origin types include:
+
+  - Amazon S3 buckets
+  - AWS Elemental MediaPackage channels
+  - AWS Elemental MediaStore containers
+  - Elastic Load Balancing (ELB) load balancers
+  - Custom HTTP servers (such as on-premises servers or other cloud providers)
+
+- **Access Control**: Define how users access your content:
+
+  - **Public access**: Available to all users.
+  - **Restricted access**: Limit access using signed URLs, signed cookies, or AWS Identity and Access Management (IAM) policies.
+
+- **Security**: Enhance security with the following options:
+
+  - AWS WAF (Web Application Firewall) – Protect against malicious traffic and attacks.
+  - HTTPS enforcement – Require secure HTTPS connections for content access.
+
+- **Cache Key Customization**: Control how CloudFront caches your content by defining the cache key, which uniquely identifies each cached file. You can configure it to include:
+
+  - Query string parameters
+  - HTTP headers
+  - Cookies
+
+- **Origin Request Settings**: Specify additional details for requests that CloudFront sends to your origin, such as:
+
+  - Including specific HTTP headers
+  - Forwarding cookies
+  - Passing query string parameters
+
+- **Geographic Restrictions**: Restrict access to your content based on users' locations by:
+
+  - Blocking users from specific countries
+  - Allowing access only from selected regions
+
+- **Logging**: Monitor and analyze content delivery with logging options:
+
+  - Standard logs – Track user activity and request details.
+  - Real-time logs – Provide near-instant visibility into traffic patterns.
+
 ### Cache Behaviors
 
 In Amazon CloudFront, cache behaviors define how CloudFront handles requests for specific content paths, allowing you to customize delivery and caching based on your application's requirements. Each cache behavior associates a path pattern (e.g., `/images/*.jpg`) with specific settings and an origin from which to fetch the content. This enables fine-grained control over how different types of content are served.
@@ -165,3 +211,7 @@ Key Components of Cache Behaviors:
 - **Response Headers Policy**: Enables the addition or modification of HTTP response headers before CloudFront returns the response to the viewer.
 
 By configuring cache behaviors, you can optimize performance, enhance security, and tailor content delivery to meet the specific needs of your application. For instance, you might create a cache behavior that requires HTTPS for all requests to a `/secure/*` path, forwards specific headers to the origin, and associates a Lambda@Edge function to handle authentication.
+
+### Content Invalidation
+
+- Cache Invalidation... performed on a distribution
