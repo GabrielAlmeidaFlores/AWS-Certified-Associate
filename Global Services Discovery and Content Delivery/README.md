@@ -80,3 +80,19 @@ AWS Route 53 Geolocation Routing allows DNS queries to be answered based on the 
 
 > [!IMPORTANT]
 > Geolocation Routing does not route users to the closest server geographically. Instead, it searches for a matching record in a specific order: first, it looks for a record at the state level (if applicable), then the country level, followed by the continent level. If no record is found for the user's location, Route 53 returns the default record (if configured). This means a user in one country may not be routed to a physically closer server but rather to a server designated for their specific country or continent.
+
+#### Geoproximity Routing
+
+Geoproximity Routing in Amazon Route 53 allows you to route traffic based on the physical location of your resources and the geographic location of the user making the DNS request. This feature is useful when you have multiple endpoints distributed across different regions and want to direct traffic based on geographic proximity rather than just predefined geolocation rules.
+
+Unlike Geolocation Routing, which strictly maps users to predefined regions (state, country, or continent), Geoproximity Routing considers the physical distance between users and your application’s resources. AWS determines this proximity using the geographic coordinates of AWS Regions or customer-specified locations. This enables more dynamic and efficient routing, especially for globally distributed applications.
+
+To refine traffic flow further, you can use a bias value, which expands or shrinks the effective geographic reach of a resource. A positive bias increases the range of traffic directed to a particular endpoint, while a negative bias decreases it. This allows businesses to control traffic distribution more precisely.
+
+Key Differences Between Geolocation and Geoproximity Routing:
+
+| Feature             | Geolocation Routing                                     | Geoproximity Routing                          |
+| ------------------- | ------------------------------------------------------- | --------------------------------------------- |
+| **Routing Basis**   | Predefined geographic rules (state, country, continent) | Physical proximity of users to resources      |
+| **Traffic Control** | Static assignments                                      | Dynamic, adjustable using bias values         |
+| **Use Case**        | Compliance, localization                                | Performance, load balancing, and optimization |
