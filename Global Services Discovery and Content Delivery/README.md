@@ -113,6 +113,6 @@ CloudFront's architecture consists of multiple key components that work together
 
 - **Regional Edge Cache**: The regional edge cache acts as an intermediary layer between edge locations and the origin to further optimize performance by reducing the frequency of direct origin requests. It helps improve cache hit ratios by retaining less frequently accessed content for a longer period, reducing the number of times CloudFront must go back to the origin for content that may not be in high demand.
 
-This image illustrates Amazon CloudFront's Content Delivery Network (CDN) and how it distributes content from origin services to end users efficiently:
+This image illustrates Amazon CloudFront's Content Delivery Network (CDN) and how it distributes content from origin services to end users:
 
 <img src="https://docs.aws.amazon.com/images/whitepapers/latest/amazon-cloudfront-media/images/media-delivery-reference-architecture.png" alt="CloudFront Architecture">
