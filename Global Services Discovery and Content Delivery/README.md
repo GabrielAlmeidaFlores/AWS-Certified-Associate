@@ -211,7 +211,3 @@ Key Components of Cache Behaviors:
 - **Response Headers Policy**: Enables the addition or modification of HTTP response headers before CloudFront returns the response to the viewer.
 
 By configuring cache behaviors, you can optimize performance, enhance security, and tailor content delivery to meet the specific needs of your application. For instance, you might create a cache behavior that requires HTTPS for all requests to a `/secure/*` path, forwards specific headers to the origin, and associates a Lambda@Edge function to handle authentication.
-
-### Content Invalidation
-
-- Cache Invalidation... performed on a distribution
