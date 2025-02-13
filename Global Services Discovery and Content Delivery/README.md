@@ -124,3 +124,16 @@ CloudFront employs a multi-tier caching system to efficiently serve content whil
 If the object is not found at the edge location, CloudFront queries a regional edge cache, which is a larger cache tier that holds recently accessed objects from multiple edge locations. If the object is found there, it is served to the user and copied to the edge location for future requests. If neither the edge location nor the regional cache has the object, CloudFront fetches it from the origin, stores it in the caches, and then delivers it to the user.
 
 Caching behavior in CloudFront is determined by cache-control headers set by the origin. These headers dictate how long an object should be stored at edge locations before being refreshed. Additionally, CloudFront allows cache invalidation, which enables administrators to remove outdated content from the cache without waiting for the expiration time to lapse. This is particularly useful for time-sensitive content updates.
+
+### Price Classes
+
+CloudFront Price Classes allow you to control the balance between cost and performance by selecting the regions from which CloudFront serves your content. There are three Price Classes: Price Class 100, Price Class 200, and Price Class All. Each class determines which edge locations will be used to serve your content, impacting both cost and performance.
+
+- **Price Class 100**: Price Class 100 is the most cost-effective option. It includes only the least expensive regions for data transfer, such as edge locations in the United States, Canada, Europe, and Israel. This price class is ideal for applications with a primary audience in North America and Europe, where cost savings are prioritized over global coverage. While it offers lower data transfer costs, it may result in higher latency for users in regions not covered by this price class, such as Asia, Australia, South America, and Africa.
+
+- **Price Class 200**: Price Class 200 includes a broader set of edge locations compared to Price Class 100, excluding only the most expensive regions. It covers all edge locations in Price Class 100, plus additional locations in Asia, Australia, and South America. This price class is suitable for applications with a global audience but where cost optimization is still important. It excludes the most expensive regions, such as the Middle East and Africa, offering a balance between cost and performance. Users in Asia, Australia, and South America will experience better latency compared to Price Class 100.
+
+- **Price Class All**: Price Class All is the most comprehensive and expensive option. It includes all CloudFront edge locations worldwide, including the most expensive regions like the Middle East and Africa. This price class is ideal for applications with a truly global audience where performance and low latency are critical, regardless of cost. While it provides the best possible latency and performance for users in all regions, it comes with higher data transfer costs due to the inclusion of all regions.
+
+> [!NOTE]
+> You can change the Price Class for a CloudFront distribution at any time through the AWS Management Console.
