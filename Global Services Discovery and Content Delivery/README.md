@@ -117,14 +117,6 @@ This image illustrates Amazon CloudFront's Content Delivery Network (CDN) and ho
 
 <img src="https://docs.aws.amazon.com/images/whitepapers/latest/amazon-cloudfront-media/images/media-delivery-reference-architecture.png" alt="CloudFront Architecture">
 
-### How CloudFront Caching Works
-
-CloudFront employs a multi-tier caching system to efficiently serve content while reducing the load on the origin. When a user requests content, CloudFront first checks whether the requested object is available in the nearest edge location. If the object is cached, CloudFront immediately delivers it, ensuring low latency.
-
-If the object is not found at the edge location, CloudFront queries a regional edge cache, which is a larger cache tier that holds recently accessed objects from multiple edge locations. If the object is found there, it is served to the user and copied to the edge location for future requests. If neither the edge location nor the regional cache has the object, CloudFront fetches it from the origin, stores it in the caches, and then delivers it to the user.
-
-Caching behavior in CloudFront is determined by cache-control headers set by the origin. These headers dictate how long an object should be stored at edge locations before being refreshed. Additionally, CloudFront allows cache invalidation, which enables administrators to remove outdated content from the cache without waiting for the expiration time to lapse. This is particularly useful for time-sensitive content updates.
-
 ### Price Classes
 
 CloudFront Price Classes allow you to control the balance between cost and performance by selecting the regions from which CloudFront serves your content. There are three Price Classes: Price Class 100, Price Class 200, and Price Class All. Each class determines which edge locations will be used to serve your content, impacting both cost and performance.
@@ -138,97 +130,15 @@ CloudFront Price Classes allow you to control the balance between cost and perfo
 > [!NOTE]
 > You can change the Price Class for a CloudFront distribution at any time through the AWS Management Console.
 
-### Distributions
+### How CloudFront Caching Works
 
-An Amazon CloudFront distribution defines how CloudFront delivers content from your origin servers to users. It also specifies how CloudFront manages and tracks content delivery.
+CloudFront employs a multi-tier caching system to efficiently serve content while reducing the load on the origin. When a user requests content, CloudFront first checks whether the requested object is available in the nearest edge location. If the object is cached, CloudFront immediately delivers it, ensuring low latency.
 
-When creating a CloudFront distribution, you can customize the following settings:
+If the object is not found at the edge location, CloudFront queries a regional edge cache, which is a larger cache tier that holds recently accessed objects from multiple edge locations. If the object is found there, it is served to the user and copied to the edge location for future requests. If neither the edge location nor the regional cache has the object, CloudFront fetches it from the origin, stores it in the caches, and then delivers it to the user.
 
-- **Content Origin**: Choose one or more origins from which CloudFront retrieves content. A single distribution can have up to 25 origins, allowing for flexible content sourcing. Supported origin types include:
+Caching behavior in CloudFront is determined by cache-control headers set by the origin. These headers dictate how long an object should be stored at edge locations before being refreshed. Additionally, CloudFront allows cache invalidation, which enables administrators to remove outdated content from the cache without waiting for the expiration time to lapse. This is particularly useful for time-sensitive content updates.
 
-  - Amazon S3 buckets
-  - AWS Elemental MediaPackage channels
-  - AWS Elemental MediaStore containers
-  - Elastic Load Balancing (ELB) load balancers
-  - Custom HTTP servers (such as on-premises servers or other cloud providers)
-
-- **Access Control**: Define how users access your content:
-
-  - **Public access**: Available to all users.
-  - **Restricted access**: Limit access using signed URLs, signed cookies, or AWS Identity and Access Management (IAM) policies.
-
-- **Security**: Enhance security with the following options:
-
-  - AWS WAF (Web Application Firewall) – Protect against malicious traffic and attacks.
-  - HTTPS enforcement – Require secure HTTPS connections for content access.
-
-- **Cache Key Customization**: Control how CloudFront caches your content by defining the cache key, which uniquely identifies each cached file. You can configure it to include:
-
-  - Query string parameters
-  - HTTP headers
-  - Cookies
-
-- **Origin Request Settings**: Specify additional details for requests that CloudFront sends to your origin, such as:
-
-  - Including specific HTTP headers
-  - Forwarding cookies
-  - Passing query string parameters
-
-- **Geographic Restrictions**: Restrict access to your content based on users' locations by:
-
-  - Blocking users from specific countries
-  - Allowing access only from selected regions
-
-- **Logging**: Monitor and analyze content delivery with logging options:
-
-  - Standard logs – Track user activity and request details.
-  - Real-time logs – Provide near-instant visibility into traffic patterns.
-
-### Cache Behaviors
-
-In Amazon CloudFront, cache behaviors define how CloudFront handles requests for specific content paths, allowing you to customize delivery and caching based on your application's requirements. Each cache behavior associates a path pattern (e.g., `/images/*.jpg`) with specific settings and an origin from which to fetch the content. This enables fine-grained control over how different types of content are served.
-
-Key Components of Cache Behaviors:
-
-- **Path Pattern** : Specifies the URL paths to which the cache behavior applies. For example, `images/*.jpg` targets all `.jpg` files within the images directory and its subdirectories. You can also specify the path pattern `"*"` to match all requests. This acts as the default cache behavior, which is mandatory in every CloudFront distribution and applies when no other path patterns match a request. You can define multiple cache behaviors, each with a different path pattern. If multiple behaviors could match a request, CloudFront evaluates them in priority order, from most specific to least specific. For example, if you have `/img/*` and `/img/cats/*`, a request for `/img/cats/kitten.jpg` will match `/img/cats/*` first because it is more specific.
-
-- **Target Origin**: Defines the origin server (e.g., an Amazon S3 bucket or a custom HTTP server) from which CloudFront retrieves content when a request matches the path pattern.
-
-- **Viewer Protocol Policy** : Determines the protocols (HTTP and/or HTTPS) that viewers can use to access your content. Options include:
-
-  - **allow-all**: Viewers can use both HTTP and HTTPS.
-  - **redirect-to-https**: HTTP requests are redirected to HTTPS.
-  - **https-only**: Only HTTPS requests are allowed; HTTP requests receive a 403 Forbidden response.
-
-- **Allowed HTTP Methods**: Specifies which HTTP methods (e.g., GET, HEAD, POST) CloudFront processes and forwards to your origin.
-
-- **Cache Policy**: Defines how CloudFront caches content, including settings for TTL (Time to Live) and the inclusion of headers, cookies, and query strings in the cache key.
-
-- **Origin Request Policy**: Controls the information (headers, cookies, query strings) that CloudFront includes in requests to your origin.
-
-- **Function Associations**: Allows the association of CloudFront Functions or Lambda@Edge functions with specific cache behaviors to execute custom code in response to viewer or origin requests.
-
-- **Response Headers Policy**: Enables the addition or modification of HTTP response headers before CloudFront returns the response to the viewer.
-
-By configuring cache behaviors, you can optimize performance, enhance security, and tailor content delivery to meet the specific needs of your application. For instance, you might create a cache behavior that requires HTTPS for all requests to a `/secure/*` path, forwards specific headers to the origin, and associates a Lambda@Edge function to handle authentication.
-
-### Amazon CloudFront: Distribution vs. Cache Behavior Settings
-
-In Amazon CloudFront, a distribution is the top-level configuration that controls how CloudFront delivers content to users. Within a distribution, you can define cache behaviors, which determine how CloudFront handles requests for specific content paths.
-
-Configuration Levels in CloudFront:
-
-| **Category**                  | **Distribution-Level Settings** (Applies to the entire distribution)                                                                                                                                  | **Cache Behavior-Level Settings** (Applies to specific URL patterns, part of a distribution)                                                |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| **General Configuration**     | - Distribution ID & Domain Name <br> - Price Class (Edge locations) <br> - IPv6 Support                                                                                                               | - Path Pattern (e.g., `/*.jpg`, `/videos/*`) <br> - Allowed HTTP Methods (GET, POST, etc.)                                                  |
-| **Origins & Origin Groups**   | - Define origins (S3, HTTP server, ELB, MediaStore, etc.) <br> - Configure multiple origins (up to 25) <br> - Origin failover (Origin Groups) <br> - Origin Access Control (OAC, Signed URLs/Cookies) | - Associate a specific origin with a behavior <br> - Modify origin request settings per behavior (headers, query strings, cookies)          |
-| **Security & Access Control** | - AWS WAF integration <br> - HTTPS enforcement (Viewer Protocol Policy) <br> - Custom SSL/TLS certificate                                                                                             | - Restrict access using signed URLs/cookies <br> - Enable field-level encryption for sensitive data                                         |
-| **Caching & Performance**     | - Default cache behavior settings (for requests that don’t match a specific behavior) <br> - Regional Edge Cache settings                                                                             | - Define TTLs (Min, Max, Default TTL) <br> - Customize cache keys (headers, cookies, query strings) <br> - Enable compression (Gzip/Brotli) |
-| **Geo-Restrictions**          | - Restrict content access by country                                                                                                                                                                  | - Override distribution-level restrictions for specific paths                                                                               |
-| **Logging & Monitoring**      | - Enable standard or real-time logs <br> - Choose log bucket destination (S3) <br> - Enable logging for entire distribution                                                                           | - Enable/disable logging per behavior <br> - Configure CloudFront Functions or Lambda@Edge for request modifications                        |
-| **Function Execution**        | - Enable Lambda@Edge for custom processing                                                                                                                                                            | - Attach Lambda@Edge or CloudFront Functions to modify requests and responses                                                               |
-
-### Manage how long content remains in the cache (expiration)
+#### Manage how long content remains in the cache (expiration)
 
 You can control how long files remain in a CloudFront cache before CloudFront forwards another request to your origin. Decreasing the duration allows you to serve dynamic content. Increasing the duration means that users get better performance because their files are more likely to be served directly from the edge cache. A longer duration also reduces the load on your origin.
 
@@ -244,7 +154,7 @@ By default, each file automatically expires after 24 hours, but you can change t
 - To change the cache duration for all files with the same path pattern, you can change the CloudFront settings for Minimum TTL , Maximum TTL , and Default TTL for a cache behavior.
 - To change the cache duration for an individual file, you can configure your origin to add a header with the or Cache-Controldirective , or a header to the file.
 
-### Invalidate files to remove content
+#### Invalidate files to remove content
 
 If you need to remove a file from CloudFront edge caches before it expires, you can do one of the following:
 
@@ -253,3 +163,142 @@ If you need to remove a file from CloudFront edge caches before it expires, you 
 
 > [!NOTE]
 > To control file versions in your distribution, you can either invalidate files or use versioned file names. However, versioning is recommended for frequent updates as it ensures users receive the correct file despite caching, simplifies log analysis, enables serving different versions to different users, facilitates rolling updates, and is more cost-effective by avoiding invalidation fees.
+
+### CloudFront Distributions
+
+An Amazon CloudFront distribution is the core configuration unit that defines how content is delivered from your origin servers to end-users. It acts as a global content delivery network (CDN) that caches content at edge locations, reducing latency and improving performance for users worldwide. When creating a CloudFront distribution, you must configure various settings to optimize content delivery, enhance security, and meet specific application requirements.
+
+#### Content Origin
+
+The origin is the source of the content that CloudFront delivers to users. A single CloudFront distribution can support up to 25 origins, allowing you to serve content from multiple sources. Origins can be of different types, each suited for specific use cases:
+
+- **Amazon S3 Buckets**: S3 is the most common origin for static content such as images, videos, and documents. When using S3 as an origin, you can configure it as a website endpoint or a REST API endpoint. To secure access to the S3 bucket, you can use Origin Access Control (OAC) or Origin Access Identity (OAI), which restrict direct access to the bucket and ensure that all requests are routed through CloudFront.
+
+- **Custom HTTP Servers**: Custom origins are used for dynamic content or APIs hosted on HTTP servers. These servers can be Amazon EC2 instances, Elastic Load Balancers (ELB), or even on-premises servers. When using a custom origin, you must ensure that the server is properly configured to handle requests from CloudFront, including setting up security groups, firewall rules, and SSL/TLS certificates.
+
+- **AWS Media Services**: For media delivery, you can use AWS Elemental MediaPackage for video streaming or AWS Elemental MediaStore for media storage and delivery. These services are optimized for high-performance media workloads and integrate seamlessly with CloudFront.
+
+- **Other AWS Services**: CloudFront can also integrate with Lambda Function URLs for serverless compute or API Gateway for RESTful APIs. These integrations enable you to deliver dynamic content or serverless applications at scale.
+
+#### Access Control
+
+Access control in CloudFront determines how users interact with your content. You can configure your distribution to allow public access or restrict access to specific users or groups:
+
+- **Public Access**: By default, CloudFront serves content to all users without restrictions. This is ideal for publicly available content such as websites, blogs, or media files.
+
+- **Restricted Access**: For private content, you can use signed URLs or signed cookies to restrict access. Signed URLs are time-limited URLs that grant access to specific files, while signed cookies provide access to multiple files for a limited time. Additionally, you can use AWS Identity and Access Management (IAM) policies to restrict access to specific AWS accounts or roles.
+
+#### Security
+
+Security is a critical aspect of CloudFront configurations. CloudFront provides several features to protect your content and ensure secure delivery:
+
+- **AWS WAF (Web Application Firewall)**: AWS WAF integrates with CloudFront to protect against common web exploits such as SQL injection, cross-site scripting (XSS), and distributed denial-of-service (DDoS) attacks. You can configure WAF rules to block malicious traffic or allow only trusted sources.
+
+- **HTTPS Enforcement**: CloudFront supports HTTPS using AWS Certificate Manager (ACM) or custom SSL/TLS certificates. You can enforce HTTPS-only access to ensure that all communication between users and CloudFront is encrypted.
+
+- **Field-Level Encryption**: For sensitive data such as credit card numbers or personal information, you can enable field-level encryption. This feature encrypts specific fields in HTTP requests at the edge before forwarding them to the origin, ensuring end-to-end security.
+
+#### Cache Key Customization
+
+The cache key is a unique identifier that CloudFront uses to store and retrieve cached content. By customizing the cache key, you can control how CloudFront caches your content and improve cache efficiency:
+
+- **Query String Parameters**: You can configure CloudFront to include or exclude specific query string parameters in the cache key. For example, if your application uses query strings for language settings (e.g., `?lang=en`), you can cache content separately for each language.
+
+- **HTTP Headers**: CloudFront can cache content based on specific HTTP headers such as `Accept-Language` or `User-Agent`. This is useful for serving different content to users based on their device type or language preferences.
+
+- **Cookies**: You can configure CloudFront to include or exclude specific cookies in the cache key. For example, if your application uses cookies for session management, you can cache content separately for each session.
+
+#### Origin Request Settings
+
+Origin request settings define how CloudFront interacts with your origin server. These settings allow you to customize the requests that CloudFront sends to the origin:
+
+- **Forward Headers**: You can configure CloudFront to include specific headers (e.g., `Authorization`) in requests to the origin. This is useful for passing authentication tokens or other metadata to the origin.
+
+- **Forward Cookies**: CloudFront can forward cookies to the origin for personalized content. For example, if your application uses cookies to track user preferences, you can forward these cookies to the origin to serve customized content.
+
+- **Forward Query Strings**: CloudFront can include query strings in requests to the origin. This is useful for dynamic content that depends on query string parameters.
+
+#### Geographic Restrictions
+
+CloudFront allows you to restrict access to your content based on the geographic location of your users. This feature is useful for complying with regional regulations or licensing agreements:
+
+- **Geo-Blocking**: You can block users from specific countries using AWS WAF or CloudFront's built-in geo-restriction feature. For example, you can block access to your content from countries where it is not licensed.
+
+- **Geo-Whitelisting**: Alternatively, you can allow access only from selected regions. This is useful for restricting access to specific markets or regions.
+
+#### Logging
+
+Logging is essential for monitoring and analyzing content delivery. CloudFront provides two types of logs:
+
+- **Standard Logs**: Standard logs track user activity and request details. These logs are stored in an S3 bucket and can be analyzed using tools like Amazon Athena or AWS Glue.
+- **Real-Time Logs**: Real-time logs provide near-instant visibility into traffic patterns. These logs are useful for troubleshooting and monitoring live traffic.
+
+### Cache Behaviors
+
+Cache behaviors define how CloudFront handles requests for specific content paths. Each cache behavior associates a path pattern (e.g., `/images/*.jpg`) with specific settings and an origin. This allows you to customize content delivery and caching based on your application's requirements.
+
+#### Path Pattern
+
+The path pattern specifies the URL paths to which the cache behavior applies. For example:
+
+- `/images/*.jpg` : Targets all `.jpg` files within the images directory and its subdirectories.
+
+- `/api/*`: Targets all requests to the api path.
+
+- `*`: Acts as the default cache behavior, which is mandatory in every CloudFront distribution. This behavior applies when no other path patterns match a request.
+
+- **Priority Order** : If multiple behaviors could match a request, CloudFront evaluates them in priority order, from most specific to least specific. For example, a request for `/img/cats/kitten.jpg` will match `/img/cats/*` before `/img/*`.
+
+#### Target Origin
+
+The target origin defines the origin server from which CloudFront retrieves content when a request matches the path pattern. Supported origins include:
+
+- **Amazon S3 Buckets**: Ideal for static content.
+- **Custom HTTP Servers**: For dynamic content or APIs.
+- **AWS Media Services**: For media delivery.
+
+#### Viewer Protocol Policy
+
+The viewer protocol policy determines the protocols (HTTP and/or HTTPS) that viewers can use to access your content. Options include:
+
+- **Allow All**: Viewers can use both HTTP and HTTPS.
+- **Redirect to HTTPS**: HTTP requests are automatically redirected to HTTPS.
+- **HTTPS Only**: Only HTTPS requests are allowed; HTTP requests receive a 403 Forbidden response.
+
+#### Allowed HTTP Methods
+
+The allowed HTTP methods setting specifies which HTTP methods CloudFront processes and forwards to your origin. Options include:
+
+- **GET, HEAD**: For retrieving content.
+- **POST, PUT, DELETE**: For modifying content.
+- **OPTIONS, PATCH**: For advanced use cases.
+
+#### Cache Policy
+
+The cache policy defines how CloudFront caches content. Key settings include:
+
+- **Minimum, Maximum, and Default TTL**: Control how long content is cached.
+- **Cache Key Settings**: Include or exclude headers, cookies, and query strings.
+
+#### Origin Request Policy
+
+The origin request policy controls the information (headers, cookies, query strings) that CloudFront includes in requests to your origin. Key settings include:
+
+- **Forward Headers**: Include specific headers (e.g., `Authorization`).
+- **Forward Cookies**: Pass cookies to the origin.
+- **Forward Query Strings**: Include query strings in requests.
+
+#### Function Associations
+
+Function associations allow you to associate CloudFront Functions or Lambda@Edge functions with specific cache behaviors. These functions execute custom code in response to viewer or origin requests. Use cases include:
+
+- **Authentication**: Validate user credentials before serving content.
+- **URL Rewriting**: Modify URLs dynamically.
+- **A/B Testing**: Serve different content based on user attributes.
+
+#### Response Headers Policy
+
+The response headers policy enables you to add or modify HTTP response headers before CloudFront returns the response to the viewer. Use cases include:
+
+- **Security Headers**: Add headers like `Content-Security-Policy` or `Strict-Transport-Security`.
+- **CORS Headers**: Enable cross-origin resource sharing.
