@@ -147,7 +147,8 @@ Typically, CloudFront serves a file from an edge location until the specified ca
 - If the CloudFront cache already has the latest version, the origin returns a status code 304 Not Modified.
 - If the CloudFront cache does not have the latest version, the origin returns a status code 200 OKand the latest version of the file.
 
-If a file in an edge location is not requested frequently, CloudFront might delete it (remove it before its expiration date) to make room for more recently requested files.
+> [!NOTE]
+> If a file in an edge location is not requested frequently, CloudFront might delete it (remove it before its expiration date) to make room for more recently requested files.
 
 By default, each file automatically expires after 24 hours, but you can change the default behavior in two ways:
 
