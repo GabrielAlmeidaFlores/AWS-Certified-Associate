@@ -1,4 +1,4 @@
-# Amazon Aurora Architecture
+# Aurora Architecture
 
 Amazon Aurora is a fully managed relational database engine developed by Amazon Web Services (AWS), designed to offer high performance, scalability, and availability. Aurora is compatible with MySQL and PostgreSQL, allowing seamless integration with existing applications that utilize these databases. Its architecture significantly differs from traditional Amazon RDS setups, primarily due to its unique cluster-based design.
 
