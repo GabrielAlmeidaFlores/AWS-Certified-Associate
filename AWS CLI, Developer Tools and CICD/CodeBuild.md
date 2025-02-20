@@ -16,7 +16,7 @@ The AWS CodeBuild architecture follows a structured workflow:
 
 - **Source Retrieval**: The build process begins by retrieving source code from a repository such as AWS CodeCommit, GitHub, GitHub Enterprise, Bitbucket, Amazon S3, or AWS CodePipeline.
 
-- **Build Execution**: CodeBuild executes build instructions defined in a buildspec.yml file, which is located at the root of the source code repository. The buildspec.yml file specifies the build process, including commands, environment variables, and output artifacts.
+- **Build Execution**: CodeBuild executes build instructions defined in a `buildspec.yml` file, which is located at the root of the source code repository. The `buildspec.yml` file specifies the build process, including commands, environment variables, and output artifacts.
 
 - **Logging and Monitoring**: Logs from the build process are automatically sent to Amazon S3 and Amazon CloudWatch Logs, providing visibility into build execution.
 
@@ -24,9 +24,9 @@ The AWS CodeBuild architecture follows a structured workflow:
 
 - **Artifact Storage**: The final build artifacts are stored in Amazon S3 or optionally published to another service for deployment.
 
-## Build Specification (buildspec.yml)
+## Build Specification (`buildspec.yml`)
 
-The buildspec.yml file is the core configuration file for AWS CodeBuild. It defines how the build process should be executed and consists of four key phases:
+The `buildspec.yml` file is the core configuration file for AWS CodeBuild. It defines how the build process should be executed and consists of four key phases:
 
 - **Install Phase**: This phase is responsible for installing any necessary packages in the build environment.
 
@@ -36,7 +36,7 @@ The buildspec.yml file is the core configuration file for AWS CodeBuild. It defi
 
 - **Post-Build Phase**: This phase typically includes packaging artifacts, pushing Docker images, or triggering notifications.
 
-Additionally, buildspec.yml supports the definition of environment variables. These variables can be:
+Additionally, `buildspec.yml` supports the definition of environment variables. These variables can be:
 
 - Directly defined within the file.
 
@@ -46,7 +46,7 @@ Additionally, buildspec.yml supports the definition of environment variables. Th
 
 - Retrieved from AWS Secrets Manager for secure storage.
 
-Example buildspec.yml File:
+Example `buildspec.yml` File:
 
 ```YAML
 version: 0.2
