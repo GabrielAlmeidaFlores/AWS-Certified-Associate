@@ -34,13 +34,13 @@ Key Responsibilities of the CodeDeploy Agent:
 
 - **Polling for Deployment Instructions**: The agent continuously polls the CodeDeploy service for new deployment instructions.
 
-- **Executing Lifecycle Events**: The agent executes the lifecycle event hooks defined in the appspec.yml file.
+- **Executing Lifecycle Events**: The agent executes the lifecycle event hooks defined in the `appspec.yml` file.
 
 - **Reporting Status**: The agent reports the status of each deployment step back to CodeDeploy, enabling real-time monitoring and troubleshooting.
 
-## AppSpec File (appspec.yml)
+## AppSpec File (`appspec.yml`)
 
-The appspec.yml file is a configuration file used by CodeDeploy to define the deployment process. It is written in YAML or JSON format and contains two main sections: configuration and lifecycle event hooks.
+The `appspec.yml` file is a configuration file used by CodeDeploy to define the deployment process. It is written in YAML or JSON format and contains two main sections: configuration and lifecycle event hooks.
 
 ### Configuration Section
 
