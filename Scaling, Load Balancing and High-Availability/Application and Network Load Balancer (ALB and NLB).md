@@ -1,5 +1,7 @@
 # Application Load Balancer (ALB) and Network Load Balancer (NLB)
 
+This documentation provides a detailed comparison and explanation of Amazon Web Services (AWS) Application Load Balancer (ALB) and Network Load Balancer (NLB). The content is structured to ensure clarity and depth, with tables used to present key differences in an organized manner. All information is based on official AWS documentation to ensure accuracy and reliability.
+
 ## Application Load Balancer (ALB)
 
 An Application Load Balancer (ALB) operates at Layer 7 (Application Layer) of the OSI model. It is designed to handle HTTP and HTTPS traffic, making it ideal for web applications. ALBs provide advanced routing capabilities, content-based load balancing, and support for modern application architectures such as microservices.
