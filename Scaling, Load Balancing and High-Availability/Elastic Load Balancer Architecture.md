@@ -2,6 +2,16 @@
 
 Elastic Load Balancer (ELB) is a fully managed service provided by AWS that automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, and IP addresses. It ensures high availability, fault tolerance, and scalability for applications. This documentation provides a comprehensive overview of the ELB architecture, focusing on its key components, configurations, and operational details.
 
+## Load Balancers Types
+
+Amazon Web Services (AWS) offers three types of load balancers to distribute incoming traffic across multiple targets, such as Amazon EC2 instances, containers, and IP addresses. These load balancers ensure high availability, fault tolerance, and scalability for applications. The three types are the Application Load Balancer (ALB), the Network Load Balancer (NLB), and the Classic Load Balancer (CLB). Each type operates at different layers of the OSI model and is designed to address specific use cases, ranging from modern microservices architectures to high-performance, low-latency applications. Below is a detailed comparison of these load balancer types in a structured table format.
+
+| **Load Balancer Type**              | **Key Features**                                                                                                                                                    | **Use Cases**                                                                                                                  | **Protocols Supported** | **OSI Layer** |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------- | ------------- |
+| **Application Load Balancer (ALB)** | Content-based routing (host/path-based), Supports WebSockets and HTTP/2, SSL/TLS termination, Advanced health checks, Integration with containers and microservices | Modern web applications, Microservices architectures, Applications requiring advanced routing (e.g., path-based or host-based) | HTTP, HTTPS, WebSockets | Layer 7       |
+| **Network Load Balancer (NLB)**     | Ultra-high performance and low latency, Static IP support, Source IP preservation, TLS termination, Cross-zone load balancing                                       | High-performance applications (e.g., gaming, real-time streaming), TCP/UDP-based applications, Use cases requiring static IPs  | TCP, UDP, TLS           | Layer 4       |
+| **Classic Load Balancer (CLB)**     | Basic load balancing, SSL/TLS termination, Sticky sessions, Health checks, Supports both Layer 4 and Layer 7                                                        | Legacy applications, Simple load balancing needs, Applications not requiring advanced features                                 | HTTP, HTTPS, TCP, SSL   | Layers 4 & 7  |
+
 ## Load Balancer Nodes
 
 When you provision an Elastic Load Balancer, AWS places one or more Load Balancer nodes into the specified subnets. These nodes are the fundamental components responsible for distributing incoming traffic to the registered targets.
