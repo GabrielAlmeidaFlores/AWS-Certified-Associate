@@ -94,20 +94,6 @@ EFS supports encryption at rest and in transit. Data stored in EFS can be encryp
 
 Access to EFS is restricted to the VPC by default. Security groups can be used to control inbound and outbound traffic to Mount Targets, providing an additional layer of network security.
 
-## Use Cases for Amazon EFS
-
-### Web Serving and Content Management
-
-EFS is ideal for web servers and content management systems that require shared access to files. Multiple EC2 instances can serve content from the same EFS file system, ensuring consistency and scalability.
-
-### Data Analytics and Big Data
-
-EFS supports data-intensive workloads such as big data analytics. Its ability to scale throughput and storage makes it suitable for processing large datasets.
-
-### Development and Testing Environments
-
-EFS provides a shared file system for development and testing teams, enabling collaboration and consistency across multiple environments.
-
 ## Reference Links
 
 Below are some useful reference links:
