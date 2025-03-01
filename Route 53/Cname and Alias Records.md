@@ -8,13 +8,13 @@ A CNAME (Canonical Name) Record is a type of DNS record that maps an alias (or s
 
 ### Key Characteristics of CNAME Records
 
-Alias Mapping: A CNAME record maps a domain name to another domain name, not directly to an IP address. For example, a CNAME record for `www.example.com` can point to `example.com`.
+- **Alias Mapping**: A CNAME record maps a domain name to another domain name, not directly to an IP address. For example, a CNAME record for `www.example.com` can point to `example.com`.
 
-Subdomain Usage: CNAME records are typically used for subdomains (e.g., `www.example.com`, `blog.example.com`) rather than the root or apex domain (e.g., `example.com`).
+- **Subdomain Usage**: CNAME records are typically used for subdomains (e.g., `www.example.com`, `blog.example.com`) rather than the root or apex domain (e.g., `example.com`).
 
-Non-Authoritative: CNAME records are not authoritative for the domain they point to. Instead, they rely on the target domain's DNS records to resolve the final IP address.
+- **Non-Authoritative**: CNAME records are not authoritative for the domain they point to. Instead, they rely on the target domain's DNS records to resolve the final IP address.
 
-Limitations: CNAME records cannot be used for the root or apex domain (e.g., `example.com`) because they conflict with other essential DNS records, such as NS (Name Server) and SOA (Start of Authority) records, which must exist at the root level.
+- **Limitations**: CNAME records cannot be used for the root or apex domain (e.g., `example.com`) because they conflict with other essential DNS records, such as NS (Name Server) and SOA (Start of Authority) records, which must exist at the root level.
 
 ### Example Use Case
 
