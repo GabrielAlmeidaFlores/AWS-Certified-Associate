@@ -47,7 +47,7 @@ One of the primary limitations of CNAME records is their incompatibility with ro
 
 ### The Challenge
 
-- **Invalid Configuration**: A CNAME record for an apex domain (e.g., example.com => elb.amazonaws.com) is invalid because it conflicts with the NS and SOA records required at the root level.
+- **Invalid Configuration**: A CNAME record for an apex domain (e.g., `example.com` => `elb.amazonaws.com`) is invalid because it conflicts with the NS and SOA records required at the root level.
 
 - **Workarounds**: Before the introduction of Alias Records, users had to implement workarounds, such as using URL redirection or third-party DNS services, to route traffic from the apex domain to AWS resources.
 
