@@ -83,18 +83,3 @@ Private Hosted Zones can be shared across multiple AWS accounts, enabling centra
 
 - **Enable Resource Sharing**: Use AWS Resource Access Manager (RAM) to share the Private Hosted Zone with other accounts.
 - **Associate VPCs**: The recipient accounts can associate their VPCs with the shared Hosted Zone.
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [Amazon Route 53 Documentation](https://docs.aws.amazon.com/route53/)
-- [Creating a Public Hosted Zone](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/CreatingHostedZone.html)
-- [Creating a Private Hosted Zone](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/hosted-zones-private.html)
-- [Working with DNS Records in Route 53](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/resource-record-sets.html)
-- [Split-View DNS in Route 53](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/hosted-zones-private.html#split-view-dns)
-- [Sharing Private Hosted Zones Across Accounts](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/hosted-zones-private-share.html)
-- [Route 53 Health Checks and DNS Failover](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/dns-failover.html)
-- [Configuring DNSSEC in Route 53](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/dns-configuring-dnssec.html)
-- [Route 53 Query Logging](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/query-logs.html)
-- [AWS Resource Access Manager (RAM)](https://docs.aws.amazon.com/ram/latest/userguide/what-is.html)
