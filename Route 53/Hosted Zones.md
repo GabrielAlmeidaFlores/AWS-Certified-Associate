@@ -28,13 +28,13 @@ A Public Hosted Zone is a DNS database that is accessible from the public intern
 
 - **Resource Records**: Public Hosted Zones store DNS records that define how traffic is routed for the domain. For example:
 
-- **A Records**: Map domain names to IPv4 addresses.
+  - **A Records**: Map domain names to IPv4 addresses.
 
-- **AAAA Records**: Map domain names to IPv6 addresses.
+  - **AAAA Records**: Map domain names to IPv6 addresses.
 
-- **MX Records**: Define mail exchange servers for email routing.
+  - **MX Records**: Define mail exchange servers for email routing.
 
-- **NS Records**: Specify the authoritative name servers for the domain.
+  - **NS Records**: Specify the authoritative name servers for the domain.
 
 - **External Domain Integration**: Public Hosted Zones can be used with domains registered outside of Route 53. In such cases, the domain's NS records must be updated to point to the Route 53 name servers assigned to the Hosted Zone.
 
