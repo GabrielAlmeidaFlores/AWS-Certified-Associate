@@ -24,6 +24,9 @@ Suppose you have a website hosted on a content delivery network (CDN) with the d
 
 An Alias Record is a Route 53-specific DNS record that maps a domain name directly to an AWS resource, such as an Elastic Load Balancer (ELB), Amazon S3 bucket, or CloudFront distribution. Unlike CNAME records, Alias Records can be used for both root/apex domains (e.g., `example.com`) and subdomains (e.g., `www.example.com`).
 
+> [!IMPORTANT]
+> Alias Records in Amazon Route 53 are specifically designed to work only with AWS resources. They cannot be used to point to external (non-AWS) services or resources. This is a key distinction between Alias Records and CNAME Records, which can point to any domain name, whether it is an AWS resource or an external service.
+
 ### Key Characteristics of Alias Records
 
 - **Direct Mapping to AWS Resources**: Alias Records map a domain name directly to an AWS resource, eliminating the need for intermediate DNS lookups.
@@ -33,9 +36,6 @@ An Alias Record is a Route 53-specific DNS record that maps a domain name direct
 - **Cost-Effective**: There is no additional charge for DNS queries to Alias Records that point to AWS resources.
 
 - **Functionality**: For non-apex domains, Alias Records function similarly to CNAME records but with added benefits, such as faster resolution and support for AWS-specific integrations.
-
-> [!IMPORTANT]
-> Alias Records in Amazon Route 53 are specifically designed to work only with AWS resources. They cannot be used to point to external (non-AWS) services or resources. This is a key distinction between Alias Records and CNAME Records, which can point to any domain name, whether it is an AWS resource or an external service.
 
 ### Example Use Case
 
