@@ -64,6 +64,9 @@ The following table provides a detailed comparison of CNAME and Alias Records, h
 | **Resolution Speed**    | Requires additional DNS lookup   | Faster, direct resolution            |
 | **Use Case**            | Subdomains, non-AWS resources    | AWS resources, apex domains          |
 
+> [!IMPORTANT]
+> Alias Records in Amazon Route 53 are specifically designed to work only with AWS resources. They cannot be used to point to external (non-AWS) services or resources. This is a key distinction between Alias Records and CNAME Records, which can point to any domain name, whether it is an AWS resource or an external service.
+
 ## Best Practices for Using CNAME and Alias Records
 
 - **Use Alias Records for AWS Resources**: Whenever possible, use Alias Records to map domains to AWS resources, as they provide faster resolution and support for apex domains.
