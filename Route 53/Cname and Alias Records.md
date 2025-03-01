@@ -76,18 +76,3 @@ The following table provides a detailed comparison of CNAME and Alias Records, h
 - **Avoid CNAME at the Apex Domain**: Never use CNAME records for root/apex domains, as they conflict with essential DNS records.
 
 - **Leverage Alias Records for Cost Savings**: Alias Records pointing to AWS resources are free, making them a cost-effective choice for DNS management.
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [Amazon Route 53 Documentation](https://docs.aws.amazon.com/route53/)
-- [CNAME Records in Route 53](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
-- [Alias Records in Route 53](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
-- [Using Alias Records for Apex Domains](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html#rrsets-choosing-alias-apex)
-- [Routing Traffic to AWS Resources](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/routing-to-aws-resources.html)
-- [Elastic Load Balancer (ELB) Integration with Route 53](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/routing-to-elb-load-balancer.html)
-- [Amazon S3 Bucket Integration with Route 53](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/routing-to-s3-bucket.html)
-- [CloudFront Distribution Integration with Route 53](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html)
-- [DNS Record Types Supported by Route 53](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/ResourceRecordTypes.html)
-- [Route 53 Health Checks and DNS Failover](https://docs.aws.amazon.com/route53/latest/DeveloperGuide/dns-failover.html)
