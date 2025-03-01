@@ -102,17 +102,17 @@ Build artifacts, which are the output of the build process, are stored in Amazon
 
 AWS CodeBuild integrates with several AWS services to enhance its capabilities:
 
-- AWS IAM: Provides fine-grained permissions for accessing repositories and executing builds.
+- **AWS IAM**: Provides fine-grained permissions for accessing repositories and executing builds.
 
-- AWS KMS: Encrypts build artifacts and secrets.
+- **AWS KMS**: Encrypts build artifacts and secrets.
 
-- Amazon S3: Stores build artifacts.
+- **Amazon S3**: Stores build artifacts.
 
-- Amazon CloudWatch Logs: Captures build logs.
+- **Amazon CloudWatch Logs**: Captures build logs.
 
-- AWS EventBridge: Triggers notifications based on build events.
+- **AWS EventBridge**: Triggers notifications based on build events.
 
-- AWS CodePipeline: Automates the CI/CD workflow by integrating CodeBuild into deployment pipelines.
+- **AWS CodePipeline**: Automates the CI/CD workflow by integrating CodeBuild into deployment pipelines.
 
 ## Reference Links
 
