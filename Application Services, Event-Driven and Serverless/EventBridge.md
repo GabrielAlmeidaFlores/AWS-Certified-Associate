@@ -14,7 +14,13 @@ An event is a JSON object that describes a change in state within a system. Even
 
 ### Rules
 
-Rules define how events are routed to targets. A rule consists of an event pattern and one or more targets. The event pattern is a JSON object that specifies the criteria for matching events. When an event matches the pattern, it is sent to the associated targets. Rules can be configured to filter events based on specific attributes, such as the source or detail-type.
+In Amazon EventBridge, rules determine how events are routed to targets. There are two primary types of rules you can create:
+
+- **Event Pattern Rules**: These rules use an event pattern, which is a JSON object that specifies the criteria for matching events. When an event matches the defined pattern, it is sent to the associated targets. Event patterns allow you to filter events based on specific attributes, such as the event source, detail-type, or other custom fields.
+
+- **Schedule Rules**: These rules allow you to trigger targets at specific times or intervals, similar to a cron job. Instead of matching incoming events, schedule rules are based on a predefined schedule, enabling you to automate tasks or workflows at regular intervals or specific points in time.
+
+Both types of rules can be associated with one or more targets, such as AWS Lambda functions, Amazon SNS topics, or other AWS services, to execute actions when the rule is triggered. This flexibility makes EventBridge a powerful tool for event-driven architectures and scheduled automation.
 
 ### Targets
 
