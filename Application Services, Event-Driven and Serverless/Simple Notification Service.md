@@ -86,3 +86,21 @@ SNS can be used in conjunction with AWS CloudFormation to notify stakeholders of
 ### Lambda
 
 SNS can trigger AWS Lambda functions in response to incoming messages. This enables serverless processing of events, such as data transformation, logging, or integration with other services. Lambda functions can also publish messages to SNS Topics, creating a feedback loop for event-driven workflows.
+
+## Reference Links
+
+Below are some useful reference links:
+
+- [Amazon SNS Developer Guide](https://docs.aws.amazon.com/sns/latest/dg/welcome.html)
+- [Amazon SNS API Reference](https://docs.aws.amazon.com/sns/latest/api/welcome.html)
+- [Amazon SNS FAQs](https://aws.amazon.com/sns/faqs/)
+- [Amazon SNS Pricing](https://aws.amazon.com/sns/pricing/)
+- [SNS Topics](https://docs.aws.amazon.com/sns/latest/dg/sns-topic-create.html)
+- [Publishers and Subscribers](https://docs.aws.amazon.com/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html)
+- [Message Payloads and Size Limits](https://docs.aws.amazon.com/sns/latest/dg/sns-large-payloads.html)
+- [Message Filtering](https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html)
+- [Fanout Pattern](https://docs.aws.amazon.com/sns/latest/dg/sns-fanout.html)
+- [Delivery Status and Retries](https://docs.aws.amazon.com/sns/latest/dg/sns-message-delivery-retries.html)
+- [High Availability and Scalability](https://docs.aws.amazon.com/sns/latest/dg/sns-high-availability.html)
+- [Server-Side Encryption (SSE)](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html)
+- [Cross-Account Access](https://docs.aws.amazon.com/sns/latest/dg/sns-cross-account-access.html)
