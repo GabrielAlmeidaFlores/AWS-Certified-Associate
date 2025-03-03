@@ -16,6 +16,8 @@ AWS Lambda is a serverless compute service that allows you to run code without p
 
 - **Serverless Architecture**: Lambda is a fundamental part of serverless architectures, where the focus is on building applications without managing servers. This architecture allows developers to deploy code quickly and scale automatically in response to demand.
 
+- **Time-Limited Execution**: AWS Lambda functions can run for a maximum duration of 15 minutes per invocation. They are optimized for short-lived tasks and event-driven workflows, making them ideal for processing data, automating tasks, and responding to system events within this time constraint.
+
 ## Public and Private Lambda Functions
 
 ### Public Lambda Functions
