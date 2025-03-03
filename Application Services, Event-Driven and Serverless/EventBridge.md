@@ -42,6 +42,22 @@ Targets are the resources that process events. EventBridge supports a wide range
 
 Each target can be configured with additional settings, such as input transformations, which allow you to modify the event data before it is sent to the target. This flexibility ensures that events can be tailored to meet the specific requirements of the target resource.
 
+## Architecture Example
+
+Below is an example architecture diagram that demonstrates how Amazon EventBridge can be used to build an event-driven application:
+
+<img src="https://docs.aws.amazon.com/images/eventbridge/latest/userguide/images/bus-overview-types_eventbridge_conceptual.svg">
+
+### Architecture Breakdown
+
+- **Event Sources**: The diagram illustrates three main event sources—AWS services, custom applications, and SaaS applications. AWS services generate events that are automatically sent to the default event bus. Custom applications send their events to a custom event bus, while SaaS applications use a partner event source that directs their events to a partner event bus.
+
+- **Event Buses**: Once an event reaches an event bus, it is classified based on its source. The default event bus is dedicated to AWS service events, whereas custom event buses provide flexibility for managing application-specific events. The partner event bus ensures seamless integration for external SaaS providers.
+
+- **Rules Evaluation**: Events arriving at an event bus are evaluated against predefined rules. These rules contain filtering logic to determine whether an event should be processed further. If an event matches the conditions specified in a rule, it is forwarded to one or more targets. If it does not match any rule, it is discarded.
+
+- **Target Processing**: Successfully matched events are sent to targets, which can include AWS services such as Lambda, SQS, SNS, Step Functions, or other integrations. These targets process the events based on business logic and trigger appropriate workflows. Events that do not meet any rule conditions are not processed further.
+
 ## Event Schema
 
 EventBridge uses a schema to define the structure of events. Schemas are JSON documents that describe the fields and data types of an event. EventBridge provides a schema registry where you can discover, manage, and version schemas for AWS services and custom applications. Schemas can be used to validate events and generate code bindings for various programming languages.
