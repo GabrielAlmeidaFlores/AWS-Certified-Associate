@@ -16,12 +16,12 @@ A Publisher is an entity that sends messages to an SNS Topic. Publishers can be 
 
 A Subscriber is an endpoint that receives messages from a Topic. Subscribers can be of various types, such as:
 
-- HTTP/HTTPS endpoints: Web servers or webhooks that receive messages via HTTP POST requests.
-- Email: Email addresses that receive notifications in JSON format.
-- Amazon SQS: Queues that can process messages asynchronously.
-- Mobile Push Notifications: Devices registered with push notification services like APNs (Apple Push Notification Service) or FCM (Firebase Cloud Messaging).
-- SMS: Phone numbers that receive text messages.
-- AWS Lambda: Functions that are triggered by incoming messages.
+- **HTTP/HTTPS endpoints**: Web servers or webhooks that receive messages via HTTP POST requests.
+- **Email**: Email addresses that receive notifications in JSON format.
+- **Amazon SQS**: Queues that can process messages asynchronously.
+- **Mobile Push Notifications**: Devices registered with push notification services like APNs (Apple Push Notification Service) or FCM (Firebase Cloud Messaging).
+- **SMS**: Phone numbers that receive text messages.
+- **AWS Lambda**: Functions that are triggered by incoming messages.
 
 ### Message Payloads
 
