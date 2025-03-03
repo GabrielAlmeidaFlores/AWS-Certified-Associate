@@ -22,6 +22,12 @@ In Amazon EventBridge, rules determine how events are routed to targets. There a
 
 Both types of rules can be associated with one or more targets, such as AWS Lambda functions, Amazon SNS topics, or other AWS services, to execute actions when the rule is triggered. This flexibility makes EventBridge a powerful tool for event-driven architectures and scheduled automation.
 
+### Source
+
+In Amazon EventBridge, the source is a key attribute of an event that identifies the origin or producer of the event. It is a string value that helps categorize and filter events based on where they come from. For example, the source could be an AWS service (e.g., `aws.ec2` for Amazon EC2 events), a custom application, or a third-party SaaS provider.
+
+When creating an event pattern rule, the source is one of the primary fields you can use to filter and route events. By specifying a source in the event pattern, you ensure that only events originating from that particular source are matched and sent to the associated targets. This allows for precise control over event routing and processing in your event-driven architecture.
+
 ### Targets
 
 Targets are the resources that process events. EventBridge supports a wide range of targets, including AWS Lambda functions, Amazon SNS topics, Amazon SQS queues, AWS Step Functions, and more. Each target can be configured with additional settings, such as input transformations, which allow you to modify the event data before it is sent to the target.
