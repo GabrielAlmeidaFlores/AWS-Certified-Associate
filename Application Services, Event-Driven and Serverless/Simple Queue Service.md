@@ -66,3 +66,22 @@ Access to **SQS queues** can be controlled using **identity policies** or **queu
 | **FIFO Queues**           | **Strict ordering**, **exactly-once processing**, **limited throughput**.         |
 | **SQS Extended Library**  | Enables handling of messages larger than **256 KB** using **S3**.                 |
 | **Delay Queues**          | Delays message visibility for up to **15 minutes**.                               |
+
+## Reference Links
+
+Below are some useful reference links:
+
+- [Amazon SQS Documentation](https://docs.aws.amazon.com/sqs/index.html)
+- [Amazon SQS Pricing](https://aws.amazon.com/sqs/pricing/)
+- [Amazon SQS FAQs](https://aws.amazon.com/sqs/faqs/)
+- [Amazon SQS Developer Guide](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)
+- [AWS SDK for SQS](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/sqs-examples-send-receive-messages.html)
+- [Amazon SQS Best Practices](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/best-practices.html)
+- [Amazon SQS Dead-Letter Queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
+- [Amazon SQS FIFO Queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html)
+- [Amazon SQS Long Polling](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html)
+- [Amazon SQS Encryption](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html)
+- [Amazon SQS Extended Client Library](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-extended-client-lib.html)
+- [AWS Lambda and SQS Integration](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
+- [Auto Scaling Based on SQS Queue Length](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html)
+- [Amazon SQS API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/Welcome.html)
