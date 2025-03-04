@@ -73,7 +73,6 @@ Below are some useful reference links:
 
 - [Amazon SQS Documentation](https://docs.aws.amazon.com/sqs/index.html)
 - [Amazon SQS Pricing](https://aws.amazon.com/sqs/pricing/)
-- [Amazon SQS FAQs](https://aws.amazon.com/sqs/faqs/)
 - [Amazon SQS Developer Guide](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)
 - [AWS SDK for SQS](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/sqs-examples-send-receive-messages.html)
 - [Amazon SQS Best Practices](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/best-practices.html)
