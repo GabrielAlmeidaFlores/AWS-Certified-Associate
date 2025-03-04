@@ -6,11 +6,11 @@ AWS Step Functions is a serverless orchestration service that enables developers
 
 AWS Lambda is a powerful serverless compute service that allows developers to run code without provisioning or managing servers. However, Lambda has certain limitations that can make it challenging to use for complex workflows:
 
-- **15-Minute Maximum Execution Time**; Lambda functions have a maximum execution time of 15 minutes. This limitation can be problematic for long-running processes that require more time to complete.
+- **15-Minute Maximum Execution Time**: Lambda functions have a maximum execution time of 15 minutes. This limitation can be problematic for long-running processes that require more time to complete.
 
-- **Chaining Lambda Functions**; While Lambda functions can be chained together to create workflows, this approach can become messy and difficult to manage at scale. Each Lambda function must be explicitly invoked by the previous one, leading to tightly coupled code that is hard to maintain.
+- **Chaining Lambda Functions**: While Lambda functions can be chained together to create workflows, this approach can become messy and difficult to manage at scale. Each Lambda function must be explicitly invoked by the previous one, leading to tightly coupled code that is hard to maintain.
 
-- **Stateless Runtime Environments**; Lambda functions are stateless, meaning they do not retain any information between invocations. This can make it challenging to manage workflows that require state persistence or coordination between multiple functions.
+- **Stateless Runtime Environments**: Lambda functions are stateless, meaning they do not retain any information between invocations. This can make it challenging to manage workflows that require state persistence or coordination between multiple functions.
 
 AWS Step Functions address these limitations by providing a managed service for orchestrating serverless workflows. Step Functions allow developers to define workflows as state machines, which can include multiple steps, conditional logic, and error handling. This approach simplifies the development of complex workflows and makes it easier to manage long-running processes.
 
