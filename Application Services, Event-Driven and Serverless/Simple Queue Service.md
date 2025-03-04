@@ -20,9 +20,9 @@ VisibilityTimeout can be set at the queue level or overridden at the message lev
 
 Amazon SQS (Simple Queue Service) supports two types of polling mechanisms for retrieving messages:
 
-- **Short Polling**: returns a response immediately, even if the queue is empty. This approach is useful for applications that require low latency. However, it can result in higher costs due to the increased number of empty responses, making it less efficient for queues with low message frequency.
+- **Short Polling**: Returns a response immediately, even if the queue is empty. This approach is ideal for applications that require low latency. However, it can lead to higher costs and inefficiency due to the increased number of empty responses, especially in queues with low message frequency.
 
-- **Long Polling**:, on the other hand, waits for a specified period (up to 20 seconds) for messages to become available in the queue before returning a response. This reduces the number of empty responses, lowers costs, and improves efficiency. Long polling is particularly beneficial for applications that prioritize cost savings and can tolerate slightly higher latency.
+- **Long Polling**: Waits for a specified period (up to 20 seconds) for messages to become available in the queue before returning a response. This approach significantly reduces the number of empty responses, lowers costs, and improves overall efficiency. Long polling is particularly beneficial for applications that prioritize cost savings and can tolerate slightly higher latency.
 
 ### Encryption at Rest and In Transit
 
