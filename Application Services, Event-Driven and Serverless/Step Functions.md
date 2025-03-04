@@ -21,7 +21,9 @@ A state machine is a conceptual model used to describe the behavior of a system.
 ### Key Concepts of State Machines
 
 - **START and END States**: Every state machine begins with a START state and ends with an END state. The START state is the entry point of the workflow, while the END state signifies the completion of the workflow.
+
 - **States**: States are the building blocks of a state machine. Each state represents a specific action or decision point in the workflow. States can perform tasks, make choices, wait for a specified time, or execute parallel branches.
+
 - **Maximum Duration for State Machine Execution**: The maximum duration for a state machine execution is 1 year. This makes Step Functions suitable for long-running workflows that require extended periods to complete.
 
 ### Benefits of Using State Machines
