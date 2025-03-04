@@ -37,14 +37,3 @@ Aurora's Backtrack feature enables in-place rewinds of a DB cluster to a previou
 ## Instance Classes and Pricing
 
 It's important to note that Aurora does not offer a free-tier option and does not support micro instances. The service is designed for production workloads that require high availability and performance. Pricing is based on the instance class chosen, storage consumption, and I/O operations performed. For detailed pricing information, refer to the official AWS pricing page.
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [Amazon Aurora Overview](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.html)
-- [Aurora Storage and Reliability](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html)
-- [Aurora Storage and Backup Management](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-storage-backup.html)
-- [Aurora Backup and Restore](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html)
-- [Aurora Backup and Restore Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/BackupRestoreAurora.html)
-- [AWS Aurora Pricing](https://aws.amazon.com/rds/aurora/pricing/)

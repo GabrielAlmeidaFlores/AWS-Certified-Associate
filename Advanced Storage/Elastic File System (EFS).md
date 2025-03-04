@@ -93,24 +93,3 @@ EFS supports encryption at rest and in transit. Data stored in EFS can be encryp
 ### Network Security
 
 Access to EFS is restricted to the VPC by default. Security groups can be used to control inbound and outbound traffic to Mount Targets, providing an additional layer of network security.
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [Amazon EFS Overview](https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html)
-- [Getting Started with Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/getting-started.html)
-- [EFS Performance Modes](https://docs.aws.amazon.com/efs/latest/ug/performance.html)
-- [EFS Throughput Modes](https://docs.aws.amazon.com/efs/latest/ug/throughput-modes.html)
-- [EFS Storage Classes](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
-- [EFS Lifecycle Management](https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html)
-- [Mounting EFS File Systems](https://docs.aws.amazon.com/efs/latest/ug/mounting-fs.html)
-- [EFS Security and Access Control](https://docs.aws.amazon.com/efs/latest/ug/security-considerations.html)
-- [EFS Integration with On-Premises Systems](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs.html)
-- [EFS Pricing](https://aws.amazon.com/efs/pricing/)
-- [EFS FAQs](https://aws.amazon.com/efs/faq/)
-- [AWS Key Management Service (KMS) for EFS Encryption](https://docs.aws.amazon.com/kms/latest/developerguide/services-efs.html)
-- [EFS Best Practices](https://docs.aws.amazon.com/efs/latest/ug/performance.html#performance-best-practices)
-- [EFS Use Cases](https://aws.amazon.com/efs/use-cases/)
-- [EFS and VPC Integration](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs.html)
-- [EFS POSIX Permissions](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions.html)

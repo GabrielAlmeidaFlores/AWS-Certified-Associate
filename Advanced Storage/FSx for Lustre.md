@@ -109,18 +109,3 @@ VPN access provides a secure connection to FSx for Lustre over the internet, mak
 ### Direct Connect
 
 AWS Direct Connect offers a dedicated network connection to AWS, providing lower latency and higher throughput compared to VPN. This option is ideal for workloads that require consistent and high-performance connectivity.
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [Amazon FSx for Lustre User Guide](https://docs.aws.amazon.com/fsx/latest/LustreGuide/)
-- [Amazon FSx for Lustre FAQs](https://aws.amazon.com/fsx/lustre/faqs/)
-- [Amazon FSx for Lustre Pricing](https://aws.amazon.com/fsx/lustre/pricing/)
-- [Amazon FSx for Lustre Performance](https://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html)
-- [Amazon FSx for Lustre Deployment Types](https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-file-systems.html)
-- [Amazon FSx for Lustre Integration with S3](https://docs.aws.amazon.com/fsx/latest/LustreGuide/fsx-data-repositories.html)
-- [Amazon FSx for Lustre Backup and Restore](https://docs.aws.amazon.com/fsx/latest/LustreGuide/backup-restore.html)
-- [Amazon FSx for Lustre Security Best Practices](https://docs.aws.amazon.com/fsx/latest/LustreGuide/security-best-practices.html)
-- [Amazon FSx for Lustre Monitoring and Logging](https://docs.aws.amazon.com/fsx/latest/LustreGuide/monitoring-overview.html)
-- [Amazon FSx for Lustre Troubleshooting](https://docs.aws.amazon.com/fsx/latest/LustreGuide/troubleshooting.html)

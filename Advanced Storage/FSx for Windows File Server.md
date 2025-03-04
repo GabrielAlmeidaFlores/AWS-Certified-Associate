@@ -118,23 +118,3 @@ The service supports VPC peering, enabling organizations to connect their VPCs a
 ### VPN and Direct Connect
 
 FSx for Windows File Server can be accessed through VPN or AWS Direct Connect, enabling secure connectivity from on-premises environments. This ensures that organizations can access their file shares securely, regardless of their location.
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [Amazon FSx for Windows File Server User Guide](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/)
-- [AWS Directory Service Documentation](https://docs.aws.amazon.com/directoryservice/)
-- [AWS Key Management Service (KMS) Documentation](https://docs.aws.amazon.com/kms/)
-- [Amazon FSx FAQs](https://aws.amazon.com/fsx/faq/)
-- [Amazon FSx for Windows File Server Pricing](https://aws.amazon.com/fsx/windows/pricing/)
-- [Amazon FSx for Windows File Server Release Notes](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/release-notes.html)
-- [Amazon FSx for Windows File Server Best Practices](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/best-practices.html)
-- [Amazon FSx for Windows File Server Security](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/security.html)
-- [Amazon FSx for Windows File Server Networking](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/networking.html)
-- [Amazon FSx for Windows File Server Backup and Restore](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/backup-restore.html)
-- [Amazon FSx for Windows File Server Performance](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/performance.html)
-- [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
-- [AWS Security Best Practices](https://aws.amazon.com/security/security-best-practices/)
-- [AWS Compliance Programs](https://aws.amazon.com/compliance/programs/)
-- [AWS Training and Certification](https://aws.amazon.com/training/)

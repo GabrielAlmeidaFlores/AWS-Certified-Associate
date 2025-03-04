@@ -96,21 +96,3 @@ If Cross-Zone Load Balancing is turned off, the Load Balancer only distributes t
 
 > [!NOTE]
 > Cross-Zone Load Balancing is enabled by default for Application Load Balancers (ALBs) but disabled by default for Network Load Balancers (NLBs). For Classic Load Balancers (CLBs), the default behavior varies depending on the AWS region.
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [AWS Elastic Load Balancing Documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)
-- [AWS Load Balancer Types](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/elastic-load-balancing-types.html)
-- [AWS Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
-- [AWS Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html)
-- [AWS Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html)
-- [How Elastic Load Balancing Works](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elb-works.html)
-- [Cross-Zone Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/cross-zone-load-balancing.html)
-- [Listener Configuration](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#listener-configuration)
-- [Target Groups for Your Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/target-groups.html)
-- [DNS for Elastic Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elb-works.html#elb-dns)
-- [Elastic Load Balancing Best Practices](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/best-practices.html)
-- [AWS Subnet and IP Addressing Requirements](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html)
-- [AWS Pricing for Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/pricing/)

@@ -60,18 +60,3 @@ The following table provides a detailed comparison of Launch Configurations and 
 | **Integration with Auto Scaling** | Supported                      | Supported                                |
 | **Parameter Inheritance**         | Not supported                  | Supported                                |
 | **Advanced Features**             | Limited                        | Extensive (e.g., capacity optimizations) |
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [AWS EC2 Launch Configurations Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html)
-- [AWS EC2 Launch Templates Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html)
-- [AWS Auto Scaling Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html)
-- [AWS EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)
-- [AWS EC2 AMI Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
-- [AWS EC2 Spot Instances Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html)
-- [AWS EC2 Key Pairs Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
-- [AWS EC2 Security Groups Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
-- [AWS EC2 Block Device Mapping Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html)
-- [AWS EC2 User Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)

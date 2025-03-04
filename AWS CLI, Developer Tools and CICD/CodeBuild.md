@@ -113,18 +113,3 @@ AWS CodeBuild integrates with several AWS services to enhance its capabilities:
 - **AWS EventBridge**: Triggers notifications based on build events.
 
 - **AWS CodePipeline**: Automates the CI/CD workflow by integrating CodeBuild into deployment pipelines.
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [AWS CodeBuild Documentation](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html)
-- [AWS CodeBuild Pricing](https://aws.amazon.com/codebuild/pricing/)
-- [AWS CodeBuild Buildspec Reference](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html)
-- [AWS CodeBuild Environment Variables](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html)
-- [AWS CodeBuild Supported Runtimes](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)
-- [AWS CodeBuild Logs in CloudWatch](https://docs.aws.amazon.com/codebuild/latest/userguide/logging-cloudwatch.html)
-- [AWS CodeBuild Integration with CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-codebuild.html)
-- [AWS CodeBuild EventBridge Integration](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-build-notifications.html)
-- [AWS CodeBuild Security and IAM](https://docs.aws.amazon.com/codebuild/latest/userguide/auth-and-access-control.html)
-- [AWS CodeBuild Custom Docker Images](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker-custom-image.html)

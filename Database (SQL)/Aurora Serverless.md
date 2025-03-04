@@ -39,18 +39,3 @@ The architecture of Aurora Serverless is designed to provide seamless scalabilit
 ## Transition from Aurora Serverless v1 to v2
 
 It's important to note that AWS has announced the end-of-life date for Aurora Serverless v1 as March 31, 2025. Users are strongly encouraged to upgrade to Aurora Serverless v2 before this date to benefit from improved scaling capabilities, enhanced feature support, and continued service. Aurora Serverless v2 offers faster and more granular scaling, better integration with other AWS services, and support for a broader range of features compared to its predecessor.
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [Using Aurora Serverless v2](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
-- [Using Aurora Serverless v1](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
-- [Amazon Aurora Serverless](https://aws.amazon.com/rds/aurora/serverless/)
-- [What is Amazon Aurora?](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
-- [How Aurora Serverless v2 works](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html)
-- [Amazon Aurora versions](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.VersionPolicy.html)
-- [Using RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
-- [Amazon Aurora](https://aws.amazon.com/rds/aurora/)
-- [Amazon Aurora FAQs](https://aws.amazon.com/rds/aurora/faqs/)
-- [Using Aurora Serverless with AWS AppSync](https://docs.aws.amazon.com/appsync/latest/devguide/tutorial-rds-resolvers.html)

@@ -77,20 +77,3 @@ AWS CodeDeploy supports several deployment strategies to suit different applicat
 | In-Place   | Updates instances in place without replacing them.                             | Suitable for stateless applications with minimal downtime requirements. |
 | Blue/Green | Deploys the new version alongside the old version and switches traffic.        | Ideal for stateful applications requiring zero downtime.                |
 | Canary     | Deploys the new version to a small subset of instances before full deployment. | Best for testing new features with a limited audience.                  |
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [AWS CodeDeploy Official Documentation](https://docs.aws.amazon.com/codedeploy/)
-- [AWS CodeBuild Documentation](https://docs.aws.amazon.com/codebuild/)
-- [AWS CodePipeline Documentation](https://docs.aws.amazon.com/codepipeline/)
-- [AWS Lambda Documentation](https://docs.aws.amazon.com/lambda/)
-- [Amazon ECS Documentation](https://docs.aws.amazon.com/ecs/)
-- [Jenkins Official Website](https://www.jenkins.io/)
-- [Ansible Official Documentation](https://docs.ansible.com/)
-- [Chef Official Documentation](https://docs.chef.io/)
-- [Puppet Official Documentation](https://puppet.com/docs/)
-- [AWS CodeDeploy Lifecycle Event Hooks](https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html)
-- [AWS CodeDeploy AppSpec File Reference](https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html)
-- [AWS CodeDeploy Deployment Strategies](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-strategies.html)

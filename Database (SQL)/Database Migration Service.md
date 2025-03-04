@@ -95,26 +95,3 @@ AWS DMS pricing is based on the following components:
 | Data Transfer          | The amount of data transferred from the source to the target database    | Per GB                |
 | Storage                | The storage used by the replication instance for logs and temporary data | Per GB per month      |
 | Schema Conversion Tool | The tool used to convert the source schema to the target schema          | Free                  |
-
-## Reference Links
-
-Below are some useful reference links:
-
-- [AWS DMS Documentation](https://aws.amazon.com/documentation/dms/)
-- [AWS DMS User Guide](https://docs.aws.amazon.com/dms/latest/userguide/)
-- [AWS Schema Conversion Tool (SCT) Documentation](https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/)
-- [AWS DMS FAQs](https://aws.amazon.com/dms/faqs/)
-- [Homogeneous and Heterogeneous Migrations](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.html)
-- [Continuous Data Replication](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html)
-- [Schema Conversion Tool (SCT)](https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/CHAP_Welcome.html)
-- [Data Transformation in DMS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html)
-- [Source and Target Databases in DMS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.Sources.html)
-- [Setting Up Source and Target Databases](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SettingUp.html)
-- [Creating a Replication Instance](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.html)
-- [Creating Source and Target Endpoints](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.html)
-- [Creating and Running Migration Tasks](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.html)
-- [Monitoring and Validating Migrations](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html)
-- [Best Practices for AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_BestPractices.html)
-- [Assessing Source Databases](https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/CHAP_Assessment.html)
-- [Optimizing Target Databases](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_BestPractices.Target.html)
-- [Testing Migrations](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_BestPractices.Testing.html)
