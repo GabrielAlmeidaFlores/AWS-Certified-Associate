@@ -245,6 +245,43 @@ Error handling is a critical aspect of any workflow, and AWS Step Functions prov
 
 - **Catch Mechanism**: In addition to retries, Step Functions provide a catch mechanism that allows you to specify what should happen if a state fails after all retries have been exhausted. You can define a fallback state that handles the error, such as logging the error, sending a notification, or executing compensating actions.
 
+#### Example of Error Handling in ASL
+
+```JSON
+{
+  "Comment": "A state machine with error handling",
+  "StartAt": "ProcessData",
+  "States": {
+    "ProcessData": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:ProcessData",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "IntervalSeconds": 5,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "Next": "HandleError"
+        }
+      ],
+      "End": true
+    },
+    "HandleError": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:HandleError",
+      "End": true
+    }
+  }
+}
+```
+
+In this example, the `ProcessData` state will retry up to 3 times with an exponential backoff if it fails. If all retries are exhausted, the state machine transitions to the `HandleError` state.
+
 ### Monitoring and Logging
 
 AWS Step Functions provide comprehensive monitoring and logging capabilities to help you track the execution of your workflows.
