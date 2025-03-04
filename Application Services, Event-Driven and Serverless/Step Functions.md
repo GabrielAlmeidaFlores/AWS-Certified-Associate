@@ -62,7 +62,7 @@ AWS Step Functions offers two types of workflows: Standard and Express. Each typ
 
 - **Pricing**: Express workflows are priced based on the number of executions and the duration of the workflow execution. They are generally more cost-effective for high-volume workloads compared to Standard workflows.
 
-## Comparison of Standard and Express Workflows
+### Comparison of Standard and Express Workflows
 
 | Feature           | Standard Workflow                    | Express Workflow                |
 | ----------------- | ------------------------------------ | ------------------------------- |
