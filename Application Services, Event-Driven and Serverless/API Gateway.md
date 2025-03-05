@@ -80,8 +80,6 @@ Regional endpoints are designed for clients located in the same AWS region as th
 
 Private endpoints are accessible only within a VPC via an interface endpoint. This ensures that the API is only accessible to resources within the VPC, providing an additional layer of security for sensitive applications.
 
----
-
 ## Stages and Deployments
 
 API Gateway uses stages to manage different versions of an API. Each stage represents a unique URL that can be used to access the API. Stages are associated with a deployment, which is a snapshot of the API configuration at a specific point in time.
