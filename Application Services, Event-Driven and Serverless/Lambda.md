@@ -202,3 +202,34 @@ Lambda can be used to create serverless CRON jobs using Amazon EventBridge (form
 ### Real-Time Stream Data Processing
 
 Lambda is well-suited for real-time stream data processing. You can use Amazon Kinesis to ingest data streams and trigger Lambda functions to process the data in real-time. This is useful for applications like real-time analytics, fraud detection, and IoT data processing.
+
+## Summary Table of Key Features
+
+| **Feature**                                 | **Description**                                                                                                |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Serverless Compute**                      | Runs code without provisioning or managing servers. AWS handles infrastructure scaling and maintenance.        |
+| **Event-Driven Execution**                  | Functions are triggered by events (e.g., S3 uploads, DynamoDB changes, API Gateway requests).                  |
+| **Supported Runtimes**                      | Supports multiple programming languages, including Python, Node.js, Java, Go, Ruby, .NET, and custom runtimes. |
+| **Execution Time Limit**                    | Functions can run for a maximum of **15 minutes** per invocation.                                              |
+| **Memory and CPU Allocation**               | Memory can be configured between **128 MB and 10,240 MB**, with proportional CPU allocation.                   |
+| **Ephemeral Storage**                       | Provides up to **512 MB** of `/tmp` storage (expandable to **10,240 MB**).                                     |
+| **Pay-as-You-Go Pricing**                   | Billed based on **execution time (milliseconds)** and **memory usage**. No charge when idle.                   |
+| **Cold Starts**                             | Initial invocation latency due to environment setup. Can be mitigated with **Provisioned Concurrency**.        |
+| **Warm Starts**                             | Reuses execution environments for subsequent invocations, reducing latency.                                    |
+| **Versions and Aliases**                    | Supports immutable versions and aliases for managing environments (e.g., DEV, PROD).                           |
+| **Environment Variables**                   | Key-value pairs for configuration. Can be encrypted using **AWS KMS**.                                         |
+| **Integration with AWS Services**           | Seamlessly integrates with services like S3, DynamoDB, API Gateway, EventBridge, Kinesis, etc.                 |
+| **Logging and Monitoring**                  | Logs and metrics are sent to **Amazon CloudWatch**. Supports **AWS X-Ray** for distributed tracing.            |
+| **Resource-Based Policies**                 | Controls which AWS services or accounts can invoke the Lambda function (e.g., cross-account access).           |
+| **Lambda Layers**                           | Allows sharing code and dependencies across multiple functions.                                                |
+| **Container Support**                       | Supports deploying Lambda functions as **Docker container images** (up to **10 GB** in size).                  |
+| **Concurrency Control**                     | Allows setting **reserved concurrency** to limit the number of simultaneous executions.                        |
+| **Dead Letter Queues (DLQ)**                | Configurable DLQ for handling failed invocations (supports SQS or SNS).                                        |
+| **VPC Support**                             | Functions can be deployed within a **Virtual Private Cloud (VPC)** for secure access to private resources.     |
+| **Synchronous and Asynchronous Invocation** | Supports both synchronous (immediate response) and asynchronous (queued) invocation modes.                     |
+| **Event Source Mappings**                   | Automatically triggers Lambda functions based on events from services like S3, DynamoDB, Kinesis, etc.         |
+| **Alias Routing**                           | Supports traffic shifting between versions (e.g., 90% to v1, 10% to v2) for blue/green deployments.            |
+| **Multi-Value Headers (ALB)**               | Supports multi-value headers when integrated with **Application Load Balancer (ALB)**.                         |
+| **Provisioned Concurrency**                 | Pre-initializes execution environments to reduce cold start latency.                                           |
+| **Custom Runtimes**                         | Allows using custom runtimes for unsupported languages or specific requirements.                               |
+| **Function URL**                            | Provides a dedicated HTTP(S) endpoint for invoking a Lambda function directly.                                 |
