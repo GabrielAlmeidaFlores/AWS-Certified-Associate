@@ -256,3 +256,25 @@ TTL deletions are performed by background processes and do not impact the perfor
 
 - **Background Deletion**: Expired items are removed from the table and indexes by background processes, ensuring that the table performance is not affected.
 - **Streams**: If streams are enabled, a delete operation is added to the stream when an item is deleted by TTL.
+
+## Summary Table of Key Features
+
+| **Feature**                    | **Description**                                                                                                                                   |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Database Type**              | NoSQL (Key-Value and Document Store)                                                                                                              |
+| **Management**                 | Fully Managed (No server or infrastructure management required)                                                                                   |
+| **Performance**                | Single-digit millisecond latency (SSD-based storage)                                                                                              |
+| **Scalability**                | Automatic scaling with provisioned or on-demand capacity modes                                                                                    |
+| **High Availability**          | Data replicated across multiple Availability Zones (AZs) and optionally across global regions                                                     |
+| **Durability**                 | Data stored redundantly across multiple AZs                                                                                                       |
+| **Backup & Recovery**          | \- On-Demand Backups (full table copies) <br>\- Point-in-Time Recovery (35-day recovery window)                                                   |
+| **Encryption**                 | Encryption at rest (AWS KMS integration)                                                                                                          |
+| **Consistency Models**         | \- **Strongly Consistent Reads** (up-to-date data) <br>\- **Eventually Consistent Reads** (stale data possible, lower cost)                       |
+| **Capacity Modes**             | \- **Provisioned Capacity** (manual RCU/WCU settings) <br>\- **On-Demand Capacity** (auto-scaling based on workload)                              |
+| **Data Retrieval**             | \- **Query** (efficient, uses primary key) <br>\- **Scan** (less efficient, scans entire table)                                                   |
+| **Indexes**                    | \- **Local Secondary Index (LSI)** (same PK, alternative SK) <br>\- **Global Secondary Index (GSI)** (alternative PK and SK)                      |
+| **Streams & Triggers**         | \- **Streams**: Time-ordered list of item changes (24-hour window) <br>\- **Triggers**: Event-driven actions using AWS Lambda                     |
+| **DynamoDB Accelerator (DAX)** | In-memory caching for microsecond read latency (write-through cache, VPC-based)                                                                   |
+| **Global Tables**              | Multi-master, cross-region replication for low-latency global access                                                                              |
+| **Time-to-Live (TTL)**         | Automatic deletion of expired items based on a timestamp attribute                                                                                |
+| **Billing**                    | Based on: <br>\- Read Capacity Units (RCUs) <br>\- Write Capacity Units (WCUs) <br>\- Storage <br>\- Additional features (e.g., backups, streams) |
