@@ -173,7 +173,7 @@ In this mode, Elastic Beanstalk uses EC2 instances with Docker installed. You ca
 
 In this mode, Elastic Beanstalk creates an ECS cluster, where multiple Docker containers can run on EC2 instances. An Elastic Load Balancer (ELB) is also provisioned for high availability. To use this mode, you need to provide a `Dockerrun.aws.json` (version 2) file in the root of your application source bundle. This file defines the containers, their images, and how they should be deployed.
 
-### Example of Dockerrun.aws.json (version 2)
+#### Example of Dockerrun.aws.json (version 2)
 
 ```JSON
 {
