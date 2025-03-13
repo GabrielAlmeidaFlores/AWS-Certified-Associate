@@ -114,3 +114,35 @@ The correct answer is:
 Using the `aws configure` command and the `--profile` option with `sam local invoke` is the recommended and secure way to test AWS API calls locally.
 
 </details>
+
+## Question #05
+
+A developer designed an application on an Amazon EC2 instance. The application makes API requests to objects in an Amazon S3 bucket.  
+Which combination of steps will ensure that the application makes the API requests in the MOST secure manner? (Choose two.)
+
+- A. Create an IAM user that has permissions to the S3 bucket. Add the user to an IAM group.
+- B. Create an IAM role that has permissions to the S3 bucket.
+- C. Add the IAM role to an instance profile. Attach the instance profile to the EC2 instance.
+- D. Create an IAM role that has permissions to the S3 bucket. Assign the role to an IAM group.
+- E. Store the credentials of the IAM user in the environment variables on the EC2 instance.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answers are:
+
+**B. Create an IAM role that has permissions to the S3 bucket.**  
+**C. Add the IAM role to an instance profile. Attach the instance profile to the EC2 instance.**
+
+### Explanation
+
+- **Option B** is correct because creating an IAM role with permissions to the S3 bucket allows the EC2 instance to securely access the bucket without hardcoding credentials. Roles are the recommended way to grant permissions to AWS services.
+- **Option C** is correct because attaching the IAM role to an instance profile and associating it with the EC2 instance ensures that the application running on the instance can securely assume the role and access the S3 bucket.
+- **Option A** is incorrect because creating an IAM user and adding it to a group is not the most secure approach for EC2 instances. Hardcoding or storing user credentials on the instance is not recommended.
+- **Option D** is incorrect because IAM roles cannot be assigned to IAM groups. Roles are meant to be assumed by AWS services, users, or applications.
+- **Option E** is incorrect because storing IAM user credentials in environment variables is insecure and violates AWS best practices. Credentials can be exposed or compromised.
+
+Using an IAM role and attaching it to the EC2 instance via an instance profile is the most secure and recommended approach for granting permissions to AWS resources.
+
+</details>
