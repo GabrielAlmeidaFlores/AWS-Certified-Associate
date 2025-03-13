@@ -10,7 +10,7 @@ D. Amazon Aurora MySQL with operations made within a transaction block
 E. Amazon Athena with operations made within a transaction block
 
 <details>
-<summary>Answer</summary>
+<summary>**Answer**</summary>
 <br>
 
 The correct answer is:
