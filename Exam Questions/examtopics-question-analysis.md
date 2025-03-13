@@ -15,7 +15,7 @@ Which AWS solution can provide the transactional capability that is required for
 
 The correct answer is:
 
-**C. Amazon DynamoDB with reads and writes made by using Transact\* operations**
+**C. Amazon DynamoDB with reads and writes made by using TransactGetItems and TransactWriteItems operations**
 
 ### Explanation
 
