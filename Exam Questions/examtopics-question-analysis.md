@@ -26,3 +26,32 @@ The correct answer is:
 - **Option E** is incorrect because Amazon Athena is a query service for analyzing data in S3 and does not support transactional operations.
 
 </details>
+
+## Question #02
+
+A developer has created a Java application that makes HTTP requests directly to AWS services. Application logging shows 5xx HTTP response codes that occur at irregular intervals. The errors are affecting users.
+How should the developer update the application to improve the application's resiliency?
+
+- A. Revise the request content in the application code.
+- B. Use the AWS SDK for Java to interact with AWS APIs.
+- C. Scale out the application so that more instances of the application are running.
+- D. Add additional logging to the application code.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Use the AWS SDK for Java to interact with AWS APIs.**
+
+### Explanation
+
+- **Option B** is the best choice because the AWS SDK for Java is designed to handle AWS service interactions more robustly, including built-in retry mechanisms and error handling for transient issues like 5xx errors. This improves the application's resiliency without requiring manual intervention.
+- **Option A** is incorrect because revising the request content does not address the root cause of 5xx errors, which are typically server-side issues.
+- **Option C** is incorrect because scaling out the application does not resolve the underlying issue of 5xx errors. It may distribute the load but does not improve the handling of transient errors.
+- **Option D** is incorrect because while additional logging can help diagnose issues, it does not improve the application's ability to handle or recover from 5xx errors.
+
+Using the AWS SDK for Java ensures better error handling and retries, making the application more resilient to transient failures.
+
+</details>
