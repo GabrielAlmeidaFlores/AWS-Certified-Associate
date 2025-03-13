@@ -204,3 +204,32 @@ The correct answer is:
 By configuring the ALB to use Amazon Cognito, the developer can seamlessly authenticate users via their social media accounts without additional custom code.
 
 </details>
+
+## Question #08
+
+A company has an application that analyzes photographs. A developer is preparing the application for deployment to Amazon EC2 instances. The application's image analysis functions require a mix of GPU instances and CPU instances that run on Amazon Linux. The developer needs to add code to the application so that the functions can determine whether they are running on a GPU instance.  
+What should the functions do to obtain this information?
+
+- A. Call the `DescribeInstances` API operation and filter on the current instance ID. Examine the `ElasticGpuAssociations` property.
+- B. Evaluate the `GPU_AVAILABLE` environment variable.
+- C. Call the `DescribeElasticGpus` API operation.
+- D. Retrieve the instance type from the instance metadata.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. Retrieve the instance type from the instance metadata.**
+
+### Explanation
+
+- **Option D** is correct because the **instance metadata service** provides information about the EC2 instance, including the instance type. By retrieving the instance type (e.g., `p2.xlarge`, `g4dn.xlarge`, etc.), the application can determine whether it is running on a GPU instance. GPU instances have specific instance type prefixes like `p`, `g`, or `inf`.
+- **Option A** is incorrect because the `ElasticGpuAssociations` property is not used to determine whether an instance is a GPU instance. It is related to Elastic GPUs, which are a different feature and not commonly used.
+- **Option B** is incorrect because there is no standard `GPU_AVAILABLE` environment variable provided by Amazon Linux or EC2.
+- **Option C** is incorrect because the `DescribeElasticGpus` API operation is used to describe Elastic GPUs, not GPU instances. This is not relevant for determining the instance type.
+
+The simplest and most reliable way to determine if the application is running on a GPU instance is to retrieve the instance type from the instance metadata service.
+
+</details>
