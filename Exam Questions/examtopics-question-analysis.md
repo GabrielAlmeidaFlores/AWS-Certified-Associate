@@ -1,4 +1,4 @@
-## 01
+## Question #01
 
 A gaming website gives users the ability to trade game items with each other on the platform. The platform requires both users' records to be updated and persisted in one transaction. If any update fails, the transaction must roll back.
 Which AWS solution can provide the transactional capability that is required for this feature?
@@ -10,7 +10,7 @@ D. Amazon Aurora MySQL with operations made within a transaction block
 E. Amazon Athena with operations made within a transaction block
 
 <details>
-<summary>### Answer</summary>
+<summary>Answer</summary>
 <br>
 
 The correct answer is:
