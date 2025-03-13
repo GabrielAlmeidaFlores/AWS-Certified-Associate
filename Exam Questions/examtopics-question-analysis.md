@@ -5,7 +5,7 @@ Which AWS solution can provide the transactional capability that is required for
 
 A. Amazon DynamoDB with operations made with the Consistent Read parameter set to true
 B. Amazon ElastiCache for Memcached with operations made within a transaction block
-C. Amazon DynamoDB with reads and writes made by using Transact\* operations
+C. Amazon DynamoDB with reads and writes made by using TransactGetItems and TransactWriteItems operations
 D. Amazon Aurora MySQL with operations made within a transaction block
 E. Amazon Athena with operations made within a transaction block
 
