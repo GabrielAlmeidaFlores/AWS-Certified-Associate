@@ -357,3 +357,49 @@ Amazon SQS is a fully managed message queuing service that enables decoupling an
 Using **Amazon SQS** as a subscriber to the SNS topic ensures that undelivered messages are preserved and can be reprocessed as needed.
 
 </details>
+
+## Question #12
+
+A developer needs to deploy an application to AWS Elastic Beanstalk for a company. The application consists of a single Docker image. The company's automated continuous integration and continuous delivery (CI/CD) process builds the Docker image and pushes the image to a public Docker registry.  
+How should the developer deploy the application to Elastic Beanstalk?
+
+- A. Create a Dockerfile. Configure Elastic Beanstalk to build the application as a Docker image.
+- B. Create a `docker-compose.yml` file. Use the Elastic Beanstalk CLI to deploy the application.
+- C. Create a `.zip` file that contains the Docker image. Upload the `.zip` file to Elastic Beanstalk.
+- D. Create a Dockerfile. Run the Elastic Beanstalk CLI `eb local run` command in the same directory.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Create a `docker-compose.yml` file. Use the Elastic Beanstalk CLI to deploy the application.**
+
+### Explanation
+
+#### **Purpose of AWS Elastic Beanstalk**
+
+AWS Elastic Beanstalk is a fully managed service that makes it easy to deploy and run applications in multiple languages, including Docker-based applications. It handles capacity provisioning, load balancing, scaling, and application health monitoring.
+
+#### **Why this option is correct**
+
+- The application consists of a **single Docker image** that is already built and pushed to a **public Docker registry**. Elastic Beanstalk supports deploying Docker applications using a `Dockerrun.aws.json` file or a `docker-compose.yml` file.
+- By creating a `docker-compose.yml` file, the developer can specify the Docker image from the public registry and configure the application's deployment settings. Elastic Beanstalk will pull the image from the registry and deploy it.
+- The **Elastic Beanstalk CLI** (`eb`) can be used to deploy the application by running the `eb deploy` command, which reads the `docker-compose.yml` file and provisions the necessary resources.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Creating a Dockerfile and configuring Elastic Beanstalk to build the image is unnecessary because the Docker image is already built and available in a public registry. Elastic Beanstalk does not need to build the image.
+- **Option C**: Creating a `.zip` file containing the Docker image is not a valid approach for deploying Docker images to Elastic Beanstalk. Elastic Beanstalk expects a `Dockerrun.aws.json` or `docker-compose.yml` file to reference the Docker image from a registry.
+- **Option D**: Running the `eb local run` command is used for testing the application locally and does not deploy the application to Elastic Beanstalk.
+
+#### **Key Takeaways**
+
+- **Docker Deployment on Elastic Beanstalk**: Use a `docker-compose.yml` file or `Dockerrun.aws.json` file to specify the Docker image and deployment configuration.
+- **Public Docker Registry**: Elastic Beanstalk can pull Docker images from public registries, eliminating the need to build the image during deployment.
+- **Elastic Beanstalk CLI**: The `eb deploy` command simplifies the deployment process by reading the configuration file and provisioning the necessary resources.
+
+By creating a `docker-compose.yml` file and using the Elastic Beanstalk CLI, the developer can efficiently deploy the Docker-based application to Elastic Beanstalk.
+
+</details>
