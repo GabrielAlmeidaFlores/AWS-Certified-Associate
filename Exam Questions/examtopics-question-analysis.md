@@ -1,4 +1,4 @@
-## Question #01
+## Question #01 - #01
 
 A gaming website gives users the ability to trade game items with each other on the platform. The platform requires both users' records to be updated and persisted in one transaction. If any update fails, the transaction must roll back.
 Which AWS solution can provide the transactional capability that is required for this feature?
@@ -27,7 +27,7 @@ The correct answer is:
 
 </details>
 
-## Question #02
+## Question #02 - #02
 
 A developer has created a Java application that makes HTTP requests directly to AWS services. Application logging shows 5xx HTTP response codes that occur at irregular intervals. The errors are affecting users.
 How should the developer update the application to improve the application's resiliency?
@@ -56,7 +56,7 @@ Using the AWS SDK for Java ensures better error handling and retries, making the
 
 </details>
 
-## Question #03
+## Question #03 - #03
 
 A global company has a mobile app with static data stored in an Amazon S3 bucket in the us-east-1 Region. The company serves the content through an Amazon
 CloudFront distribution. The company is launching the mobile app in South Africa. The data must reside in the af-south-1 Region. The company does not want to deploy a specific mobile client for South Africa.
@@ -86,7 +86,7 @@ Using a Lambda@Edge function as an **origin request trigger** is the most effect
 
 </details>
 
-## Question #04
+## Question #04 - #04
 
 A developer is testing an AWS Lambda function by using the AWS Serverless Application Model (AWS SAM) local CLI. The application that is implemented by the Lambda function makes several AWS API calls by using the AWS software development kit (SDK). The developer wants to allow the function to make AWS API calls in a test AWS account from the developer's laptop.  
 What should the developer do to meet these requirements?
@@ -115,7 +115,7 @@ Using the `aws configure` command and the `--profile` option with `sam local inv
 
 </details>
 
-## Question #05
+## Question #05 - #05
 
 A developer designed an application on an Amazon EC2 instance. The application makes API requests to objects in an Amazon S3 bucket.  
 Which combination of steps will ensure that the application makes the API requests in the MOST secure manner? (Choose two.)
@@ -147,7 +147,7 @@ Using an IAM role and attaching it to the EC2 instance via an instance profile i
 
 </details>
 
-## Question #06
+## Question #06 - #06
 
 A developer is configuring an Amazon CloudFront distribution for a new application to provide encryption in transit. The application is running in the eu-west-1 Region. The developer creates a new certificate in AWS Certificate Manager (ACM) in eu-west-1, but the certificate is not visible in the CloudFront distribution settings.  
 What should the developer do to fix this problem?
@@ -176,7 +176,7 @@ To fix the issue, the developer must create the certificate in the `us-east-1` R
 
 </details>
 
-## Question #07
+## Question #07 - #07
 
 A developer is building an application that runs behind an Application Load Balancer (ALB). The ALB is configured as the origin for an Amazon CloudFront distribution. Users will log in to the application by using their social media accounts.  
 How can the developer authenticate users?
@@ -205,7 +205,7 @@ By configuring the ALB to use Amazon Cognito, the developer can seamlessly authe
 
 </details>
 
-## Question #08
+## Question #08 - #08
 
 A company has an application that analyzes photographs. A developer is preparing the application for deployment to Amazon EC2 instances. The application's image analysis functions require a mix of GPU instances and CPU instances that run on Amazon Linux. The developer needs to add code to the application so that the functions can determine whether they are running on a GPU instance.  
 What should the functions do to obtain this information?
@@ -234,7 +234,7 @@ The simplest and most reliable way to determine if the application is running on
 
 </details>
 
-## Question #09
+## Question #09 - #09
 
 A company has an application that uses Amazon Cognito user pools as an identity provider. The company must secure access to user records. The company has set up multi-factor authentication (MFA). The company also wants to send a login activity notification by email every time a user logs in.  
 What is the MOST operationally efficient solution that meets this requirement?
@@ -263,7 +263,7 @@ Using a **post-authentication Lambda trigger** with Amazon Cognito is the simple
 
 </details>
 
-## Question #10
+## Question #10 - #10
 
 A company hosts a three-tier web application on AWS behind an Amazon CloudFront distribution. A developer wants a dashboard to monitor error rates and anomalies of the CloudFront distribution with the shortest possible refresh interval.  
 Which combination of steps should the developer take to meet these requirements? (Choose two.)
@@ -313,7 +313,7 @@ By combining **real-time logs**, **Kinesis Data Streams**, and **OpenSearch Serv
 
 </details>
 
-## Question #11
+## Question #11 - #11
 
 A developer creates a customer managed key for multiple AWS users to encrypt data in Amazon S3. The developer configures Amazon Simple Notification Service (Amazon SNS) to publish a message if key deletion is scheduled. The developer needs to preserve any SNS messages that cannot be delivered so that those messages can be reprocessed.  
 Which AWS service or feature should the developer use to meet this requirement?
@@ -358,7 +358,7 @@ Using **Amazon SQS** as a subscriber to the SNS topic ensures that undelivered m
 
 </details>
 
-## Question #12
+## Question #12 - #12
 
 A developer needs to deploy an application to AWS Elastic Beanstalk for a company. The application consists of a single Docker image. The company's automated continuous integration and continuous delivery (CI/CD) process builds the Docker image and pushes the image to a public Docker registry.  
 How should the developer deploy the application to Elastic Beanstalk?
@@ -404,7 +404,7 @@ By creating a `docker-compose.yml` file and using the Elastic Beanstalk CLI, the
 
 </details>
 
-## Question #13
+## Question #13 - #13
 
 A company is using AWS CodeDeploy for all production deployments. A developer has an Amazon Elastic Container Service (Amazon ECS) application that uses the `CodeDeployDefault.ECSAIIAtOnce` configuration. The developer needs to update the production environment in increments of 10% until the entire production environment is updated.  
 Which CodeDeploy configuration should the developer use to meet these requirements?
@@ -446,5 +446,52 @@ AWS CodeDeploy is a deployment service that automates application deployments to
 - **Incremental Updates**: The `ECSLinear10PercentEvery3Minutes` configuration ensures that the production environment is updated in 10% increments, minimizing risk and allowing for monitoring at each stage.
 
 By using the `CodeDeployDefault.ECSLinear10PercentEvery3Minutes` configuration, the developer can safely and incrementally update the ECS application in production.
+
+</details>
+
+## Question #15 - #14
+
+A company has point-of-sale devices across thousands of retail shops that synchronize sales transactions with a centralized system. The system includes an Amazon API Gateway API that exposes an AWS Lambda function. The Lambda function processes the transactions and stores the transactions in Amazon RDS for MySQL. The number of transactions increases rapidly during the day and is near zero at night.  
+How can a developer increase the elasticity of the system MOST cost-effectively?
+
+- A. Migrate from Amazon RDS to Amazon Aurora MySQL. Use an Aurora Auto Scaling policy to scale read replicas based on CPU consumption.
+- B. Migrate from Amazon RDS to Amazon Aurora MySQL. Use an Aurora Auto Scaling policy to scale read replicas based on the number of database connections.
+- C. Create an Amazon Simple Queue Service (Amazon SQS) queue. Publish transactions to the queue. Set the queue to invoke the Lambda function. Turn on enhanced fanout for the Lambda function.
+- D. Create an Amazon Simple Queue Service (Amazon SQS) queue. Publish transactions to the queue. Set the queue to invoke the Lambda function. Set the reserved concurrency of the Lambda function to be less than the number of database connections.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. Create an Amazon Simple Queue Service (Amazon SQS) queue. Publish transactions to the queue. Set the queue to invoke the Lambda function. Set the reserved concurrency of the Lambda function to be less than the number of database connections.**
+
+### Explanation
+
+#### **Purpose of Elasticity**
+
+Elasticity refers to the ability of a system to scale resources up or down automatically based on demand. For this system, the number of transactions varies significantly throughout the day, so the solution must handle high traffic during peak hours and reduce costs during low-traffic periods.
+
+#### **Why this option is correct**
+
+- **Amazon SQS**: SQS is a fully managed message queuing service that decouples the point-of-sale devices from the Lambda function. Transactions can be published to the queue, ensuring that no data is lost during peak traffic.
+- **Lambda Integration**: SQS can invoke the Lambda function to process messages from the queue. Lambda automatically scales based on the number of messages in the queue, ensuring that the system can handle high transaction volumes during the day.
+- **Reserved Concurrency**: Setting the reserved concurrency of the Lambda function to be less than the number of database connections ensures that the Lambda function does not overwhelm the database with too many concurrent connections. This prevents database throttling and ensures smooth operation.
+- **Cost-Effectiveness**: SQS and Lambda are pay-as-you-go services, meaning the company only pays for the resources used. During low-traffic periods, costs are minimized because Lambda scales down automatically.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Migrating to Amazon Aurora MySQL and using Auto Scaling for read replicas based on CPU consumption does not address the scalability of the Lambda function or the decoupling of the transaction processing pipeline. It also introduces unnecessary complexity and cost for this use case.
+- **Option B**: Similar to Option A, scaling read replicas based on the number of database connections does not solve the problem of handling high transaction volumes at the application level. It also does not address the decoupling of the system.
+- **Option C**: Enhanced fanout is a feature of **Amazon Kinesis Data Streams**, not SQS. This option is invalid because SQS does not support enhanced fanout.
+
+#### **Key Takeaways**
+
+- **Decoupling with SQS**: Using SQS decouples the point-of-sale devices from the Lambda function, ensuring that transactions are processed asynchronously and reliably.
+- **Lambda Auto Scaling**: Lambda automatically scales to process messages from the queue, providing elasticity and cost-effectiveness.
+- **Reserved Concurrency**: Ensures that the Lambda function does not overwhelm the database with too many concurrent connections.
+
+By using **SQS** and **Lambda**, the developer can create a highly elastic and cost-effective system that scales with demand and minimizes costs during low-traffic periods.
 
 </details>
