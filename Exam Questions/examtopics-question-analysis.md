@@ -312,3 +312,48 @@ The correct answers are:
 By combining **real-time logs**, **Kinesis Data Streams**, and **OpenSearch Service**, the developer can create a real-time dashboard to monitor error rates and anomalies with the shortest possible refresh interval.
 
 </details>
+
+## Question #11
+
+A developer creates a customer managed key for multiple AWS users to encrypt data in Amazon S3. The developer configures Amazon Simple Notification Service (Amazon SNS) to publish a message if key deletion is scheduled. The developer needs to preserve any SNS messages that cannot be delivered so that those messages can be reprocessed.  
+Which AWS service or feature should the developer use to meet this requirement?
+
+- A. Amazon Simple Email Service (Amazon SES)
+- B. AWS Lambda
+- C. Amazon Simple Queue Service (Amazon SQS)
+- D. Amazon CloudWatch alarm
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**C. Amazon Simple Queue Service (Amazon SQS)**
+
+### Explanation
+
+#### **Purpose of Amazon SQS**
+
+Amazon SQS is a fully managed message queuing service that enables decoupling and asynchronous communication between distributed systems. It allows messages to be stored temporarily until they are processed by a consumer.
+
+#### **Why this option is correct**
+
+- The developer needs to ensure that **undelivered SNS messages are preserved** for reprocessing. SNS does not store messages if they cannot be delivered to subscribers. To address this, the developer can configure an **SQS queue as a subscriber to the SNS topic**.
+- When SNS publishes a message, it will be delivered to the SQS queue. If the message cannot be processed immediately, it will remain in the queue until a consumer retrieves and processes it. This ensures that no messages are lost, even if they cannot be delivered immediately.
+- SQS provides **durability and persistence**, making it ideal for storing messages that need to be reprocessed.
+
+#### **Why other options are incorrect**
+
+- **Option A (Amazon SES)**: Amazon SES is an email-sending service and is not designed to store or reprocess undelivered SNS messages.
+- **Option B (AWS Lambda)**: AWS Lambda is a serverless compute service and cannot store messages. It can process messages from SNS or SQS but does not provide message persistence on its own.
+- **Option D (Amazon CloudWatch alarm)**: CloudWatch alarms are used for monitoring and alerting based on metrics. They cannot store or reprocess undelivered SNS messages.
+
+#### **Key Takeaways**
+
+- **SNS + SQS Integration**: By using SQS as a subscriber to an SNS topic, the developer can ensure that messages are stored and available for reprocessing if they cannot be delivered immediately.
+- **Message Durability**: SQS provides the necessary durability and persistence for undelivered messages, making it the best choice for this use case.
+
+Using **Amazon SQS** as a subscriber to the SNS topic ensures that undelivered messages are preserved and can be reprocessed as needed.
+
+</details>
