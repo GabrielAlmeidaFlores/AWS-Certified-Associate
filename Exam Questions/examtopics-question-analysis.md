@@ -55,3 +55,33 @@ The correct answer is:
 Using the AWS SDK for Java ensures better error handling and retries, making the application more resilient to transient failures.
 
 </details>
+
+## Question #03
+
+A global company has a mobile app with static data stored in an Amazon S3 bucket in the us-east-1 Region. The company serves the content through an Amazon
+CloudFront distribution. The company is launching the mobile app in South Africa. The data must reside in the af-south-1 Region. The company does not want to deploy a specific mobile client for South Africa.
+What should the company do to meet these requirements?
+
+- A. Use the CloudFront geographic restriction feature to block access to users in South Africa.
+- B. Create a Lambda@Edge function. Associate the Lambda@Edge function as an origin request trigger with the CloudFront distribution to change the S3 origin Region.
+- C. Create a Lambda@Edge function. Associate the Lambda@Edge function as a viewer response trigger with the CloudFront distribution to change the S3 origin Region.
+- D. Include af-south-1 in the alternate domain name (CNAME) of the CloudFront distribution.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Create a Lambda@Edge function. Associate the Lambda@Edge function as an origin request trigger with the CloudFront distribution to change the S3 origin Region.**
+
+### Explanation
+
+- **Option B** is correct because a Lambda@Edge function can dynamically change the origin (S3 bucket) based on the user's location. By associating the function as an **origin request trigger**, the function can redirect requests from users in South Africa to the S3 bucket in the `af-south-1` Region, ensuring the data resides in the required Region without deploying a specific mobile client for South Africa.
+- **Option A** is incorrect because blocking access to users in South Africa does not meet the requirement of serving content to users in that region.
+- **Option C** is incorrect because a **viewer response trigger** occurs after the origin has already been accessed, which is too late to change the S3 origin Region.
+- **Option D** is incorrect because adding `af-south-1` to the alternate domain name (CNAME) does not change the origin Region or ensure that the data resides in `af-south-1`.
+
+Using a Lambda@Edge function as an **origin request trigger** is the most effective solution to dynamically route users to the appropriate S3 bucket based on their geographic location.
+
+</details>
