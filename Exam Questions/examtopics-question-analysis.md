@@ -175,3 +175,32 @@ The correct answer is:
 To fix the issue, the developer must create the certificate in the `us-east-1` Region and ensure the alternate domain name (CNAME) matches the domain name in the certificate.
 
 </details>
+
+## Question #07
+
+A developer is building an application that runs behind an Application Load Balancer (ALB). The ALB is configured as the origin for an Amazon CloudFront distribution. Users will log in to the application by using their social media accounts.  
+How can the developer authenticate users?
+
+- A. Validate the users by inspecting the tokens in an AWS Lambda authorizer on the ALB.
+- B. Configure the ALB to use Amazon Cognito as one of the authentication providers.
+- C. Configure CloudFront to use Amazon Cognito as one of the authentication providers.
+- D. Validate the users by calling the Amazon Cognito API in an AWS Lambda authorizer on the ALB.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Configure the ALB to use Amazon Cognito as one of the authentication providers.**
+
+### Explanation
+
+- **Option B** is correct because **Application Load Balancers (ALBs) natively support integration with Amazon Cognito** for user authentication. Amazon Cognito can be configured as an authentication provider, allowing users to log in using their social media accounts (e.g., Google, Facebook, etc.). The ALB handles the authentication process before forwarding requests to the application.
+- **Option A** is incorrect because ALBs do not support AWS Lambda authorizers. Lambda authorizers are used with API Gateway, not ALBs.
+- **Option C** is incorrect because CloudFront does not natively support Amazon Cognito for authentication. Authentication is typically handled at the ALB or application level.
+- **Option D** is incorrect because ALBs do not support Lambda authorizers, and this approach would add unnecessary complexity. The ALB's native integration with Amazon Cognito is the recommended and simpler solution.
+
+By configuring the ALB to use Amazon Cognito, the developer can seamlessly authenticate users via their social media accounts without additional custom code.
+
+</details>
