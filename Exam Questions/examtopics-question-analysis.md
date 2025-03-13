@@ -403,3 +403,48 @@ AWS Elastic Beanstalk is a fully managed service that makes it easy to deploy an
 By creating a `docker-compose.yml` file and using the Elastic Beanstalk CLI, the developer can efficiently deploy the Docker-based application to Elastic Beanstalk.
 
 </details>
+
+## Question #13
+
+A company is using AWS CodeDeploy for all production deployments. A developer has an Amazon Elastic Container Service (Amazon ECS) application that uses the `CodeDeployDefault.ECSAIIAtOnce` configuration. The developer needs to update the production environment in increments of 10% until the entire production environment is updated.  
+Which CodeDeploy configuration should the developer use to meet these requirements?
+
+- A. `CodeDeployDefault.ECSCanary10Percent5Minutes`
+- B. `CodeDeployDefault.ECSLinear10PercentEvery3Minutes`
+- C. `CodeDeployDefault.OneAtATime`
+- D. `CodeDeployDefault.LambdaCanary10Percent5Minutes`
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. `CodeDeployDefault.ECSLinear10PercentEvery3Minutes`**
+
+### Explanation
+
+#### **Purpose of AWS CodeDeploy**
+
+AWS CodeDeploy is a deployment service that automates application deployments to various compute services, including Amazon ECS. It supports different deployment configurations to control how traffic is shifted during updates.
+
+#### **Why this option is correct**
+
+- The developer needs to update the production environment **in increments of 10%** until the entire environment is updated. This is a **linear deployment strategy**, where traffic is shifted gradually in equal increments over a specified time interval.
+- The `CodeDeployDefault.ECSLinear10PercentEvery3Minutes` configuration is specifically designed for ECS deployments. It shifts **10% of traffic every 3 minutes** until the deployment is complete, meeting the requirement of updating the environment in 10% increments.
+
+#### **Why other options are incorrect**
+
+- **Option A (`CodeDeployDefault.ECSCanary10Percent5Minutes`)**: This configuration uses a **canary deployment strategy**, where 10% of traffic is shifted initially, and the remaining 90% is shifted after a 5-minute wait. This does not meet the requirement of updating in 10% increments.
+- **Option C (`CodeDeployDefault.OneAtATime`)**: This configuration updates one task at a time, which is not equivalent to updating in 10% increments. It is more suitable for small-scale deployments or testing.
+- **Option D (`CodeDeployDefault.LambdaCanary10Percent5Minutes`)**: This configuration is for **AWS Lambda deployments**, not ECS. It is not applicable to the developer's use case.
+
+#### **Key Takeaways**
+
+- **Linear Deployment Strategy**: Shifts traffic in equal increments over time, ensuring a gradual and controlled update process.
+- **ECS-Specific Configurations**: CodeDeploy provides deployment configurations tailored for ECS, such as `ECSLinear10PercentEvery3Minutes` and `ECSCanary10Percent5Minutes`.
+- **Incremental Updates**: The `ECSLinear10PercentEvery3Minutes` configuration ensures that the production environment is updated in 10% increments, minimizing risk and allowing for monitoring at each stage.
+
+By using the `CodeDeployDefault.ECSLinear10PercentEvery3Minutes` configuration, the developer can safely and incrementally update the ECS application in production.
+
+</details>
