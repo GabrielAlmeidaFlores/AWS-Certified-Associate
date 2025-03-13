@@ -262,3 +262,53 @@ The correct answer is:
 Using a **post-authentication Lambda trigger** with Amazon Cognito is the simplest, most efficient, and most reliable way to send login activity notifications.
 
 </details>
+
+## Question #10
+
+A company hosts a three-tier web application on AWS behind an Amazon CloudFront distribution. A developer wants a dashboard to monitor error rates and anomalies of the CloudFront distribution with the shortest possible refresh interval.  
+Which combination of steps should the developer take to meet these requirements? (Choose two.)
+
+- A. Activate real-time logs on the CloudFront distribution. Create a stream in Amazon Kinesis Data Streams.
+- B. Export the CloudFront logs to an Amazon S3 bucket. Detect anomalies and error rates with Amazon QuickSight.
+- C. Configure Amazon Kinesis Data Streams to deliver logs to Amazon OpenSearch Service (Amazon Elasticsearch Service). Create a dashboard in OpenSearch Dashboards (Kibana).
+- D. Create Amazon CloudWatch alarms based on expected values of selected CloudWatch metrics to detect anomalies and errors.
+- E. Design an Amazon CloudWatch dashboard of the selected CloudFront distribution metrics.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answers are:
+
+**D. Create Amazon CloudWatch alarms based on expected values of selected CloudWatch metrics to detect anomalies and errors.**  
+**E. Design an Amazon CloudWatch dashboard of the selected CloudFront distribution metrics.**
+
+### Explanation
+
+#### **Option D: Create Amazon CloudWatch alarms based on expected values of selected CloudWatch metrics to detect anomalies and errors.**
+
+- **Purpose of Amazon CloudWatch**: Amazon CloudWatch is a monitoring and observability service that collects and tracks metrics, logs, and events from AWS resources and applications. It provides real-time insights into system performance and operational health.
+- **Why this option is correct**: CloudFront automatically sends metrics (e.g., `4xxErrorRate`, `5xxErrorRate`, `TotalErrorRate`) to CloudWatch. By creating CloudWatch alarms, the developer can set thresholds for these metrics to detect anomalies and errors in real time. Alarms can trigger notifications or automated actions when thresholds are breached, ensuring quick response to issues.
+- **Refresh interval**: CloudWatch metrics are available at a 1-minute granularity, providing near real-time monitoring.
+
+#### **Option E: Design an Amazon CloudWatch dashboard of the selected CloudFront distribution metrics.**
+
+- **Purpose of Amazon CloudWatch Dashboards**: CloudWatch Dashboards allow you to create customizable visualizations of metrics and alarms. They provide a centralized view of the health and performance of your AWS resources.
+- **Why this option is correct**: By designing a CloudWatch dashboard, the developer can visualize key CloudFront metrics (e.g., error rates, request counts, latency) in real time. This provides a comprehensive view of the distribution's performance and helps identify trends or anomalies quickly.
+- **Refresh interval**: CloudWatch Dashboards can refresh metrics every minute, ensuring the shortest possible refresh interval for monitoring.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Activating real-time logs and using Amazon Kinesis Data Streams is useful for detailed log analysis but is not the most efficient way to monitor error rates and anomalies in real time. It involves additional complexity and cost compared to using CloudWatch metrics.
+- **Option B**: Exporting logs to Amazon S3 and using Amazon QuickSight is suitable for historical analysis and reporting but does not provide real-time monitoring capabilities.
+- **Option C**: Using Amazon Kinesis Data Streams and Amazon OpenSearch Service (Elasticsearch) is powerful for log analysis and visualization but is overkill for this use case. It introduces unnecessary complexity and latency compared to CloudWatch.
+
+#### **Key Takeaways**
+
+- **CloudWatch Metrics**: Automatically collected by CloudFront and available at 1-minute granularity.
+- **CloudWatch Alarms**: Provide real-time anomaly and error detection with automated notifications.
+- **CloudWatch Dashboards**: Offer real-time visualization of metrics with a 1-minute refresh interval.
+
+By combining **CloudWatch alarms** and **CloudWatch dashboards**, the developer can achieve real-time monitoring of error rates and anomalies with the shortest possible refresh interval.
+
+</details>
