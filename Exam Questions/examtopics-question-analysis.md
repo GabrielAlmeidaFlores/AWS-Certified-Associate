@@ -867,3 +867,49 @@ Deployment policies in AWS Elastic Beanstalk determine how application updates a
 By using the **Immutable** deployment policy, the developer can maintain full capacity and minimize the impact of a failed deployment.
 
 </details>
+
+## Question #23 - #29
+
+When a Developer tries to run an AWS CodeBuild project, it raises an error because the length of all environment variables exceeds the limit for the combined maximum of characters.  
+What is the recommended solution?
+
+- A. Add the `export LC_ALL="en_US.utf8"` command to the `pre_build` section to ensure POSIX localization.
+- B. Use Amazon Cognito to store key-value pairs for large numbers of environment variables.
+- C. Update the settings for the build project to use an Amazon S3 bucket for large numbers of environment variables.
+- D. Use AWS Systems Manager Parameter Store to store large numbers of environment variables.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. Use AWS Systems Manager Parameter Store to store large numbers of environment variables.**
+
+### Explanation
+
+#### **Purpose of Environment Variables in CodeBuild**
+
+Environment variables in AWS CodeBuild are used to pass configuration data to the build process. However, there is a limit on the combined size of all environment variables (currently **4 KB** for plaintext variables and **10 KB** for encrypted variables).
+
+#### **Why this option is correct**
+
+- **AWS Systems Manager Parameter Store**: Parameter Store is a secure, scalable, and fully managed service for storing configuration data, including environment variables. It supports storing large amounts of data and retrieving it during the build process.
+- **Integration with CodeBuild**: CodeBuild can retrieve parameters from Parameter Store during the build process using the `parameter-store` option in the `env` section of the `buildspec.yml` file. This allows the developer to store large numbers of environment variables without exceeding the size limit.
+- **Secure and Scalable**: Parameter Store supports encryption and versioning, making it a secure and scalable solution for managing environment variables.
+
+#### **Why other options are incorrect**
+
+- **Option A**: The `export LC_ALL="en_US.utf8"` command sets the locale for the build environment but does not address the issue of exceeding the environment variable size limit.
+- **Option B**: Amazon Cognito is used for user authentication and identity management, not for storing environment variables or configuration data.
+- **Option C**: Amazon S3 is not designed for storing environment variables. While it can store files, it is not integrated with CodeBuild for retrieving environment variables during the build process.
+
+#### **Key Takeaways**
+
+- **Parameter Store**: Use AWS Systems Manager Parameter Store to store large numbers of environment variables securely and scalably.
+- **CodeBuild Integration**: Retrieve parameters from Parameter Store during the build process using the `parameter-store` option in the `buildspec.yml` file.
+- **Size Limits**: Avoid exceeding the environment variable size limit by offloading large amounts of data to Parameter Store.
+
+By using **AWS Systems Manager Parameter Store**, the developer can store and retrieve large numbers of environment variables without exceeding the size limit in AWS CodeBuild.
+
+</details>
