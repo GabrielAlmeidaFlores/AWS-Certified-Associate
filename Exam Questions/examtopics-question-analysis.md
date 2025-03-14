@@ -495,3 +495,50 @@ Elasticity refers to the ability of a system to scale resources up or down autom
 By using **SQS** and **Lambda**, the developer can create a highly elastic and cost-effective system that scales with demand and minimizes costs during low-traffic periods.
 
 </details>
+
+## Question #15 - #16
+
+A developer is implementing user authentication and authorization for a web application that is hosted on an Amazon EC2 instance. The developer needs to ensure that the user credentials are encrypted and secure when they are stored and transmitted.  
+Which solution will meet these requirements?
+
+- A. Activate web server modules for authentication and authorization on the instance. Use HTTP basic authentication for the user login.
+- B. Deploy a custom authentication and authorization API over HTTP. Store the user credentials on Amazon ElastiCache for Redis.
+- C. Use Amazon Cognito to configure a user pool. Use the Amazon Cognito API to authenticate and authorize the users.
+- D. Create IAM users. Assign the users to different IAM groups. Use AWS Single Sign-On to authenticate and authorize each user.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**C. Use Amazon Cognito to configure a user pool. Use the Amazon Cognito API to authenticate and authorize the users.**
+
+### Explanation
+
+#### **Purpose of Secure Authentication and Authorization**
+
+The developer needs to ensure that user credentials are **encrypted and secure** both when stored and transmitted. This requires a solution that provides robust security features, such as encryption, secure storage, and secure transmission protocols.
+
+#### **Why this option is correct**
+
+- **Amazon Cognito**: Amazon Cognito is a fully managed service that provides **user authentication and authorization** for web and mobile applications. It supports secure storage of user credentials in **user pools**, which are encrypted at rest and in transit.
+- **User Pools**: Cognito user pools allow developers to create and manage a directory of users. User credentials are securely stored and managed by AWS, eliminating the need for custom credential storage solutions.
+- **Secure Transmission**: Cognito uses HTTPS for all API calls, ensuring that credentials are transmitted securely.
+- **Integration**: The Cognito API can be integrated with the web application hosted on the EC2 instance to handle user authentication and authorization securely.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Using HTTP basic authentication is **not secure**. Credentials are transmitted in plaintext (base64-encoded), making them vulnerable to interception. Additionally, storing credentials on the web server is not as secure as using a managed service like Cognito.
+- **Option B**: Deploying a custom API over HTTP and storing credentials in Amazon ElastiCache for Redis is **not secure**. HTTP does not encrypt data in transit, and Redis is not designed for secure credential storage. This approach introduces significant security risks.
+- **Option D**: IAM users and AWS Single Sign-On (SSO) are designed for managing access to **AWS resources**, not for authenticating users of a web application. This approach is not suitable for application-level authentication and authorization.
+
+#### **Key Takeaways**
+
+- **Amazon Cognito**: Provides secure user authentication and authorization with built-in encryption for credentials.
+- **User Pools**: Securely store and manage user credentials, eliminating the need for custom solutions.
+- **HTTPS**: Ensures secure transmission of credentials between the application and Cognito.
+
+By using **Amazon Cognito**, the developer can ensure that user credentials are encrypted and secure both when stored and transmitted, meeting the requirements of the application.
+
+</details>
