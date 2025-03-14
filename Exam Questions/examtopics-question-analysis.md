@@ -988,16 +988,16 @@ AWS SAM is a framework for building serverless applications using CloudFormation
 
 #### **Why these options are correct**
 
-1. **Option A: `aws cloudformation package` and `aws cloudformation deploy`**:
+- **Option A: `aws cloudformation package` and `aws cloudformation deploy`**:
 
-   - **`aws cloudformation package`**: Packages the application code and dependencies, uploads them to an S3 bucket, and generates a transformed CloudFormation template.
-   - **`aws cloudformation deploy`**: Deploys the packaged application using the transformed CloudFormation template.
-   - This approach is valid and leverages AWS CLI commands to automate the deployment process.
+  - **`aws cloudformation package`**: Packages the application code and dependencies, uploads them to an S3 bucket, and generates a transformed CloudFormation template.
+  - **`aws cloudformation deploy`**: Deploys the packaged application using the transformed CloudFormation template.
+  - This approach is valid and leverages AWS CLI commands to automate the deployment process.
 
-2. **Option B: `sam package` and `sam deploy`**:
-   - **`sam package`**: Similar to `aws cloudformation package`, it packages the application code and dependencies, uploads them to an S3 bucket, and generates a transformed CloudFormation template.
-   - **`sam deploy`**: Deploys the packaged application using the transformed CloudFormation template.
-   - This approach uses the AWS SAM CLI, which is specifically designed for serverless applications and provides a more streamlined experience.
+- **Option B: `sam package` and `sam deploy`**:
+  - **`sam package`**: Similar to `aws cloudformation package`, it packages the application code and dependencies, uploads them to an S3 bucket, and generates a transformed CloudFormation template.
+  - **`sam deploy`**: Deploys the packaged application using the transformed CloudFormation template.
+  - This approach uses the AWS SAM CLI, which is specifically designed for serverless applications and provides a more streamlined experience.
 
 #### **Why other options are incorrect**
 
