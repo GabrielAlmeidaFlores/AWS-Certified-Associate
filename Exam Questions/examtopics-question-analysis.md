@@ -449,7 +449,7 @@ By using the `CodeDeployDefault.ECSLinear10PercentEvery3Minutes` configuration, 
 
 </details>
 
-## Question #15 - #14
+## Question #14 - #15
 
 A company has point-of-sale devices across thousands of retail shops that synchronize sales transactions with a centralized system. The system includes an Amazon API Gateway API that exposes an AWS Lambda function. The Lambda function processes the transactions and stores the transactions in Amazon RDS for MySQL. The number of transactions increases rapidly during the day and is near zero at night.  
 How can a developer increase the elasticity of the system MOST cost-effectively?
