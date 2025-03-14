@@ -542,3 +542,49 @@ The developer needs to ensure that user credentials are **encrypted and secure**
 By using **Amazon Cognito**, the developer can ensure that user credentials are encrypted and secure both when stored and transmitted, meeting the requirements of the application.
 
 </details>
+
+## Question #16 - #18
+
+A company that has multiple offices uses an Amazon DynamoDB table to store employee payroll information. Item attributes consist of employee names, office identifiers, and cumulative daily hours worked. The most frequently used query extracts a report of an alphabetical subset of employees for a specific office.  
+Which design of the DynamoDB table primary key will have the MINIMUM performance impact?
+
+- A. Partition key on the office identifier and sort key on the employee name
+- B. Partition key on the employee name and sort key on the office identifier
+- C. Partition key on the employee name
+- D. Partition key on the office identifier
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**A. Partition key on the office identifier and sort key on the employee name**
+
+### Explanation
+
+#### **Purpose of DynamoDB Primary Key Design**
+
+The primary key in DynamoDB determines how data is distributed and accessed. A well-designed primary key ensures efficient query performance and scalability.
+
+#### **Why this option is correct**
+
+- **Partition Key on Office Identifier**: Using the office identifier as the partition key ensures that data for each office is stored together. This allows DynamoDB to distribute data evenly across partitions while enabling efficient queries for a specific office.
+- **Sort Key on Employee Name**: Using the employee name as the sort key allows for **efficient querying of an alphabetical subset of employees** within a specific office. The sort key enables range queries, which are ideal for extracting ordered subsets of data.
+- **Query Efficiency**: The most frequently used query extracts a report of an alphabetical subset of employees for a specific office. With this primary key design, the query can use the **`Query` API** with the office identifier as the partition key and a range condition on the employee name, ensuring **minimal performance impact**.
+
+#### **Why other options are incorrect**
+
+- **Option B**: Using the employee name as the partition key and the office identifier as the sort key would scatter data across partitions, making it inefficient to query for employees in a specific office. This design does not align with the query pattern.
+- **Option C**: Using only the employee name as the partition key would scatter data across partitions and make it impossible to efficiently query for employees in a specific office. This design does not support the required query pattern.
+- **Option D**: Using only the office identifier as the partition key would group data by office but would not allow for efficient alphabetical sorting of employees within an office. This design lacks a sort key, making it less efficient for the required query.
+
+#### **Key Takeaways**
+
+- **Partition Key**: Determines how data is distributed across partitions. Use a value that aligns with the most common query pattern (e.g., office identifier).
+- **Sort Key**: Enables efficient range queries and sorting within a partition. Use a value that supports the query requirements (e.g., employee name).
+- **Query API**: Use the `Query` API to retrieve items based on the partition key and sort key, ensuring optimal performance.
+
+By designing the primary key with the **office identifier as the partition key** and the **employee name as the sort key**, the developer can achieve the **minimum performance impact** for the most frequently used query.
+
+</details>
