@@ -635,3 +635,49 @@ SQS FIFO (First-In-First-Out) queues are designed to ensure that messages are pr
 By ensuring that the **polling function timeout is less than the queue visibility timeout**, the developer can prevent duplicate processing and avoid duplicate items in the DynamoDB table.
 
 </details>
+
+## Question #18 - #20
+
+A development team has been using a builder server that is hosted on an Amazon EC2 instance to perform builds and deployments for the last 3 months. The EC2 instance's instance profile uses an IAM role that contains the `AdministratorAccess` managed policy. The development team must replace that policy with a policy that provides only the required permissions.  
+What is the FASTEST way to create a custom IAM policy for the EC2 instance to meet this requirement?
+
+- A. Create a new IAM policy based on services that the build server deployed or updated in the last 3 months.
+- B. Create a new IAM policy that includes all actions that AWS CloudTrail recorded for the IAM role in the last 3 months.
+- C. Create a new permissions boundary policy that denies all access. Associate the permissions boundaries with the IAM role.
+- D. Create a new IAM policy by using Amazon Athena to query an Amazon S3 bucket that contains AWS CloudTrail events that the IAM role performed in the last 3 months.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Create a new IAM policy that includes all actions that AWS CloudTrail recorded for the IAM role in the last 3 months.**
+
+### Explanation
+
+#### **Purpose of Least Privilege**
+
+The principle of least privilege requires granting only the permissions necessary for a task. The development team needs to replace the overly permissive `AdministratorAccess` policy with a custom policy that provides only the required permissions.
+
+#### **Why this option is correct**
+
+- **AWS CloudTrail**: CloudTrail records all API calls made by the IAM role, including the actions performed by the build server. This provides a detailed history of the permissions actually used by the role.
+- **Fastest Way**: By analyzing CloudTrail logs, the developer can quickly identify the specific actions performed by the IAM role over the last 3 months. This allows them to create a custom IAM policy that includes only those actions, ensuring least privilege.
+- **Automation**: Tools like the AWS Management Console, AWS CLI, or SDKs can be used to extract and analyze CloudTrail logs, making this process efficient.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Creating a policy based on services deployed or updated is not precise. It does not account for specific actions performed within those services, which could lead to over-permissioning or under-permissioning.
+- **Option C**: A permissions boundary policy that denies all access would prevent the build server from functioning. This approach does not help create a custom policy with the required permissions.
+- **Option D**: Using Amazon Athena to query CloudTrail logs stored in S3 is a valid approach but is more complex and time-consuming than directly analyzing CloudTrail logs through the AWS Management Console or CLI.
+
+#### **Key Takeaways**
+
+- **CloudTrail Logs**: Provide a detailed record of API calls made by the IAM role, making it easy to identify the permissions actually used.
+- **Custom IAM Policy**: Create a policy that includes only the actions recorded in CloudTrail logs to ensure least privilege.
+- **Efficiency**: Analyzing CloudTrail logs is the fastest and most accurate way to create a custom IAM policy tailored to the build server's needs.
+
+By using **CloudTrail logs** to identify the actions performed by the IAM role, the developer can quickly create a custom IAM policy that meets the principle of least privilege.
+
+</details>
