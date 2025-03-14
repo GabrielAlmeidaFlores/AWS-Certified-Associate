@@ -959,3 +959,58 @@ Manual approval steps in a CI/CD pipeline ensure that code changes are reviewed 
 By adding an **approval action** to the pipeline and configuring it to use **Amazon SNS**, the Development team can implement a manual approval process that meets management's requirements.
 
 </details>
+
+## Question #25 - #32
+
+A developer is creating a script to automate the deployment process for a serverless application. The developer wants to use an existing AWS Serverless Application Model (AWS SAM) template for the application.  
+What should the developer use for the project? (Choose two.)
+
+- A. Call `aws cloudformation package` to create the deployment package. Call `aws cloudformation deploy` to deploy the package afterward.
+- B. Call `sam package` to create the deployment package. Call `sam deploy` to deploy the package afterward.
+- C. Call `aws s3 cp` to upload the AWS SAM template to Amazon S3. Call `aws lambda update-function-code` to create the application.
+- D. Create a ZIP package locally and call `aws serverlessrepo create-application` to create the application.
+- E. Create a ZIP package and upload it to Amazon S3. Call `aws cloudformation create-stack` to create the application.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answers are:
+
+**A. Call `aws cloudformation package` to create the deployment package. Call `aws cloudformation deploy` to deploy the package afterward.**  
+**B. Call `sam package` to create the deployment package. Call `sam deploy` to deploy the package afterward.**
+
+### Explanation
+
+#### **Purpose of AWS SAM**
+
+AWS SAM is a framework for building serverless applications using CloudFormation. It simplifies the process of defining and deploying serverless resources like Lambda functions, APIs, and DynamoDB tables.
+
+#### **Why these options are correct**
+
+1. **Option A: `aws cloudformation package` and `aws cloudformation deploy`**:
+
+   - **`aws cloudformation package`**: Packages the application code and dependencies, uploads them to an S3 bucket, and generates a transformed CloudFormation template.
+   - **`aws cloudformation deploy`**: Deploys the packaged application using the transformed CloudFormation template.
+   - This approach is valid and leverages AWS CLI commands to automate the deployment process.
+
+2. **Option B: `sam package` and `sam deploy`**:
+   - **`sam package`**: Similar to `aws cloudformation package`, it packages the application code and dependencies, uploads them to an S3 bucket, and generates a transformed CloudFormation template.
+   - **`sam deploy`**: Deploys the packaged application using the transformed CloudFormation template.
+   - This approach uses the AWS SAM CLI, which is specifically designed for serverless applications and provides a more streamlined experience.
+
+#### **Why other options are incorrect**
+
+- **Option C**: Uploading the SAM template to S3 and using `aws lambda update-function-code` does not deploy the entire serverless application. It only updates the code for a single Lambda function, ignoring other resources defined in the SAM template.
+- **Option D**: Creating a ZIP package and using `aws serverlessrepo create-application` is not suitable for deploying a serverless application. The Serverless Application Repository is for sharing applications, not for deployment.
+- **Option E**: Creating a ZIP package and using `aws cloudformation create-stack` does not leverage the SAM template effectively. It requires manual steps and does not handle packaging and deployment as seamlessly as the SAM CLI or CloudFormation commands.
+
+#### **Key Takeaways**
+
+- **AWS SAM CLI**: Use `sam package` and `sam deploy` for a streamlined serverless deployment process.
+- **AWS CloudFormation Commands**: Use `aws cloudformation package` and `aws cloudformation deploy` as an alternative to the SAM CLI.
+- **Automation**: Both approaches automate the packaging and deployment of serverless applications, ensuring consistency and efficiency.
+
+By using either **AWS SAM CLI** or **AWS CloudFormation commands**, the developer can automate the deployment process for the serverless application effectively.
+
+</details>
