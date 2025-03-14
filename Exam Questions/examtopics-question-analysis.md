@@ -727,3 +727,50 @@ The AWS Command Line Interface (CLI) is a unified tool to manage AWS services fr
 By **installing the AWS CLI** and **configuring it with an IAM user access key and secret key**, the developer can successfully deploy CloudFormation stacks to AWS.
 
 </details>
+
+## Question #20 - #23
+
+Topic 1  
+A developer needs to use Amazon DynamoDB to store customer orders. The developer's company requires all customer data to be encrypted at rest with a key that the company generates.  
+What should the developer do to meet these requirements?
+
+- A. Create the DynamoDB table with encryption set to None. Code the application to use the key to decrypt the data when the application reads from the table. Code the application to use the key to encrypt the data when the application writes to the table.
+- B. Store the key by using AWS Key Management Service (AWS KMS). Choose an AWS KMS customer managed key during creation of the DynamoDB table. Provide the Amazon Resource Name (ARN) of the AWS KMS key.
+- C. Store the key by using AWS Key Management Service (AWS KMS). Create the DynamoDB table with default encryption. Include the `kms:Encrypt` parameter with the Amazon Resource Name (ARN) of the AWS KMS key when using the DynamoDB software development kit (SDK).
+- D. Store the key by using AWS Key Management Service (AWS KMS). Choose an AWS KMS AWS managed key during creation of the DynamoDB table. Provide the Amazon Resource Name (ARN) of the AWS KMS key.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Store the key by using AWS Key Management Service (AWS KMS). Choose an AWS KMS customer managed key during creation of the DynamoDB table. Provide the Amazon Resource Name (ARN) of the AWS KMS key.**
+
+### Explanation
+
+#### **Purpose of Encryption at Rest**
+
+Encryption at rest ensures that data is securely stored and protected from unauthorized access. The company requires that the encryption key be generated and managed by them, not AWS.
+
+#### **Why this option is correct**
+
+- **AWS KMS**: AWS Key Management Service (KMS) is a managed service that makes it easy to create and control encryption keys. It integrates with DynamoDB to provide encryption at rest.
+- **Customer Managed Key**: A customer managed key is a KMS key that is created and managed by the customer, not AWS. This meets the requirement that the company generates and controls the encryption key.
+- **DynamoDB Encryption**: During the creation of the DynamoDB table, the developer can specify encryption at rest using a customer managed key by providing the ARN of the KMS key. DynamoDB will automatically encrypt all data at rest using this key.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Manually encrypting and decrypting data in the application is error-prone and inefficient. DynamoDB provides built-in encryption at rest, which is more secure and easier to manage.
+- **Option C**: Default encryption in DynamoDB uses an AWS managed key, not a customer managed key. Additionally, the `kms:Encrypt` parameter is not used in this context.
+- **Option D**: An AWS managed key is generated and managed by AWS, not the company. This does not meet the requirement that the company generates and controls the encryption key.
+
+#### **Key Takeaways**
+
+- **AWS KMS**: Use AWS KMS to create and manage encryption keys.
+- **Customer Managed Key**: Choose a customer managed key to ensure that the company controls the encryption key.
+- **DynamoDB Encryption**: Specify the ARN of the KMS key during table creation to enable encryption at rest.
+
+By using **AWS KMS** with a **customer managed key**, the developer can ensure that all customer data in DynamoDB is encrypted at rest with a key generated and controlled by the company.
+
+</details>
