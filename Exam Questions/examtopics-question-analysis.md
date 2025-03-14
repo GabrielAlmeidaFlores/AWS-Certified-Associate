@@ -913,3 +913,49 @@ Environment variables in AWS CodeBuild are used to pass configuration data to th
 By using **AWS Systems Manager Parameter Store**, the developer can store and retrieve large numbers of environment variables without exceeding the size limit in AWS CodeBuild.
 
 </details>
+
+## Question #24 - #30
+
+A Development team decides to adopt a continuous integration/continuous delivery (CI/CD) process using AWS CodePipeline and AWS CodeCommit for a new application. However, management wants a person to review and approve the code before it is deployed to production.  
+How can the Development team add a manual approver to the CI/CD pipeline?
+
+- A. Use AWS SES to send an email to approvers when their action is required. Develop a simple application that allows approvers to accept or reject a build. Invoke an AWS Lambda function to advance the pipeline when a build is accepted.
+- B. If approved, add an approved tag when pushing changes to the CodeCommit repository. CodePipeline will proceed to build and deploy approved commits without interruption.
+- C. Add an approval step to CodeCommit. Commits will not be saved until approved.
+- D. Add an approval action to the pipeline. Configure the approval action to publish to an Amazon SNS topic when approval is required. The pipeline execution will stop and wait for an approval.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. Add an approval action to the pipeline. Configure the approval action to publish to an Amazon SNS topic when approval is required. The pipeline execution will stop and wait for an approval.**
+
+### Explanation
+
+#### **Purpose of Manual Approval**
+
+Manual approval steps in a CI/CD pipeline ensure that code changes are reviewed and approved by a designated person before being deployed to production. This adds a layer of control and reduces the risk of deploying faulty code.
+
+#### **Why this option is correct**
+
+- **Approval Action in CodePipeline**: AWS CodePipeline supports adding a **manual approval action** to the pipeline. This action pauses the pipeline and waits for a manual approval before proceeding to the next stage.
+- **Amazon SNS Integration**: The approval action can be configured to send a notification to an Amazon SNS topic when approval is required. This notifies the approver via email or other subscribed endpoints.
+- **Pipeline Execution**: The pipeline execution stops at the approval step and resumes only after the approver manually approves or rejects the changes. This ensures that no code is deployed to production without approval.
+
+#### **Why other options are incorrect**
+
+- **Option A**: While this approach could work, it is overly complex and requires custom development. CodePipeline already provides built-in support for manual approvals, making this option unnecessary.
+- **Option B**: Adding an approved tag to commits does not integrate with CodePipeline's workflow. CodePipeline does not automatically recognize tags as approval mechanisms.
+- **Option C**: CodeCommit does not support an approval step for commits. Commits are saved immediately upon being pushed to the repository.
+
+#### **Key Takeaways**
+
+- **Approval Action**: Use the built-in manual approval action in CodePipeline to pause the pipeline and require human intervention.
+- **SNS Notifications**: Configure the approval action to send notifications via Amazon SNS, ensuring that approvers are notified when their action is required.
+- **Pipeline Control**: Manual approval steps provide control over deployments, ensuring that only reviewed and approved code is deployed to production.
+
+By adding an **approval action** to the pipeline and configuring it to use **Amazon SNS**, the Development team can implement a manual approval process that meets management's requirements.
+
+</details>
