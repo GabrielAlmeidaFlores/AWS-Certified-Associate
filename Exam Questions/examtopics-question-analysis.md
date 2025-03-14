@@ -820,3 +820,50 @@ Logging is essential for debugging and monitoring Lambda function invocations. I
 By obtaining the **request ID from the context object** and writing logs to the **console**, the developer can effectively log key events and associate them with specific function invocations.
 
 </details>
+
+## Question #22 - #27
+
+A company experienced partial downtime during the last deployment of a new application. AWS Elastic Beanstalk split the environment's Amazon EC2 instances into batches and deployed a new version one batch at a time after taking them out of service. Therefore, full capacity was not maintained during deployment.  
+The developer plans to release a new version of the application, and is looking for a policy that will maintain full capacity and minimize the impact of the failed deployment.  
+Which deployment policy should the developer use?
+
+- A. Immutable
+- B. All at Once
+- C. Rolling
+- D. Rolling with an Additional Batch
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**A. Immutable**
+
+### Explanation
+
+#### **Purpose of Deployment Policies**
+
+Deployment policies in AWS Elastic Beanstalk determine how application updates are rolled out to EC2 instances. The goal is to minimize downtime and ensure high availability during deployments.
+
+#### **Why this option is correct**
+
+- **Immutable Deployment**: In an immutable deployment, Elastic Beanstalk creates a **new set of instances** with the updated application version while keeping the old instances running. Once the new instances pass health checks, traffic is shifted to them, and the old instances are terminated.
+- **Full Capacity**: Immutable deployments maintain full capacity throughout the deployment process because the old instances remain in service until the new instances are ready.
+- **Minimized Impact**: If the deployment fails, the new instances are terminated, and the old instances continue serving traffic. This ensures minimal impact on the application's availability.
+
+#### **Why other options are incorrect**
+
+- **Option B: All at Once**: This policy deploys the new version to all instances simultaneously, causing downtime because all instances are taken out of service during the update.
+- **Option C: Rolling**: This policy updates instances in batches, taking them out of service during the update. It does not maintain full capacity and can result in partial downtime.
+- **Option D: Rolling with an Additional Batch**: This policy adds a temporary batch of instances during the deployment but still takes instances out of service during the update. It does not guarantee full capacity.
+
+#### **Key Takeaways**
+
+- **Immutable Deployment**: Ensures full capacity and minimal downtime by creating new instances and shifting traffic only after they pass health checks.
+- **Failure Handling**: If the deployment fails, the new instances are discarded, and the old instances continue serving traffic.
+- **High Availability**: Immutable deployments are ideal for critical applications that require high availability during updates.
+
+By using the **Immutable** deployment policy, the developer can maintain full capacity and minimize the impact of a failed deployment.
+
+</details>
