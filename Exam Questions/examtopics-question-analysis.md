@@ -681,3 +681,49 @@ The principle of least privilege requires granting only the permissions necessar
 By using **CloudTrail logs** to identify the actions performed by the IAM role, the developer can quickly create a custom IAM policy that meets the principle of least privilege.
 
 </details>
+
+## Question #19 - #21
+
+A developer needs to write an AWS CloudFormation template on a local machine and deploy a CloudFormation stack to AWS.  
+What must the developer do to complete these tasks?
+
+- A. Install the AWS CLI. Configure the AWS CLI by using an IAM user name and password.
+- B. Install the AWS CLI. Configure the AWS CLI by using an SSH key.
+- C. Install the AWS CLI. Configure the AWS CLI by using an IAM user access key and secret key.
+- D. Install an AWS software development kit (SDK). Configure the SDK by using an X.509 certificate.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**C. Install the AWS CLI. Configure the AWS CLI by using an IAM user access key and secret key.**
+
+### Explanation
+
+#### **Purpose of AWS CLI**
+
+The AWS Command Line Interface (CLI) is a unified tool to manage AWS services from the command line. It allows developers to interact with AWS services, including CloudFormation, directly from their local machine.
+
+#### **Why this option is correct**
+
+- **Install the AWS CLI**: The developer must install the AWS CLI on their local machine to deploy CloudFormation stacks. The CLI provides commands to create, update, and delete CloudFormation stacks.
+- **Configure the AWS CLI**: To authenticate and authorize API calls, the developer must configure the AWS CLI with valid credentials. This is done using an **IAM user access key and secret key**, which are generated from the AWS Management Console.
+- **Deploy CloudFormation Stacks**: Once the CLI is installed and configured, the developer can use the `aws cloudformation deploy` command to deploy the CloudFormation template to AWS.
+
+#### **Why other options are incorrect**
+
+- **Option A**: The AWS CLI cannot be configured using an IAM user name and password. It requires an **access key and secret key** for authentication.
+- **Option B**: SSH keys are used for secure access to EC2 instances, not for configuring the AWS CLI.
+- **Option D**: While AWS SDKs can be used to interact with AWS services, they are not required for deploying CloudFormation stacks. Additionally, X.509 certificates are not used for CLI configuration.
+
+#### **Key Takeaways**
+
+- **AWS CLI**: The primary tool for deploying CloudFormation stacks from a local machine.
+- **Access Key and Secret Key**: Required for configuring the AWS CLI and authenticating API calls.
+- **CloudFormation Commands**: Use the `aws cloudformation deploy` command to deploy stacks.
+
+By **installing the AWS CLI** and **configuring it with an IAM user access key and secret key**, the developer can successfully deploy CloudFormation stacks to AWS.
+
+</details>
