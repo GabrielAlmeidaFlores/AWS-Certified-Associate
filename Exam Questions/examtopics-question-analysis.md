@@ -1014,3 +1014,49 @@ AWS SAM is a framework for building serverless applications using CloudFormation
 By using either **AWS SAM CLI** or **AWS CloudFormation commands**, the developer can automate the deployment process for the serverless application effectively.
 
 </details>
+
+## Question #26 - #34
+
+The developer is creating a web application that collects highly regulated and confidential user data through a POST request. The web application is served through Amazon CloudFront. User names and phone numbers must be encrypted at the edge and must remain encrypted throughout the entire application stack.  
+What is the MOST secure way to meet these requirements?
+
+- A. Enforce Match Viewer with HTTPS Only on CloudFront.
+- B. Use only the newest TLS security policy on CloudFront.
+- C. Enforce a signed URL on CloudFront on the front end.
+- D. Use field-level encryption on CloudFront.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. Use field-level encryption on CloudFront.**
+
+### Explanation
+
+#### **Purpose of Encryption for Confidential Data**
+
+To protect highly regulated and confidential user data, such as names and phone numbers, the data must be encrypted at the edge (when it enters CloudFront) and remain encrypted throughout the application stack.
+
+#### **Why this option is correct**
+
+- **Field-Level Encryption**: CloudFront's field-level encryption allows specific fields (e.g., user names and phone numbers) in HTTPS requests to be encrypted at the edge using public key cryptography. The encrypted data remains encrypted as it travels through the application stack and can only be decrypted by the intended recipient (e.g., the origin server) using the corresponding private key.
+- **End-to-End Encryption**: Field-level encryption ensures that sensitive data is encrypted at the edge and remains encrypted until it reaches the origin server, providing end-to-end security.
+- **Compliance**: This approach meets the requirement of encrypting sensitive data at the edge and maintaining encryption throughout the application stack.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Enforcing HTTPS with "Match Viewer" ensures that CloudFront uses HTTPS for communication with viewers and the origin. However, it does not encrypt specific fields in the request payload.
+- **Option B**: Using the newest TLS security policy ensures that CloudFront uses the latest encryption protocols, but it does not provide field-level encryption for sensitive data.
+- **Option C**: Enforcing signed URLs ensures that only authorized users can access CloudFront content, but it does not encrypt specific fields in the request payload.
+
+#### **Key Takeaways**
+
+- **Field-Level Encryption**: Encrypts specific fields in HTTPS requests at the edge, ensuring end-to-end encryption for sensitive data.
+- **Public Key Cryptography**: Uses public and private keys to encrypt and decrypt data, ensuring that only the intended recipient can access the sensitive information.
+- **Compliance**: Meets regulatory requirements for encrypting sensitive data at the edge and throughout the application stack.
+
+By using **field-level encryption on CloudFront**, the developer can ensure that user names and phone numbers are encrypted at the edge and remain encrypted throughout the application stack, providing the highest level of security.
+
+</details>
