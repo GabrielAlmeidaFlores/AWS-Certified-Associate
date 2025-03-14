@@ -774,3 +774,49 @@ Encryption at rest ensures that data is securely stored and protected from unaut
 By using **AWS KMS** with a **customer managed key**, the developer can ensure that all customer data in DynamoDB is encrypted at rest with a key generated and controlled by the company.
 
 </details>
+
+## Question #21 - #26
+
+A developer is writing an AWS Lambda function. The developer wants to log key events that occur during the Lambda function and include a unique identifier to associate the events with a specific function invocation.  
+Which of the following will help the developer accomplish this objective?
+
+- A. Obtain the request identifier from the Lambda context object. Architect the application to write logs to the console.
+- B. Obtain the request identifier from the Lambda event object. Architect the application to write logs to a file.
+- C. Obtain the request identifier from the Lambda event object. Architect the application to write logs to the console.
+- D. Obtain the request identifier from the Lambda context object. Architect the application to write logs to a file.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**A. Obtain the request identifier from the Lambda context object. Architect the application to write logs to the console.**
+
+### Explanation
+
+#### **Purpose of Logging in Lambda**
+
+Logging is essential for debugging and monitoring Lambda function invocations. Including a unique identifier in the logs helps correlate events with specific invocations.
+
+#### **Why this option is correct**
+
+- **Lambda Context Object**: The Lambda context object contains metadata about the invocation, including the **request ID** (`awsRequestId`). This is a unique identifier for each invocation.
+- **Writing Logs to the Console**: Lambda automatically captures logs written to the console (e.g., using `console.log` in Node.js or `print` in Python) and sends them to **Amazon CloudWatch Logs**. This is the recommended way to log events in Lambda functions.
+- **Unique Identifier**: By including the `awsRequestId` from the context object in the logs, the developer can associate log entries with specific invocations.
+
+#### **Why other options are incorrect**
+
+- **Option B**: The Lambda event object contains the input data passed to the function, not the request ID. Writing logs to a file is not recommended because Lambda functions are stateless, and files are not persisted across invocations.
+- **Option C**: The event object does not contain the request ID. Writing logs to the console is correct, but the unique identifier must come from the context object.
+- **Option D**: Writing logs to a file is not recommended for Lambda functions because files are not persisted across invocations. The context object is the correct source for the request ID.
+
+#### **Key Takeaways**
+
+- **Context Object**: Use the `awsRequestId` from the Lambda context object to uniquely identify invocations.
+- **Console Logging**: Write logs to the console, as Lambda automatically sends them to CloudWatch Logs.
+- **CloudWatch Logs**: Logs written to the console are stored in CloudWatch Logs, where they can be searched and analyzed.
+
+By obtaining the **request ID from the context object** and writing logs to the **console**, the developer can effectively log key events and associate them with specific function invocations.
+
+</details>
