@@ -1060,3 +1060,49 @@ To protect highly regulated and confidential user data, such as names and phone 
 By using **field-level encryption on CloudFront**, the developer can ensure that user names and phone numbers are encrypted at the edge and remain encrypted throughout the application stack, providing the highest level of security.
 
 </details>
+
+## Question #27 - #35
+
+A Developer has been asked to create an AWS Lambda function that is triggered any time updates are made to items in an Amazon DynamoDB table. The function has been created, and appropriate permissions have been added to the Lambda execution role. Amazon DynamoDB streams have been enabled for the table, but the function is still not being triggered.  
+Which option would enable DynamoDB table updates to trigger the Lambda function?
+
+- A. Change the `StreamViewType` parameter value to `NEW_AND_OLD_IMAGES` for the DynamoDB table
+- B. Configure event source mapping for the Lambda function
+- C. Map an Amazon SNS topic to the DynamoDB streams
+- D. Increase the maximum execution time (timeout) setting of the Lambda function
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Configure event source mapping for the Lambda function**
+
+### Explanation
+
+#### **Purpose of DynamoDB Streams and Lambda Integration**
+
+DynamoDB Streams capture changes to items in a DynamoDB table, and Lambda can be triggered to process these changes in real time. However, for this integration to work, an **event source mapping** must be configured.
+
+#### **Why this option is correct**
+
+- **Event Source Mapping**: Event source mapping is the mechanism that connects a DynamoDB stream to a Lambda function. It tells Lambda to poll the stream for changes and invoke the function when updates occur.
+- **How to Configure**: The developer can configure event source mapping using the AWS Management Console, AWS CLI, or SDKs. This involves specifying the DynamoDB stream ARN and the Lambda function ARN.
+- **Permissions**: Ensure that the Lambda execution role has the necessary permissions to read from the DynamoDB stream (`dynamodb:GetRecords`, `dynamodb:GetShardIterator`, and `dynamodb:DescribeStream`).
+
+#### **Why other options are incorrect**
+
+- **Option A**: Changing the `StreamViewType` parameter to `NEW_AND_OLD_IMAGES` determines what data is included in the stream (e.g., old and new images of the item). However, this does not enable the Lambda function to be triggered by the stream.
+- **Option C**: Mapping an Amazon SNS topic to DynamoDB streams is not a valid configuration. SNS is used for pub/sub messaging, not for triggering Lambda functions from DynamoDB streams.
+- **Option D**: Increasing the Lambda function's timeout setting does not address the issue of triggering the function. The function is not being invoked because the event source mapping is missing.
+
+#### **Key Takeaways**
+
+- **Event Source Mapping**: Required to connect a DynamoDB stream to a Lambda function.
+- **StreamViewType**: Determines the data included in the stream but does not enable triggering.
+- **Permissions**: Ensure the Lambda execution role has the necessary permissions to read from the DynamoDB stream.
+
+By **configuring event source mapping**, the developer can enable DynamoDB table updates to trigger the Lambda function.
+
+</details>
