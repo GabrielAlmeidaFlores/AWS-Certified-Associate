@@ -588,3 +588,50 @@ The primary key in DynamoDB determines how data is distributed and accessed. A w
 By designing the primary key with the **office identifier as the partition key** and the **employee name as the sort key**, the developer can achieve the **minimum performance impact** for the most frequently used query.
 
 </details>
+
+## Question #17 - #19
+
+A company hosts a microservices application that uses Amazon API Gateway, AWS Lambda, Amazon Simple Queue Service (Amazon SQS), and Amazon DynamoDB. One of the Lambda functions adds messages to an SQS FIFO queue.  
+When a developer checks the application logs, the developer finds a few duplicated items in a DynamoDB table. The items were inserted by another polling function that processes messages from the queue.  
+What is the MOST likely cause of this issue?
+
+- A. Write operations on the DynamoDB table are being throttled.
+- B. The SQS queue delivered the message to the function more than once.
+- C. API Gateway duplicated the message in the SQS queue.
+- D. The polling function timeout is greater than the queue visibility timeout.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. The polling function timeout is greater than the queue visibility timeout.**
+
+### Explanation
+
+#### **Purpose of SQS FIFO Queues**
+
+SQS FIFO (First-In-First-Out) queues are designed to ensure that messages are processed exactly once and in the correct order. However, duplicate items can still occur if the visibility timeout and function timeout are not properly configured.
+
+#### **Why this option is correct**
+
+- **Visibility Timeout**: The visibility timeout is the period during which SQS prevents other consumers from receiving and processing a message after it has been picked up by a consumer.
+- **Function Timeout**: If the Lambda function processing the message takes longer than the visibility timeout, SQS assumes the message was not processed and makes it available again for another consumer. This can lead to **duplicate processing** of the same message.
+- **Duplicate Items in DynamoDB**: If the Lambda function processes the same message multiple times due to visibility timeout issues, it can result in duplicate items being inserted into the DynamoDB table.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Write throttling in DynamoDB would result in failed or delayed writes, not duplicate items. Throttling does not cause duplicates.
+- **Option B**: SQS FIFO queues are designed to prevent duplicate message delivery. While rare, duplicates can occur, but this is not the most likely cause in this scenario.
+- **Option C**: API Gateway does not interact directly with SQS queues in this architecture. It is not responsible for duplicating messages in the queue.
+
+#### **Key Takeaways**
+
+- **Visibility Timeout**: Ensure that the visibility timeout of the SQS queue is greater than the maximum processing time of the Lambda function to prevent duplicate processing.
+- **Function Timeout**: Configure the Lambda function timeout to be less than the SQS visibility timeout to avoid message reprocessing.
+- **Idempotency**: Design the Lambda function to be idempotent, meaning it can handle duplicate messages without causing unintended side effects (e.g., duplicate items in DynamoDB).
+
+By ensuring that the **polling function timeout is less than the queue visibility timeout**, the developer can prevent duplicate processing and avoid duplicate items in the DynamoDB table.
+
+</details>
