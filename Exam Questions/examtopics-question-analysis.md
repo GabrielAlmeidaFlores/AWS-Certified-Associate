@@ -496,7 +496,7 @@ By using **SQS** and **Lambda**, the developer can create a highly elastic and c
 
 </details>
 
-## Question #15 - #16
+## Question #15 - #17
 
 A developer is implementing user authentication and authorization for a web application that is hosted on an Amazon EC2 instance. The developer needs to ensure that the user credentials are encrypted and secure when they are stored and transmitted.  
 Which solution will meet these requirements?
