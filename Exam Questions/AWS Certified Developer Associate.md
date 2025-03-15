@@ -1623,3 +1623,50 @@ DynamoDB uses read capacity units (RCUs) and write capacity units (WCUs) to meas
 By sizing the DynamoDB table with **6 RCUs** and **70 WCUs**, the developer can meet the application's read and write requirements.
 
 </details>
+
+## Question #39 - #58
+
+For a deployment using AWS CodeDeploy, what is the run order of the hooks for in-place deployments?
+
+- A. Before Install -> Application Stop -> Application Start -> After Install
+- B. Application Stop -> Before Install -> After Install -> Application Start
+- C. Before Install -> Application Stop -> Validate Service -> Application Start
+- D. Application Stop -> Before Install -> Validate Service -> Application Start
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Application Stop -> Before Install -> After Install -> Application Start**
+
+### Explanation
+
+#### **Purpose of Deployment Hooks**
+
+AWS CodeDeploy uses lifecycle event hooks to execute scripts at specific stages of the deployment process. These hooks allow you to control the deployment workflow, such as stopping the application, installing new files, and starting the application.
+
+#### **Why this option is correct**
+
+- **Application Stop**: The first step is to stop the application to ensure that no files are in use during the deployment.
+- **Before Install**: After stopping the application, the `BeforeInstall` hook runs to perform any pre-installation tasks, such as backing up files or configuring the environment.
+- **After Install**: Once the new application files are installed, the `AfterInstall` hook runs to perform post-installation tasks, such as setting file permissions or updating configurations.
+- **Application Start**: Finally, the application is started with the new version.
+
+#### **Why other options are incorrect**
+
+- **Option A**: This option incorrectly places `Before Install` before `Application Stop`. The application must be stopped before any installation tasks begin.
+- **Option C**: This option includes `Validate Service`, which is not part of the standard in-place deployment lifecycle hooks.
+- **Option D**: This option also includes `Validate Service`, which is not part of the standard in-place deployment lifecycle hooks.
+
+#### **Key Takeaways**
+
+- **Application Stop**: Stop the application before making any changes.
+- **Before Install**: Perform pre-installation tasks after stopping the application.
+- **After Install**: Perform post-installation tasks after installing the new files.
+- **Application Start**: Start the application with the new version.
+
+By following the correct order of **Application Stop -> Before Install -> After Install -> Application Start**, the developer can ensure a smooth and successful deployment using AWS CodeDeploy.
+
+</details>
