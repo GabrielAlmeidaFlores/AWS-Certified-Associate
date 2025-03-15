@@ -1152,3 +1152,49 @@ API keys are used to identify and control access to APIs in API Gateway. Usage p
 By calling the **`createUsagePlanKey` method**, the developer can associate the newly created API key with the correct usage plan, granting new users access to the API.
 
 </details>
+
+## Question #29 - #38
+
+A company is running a Docker application on Amazon ECS. The application must scale based on user load in the last 15 seconds.  
+How should a Developer instrument the code so that the requirement can be met?
+
+- A. Create a high-resolution custom Amazon CloudWatch metric for user activity data, then publish data every 30 seconds
+- B. Create a high-resolution custom Amazon CloudWatch metric for user activity data, then publish data every 5 seconds
+- C. Create a standard-resolution custom Amazon CloudWatch metric for user activity data, then publish data every 30 seconds
+- D. Create a standard-resolution custom Amazon CloudWatch metric for user activity data, then publish data every 5 seconds
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Create a high-resolution custom Amazon CloudWatch metric for user activity data, then publish data every 5 seconds**
+
+### Explanation
+
+#### **Purpose of Scaling Based on User Load**
+
+To scale the application dynamically based on user load, the developer needs to collect and analyze user activity data in near real time. This requires high-resolution metrics and frequent data publishing.
+
+#### **Why this option is correct**
+
+- **High-Resolution Custom Metric**: High-resolution metrics in CloudWatch support a granularity of **1 second**, which is necessary for scaling decisions based on user load in the last 15 seconds.
+- **Publishing Data Every 5 Seconds**: Publishing data every 5 seconds ensures that the metric reflects recent user activity and provides sufficient data points for accurate scaling decisions.
+- **Real-Time Scaling**: High-resolution metrics and frequent data publishing enable the application to scale quickly and accurately in response to changes in user load.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Publishing data every 30 seconds is too infrequent for scaling based on user load in the last 15 seconds. This would result in delayed or inaccurate scaling decisions.
+- **Option C**: Standard-resolution metrics support a granularity of **1 minute**, which is insufficient for scaling based on user load in the last 15 seconds.
+- **Option D**: While publishing data every 5 seconds is frequent enough, standard-resolution metrics do not support the required granularity for real-time scaling.
+
+#### **Key Takeaways**
+
+- **High-Resolution Metrics**: Use high-resolution custom metrics for granularity of 1 second.
+- **Frequent Data Publishing**: Publish data every 5 seconds to ensure accurate scaling decisions.
+- **Real-Time Scaling**: High-resolution metrics and frequent data publishing enable real-time scaling based on user load.
+
+By creating a **high-resolution custom CloudWatch metric** and publishing data **every 5 seconds**, the developer can meet the requirement of scaling the application based on user load in the last 15 seconds.
+
+</details>
