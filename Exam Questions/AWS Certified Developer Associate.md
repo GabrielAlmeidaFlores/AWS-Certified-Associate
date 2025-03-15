@@ -1337,3 +1337,51 @@ Unit tests are essential for ensuring code quality and catching issues early in 
 By updating the **AWS CodeBuild specification** to include a phase for running unit tests, the developer can seamlessly integrate unit testing into the CI/CD pipeline.
 
 </details>
+
+## Question #33 - #45
+
+A Development team is working on a case management solution that allows medical claims to be processed and reviewed. Users log in to provide information related to their medical and financial situations.  
+As part of the application, sensitive documents such as medical records, medical imaging, bank statements, and receipts are uploaded to Amazon S3. All documents must be securely transmitted and stored. All access to the documents must be recorded for auditing.  
+What is the MOST secure approach?
+
+- A. Use S3 default encryption using Advanced Encryption Standard-256 (AES-256) on the destination bucket.
+- B. Use Amazon Cognito for authorization and authentication to ensure the security of the application and documents.
+- C. Use AWS Lambda to encrypt and decrypt objects as they are placed into the S3 bucket.
+- D. Use client-side encryption/decryption with Amazon S3 and AWS KMS.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. Use client-side encryption/decryption with Amazon S3 and AWS KMS.**
+
+### Explanation
+
+#### **Purpose of Secure Document Handling**
+
+The application handles highly sensitive documents, so it is critical to ensure that the documents are securely transmitted, stored, and accessed. Additionally, all access must be recorded for auditing purposes.
+
+#### **Why this option is correct**
+
+- **Client-Side Encryption**: Encrypting documents on the client side before uploading them to S3 ensures that the data is never transmitted or stored in plaintext. This provides the highest level of security.
+- **AWS KMS Integration**: AWS Key Management Service (KMS) can be used to manage encryption keys for client-side encryption. KMS provides robust key management and auditing capabilities.
+- **Auditing**: AWS CloudTrail can be used to log all access to the S3 bucket and KMS keys, ensuring compliance with auditing requirements.
+- **End-to-End Security**: Client-side encryption ensures that sensitive documents are protected throughout their lifecycle, from transmission to storage.
+
+#### **Why other options are incorrect**
+
+- **Option A**: S3 default encryption using AES-256 encrypts data at rest but does not protect data during transmission. It also does not provide client-side encryption, which is more secure.
+- **Option B**: Amazon Cognito is used for user authentication and authorization but does not provide encryption for documents stored in S3.
+- **Option C**: Using AWS Lambda to encrypt and decrypt objects in S3 does not provide end-to-end security, as the data is transmitted to S3 in plaintext before encryption.
+
+#### **Key Takeaways**
+
+- **Client-Side Encryption**: Encrypt documents on the client side before uploading them to S3 to ensure end-to-end security.
+- **AWS KMS**: Use KMS to manage encryption keys and provide auditing capabilities.
+- **CloudTrail**: Enable CloudTrail to log all access to S3 and KMS for auditing purposes.
+
+By using **client-side encryption/decryption with Amazon S3 and AWS KMS**, the Development team can ensure the highest level of security for sensitive documents and meet auditing requirements.
+
+</details>
