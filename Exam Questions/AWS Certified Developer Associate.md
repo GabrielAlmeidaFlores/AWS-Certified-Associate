@@ -1570,3 +1570,56 @@ To securely call DynamoDB APIs from a front-end web application, the developer m
 By configuring **Amazon Cognito identity pools** and exchanging the JWT for **temporary credentials**, the developer can securely call DynamoDB APIs without exposing access or secret keys.
 
 </details>
+
+## Question #38 - #55
+
+A Developer must build an application that uses Amazon DynamoDB. The requirements state that the items being stored in the DynamoDB table will be 7KB in size and that reads must be strongly consistent. The maximum read rate is 3 items per second, and the maximum write rate is 10 items per second.  
+How should the Developer size the DynamoDB table to meet these requirements?
+
+- A. Read: 3 read capacity units Write: 70 write capacity units
+- B. Read: 6 read capacity units Write: 70 write capacity units
+- C. Read: 6 read capacity units Write: 10 write capacity units
+- D. Read: 3 read capacity units Write: 10 write capacity units
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Read: 6 read capacity units Write: 70 write capacity units**
+
+### Explanation
+
+#### **Purpose of DynamoDB Capacity Units**
+
+DynamoDB uses read capacity units (RCUs) and write capacity units (WCUs) to measure the throughput of a table. Properly sizing these units ensures that the table can handle the required read and write rates.
+
+#### **Why this option is correct**
+
+- **Read Capacity Units (RCUs)**:
+
+  - Each strongly consistent read of an item up to 4 KB in size consumes **1 RCU**.
+  - Since the items are 7 KB in size, each read will consume **2 RCUs** (7 KB ÷ 4 KB = 1.75, rounded up to 2).
+  - The maximum read rate is 3 items per second, so the total RCUs required are **3 items/second × 2 RCUs/item = 6 RCUs**.
+
+- **Write Capacity Units (WCUs)**:
+  - Each write of an item up to 1 KB in size consumes **1 WCU**.
+  - Since the items are 7 KB in size, each write will consume **7 WCUs** (7 KB ÷ 1 KB = 7).
+  - The maximum write rate is 10 items per second, so the total WCUs required are **10 items/second × 7 WCUs/item = 70 WCUs**.
+
+#### **Why other options are incorrect**
+
+- **Option A**: This option underestimates the write capacity units (10 WCUs instead of 70).
+- **Option C**: This option underestimates the write capacity units (10 WCUs instead of 70).
+- **Option D**: This option underestimates both the read capacity units (3 RCUs instead of 6) and the write capacity units (10 WCUs instead of 70).
+
+#### **Key Takeaways**
+
+- **Strongly Consistent Reads**: Each strongly consistent read of an item up to 4 KB consumes 1 RCU. For larger items, round up to the nearest 4 KB.
+- **Writes**: Each write of an item up to 1 KB consumes 1 WCU. For larger items, round up to the nearest 1 KB.
+- **Throughput Calculation**: Multiply the number of items per second by the RCUs or WCUs per item to determine the total capacity units required.
+
+By sizing the DynamoDB table with **6 RCUs** and **70 WCUs**, the developer can meet the application's read and write requirements.
+
+</details>
