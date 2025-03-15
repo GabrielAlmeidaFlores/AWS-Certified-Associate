@@ -1291,3 +1291,49 @@ Shards are the base throughput units of a Kinesis data stream. Each shard can su
 By deploying **6 EC2 instances**, the developer can ensure that all 6 shards are processed efficiently.
 
 </details>
+
+## Question #32 - #42
+
+A Company runs continuous integration/continuous delivery (CI/CD) pipelines for its application on AWS CodePipeline. A Developer must write unit tests and run them as part of the pipelines before staging the artifacts for testing.  
+How should the Developer incorporate unit tests as part of CI/CD pipelines?
+
+- A. Create a separate CodePipeline pipeline to run unit tests
+- B. Update the AWS CodeBuild specification to include a phase for running unit tests
+- C. Install the AWS CodeDeploy agent on an Amazon EC2 instance to run unit tests
+- D. Create a testing branch in AWS CodeCommit to run unit tests
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Update the AWS CodeBuild specification to include a phase for running unit tests**
+
+### Explanation
+
+#### **Purpose of Unit Tests in CI/CD Pipelines**
+
+Unit tests are essential for ensuring code quality and catching issues early in the development process. They should be integrated into the CI/CD pipeline to automatically validate code changes before deployment.
+
+#### **Why this option is correct**
+
+- **AWS CodeBuild**: CodeBuild is a fully managed build service that compiles source code, runs tests, and produces artifacts. It is integrated with CodePipeline and can be used to run unit tests as part of the build process.
+- **Buildspec File**: The developer can update the `buildspec.yml` file (CodeBuild's build specification) to include a **test phase**. This phase can execute unit tests and fail the build if any tests fail, ensuring that only tested code progresses to the next stage of the pipeline.
+- **Seamless Integration**: By incorporating unit tests into the CodeBuild phase, the developer ensures that tests are run automatically as part of the pipeline without requiring additional infrastructure or manual intervention.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Creating a separate pipeline for unit tests adds unnecessary complexity and overhead. Unit tests should be integrated into the existing pipeline to ensure they are run automatically for every code change.
+- **Option C**: The CodeDeploy agent is used for deploying applications to EC2 instances, not for running unit tests. This approach is not suitable for integrating unit tests into the CI/CD pipeline.
+- **Option D**: Creating a testing branch in CodeCommit does not automate the execution of unit tests. Tests must still be run manually or through a separate process, which defeats the purpose of CI/CD automation.
+
+#### **Key Takeaways**
+
+- **CodeBuild Integration**: Use CodeBuild to run unit tests as part of the build process.
+- **Buildspec File**: Update the `buildspec.yml` file to include a test phase for running unit tests.
+- **Automated Testing**: Ensure that unit tests are automatically executed for every code change, improving code quality and catching issues early.
+
+By updating the **AWS CodeBuild specification** to include a phase for running unit tests, the developer can seamlessly integrate unit testing into the CI/CD pipeline.
+
+</details>
