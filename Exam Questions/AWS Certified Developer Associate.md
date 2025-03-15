@@ -1431,3 +1431,50 @@ The application requires the client's IP address for processing. When placed beh
 By altering the application code to inspect the **`X-Forwarded-For` header**, the developer can retrieve the client IP address while maintaining the ability to scale horizontally.
 
 </details>
+
+## Question #35 - #49
+
+A Developer must analyze performance issues with production-distributed applications written as AWS Lambda functions. These distributed Lambda applications invoke other components that make up the applications.  
+How should the Developer identify and troubleshoot the root cause of the performance issues in production?
+
+- A. Add logging statements to the Lambda functions, then use Amazon CloudWatch to view the logs.
+- B. Use AWS CloudTrail and then examine the logs.
+- C. Use AWS X-Ray, then examine the segments and errors.
+- D. Run Amazon Inspector agents and then analyze performance.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**C. Use AWS X-Ray, then examine the segments and errors.**
+
+### Explanation
+
+#### **Purpose of Performance Analysis**
+
+The developer needs to identify and troubleshoot performance issues in a distributed application composed of multiple Lambda functions and other components. This requires tracing requests across all components to pinpoint bottlenecks or errors.
+
+#### **Why this option is correct**
+
+- **AWS X-Ray**: X-Ray is a distributed tracing service that provides end-to-end visibility into requests as they travel through the application. It helps identify performance bottlenecks, errors, and latency issues.
+- **Segments and Subsegments**: X-Ray breaks down requests into segments (for each service) and subsegments (for individual operations). This allows the developer to analyze the performance of each component and identify the root cause of issues.
+- **Error Analysis**: X-Ray captures errors and exceptions, making it easier to troubleshoot issues in production.
+- **Integration with Lambda**: X-Ray integrates seamlessly with AWS Lambda, automatically tracing requests and providing detailed insights into function execution.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Adding logging statements and using CloudWatch Logs can provide insights into function execution, but it does not provide end-to-end tracing across distributed components. This approach is less efficient for identifying performance bottlenecks.
+- **Option B**: AWS CloudTrail logs API calls for auditing and security purposes but does not provide performance tracing or insights into distributed applications.
+- **Option D**: Amazon Inspector is a security assessment service and is not designed for performance analysis or distributed tracing.
+
+#### **Key Takeaways**
+
+- **AWS X-Ray**: Use X-Ray for distributed tracing and performance analysis of Lambda-based applications.
+- **Segments and Errors**: Examine segments and errors in X-Ray to identify bottlenecks and troubleshoot issues.
+- **Integration**: X-Ray integrates with Lambda and other AWS services, providing comprehensive visibility into distributed applications.
+
+By using **AWS X-Ray**, the developer can effectively identify and troubleshoot the root cause of performance issues in the distributed Lambda application.
+
+</details>
