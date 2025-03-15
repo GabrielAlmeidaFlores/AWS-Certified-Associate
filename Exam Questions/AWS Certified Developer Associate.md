@@ -1478,3 +1478,49 @@ The developer needs to identify and troubleshoot performance issues in a distrib
 By using **AWS X-Ray**, the developer can effectively identify and troubleshoot the root cause of performance issues in the distributed Lambda application.
 
 </details>
+
+## Question #36 - #52
+
+A company runs an e-commerce website that uses Amazon DynamoDB where pricing for items is dynamically updated in real time. At any given time, multiple updates may occur simultaneously for pricing information on a particular product. This is causing the original editor's changes to be overwritten without a proper review process.  
+Which DynamoDB write option should be selected to prevent this overwriting?
+
+- A. Concurrent writes
+- B. Conditional writes
+- C. Atomic writes
+- D. Batch writes
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Conditional writes**
+
+### Explanation
+
+#### **Purpose of Preventing Overwrites**
+
+To ensure that pricing updates are properly reviewed and not overwritten by simultaneous updates, the application needs a mechanism to enforce conditional updates based on specific criteria.
+
+#### **Why this option is correct**
+
+- **Conditional Writes**: Conditional writes allow you to specify conditions that must be met for a write operation to succeed. For example, you can ensure that an update only occurs if the current value of an attribute matches an expected value.
+- **Preventing Overwrites**: By using conditional writes, the application can ensure that updates to pricing information are only applied if the data has not been modified since it was last read. This prevents overwriting changes made by other editors.
+- **Review Process**: Conditional writes can be used to implement a review process, where updates are only applied after certain conditions (e.g., approval) are met.
+
+#### **Why other options are incorrect**
+
+- **Option A (Concurrent writes)**: Concurrent writes do not prevent overwrites. They allow multiple writers to update the same item simultaneously, which can lead to conflicts and overwrites.
+- **Option C (Atomic writes)**: Atomic writes ensure that a write operation is completed as a single, indivisible operation. However, they do not prevent overwrites by other writers.
+- **Option D (Batch writes)**: Batch writes allow you to perform multiple write operations in a single request, but they do not provide a mechanism to prevent overwrites.
+
+#### **Key Takeaways**
+
+- **Conditional Writes**: Use conditional writes to enforce specific conditions for updates, preventing overwrites and ensuring data integrity.
+- **Review Process**: Implement a review process by using conditional writes to ensure that updates are only applied after certain conditions are met.
+- **Data Integrity**: Conditional writes help maintain data integrity in scenarios where multiple updates may occur simultaneously.
+
+By using **conditional writes**, the developer can prevent overwrites and ensure that pricing updates are properly reviewed before being applied.
+
+</details>
