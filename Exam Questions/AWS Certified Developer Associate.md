@@ -1106,3 +1106,49 @@ DynamoDB Streams capture changes to items in a DynamoDB table, and Lambda can be
 By **configuring event source mapping**, the developer can enable DynamoDB table updates to trigger the Lambda function.
 
 </details>
+
+## Question #28 - #36
+
+A company maintains a REST service using Amazon API Gateway and the API Gateway native API key validation. The company recently launched a new registration page, which allows users to sign up for the service. The registration page creates a new API key using `CreateApiKey` and sends the new key to the user. When the user attempts to call the API using this key, the user receives a `403 Forbidden` error. Existing users are unaffected and can still call the API.  
+What code updates will grant these new users access to the API?
+
+- A. The `createDeployment` method must be called so the API can be redeployed to include the newly created API key.
+- B. The `updateAuthorizer` method must be called to update the API's authorizer to include the newly created API key.
+- C. The `importApiKeys` method must be called to import all newly created API keys into the current stage of the API.
+- D. The `createUsagePlanKey` method must be called to associate the newly created API key with the correct usage plan.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. The `createUsagePlanKey` method must be called to associate the newly created API key with the correct usage plan.**
+
+### Explanation
+
+#### **Purpose of API Keys and Usage Plans in API Gateway**
+
+API keys are used to identify and control access to APIs in API Gateway. Usage plans define who can access specific API stages and methods, as well as rate limits and quotas.
+
+#### **Why this option is correct**
+
+- **API Key Creation**: The `CreateApiKey` method creates a new API key, but the key is not automatically associated with a usage plan.
+- **Usage Plan Association**: To grant access to the API, the new API key must be associated with a usage plan using the `createUsagePlanKey` method. This ensures that the key is authorized to access the API and enforces any rate limits or quotas defined in the usage plan.
+- **403 Forbidden Error**: The `403 Forbidden` error occurs because the new API key is not associated with a usage plan, so API Gateway denies access.
+
+#### **Why other options are incorrect**
+
+- **Option A**: The `createDeployment` method is used to deploy an API to a stage. It does not associate API keys with usage plans.
+- **Option B**: The `updateAuthorizer` method is used to update a custom authorizer, not to associate API keys with usage plans.
+- **Option C**: The `importApiKeys` method is used to import API keys from an external source, not to associate them with usage plans.
+
+#### **Key Takeaways**
+
+- **API Key Creation**: Use `CreateApiKey` to generate new API keys.
+- **Usage Plan Association**: Use `createUsagePlanKey` to associate API keys with usage plans and grant access to the API.
+- **403 Forbidden Error**: This error typically indicates that the API key is not associated with a usage plan or does not have the necessary permissions.
+
+By calling the **`createUsagePlanKey` method**, the developer can associate the newly created API key with the correct usage plan, granting new users access to the API.
+
+</details>
