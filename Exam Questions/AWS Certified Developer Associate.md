@@ -1198,3 +1198,50 @@ To scale the application dynamically based on user load, the developer needs to 
 By creating a **high-resolution custom CloudWatch metric** and publishing data **every 5 seconds**, the developer can meet the requirement of scaling the application based on user load in the last 15 seconds.
 
 </details>
+
+## Question #30 - #40
+
+A Developer is working on an application that handles 10MB documents that contain highly-sensitive data. The application will use AWS KMS to perform client-side encryption.  
+What steps must be followed?
+
+- A. Invoke the `Encrypt` API passing the plaintext data that must be encrypted, then reference the customer managed key ARN in the `KeyId` parameter
+- B. Invoke the `GenerateRandom` API to get a data encryption key, then use the data encryption key to encrypt the data
+- C. Invoke the `GenerateDataKey` API to retrieve the encrypted version of the data encryption key to encrypt the data
+- D. Invoke the `GenerateDataKey` API to retrieve the plaintext version of the data encryption key to encrypt the data
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. Invoke the `GenerateDataKey` API to retrieve the plaintext version of the data encryption key to encrypt the data**
+
+### Explanation
+
+#### **Purpose of Client-Side Encryption**
+
+Client-side encryption ensures that sensitive data is encrypted before it is sent to AWS. This provides an additional layer of security, as the data is never transmitted or stored in plaintext.
+
+#### **Why this option is correct**
+
+- **GenerateDataKey API**: The `GenerateDataKey` API generates a **data encryption key (DEK)** that can be used to encrypt data. It returns both a plaintext version and an encrypted version of the DEK.
+- **Plaintext DEK**: The plaintext version of the DEK is used to encrypt the data locally on the client side. After encryption, the plaintext DEK should be securely erased from memory.
+- **Encrypted DEK**: The encrypted version of the DEK is stored alongside the encrypted data. It can be decrypted later using AWS KMS to retrieve the plaintext DEK for decryption.
+- **Efficiency**: Using a DEK for client-side encryption is more efficient than encrypting large data directly with KMS, as KMS has a limit of 4 KB for the `Encrypt` API.
+
+#### **Why other options are incorrect**
+
+- **Option A**: The `Encrypt` API is limited to 4 KB of data and is not suitable for encrypting 10MB documents. It is also less efficient for large data.
+- **Option B**: The `GenerateRandom` API generates random data but does not provide a data encryption key for encrypting sensitive data.
+- **Option C**: Retrieving only the encrypted version of the DEK does not allow the client to encrypt the data locally. The plaintext DEK is required for client-side encryption.
+
+#### **Key Takeaways**
+
+- **GenerateDataKey API**: Use this API to generate a data encryption key for client-side encryption.
+- **Plaintext DEK**: Use the plaintext DEK to encrypt data locally, then securely erase it.
+- **Encrypted DEK**: Store the encrypted DEK alongside the encrypted data for future decryption.
+
+By invoking the **`GenerateDataKey` API** and using the **plaintext version of the DEK**, the developer can perform client-side encryption of the 10MB documents securely and efficiently.
+
+</details>
