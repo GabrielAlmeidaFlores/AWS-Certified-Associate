@@ -1385,3 +1385,49 @@ The application handles highly sensitive documents, so it is critical to ensure 
 By using **client-side encryption/decryption with Amazon S3 and AWS KMS**, the Development team can ensure the highest level of security for sensitive documents and meet auditing requirements.
 
 </details>
+
+## Question #34 - #47
+
+An application needs to use the IP address of the client in its processing. The application has been moved into AWS and has been placed behind an Application Load Balancer (ALB). However, all the client IP addresses now appear to be the same. The application must maintain the ability to scale horizontally.  
+Based on this scenario, what is the MOST cost-effective solution to this problem?
+
+- A. Remove the application from the ALB. Delete the ALB and change Amazon Route 53 to direct traffic to the instance running the application.
+- B. Remove the application from the ALB. Create a Classic Load Balancer in its place. Direct traffic to the application using the HTTP protocol.
+- C. Alter the application code to inspect the `X-Forwarded-For` header. Ensure that the code can work properly if a list of IP addresses is passed in the header.
+- D. Alter the application code to inspect a custom header. Alter the client code to pass the IP address in the custom header.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**C. Alter the application code to inspect the `X-Forwarded-For` header. Ensure that the code can work properly if a list of IP addresses is passed in the header.**
+
+### Explanation
+
+#### **Purpose of Client IP Address**
+
+The application requires the client's IP address for processing. When placed behind an ALB, the client's IP address is replaced by the ALB's IP address. To retrieve the original client IP address, the application must inspect the `X-Forwarded-For` header.
+
+#### **Why this option is correct**
+
+- **X-Forwarded-For Header**: The ALB automatically adds the `X-Forwarded-For` header to incoming requests. This header contains the original client IP address and any intermediate proxy IP addresses.
+- **Code Modification**: The application code can be updated to inspect the `X-Forwarded-For` header and extract the client IP address. This is a simple and cost-effective solution that does not require changes to the infrastructure.
+- **Horizontal Scaling**: The solution maintains the ability to scale horizontally, as the ALB can distribute traffic across multiple instances of the application.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Removing the ALB and using Route 53 to direct traffic to a single instance eliminates the ability to scale horizontally and introduces a single point of failure.
+- **Option B**: Replacing the ALB with a Classic Load Balancer does not solve the issue of retrieving the client IP address. Classic Load Balancers also replace the client IP address with their own.
+- **Option D**: Using a custom header requires modifying both the client and server code, which is more complex and less scalable than using the `X-Forwarded-For` header.
+
+#### **Key Takeaways**
+
+- **X-Forwarded-For Header**: Use this header to retrieve the original client IP address when the application is behind an ALB.
+- **Code Modification**: Update the application code to inspect the `X-Forwarded-For` header and extract the client IP address.
+- **Horizontal Scaling**: Maintain the ability to scale horizontally by keeping the ALB in place.
+
+By altering the application code to inspect the **`X-Forwarded-For` header**, the developer can retrieve the client IP address while maintaining the ability to scale horizontally.
+
+</details>
