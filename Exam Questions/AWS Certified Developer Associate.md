@@ -1245,3 +1245,49 @@ Client-side encryption ensures that sensitive data is encrypted before it is sen
 By invoking the **`GenerateDataKey` API** and using the **plaintext version of the DEK**, the developer can perform client-side encryption of the 10MB documents securely and efficiently.
 
 </details>
+
+## Question #31 - #41
+
+An application uses Amazon Kinesis Data Streams to ingest and process large streams of data records in real time. Amazon EC2 instances consume and process the data from the shards of the Kinesis data stream by using Amazon Kinesis Client Library (KCL). The application handles the failure scenarios and does not require standby workers. The application reports that a specific shard is receiving more data than expected. To adapt to the changes in the rate of data flow, the `hot` shard is resharded.  
+Assuming that the initial number of shards in the Kinesis data stream is 4, and after resharding the number of shards increased to 6, what is the maximum number of EC2 instances that can be deployed to process data from all the shards?
+
+- A. 12
+- B. 6
+- C. 4
+- D. 1
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. 6**
+
+### Explanation
+
+#### **Purpose of Shards in Kinesis Data Streams**
+
+Shards are the base throughput units of a Kinesis data stream. Each shard can support up to **1 MB/s of data input and 2 MB/s of data output**. Each shard can be processed by **one consumer** at a time.
+
+#### **Why this option is correct**
+
+- **One Consumer per Shard**: Each shard can be processed by only one EC2 instance at a time. Therefore, the maximum number of EC2 instances that can be deployed is equal to the number of shards.
+- **Resharding**: After resharding, the number of shards increased from 4 to 6. This means that up to **6 EC2 instances** can be deployed to process data from all the shards.
+- **No Standby Workers**: Since the application does not require standby workers, the maximum number of EC2 instances is determined solely by the number of shards.
+
+#### **Why other options are incorrect**
+
+- **Option A (12)**: This exceeds the number of shards (6) and is not possible, as each shard can only be processed by one EC2 instance.
+- **Option C (4)**: This reflects the initial number of shards before resharding. After resharding, the number of shards increased to 6, allowing for more EC2 instances.
+- **Option D (1)**: This is insufficient to process data from all 6 shards, as each shard requires its own consumer.
+
+#### **Key Takeaways**
+
+- **Shard-to-Instance Ratio**: Each shard can be processed by one EC2 instance at a time.
+- **Resharding Impact**: Resharding increases the number of shards, allowing for more EC2 instances to process data in parallel.
+- **Maximum Instances**: The maximum number of EC2 instances is equal to the number of shards.
+
+By deploying **6 EC2 instances**, the developer can ensure that all 6 shards are processed efficiently.
+
+</details>
