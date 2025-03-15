@@ -1524,3 +1524,49 @@ To ensure that pricing updates are properly reviewed and not overwritten by simu
 By using **conditional writes**, the developer can prevent overwrites and ensure that pricing updates are properly reviewed before being applied.
 
 </details>
+
+## Question #37 - #54
+
+A front-end web application is using Amazon Cognito user pools to handle the user authentication flow. A developer is integrating Amazon DynamoDB into the application using the AWS SDK for JavaScript.  
+How would the developer securely call the API without exposing the access or secret keys?
+
+- A. Configure Amazon Cognito identity pools and exchange the JSON Web Token (JWT) for temporary credentials.
+- B. Run the web application in an Amazon EC2 instance with the instance profile configured.
+- C. Hardcode the credentials, use Amazon S3 to host the web application, and enable server-side encryption.
+- D. Use Amazon Cognito user pool JSON Web Tokens (JWTs) to access the DynamoDB APIs.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**A. Configure Amazon Cognito identity pools and exchange the JSON Web Token (JWT) for temporary credentials.**
+
+### Explanation
+
+#### **Purpose of Secure API Calls**
+
+To securely call DynamoDB APIs from a front-end web application, the developer must avoid exposing access or secret keys, which can be compromised if embedded in client-side code.
+
+#### **Why this option is correct**
+
+- **Amazon Cognito Identity Pools**: Identity pools allow you to exchange a JWT (from a Cognito user pool) for temporary AWS credentials. These credentials can be used to securely call AWS services like DynamoDB.
+- **Temporary Credentials**: Temporary credentials are short-lived and automatically rotated, reducing the risk of exposure. They are scoped to specific permissions, ensuring least privilege.
+- **Integration with AWS SDK**: The AWS SDK for JavaScript can use the temporary credentials to make secure API calls to DynamoDB without exposing access or secret keys.
+
+#### **Why other options are incorrect**
+
+- **Option B**: Running the web application in an EC2 instance with an instance profile is not suitable for front-end applications. Instance profiles are used for server-side applications, not client-side code.
+- **Option C**: Hardcoding credentials in client-side code is highly insecure, as the credentials can be easily exposed. Server-side encryption in S3 does not address this issue.
+- **Option D**: JWTs from Cognito user pools are used for authentication, not for directly accessing DynamoDB APIs. They must be exchanged for temporary credentials through an identity pool.
+
+#### **Key Takeaways**
+
+- **Cognito Identity Pools**: Use identity pools to exchange JWTs for temporary AWS credentials.
+- **Temporary Credentials**: Temporary credentials are secure, short-lived, and scoped to specific permissions.
+- **AWS SDK Integration**: Use the AWS SDK for JavaScript to make secure API calls with temporary credentials.
+
+By configuring **Amazon Cognito identity pools** and exchanging the JWT for **temporary credentials**, the developer can securely call DynamoDB APIs without exposing access or secret keys.
+
+</details>
