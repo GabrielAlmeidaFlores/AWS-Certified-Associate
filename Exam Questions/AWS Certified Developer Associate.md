@@ -158,12 +158,29 @@ The correct answer is:
 
 ### Explanation
 
-- **Option B** is correct because it allows the developer to configure AWS credentials locally using the AWS CLI (`aws configure --profile`) and then use those credentials when invoking the Lambda function locally with the `sam local invoke --profile` command. This ensures that the Lambda function can make AWS API calls using the test AWS account credentials.
-- **Option A** is incorrect because hardcoding credentials in the `template.yml` file is not a secure practice and is not recommended.
-- **Option C** is incorrect because setting an IAM role in the `template.yml` file does not apply to local testing. Local testing requires explicit credentials to be provided.
-- **Option D** is incorrect because the `--parameter-overrides` option is used to override CloudFormation template parameters, not to provide AWS credentials for local testing.
+#### **Purpose of Testing AWS API Calls Locally**
 
-Using the `aws configure` command and the `--profile` option with `sam local invoke` is the recommended and secure way to test AWS API calls locally.
+The developer needs to test the Lambda function locally while allowing it to make AWS API calls using the AWS SDK. This requires configuring AWS credentials for the test AWS account.
+
+#### **Why this option is correct**
+
+- **AWS CLI Configuration**: The `aws configure` command allows the developer to set up a profile with AWS credentials (access key and secret key) for the test AWS account.
+- **Profile Usage**: By using the `--profile` option with the `sam local invoke` command, the developer can specify the profile to use for AWS API calls during local testing.
+- **Secure and Flexible**: This approach avoids hardcoding credentials in the `template.yml` file and allows the developer to switch between different profiles for different environments (e.g., test, production).
+
+#### **Why other options are incorrect**
+
+- **Option A**: Hardcoding credentials in the `template.yml` file is not secure and is not recommended. Credentials should be managed separately using the AWS CLI or environment variables.
+- **Option C**: Setting an IAM role in the `template.yml` file does not apply to local testing. Local testing requires explicit credentials to be provided.
+- **Option D**: The `--parameter-overrides` option is used to override CloudFormation template parameters, not to provide AWS credentials for local testing.
+
+#### **Key Takeaways**
+
+- **AWS CLI Configuration**: Use `aws configure` to set up a profile with AWS credentials for the test AWS account.
+- **Profile Usage**: Use the `--profile` option with `sam local invoke` to specify the profile for AWS API calls during local testing.
+- **Security**: Avoid hardcoding credentials in the `template.yml` file or other configuration files.
+
+By adding a **test profile** using the `aws configure` command and running AWS SAM with the `--profile` option, the developer can securely test the Lambda function locally while allowing it to make AWS API calls.
 
 </details>
 
