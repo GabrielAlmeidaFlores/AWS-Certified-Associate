@@ -48,7 +48,7 @@ By using **Amazon DynamoDB with `TransactGetItems` and `TransactWriteItems`**, t
 
 ## Question #02 - #02
 
-A developer has created a Java application that makes HTTP requests directly to AWS services. Application logging shows 5xx HTTP response codes that occur at irregular intervals. The errors are affecting users.
+A developer has created a Java application that makes HTTP requests directly to AWS services. Application logging shows 5xx HTTP response codes that occur at irregular intervals. The errors are affecting users.  
 How should the developer update the application to improve the application's resiliency?
 
 - A. Revise the request content in the application code.
@@ -66,12 +66,29 @@ The correct answer is:
 
 ### Explanation
 
-- **Option B** is the best choice because the AWS SDK for Java is designed to handle AWS service interactions more robustly, including built-in retry mechanisms and error handling for transient issues like 5xx errors. This improves the application's resiliency without requiring manual intervention.
-- **Option A** is incorrect because revising the request content does not address the root cause of 5xx errors, which are typically server-side issues.
-- **Option C** is incorrect because scaling out the application does not resolve the underlying issue of 5xx errors. It may distribute the load but does not improve the handling of transient errors.
-- **Option D** is incorrect because while additional logging can help diagnose issues, it does not improve the application's ability to handle or recover from 5xx errors.
+#### **Purpose of Improving Resiliency**
 
-Using the AWS SDK for Java ensures better error handling and retries, making the application more resilient to transient failures.
+The application is experiencing 5xx errors, which indicate server-side issues (e.g., throttling, service disruptions). To improve resiliency, the application should handle these errors gracefully and retry failed requests.
+
+#### **Why this option is correct**
+
+- **AWS SDK for Java**: The AWS SDK provides built-in **retry mechanisms** and **error handling** for AWS API calls. It automatically retries failed requests with exponential backoff, reducing the impact of transient errors (e.g., 5xx errors).
+- **Best Practices**: The SDK follows AWS best practices for interacting with services, including handling throttling, timeouts, and service disruptions.
+- **Simplified Development**: Using the SDK simplifies development by abstracting low-level HTTP requests and providing higher-level APIs for interacting with AWS services.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Revising the request content does not address the root cause of 5xx errors, which are server-side issues.
+- **Option C**: Scaling out the application does not resolve the issue of 5xx errors. It may distribute the load but does not improve error handling or retry logic.
+- **Option D**: Additional logging helps diagnose issues but does not improve the application's ability to handle or recover from errors.
+
+#### **Key Takeaways**
+
+- **AWS SDK**: Use the AWS SDK for Java to benefit from built-in retry mechanisms and error handling.
+- **Resiliency**: The SDK improves application resiliency by automatically retrying failed requests and handling transient errors.
+- **Best Practices**: The SDK follows AWS best practices, ensuring secure and efficient interactions with AWS services.
+
+By using the **AWS SDK for Java**, the developer can improve the application's resiliency and reduce the impact of 5xx errors on users.
 
 </details>
 
