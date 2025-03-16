@@ -1,11 +1,11 @@
 ## Question #01 - #01
 
-A gaming website gives users the ability to trade game items with each other on the platform. The platform requires both users' records to be updated and persisted in one transaction. If any update fails, the transaction must roll back.
+A gaming website gives users the ability to trade game items with each other on the platform. The platform requires both users' records to be updated and persisted in one transaction. If any update fails, the transaction must roll back.  
 Which AWS solution can provide the transactional capability that is required for this feature?
 
 - A. Amazon DynamoDB with operations made with the Consistent Read parameter set to true
 - B. Amazon ElastiCache for Memcached with operations made within a transaction block
-- C. Amazon DynamoDB with reads and writes made by using TransactGetItems and TransactWriteItems operations
+- C. Amazon DynamoDB with reads and writes made by using `TransactGetItems` and `TransactWriteItems` operations
 - D. Amazon Aurora MySQL with operations made within a transaction block
 - E. Amazon Athena with operations made within a transaction block
 
@@ -15,15 +15,34 @@ Which AWS solution can provide the transactional capability that is required for
 
 The correct answer is:
 
-**C. Amazon DynamoDB with reads and writes made by using TransactGetItems and TransactWriteItems operations**
+**C. Amazon DynamoDB with reads and writes made by using `TransactGetItems` and `TransactWriteItems` operations**
 
 ### Explanation
 
-- **Amazon DynamoDB** supports **TransactWriteItems** and **TransactGetItems** operations, which allow you to perform multiple reads and writes as a single, atomic transaction. This ensures that either all the operations in the transaction succeed, or none of them do, providing the transactional capability required for the gaming platform's item trading feature.
-- **Option A** is incorrect because the "Consistent Read" parameter ensures strong consistency for individual read operations but does not provide transactional capabilities for multiple operations.
-- **Option B** is incorrect because Amazon ElastiCache for Memcached does not support transactional operations.
-- **Option D** is incorrect because while Amazon Aurora MySQL supports transactions, it is not the best fit for a gaming platform that likely requires high scalability and low latency, which DynamoDB is better suited for.
-- **Option E** is incorrect because Amazon Athena is a query service for analyzing data in S3 and does not support transactional operations.
+#### **Purpose of Transactional Capability**
+
+The gaming platform requires **atomicity** for trading game items, meaning that updates to both users' records must succeed or fail together. If any part of the transaction fails, the entire transaction must roll back.
+
+#### **Why this option is correct**
+
+- **Amazon DynamoDB Transactions**: DynamoDB supports **transactions** through the `TransactGetItems` and `TransactWriteItems` APIs. These APIs allow multiple read and write operations to be grouped into a single, atomic transaction.
+- **Atomicity**: If any operation in the transaction fails, the entire transaction is rolled back, ensuring data consistency.
+- **Scalability**: DynamoDB is a fully managed NoSQL database that provides high scalability and performance, making it suitable for gaming applications with high transaction volumes.
+
+#### **Why other options are incorrect**
+
+- **Option A**: The `Consistent Read` parameter ensures strong consistency for individual read operations but does not provide transactional capabilities for multiple operations.
+- **Option B**: Amazon ElastiCache for Memcached does not support transactions. It is a caching service and is not designed for transactional workloads.
+- **Option D**: Amazon Aurora MySQL supports transactions, but it is a relational database and may not scale as well as DynamoDB for high-throughput gaming applications.
+- **Option E**: Amazon Athena is a query service for analyzing data in S3 and does not support transactional operations.
+
+#### **Key Takeaways**
+
+- **DynamoDB Transactions**: Use `TransactGetItems` and `TransactWriteItems` to perform atomic transactions in DynamoDB.
+- **Atomicity**: Ensure that all operations in the transaction succeed or fail together.
+- **Scalability**: DynamoDB is well-suited for high-throughput, low-latency applications like gaming platforms.
+
+By using **Amazon DynamoDB with `TransactGetItems` and `TransactWriteItems`**, the developer can implement the required transactional capability for trading game items on the platform.
 
 </details>
 
