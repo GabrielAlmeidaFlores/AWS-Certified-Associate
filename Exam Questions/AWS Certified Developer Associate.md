@@ -390,12 +390,29 @@ The correct answer is:
 
 ### Explanation
 
-- **Option B** is correct because **Amazon Cognito supports Lambda triggers**, including the **post-authentication trigger**, which is invoked after a successful user login. This is the most operationally efficient solution because it directly integrates with Cognito's authentication flow, eliminating the need for additional services or manual API calls.
-- **Option A** is incorrect because it requires additional complexity, such as setting up an API Gateway and making client-side API calls, which is less efficient and more error-prone.
-- **Option C** is incorrect because using CloudWatch Logs and log subscription filters introduces unnecessary latency and complexity. It is not the most direct or efficient way to handle login notifications.
-- **Option D** is incorrect because streaming logs to Kinesis Data Firehose and processing them with Lambda is overly complex for this use case. It introduces additional cost and latency compared to using a Cognito Lambda trigger.
+#### **Purpose of Login Activity Notifications**
 
-Using a **post-authentication Lambda trigger** with Amazon Cognito is the simplest, most efficient, and most reliable way to send login activity notifications.
+The company wants to send an email notification every time a user logs in. This requires triggering an action immediately after a successful login.
+
+#### **Why this option is correct**
+
+- **Post Authentication Trigger**: Amazon Cognito supports **Lambda triggers**, including the **post authentication trigger**. This trigger is invoked after a user successfully authenticates, making it the perfect place to send login activity notifications.
+- **Lambda Function**: The Lambda function can use Amazon SES to send an email notification to the user or an administrator.
+- **Operationally Efficient**: This approach is the most efficient because it directly integrates with Cognito's authentication flow and does not require additional services or manual API calls.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Using API Gateway and client-side API calls adds unnecessary complexity. It is not as efficient as using a Cognito Lambda trigger.
+- **Option C**: Using CloudWatch Logs and log subscription filters introduces latency and complexity. It is not as efficient as using a Cognito Lambda trigger.
+- **Option D**: Streaming logs to Kinesis Data Firehose and processing them with Lambda is overly complex for this use case. It introduces additional latency and cost.
+
+#### **Key Takeaways**
+
+- **Cognito Lambda Triggers**: Use Cognito's post authentication trigger to execute actions immediately after a user logs in.
+- **Lambda Function**: Create a Lambda function to send email notifications using Amazon SES.
+- **Operational Efficiency**: Directly integrating with Cognito's authentication flow is the most efficient way to send login activity notifications.
+
+By creating a **Lambda function** and adding it as a **post authentication trigger** in Amazon Cognito, the company can efficiently send login activity notifications by email.
 
 </details>
 
