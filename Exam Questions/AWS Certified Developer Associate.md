@@ -206,13 +206,29 @@ The correct answers are:
 
 ### Explanation
 
-- **Option B** is correct because creating an IAM role with permissions to the S3 bucket allows the EC2 instance to securely access the bucket without hardcoding credentials. Roles are the recommended way to grant permissions to AWS services.
-- **Option C** is correct because attaching the IAM role to an instance profile and associating it with the EC2 instance ensures that the application running on the instance can securely assume the role and access the S3 bucket.
-- **Option A** is incorrect because creating an IAM user and adding it to a group is not the most secure approach for EC2 instances. Hardcoding or storing user credentials on the instance is not recommended.
-- **Option D** is incorrect because IAM roles cannot be assigned to IAM groups. Roles are meant to be assumed by AWS services, users, or applications.
-- **Option E** is incorrect because storing IAM user credentials in environment variables is insecure and violates AWS best practices. Credentials can be exposed or compromised.
+#### **Purpose of Secure API Requests**
 
-Using an IAM role and attaching it to the EC2 instance via an instance profile is the most secure and recommended approach for granting permissions to AWS resources.
+To securely access S3 from an EC2 instance, the application should use temporary credentials provided by an IAM role, rather than hardcoding or storing long-term credentials.
+
+#### **Why these options are correct**
+
+1. **IAM Role**: An IAM role defines a set of permissions for accessing AWS resources (e.g., S3). Roles are more secure than IAM users because they provide temporary credentials that are automatically rotated.
+2. **Instance Profile**: An instance profile is a container for an IAM role that can be attached to an EC2 instance. When the role is attached to the instance, the application running on the instance can use the role's permissions to access S3.
+3. **Temporary Credentials**: The EC2 instance automatically retrieves temporary credentials from the instance profile, eliminating the need to store long-term credentials (e.g., access keys) on the instance.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Creating an IAM user and adding it to a group is not the most secure approach. IAM users have long-term credentials, which can be compromised if stored on the EC2 instance.
+- **Option D**: IAM roles cannot be assigned to IAM groups. Roles are meant to be assumed by AWS services, users, or applications.
+- **Option E**: Storing IAM user credentials in environment variables is insecure. Long-term credentials can be exposed or compromised, posing a security risk.
+
+#### **Key Takeaways**
+
+- **IAM Roles**: Use IAM roles to grant permissions to EC2 instances securely.
+- **Instance Profiles**: Attach the IAM role to an instance profile and associate it with the EC2 instance.
+- **Temporary Credentials**: Temporary credentials are automatically managed and rotated, providing a more secure solution than long-term credentials.
+
+By creating an **IAM role** and attaching it to the EC2 instance via an **instance profile**, the developer can ensure that the application makes API requests to S3 in the most secure manner.
 
 </details>
 
