@@ -1869,3 +1869,49 @@ The developer needs to remove personally identifiable information (PII) from the
 By implementing **Kinesis Data Firehose data transformation with a Lambda function**, the developer can efficiently remove customer identifiers and store the modified data in S3.
 
 </details>
+
+## Question #41
+
+A developer is using an AWS Lambda function to generate avatars for profile pictures that are uploaded to an Amazon S3 bucket. The Lambda function is automatically invoked for profile pictures that are saved under the `/original/` S3 prefix. The developer notices that some pictures cause the Lambda function to time out. The developer wants to implement a fallback mechanism by using another Lambda function that resizes the profile picture.  
+Which solution will meet these requirements with the LEAST development effort?
+
+- A. Set the image resize Lambda function as a destination of the avatar generator Lambda function for the events that fail processing.
+- B. Create an Amazon Simple Queue Service (Amazon SQS) queue. Set the SQS queue as a destination with an on failure condition for the avatar generator Lambda function. Configure the image resize Lambda function to poll from the SQS queue.
+- C. Create an AWS Step Functions state machine that invokes the avatar generator Lambda function and uses the image resize Lambda function as a fallback. Create an Amazon EventBridge rule that matches events from the S3 bucket to invoke the state machine.
+- D. Create an Amazon Simple Notification Service (Amazon SNS) topic. Set the SNS topic as a destination with an on failure condition for the avatar generator Lambda function. Subscribe the image resize Lambda function to the SNS topic.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**A. Set the image resize Lambda function as a destination of the avatar generator Lambda function for the events that fail processing.**
+
+### Explanation
+
+#### **Purpose of Fallback Mechanism**
+
+The developer needs to handle cases where the avatar generator Lambda function times out by invoking a fallback Lambda function to resize the profile picture. This should be done with minimal development effort.
+
+#### **Why this option is correct**
+
+- **Lambda Destinations**: Lambda supports **destinations** for asynchronous invocations. You can configure a destination for events that fail processing, such as timeouts or errors.
+- **Least Development Effort**: By setting the image resize Lambda function as a destination for failed events, the developer can implement the fallback mechanism without additional infrastructure or complex configurations.
+- **Automatic Invocation**: When the avatar generator Lambda function fails, the image resize Lambda function is automatically invoked, ensuring that the profile picture is processed.
+
+#### **Why other options are incorrect**
+
+- **Option B**: Using an SQS queue requires additional setup, such as creating the queue and configuring the image resize Lambda function to poll from it. This adds complexity and development effort.
+- **Option C**: Using AWS Step Functions and EventBridge introduces unnecessary complexity for this use case. It requires creating a state machine and configuring EventBridge rules.
+- **Option D**: Using an SNS topic requires additional setup, such as creating the topic and subscribing the image resize Lambda function to it. This adds complexity and development effort.
+
+#### **Key Takeaways**
+
+- **Lambda Destinations**: Use Lambda destinations to automatically invoke a fallback function when the primary function fails.
+- **Minimal Effort**: This approach requires the least development effort and no additional infrastructure.
+- **Automatic Fallback**: The fallback function is automatically invoked, ensuring that the profile picture is processed.
+
+By setting the **image resize Lambda function as a destination for failed events**, the developer can implement the fallback mechanism with minimal effort.
+
+</details>
