@@ -344,12 +344,29 @@ The correct answer is:
 
 ### Explanation
 
-- **Option D** is correct because the **instance metadata service** provides information about the EC2 instance, including the instance type. By retrieving the instance type (e.g., `p2.xlarge`, `g4dn.xlarge`, etc.), the application can determine whether it is running on a GPU instance. GPU instances have specific instance type prefixes like `p`, `g`, or `inf`.
-- **Option A** is incorrect because the `ElasticGpuAssociations` property is not used to determine whether an instance is a GPU instance. It is related to Elastic GPUs, which are a different feature and not commonly used.
-- **Option B** is incorrect because there is no standard `GPU_AVAILABLE` environment variable provided by Amazon Linux or EC2.
-- **Option C** is incorrect because the `DescribeElasticGpus` API operation is used to describe Elastic GPUs, not GPU instances. This is not relevant for determining the instance type.
+#### **Purpose of Instance Type Detection**
 
-The simplest and most reliable way to determine if the application is running on a GPU instance is to retrieve the instance type from the instance metadata service.
+The application needs to determine whether it is running on a GPU instance to execute the appropriate image analysis functions. This requires identifying the instance type.
+
+#### **Why this option is correct**
+
+- **Instance Metadata**: EC2 instances provide metadata that includes information about the instance, such as the instance type. The metadata can be accessed at `http://169.254.169.254/latest/meta-data/`.
+- **Instance Type**: By retrieving the instance type from the metadata, the application can determine whether it is running on a GPU instance (e.g., `p2`, `p3`, `g4dn`, etc.).
+- **Simple and Efficient**: Accessing instance metadata is a simple and efficient way to determine the instance type without making external API calls.
+
+#### **Why other options are incorrect**
+
+- **Option A**: The `DescribeInstances` API operation is used to retrieve information about EC2 instances but requires API calls and permissions. It is not necessary for this use case.
+- **Option B**: There is no standard `GPU_AVAILABLE` environment variable provided by Amazon Linux or EC2.
+- **Option C**: The `DescribeElasticGpus` API operation is used to describe Elastic GPUs, which are a different feature and not relevant for determining the instance type.
+
+#### **Key Takeaways**
+
+- **Instance Metadata**: Use the instance metadata service to retrieve the instance type.
+- **GPU Instances**: GPU instances have specific instance type prefixes (e.g., `p`, `g`, `inf`).
+- **Efficiency**: Accessing instance metadata is the most efficient way to determine the instance type.
+
+By retrieving the **instance type from the instance metadata**, the application can determine whether it is running on a GPU instance and execute the appropriate image analysis functions.
 
 </details>
 
