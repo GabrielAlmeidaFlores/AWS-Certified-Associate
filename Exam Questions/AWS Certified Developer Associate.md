@@ -1823,3 +1823,49 @@ AWS CodeDeploy uses lifecycle event hooks to execute scripts at specific stages 
 By following the correct order of **Application Stop -> Before Install -> After Install -> Application Start**, the developer can ensure a smooth and successful deployment using AWS CodeDeploy.
 
 </details>
+
+## Question #40
+
+An Amazon Kinesis Data Firehose delivery stream is receiving customer data that contains personally identifiable information. A developer needs to remove pattern-based customer identifiers from the data and store the modified data in an Amazon S3 bucket.  
+What should the developer do to meet these requirements?
+
+- A. Implement Kinesis Data Firehose data transformation as an AWS Lambda function. Configure the function to remove the customer identifiers. Set an Amazon S3 bucket as the destination of the delivery stream.
+- B. Launch an Amazon EC2 instance. Set the EC2 instance as the destination of the delivery stream. Run an application on the EC2 instance to remove the customer identifiers. Store the transformed data in an Amazon S3 bucket.
+- C. Create an Amazon OpenSearch Service instance. Set the OpenSearch Service instance as the destination of the delivery stream. Use search and replace to remove the customer identifiers. Export the data to an Amazon S3 bucket.
+- D. Create an AWS Step Functions workflow to remove the customer identifiers. As the last step in the workflow, store the transformed data in an Amazon S3 bucket. Set the workflow as the destination of the delivery stream.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**A. Implement Kinesis Data Firehose data transformation as an AWS Lambda function. Configure the function to remove the customer identifiers. Set an Amazon S3 bucket as the destination of the delivery stream.**
+
+### Explanation
+
+#### **Purpose of Data Transformation**
+
+The developer needs to remove personally identifiable information (PII) from the data before storing it in S3. This requires transforming the data in real time as it flows through the Kinesis Data Firehose delivery stream.
+
+#### **Why this option is correct**
+
+- **Kinesis Data Firehose Data Transformation**: Kinesis Data Firehose supports **data transformation** using AWS Lambda. The Lambda function can process the incoming data, remove the customer identifiers, and return the modified data.
+- **Lambda Function**: The developer can write a Lambda function to identify and remove pattern-based customer identifiers from the data.
+- **S3 Destination**: After transformation, the modified data can be stored in an S3 bucket, which is a supported destination for Kinesis Data Firehose.
+
+#### **Why other options are incorrect**
+
+- **Option B**: Using an EC2 instance as the destination adds unnecessary complexity and cost. Kinesis Data Firehose natively supports data transformation with Lambda, making this approach inefficient.
+- **Option C**: Amazon OpenSearch Service is not designed for real-time data transformation. It is used for search and analytics, not for modifying data before storage.
+- **Option D**: AWS Step Functions is not a supported destination for Kinesis Data Firehose. It is used for orchestrating workflows, not for real-time data transformation.
+
+#### **Key Takeaways**
+
+- **Kinesis Data Firehose Transformation**: Use a Lambda function to transform data in real time as it flows through the delivery stream.
+- **Lambda Function**: Write a Lambda function to remove customer identifiers from the data.
+- **S3 Destination**: Store the transformed data in an S3 bucket for further processing or analysis.
+
+By implementing **Kinesis Data Firehose data transformation with a Lambda function**, the developer can efficiently remove customer identifiers and store the modified data in S3.
+
+</details>
