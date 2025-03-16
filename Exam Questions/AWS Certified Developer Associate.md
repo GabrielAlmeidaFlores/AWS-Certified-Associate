@@ -94,8 +94,7 @@ By using the **AWS SDK for Java**, the developer can improve the application's r
 
 ## Question #03 - #03
 
-A global company has a mobile app with static data stored in an Amazon S3 bucket in the us-east-1 Region. The company serves the content through an Amazon
-CloudFront distribution. The company is launching the mobile app in South Africa. The data must reside in the af-south-1 Region. The company does not want to deploy a specific mobile client for South Africa.
+A global company has a mobile app with static data stored in an Amazon S3 bucket in the us-east-1 Region. The company serves the content through an Amazon CloudFront distribution. The company is launching the mobile app in South Africa. The data must reside in the af-south-1 Region. The company does not want to deploy a specific mobile client for South Africa.  
 What should the company do to meet these requirements?
 
 - A. Use the CloudFront geographic restriction feature to block access to users in South Africa.
@@ -113,12 +112,29 @@ The correct answer is:
 
 ### Explanation
 
-- **Option B** is correct because a Lambda@Edge function can dynamically change the origin (S3 bucket) based on the user's location. By associating the function as an **origin request trigger**, the function can redirect requests from users in South Africa to the S3 bucket in the `af-south-1` Region, ensuring the data resides in the required Region without deploying a specific mobile client for South Africa.
-- **Option A** is incorrect because blocking access to users in South Africa does not meet the requirement of serving content to users in that region.
-- **Option C** is incorrect because a **viewer response trigger** occurs after the origin has already been accessed, which is too late to change the S3 origin Region.
-- **Option D** is incorrect because adding `af-south-1` to the alternate domain name (CNAME) does not change the origin Region or ensure that the data resides in `af-south-1`.
+#### **Purpose of Regional Data Residency**
 
-Using a Lambda@Edge function as an **origin request trigger** is the most effective solution to dynamically route users to the appropriate S3 bucket based on their geographic location.
+The company needs to ensure that data for South African users resides in the `af-south-1` Region while continuing to serve global users from the `us-east-1` Region. This requires dynamically routing requests based on the user's location.
+
+#### **Why this option is correct**
+
+- **Lambda@Edge**: Lambda@Edge allows you to run code at CloudFront edge locations, enabling dynamic request handling based on user location.
+- **Origin Request Trigger**: By associating a Lambda@Edge function as an **origin request trigger**, the function can inspect the request and modify the origin (S3 bucket) based on the user's geographic location.
+- **Dynamic Routing**: The Lambda@Edge function can route requests from South African users to the S3 bucket in `af-south-1` and route all other requests to the S3 bucket in `us-east-1`.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Blocking access to users in South Africa does not meet the requirement of serving data from the `af-south-1` Region.
+- **Option C**: A viewer response trigger occurs after the origin has been accessed, which is too late to change the S3 origin Region.
+- **Option D**: Including `af-south-1` in the alternate domain name (CNAME) does not change the origin Region or ensure that data resides in `af-south-1`.
+
+#### **Key Takeaways**
+
+- **Lambda@Edge**: Use Lambda@Edge to dynamically route requests based on user location.
+- **Origin Request Trigger**: Modify the origin (S3 bucket) at the edge based on the user's geographic location.
+- **Regional Data Residency**: Ensure that data for South African users resides in the `af-south-1` Region while serving global users from `us-east-1`.
+
+By creating a **Lambda@Edge function** and associating it as an **origin request trigger**, the company can dynamically route requests to the appropriate S3 bucket based on the user's location, meeting the data residency requirements.
 
 </details>
 
