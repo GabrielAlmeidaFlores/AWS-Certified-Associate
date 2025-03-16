@@ -252,12 +252,29 @@ The correct answer is:
 
 ### Explanation
 
-- **Option B** is correct because **CloudFront requires certificates to be created in the `us-east-1` Region**. Certificates created in other Regions (like `eu-west-1`) will not be visible or usable in CloudFront. Additionally, the alternate domain name (CNAME) in the CloudFront distribution settings must match the domain name specified in the certificate.
-- **Option A** is incorrect because creating the certificate in the same Region as the application (`eu-west-1`) will not work. CloudFront only supports certificates from the `us-east-1` Region.
-- **Option C** is incorrect because CloudFront distributions are global and not tied to a specific Region. Recreating the distribution in the same Region as the certificate will not resolve the issue.
-- **Option D** is incorrect because the default root object is used to specify the default file to serve when a user accesses the root URL of the distribution. It has no relation to ACM certificates.
+#### **Purpose of Encryption in Transit**
 
-To fix the issue, the developer must create the certificate in the `us-east-1` Region and ensure the alternate domain name (CNAME) matches the domain name in the certificate.
+To provide encryption in transit for the CloudFront distribution, the developer needs to use an SSL/TLS certificate from AWS Certificate Manager (ACM). However, CloudFront only supports certificates created in the **us-east-1** Region.
+
+#### **Why this option is correct**
+
+- **ACM Certificate in us-east-1**: CloudFront requires SSL/TLS certificates to be created in the **us-east-1** Region, regardless of where the application or CloudFront distribution is located.
+- **Alternate Domain Name (CNAME)**: The alternate domain name in the CloudFront distribution settings must match the domain name specified in the ACM certificate.
+- **Fix the Issue**: By creating the certificate in the **us-east-1** Region and ensuring the CNAME matches, the developer can successfully configure encryption in transit for the CloudFront distribution.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Creating the certificate in the same Region as the application (eu-west-1) will not work, as CloudFront only supports certificates from the **us-east-1** Region.
+- **Option C**: Recreating the CloudFront distribution in the same Region as the certificate (eu-west-1) will not resolve the issue, as CloudFront still requires the certificate to be in **us-east-1**.
+- **Option D**: The default root object is used to specify the default file to serve when a user accesses the root URL of the distribution. It has no relation to ACM certificates.
+
+#### **Key Takeaways**
+
+- **ACM Certificate Region**: CloudFront only supports SSL/TLS certificates created in the **us-east-1** Region.
+- **Alternate Domain Name**: Ensure the alternate domain name in the CloudFront distribution matches the domain name in the ACM certificate.
+- **Encryption in Transit**: Use an ACM certificate to enable HTTPS for the CloudFront distribution.
+
+By creating the **ACM certificate in the us-east-1 Region** and ensuring the **alternate domain name matches**, the developer can fix the issue and enable encryption in transit for the CloudFront distribution.
 
 </details>
 
