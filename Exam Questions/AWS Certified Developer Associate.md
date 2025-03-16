@@ -298,12 +298,29 @@ The correct answer is:
 
 ### Explanation
 
-- **Option B** is correct because **Application Load Balancers (ALBs) natively support integration with Amazon Cognito** for user authentication. Amazon Cognito can be configured as an authentication provider, allowing users to log in using their social media accounts (e.g., Google, Facebook, etc.). The ALB handles the authentication process before forwarding requests to the application.
-- **Option A** is incorrect because ALBs do not support AWS Lambda authorizers. Lambda authorizers are used with API Gateway, not ALBs.
-- **Option C** is incorrect because CloudFront does not natively support Amazon Cognito for authentication. Authentication is typically handled at the ALB or application level.
-- **Option D** is incorrect because ALBs do not support Lambda authorizers, and this approach would add unnecessary complexity. The ALB's native integration with Amazon Cognito is the recommended and simpler solution.
+#### **Purpose of User Authentication**
 
-By configuring the ALB to use Amazon Cognito, the developer can seamlessly authenticate users via their social media accounts without additional custom code.
+The application needs to authenticate users who log in using their social media accounts. This requires integrating a secure and scalable authentication solution.
+
+#### **Why this option is correct**
+
+- **Amazon Cognito**: Cognito is a fully managed service that provides user authentication and authorization. It supports social identity providers (e.g., Google, Facebook) for user login.
+- **ALB Integration**: The ALB can be configured to use Amazon Cognito as an authentication provider. When a user tries to access the application, the ALB redirects them to Cognito for authentication. After successful authentication, the ALB allows access to the application.
+- **Seamless Integration**: This approach provides a seamless and secure way to authenticate users without requiring custom code or additional infrastructure.
+
+#### **Why other options are incorrect**
+
+- **Option A**: ALBs do not support Lambda authorizers. Lambda authorizers are used with API Gateway, not ALBs.
+- **Option C**: CloudFront does not natively support Amazon Cognito for authentication. Authentication is typically handled at the ALB or application level.
+- **Option D**: ALBs do not support Lambda authorizers, and this approach would add unnecessary complexity. The ALB's native integration with Amazon Cognito is the recommended solution.
+
+#### **Key Takeaways**
+
+- **Amazon Cognito**: Use Cognito for user authentication with social identity providers.
+- **ALB Integration**: Configure the ALB to use Cognito as an authentication provider for seamless user login.
+- **Secure and Scalable**: Cognito provides a secure and scalable solution for user authentication.
+
+By configuring the **ALB to use Amazon Cognito**, the developer can authenticate users who log in using their social media accounts.
 
 </details>
 
