@@ -1,4 +1,4 @@
-## Question #01 - #01
+## Question #01
 
 A gaming website gives users the ability to trade game items with each other on the platform. The platform requires both users' records to be updated and persisted in one transaction. If any update fails, the transaction must roll back.  
 Which AWS solution can provide the transactional capability that is required for this feature?
@@ -46,7 +46,7 @@ By using **Amazon DynamoDB with `TransactGetItems` and `TransactWriteItems`**, t
 
 </details>
 
-## Question #02 - #02
+## Question #02
 
 A developer has created a Java application that makes HTTP requests directly to AWS services. Application logging shows 5xx HTTP response codes that occur at irregular intervals. The errors are affecting users.  
 How should the developer update the application to improve the application's resiliency?
@@ -92,7 +92,7 @@ By using the **AWS SDK for Java**, the developer can improve the application's r
 
 </details>
 
-## Question #03 - #03
+## Question #03
 
 A global company has a mobile app with static data stored in an Amazon S3 bucket in the us-east-1 Region. The company serves the content through an Amazon CloudFront distribution. The company is launching the mobile app in South Africa. The data must reside in the af-south-1 Region. The company does not want to deploy a specific mobile client for South Africa.  
 What should the company do to meet these requirements?
@@ -138,7 +138,7 @@ By creating a **Lambda@Edge function** and associating it as an **origin request
 
 </details>
 
-## Question #04 - #04
+## Question #04
 
 A developer is testing an AWS Lambda function by using the AWS Serverless Application Model (AWS SAM) local CLI. The application that is implemented by the Lambda function makes several AWS API calls by using the AWS software development kit (SDK). The developer wants to allow the function to make AWS API calls in a test AWS account from the developer's laptop.  
 What should the developer do to meet these requirements?
@@ -184,7 +184,7 @@ By adding a **test profile** using the `aws configure` command and running AWS S
 
 </details>
 
-## Question #05 - #05
+## Question #05
 
 A developer designed an application on an Amazon EC2 instance. The application makes API requests to objects in an Amazon S3 bucket.  
 Which combination of steps will ensure that the application makes the API requests in the MOST secure manner? (Choose two.)
@@ -232,7 +232,7 @@ By creating an **IAM role** and attaching it to the EC2 instance via an **instan
 
 </details>
 
-## Question #06 - #06
+## Question #06
 
 A developer is configuring an Amazon CloudFront distribution for a new application to provide encryption in transit. The application is running in the eu-west-1 Region. The developer creates a new certificate in AWS Certificate Manager (ACM) in eu-west-1, but the certificate is not visible in the CloudFront distribution settings.  
 What should the developer do to fix this problem?
@@ -278,7 +278,7 @@ By creating the **ACM certificate in the us-east-1 Region** and ensuring the **a
 
 </details>
 
-## Question #07 - #07
+## Question #07
 
 A developer is building an application that runs behind an Application Load Balancer (ALB). The ALB is configured as the origin for an Amazon CloudFront distribution. Users will log in to the application by using their social media accounts.  
 How can the developer authenticate users?
@@ -324,7 +324,7 @@ By configuring the **ALB to use Amazon Cognito**, the developer can authenticate
 
 </details>
 
-## Question #08 - #08
+## Question #08
 
 A company has an application that analyzes photographs. A developer is preparing the application for deployment to Amazon EC2 instances. The application's image analysis functions require a mix of GPU instances and CPU instances that run on Amazon Linux. The developer needs to add code to the application so that the functions can determine whether they are running on a GPU instance.  
 What should the functions do to obtain this information?
@@ -370,7 +370,7 @@ By retrieving the **instance type from the instance metadata**, the application 
 
 </details>
 
-## Question #09 - #09
+## Question #09
 
 A company has an application that uses Amazon Cognito user pools as an identity provider. The company must secure access to user records. The company has set up multi-factor authentication (MFA). The company also wants to send a login activity notification by email every time a user logs in.  
 What is the MOST operationally efficient solution that meets this requirement?
@@ -416,7 +416,7 @@ By creating a **Lambda function** and adding it as a **post authentication trigg
 
 </details>
 
-## Question #10 - #10
+## Question #10
 
 A company hosts a three-tier web application on AWS behind an Amazon CloudFront distribution. A developer wants a dashboard to monitor error rates and anomalies of the CloudFront distribution with the shortest possible refresh interval.  
 Which combination of steps should the developer take to meet these requirements? (Choose two.)
@@ -466,7 +466,7 @@ By combining **real-time logs**, **Kinesis Data Streams**, and **OpenSearch Serv
 
 </details>
 
-## Question #11 - #11
+## Question #11
 
 A developer creates a customer managed key for multiple AWS users to encrypt data in Amazon S3. The developer configures Amazon Simple Notification Service (Amazon SNS) to publish a message if key deletion is scheduled. The developer needs to preserve any SNS messages that cannot be delivered so that those messages can be reprocessed.  
 Which AWS service or feature should the developer use to meet this requirement?
@@ -511,7 +511,7 @@ Using **Amazon SQS** as a subscriber to the SNS topic ensures that undelivered m
 
 </details>
 
-## Question #12 - #12
+## Question #12
 
 A developer needs to deploy an application to AWS Elastic Beanstalk for a company. The application consists of a single Docker image. The company's automated continuous integration and continuous delivery (CI/CD) process builds the Docker image and pushes the image to a public Docker registry.  
 How should the developer deploy the application to Elastic Beanstalk?
@@ -557,7 +557,7 @@ By creating a `docker-compose.yml` file and using the Elastic Beanstalk CLI, the
 
 </details>
 
-## Question #13 - #13
+## Question #13
 
 A company is using AWS CodeDeploy for all production deployments. A developer has an Amazon Elastic Container Service (Amazon ECS) application that uses the `CodeDeployDefault.ECSAIIAtOnce` configuration. The developer needs to update the production environment in increments of 10% until the entire production environment is updated.  
 Which CodeDeploy configuration should the developer use to meet these requirements?
@@ -602,7 +602,7 @@ By using the `CodeDeployDefault.ECSLinear10PercentEvery3Minutes` configuration, 
 
 </details>
 
-## Question #14 - #15
+## Question #14
 
 A company has point-of-sale devices across thousands of retail shops that synchronize sales transactions with a centralized system. The system includes an Amazon API Gateway API that exposes an AWS Lambda function. The Lambda function processes the transactions and stores the transactions in Amazon RDS for MySQL. The number of transactions increases rapidly during the day and is near zero at night.  
 How can a developer increase the elasticity of the system MOST cost-effectively?
@@ -649,7 +649,7 @@ By using **SQS** and **Lambda**, the developer can create a highly elastic and c
 
 </details>
 
-## Question #15 - #17
+## Question #15
 
 A developer is implementing user authentication and authorization for a web application that is hosted on an Amazon EC2 instance. The developer needs to ensure that the user credentials are encrypted and secure when they are stored and transmitted.  
 Which solution will meet these requirements?
@@ -696,7 +696,7 @@ By using **Amazon Cognito**, the developer can ensure that user credentials are 
 
 </details>
 
-## Question #16 - #18
+## Question #16
 
 A company that has multiple offices uses an Amazon DynamoDB table to store employee payroll information. Item attributes consist of employee names, office identifiers, and cumulative daily hours worked. The most frequently used query extracts a report of an alphabetical subset of employees for a specific office.  
 Which design of the DynamoDB table primary key will have the MINIMUM performance impact?
@@ -742,7 +742,7 @@ By designing the primary key with the **office identifier as the partition key**
 
 </details>
 
-## Question #17 - #19
+## Question #17
 
 A company hosts a microservices application that uses Amazon API Gateway, AWS Lambda, Amazon Simple Queue Service (Amazon SQS), and Amazon DynamoDB. One of the Lambda functions adds messages to an SQS FIFO queue.  
 When a developer checks the application logs, the developer finds a few duplicated items in a DynamoDB table. The items were inserted by another polling function that processes messages from the queue.  
@@ -789,7 +789,7 @@ By ensuring that the **polling function timeout is less than the queue visibilit
 
 </details>
 
-## Question #18 - #20
+## Question #18
 
 A development team has been using a builder server that is hosted on an Amazon EC2 instance to perform builds and deployments for the last 3 months. The EC2 instance's instance profile uses an IAM role that contains the `AdministratorAccess` managed policy. The development team must replace that policy with a policy that provides only the required permissions.  
 What is the FASTEST way to create a custom IAM policy for the EC2 instance to meet this requirement?
@@ -835,7 +835,7 @@ By using **CloudTrail logs** to identify the actions performed by the IAM role, 
 
 </details>
 
-## Question #19 - #21
+## Question #19
 
 A developer needs to write an AWS CloudFormation template on a local machine and deploy a CloudFormation stack to AWS.  
 What must the developer do to complete these tasks?
@@ -881,7 +881,7 @@ By **installing the AWS CLI** and **configuring it with an IAM user access key a
 
 </details>
 
-## Question #20 - #23
+## Question #20
 
 Topic 1  
 A developer needs to use Amazon DynamoDB to store customer orders. The developer's company requires all customer data to be encrypted at rest with a key that the company generates.  
@@ -928,7 +928,7 @@ By using **AWS KMS** with a **customer managed key**, the developer can ensure t
 
 </details>
 
-## Question #21 - #26
+## Question #21
 
 A developer is writing an AWS Lambda function. The developer wants to log key events that occur during the Lambda function and include a unique identifier to associate the events with a specific function invocation.  
 Which of the following will help the developer accomplish this objective?
@@ -974,7 +974,7 @@ By obtaining the **request ID from the context object** and writing logs to the 
 
 </details>
 
-## Question #22 - #27
+## Question #22
 
 A company experienced partial downtime during the last deployment of a new application. AWS Elastic Beanstalk split the environment's Amazon EC2 instances into batches and deployed a new version one batch at a time after taking them out of service. Therefore, full capacity was not maintained during deployment.  
 The developer plans to release a new version of the application, and is looking for a policy that will maintain full capacity and minimize the impact of the failed deployment.  
@@ -1021,7 +1021,7 @@ By using the **Immutable** deployment policy, the developer can maintain full ca
 
 </details>
 
-## Question #23 - #29
+## Question #23
 
 When a Developer tries to run an AWS CodeBuild project, it raises an error because the length of all environment variables exceeds the limit for the combined maximum of characters.  
 What is the recommended solution?
@@ -1067,7 +1067,7 @@ By using **AWS Systems Manager Parameter Store**, the developer can store and re
 
 </details>
 
-## Question #24 - #30
+## Question #24
 
 A Development team decides to adopt a continuous integration/continuous delivery (CI/CD) process using AWS CodePipeline and AWS CodeCommit for a new application. However, management wants a person to review and approve the code before it is deployed to production.  
 How can the Development team add a manual approver to the CI/CD pipeline?
@@ -1113,7 +1113,7 @@ By adding an **approval action** to the pipeline and configuring it to use **Ama
 
 </details>
 
-## Question #25 - #32
+## Question #25
 
 A developer is creating a script to automate the deployment process for a serverless application. The developer wants to use an existing AWS Serverless Application Model (AWS SAM) template for the application.  
 What should the developer use for the project? (Choose two.)
@@ -1168,7 +1168,7 @@ By using either **AWS SAM CLI** or **AWS CloudFormation commands**, the develope
 
 </details>
 
-## Question #26 - #34
+## Question #26
 
 The developer is creating a web application that collects highly regulated and confidential user data through a POST request. The web application is served through Amazon CloudFront. User names and phone numbers must be encrypted at the edge and must remain encrypted throughout the entire application stack.  
 What is the MOST secure way to meet these requirements?
@@ -1214,7 +1214,7 @@ By using **field-level encryption on CloudFront**, the developer can ensure that
 
 </details>
 
-## Question #27 - #35
+## Question #27
 
 A Developer has been asked to create an AWS Lambda function that is triggered any time updates are made to items in an Amazon DynamoDB table. The function has been created, and appropriate permissions have been added to the Lambda execution role. Amazon DynamoDB streams have been enabled for the table, but the function is still not being triggered.  
 Which option would enable DynamoDB table updates to trigger the Lambda function?
@@ -1260,7 +1260,7 @@ By **configuring event source mapping**, the developer can enable DynamoDB table
 
 </details>
 
-## Question #28 - #36
+## Question #28
 
 A company maintains a REST service using Amazon API Gateway and the API Gateway native API key validation. The company recently launched a new registration page, which allows users to sign up for the service. The registration page creates a new API key using `CreateApiKey` and sends the new key to the user. When the user attempts to call the API using this key, the user receives a `403 Forbidden` error. Existing users are unaffected and can still call the API.  
 What code updates will grant these new users access to the API?
@@ -1306,7 +1306,7 @@ By calling the **`createUsagePlanKey` method**, the developer can associate the 
 
 </details>
 
-## Question #29 - #38
+## Question #29
 
 A company is running a Docker application on Amazon ECS. The application must scale based on user load in the last 15 seconds.  
 How should a Developer instrument the code so that the requirement can be met?
@@ -1352,7 +1352,7 @@ By creating a **high-resolution custom CloudWatch metric** and publishing data *
 
 </details>
 
-## Question #30 - #40
+## Question #30
 
 A Developer is working on an application that handles 10MB documents that contain highly-sensitive data. The application will use AWS KMS to perform client-side encryption.  
 What steps must be followed?
@@ -1399,7 +1399,7 @@ By invoking the **`GenerateDataKey` API** and using the **plaintext version of t
 
 </details>
 
-## Question #31 - #41
+## Question #31
 
 An application uses Amazon Kinesis Data Streams to ingest and process large streams of data records in real time. Amazon EC2 instances consume and process the data from the shards of the Kinesis data stream by using Amazon Kinesis Client Library (KCL). The application handles the failure scenarios and does not require standby workers. The application reports that a specific shard is receiving more data than expected. To adapt to the changes in the rate of data flow, the `hot` shard is resharded.  
 Assuming that the initial number of shards in the Kinesis data stream is 4, and after resharding the number of shards increased to 6, what is the maximum number of EC2 instances that can be deployed to process data from all the shards?
@@ -1445,7 +1445,7 @@ By deploying **6 EC2 instances**, the developer can ensure that all 6 shards are
 
 </details>
 
-## Question #32 - #42
+## Question #32
 
 A Company runs continuous integration/continuous delivery (CI/CD) pipelines for its application on AWS CodePipeline. A Developer must write unit tests and run them as part of the pipelines before staging the artifacts for testing.  
 How should the Developer incorporate unit tests as part of CI/CD pipelines?
@@ -1491,7 +1491,7 @@ By updating the **AWS CodeBuild specification** to include a phase for running u
 
 </details>
 
-## Question #33 - #45
+## Question #33
 
 A Development team is working on a case management solution that allows medical claims to be processed and reviewed. Users log in to provide information related to their medical and financial situations.  
 As part of the application, sensitive documents such as medical records, medical imaging, bank statements, and receipts are uploaded to Amazon S3. All documents must be securely transmitted and stored. All access to the documents must be recorded for auditing.  
@@ -1539,7 +1539,7 @@ By using **client-side encryption/decryption with Amazon S3 and AWS KMS**, the D
 
 </details>
 
-## Question #34 - #47
+## Question #34
 
 An application needs to use the IP address of the client in its processing. The application has been moved into AWS and has been placed behind an Application Load Balancer (ALB). However, all the client IP addresses now appear to be the same. The application must maintain the ability to scale horizontally.  
 Based on this scenario, what is the MOST cost-effective solution to this problem?
@@ -1585,7 +1585,7 @@ By altering the application code to inspect the **`X-Forwarded-For` header**, th
 
 </details>
 
-## Question #35 - #49
+## Question #35
 
 A Developer must analyze performance issues with production-distributed applications written as AWS Lambda functions. These distributed Lambda applications invoke other components that make up the applications.  
 How should the Developer identify and troubleshoot the root cause of the performance issues in production?
@@ -1632,7 +1632,7 @@ By using **AWS X-Ray**, the developer can effectively identify and troubleshoot 
 
 </details>
 
-## Question #36 - #52
+## Question #36
 
 A company runs an e-commerce website that uses Amazon DynamoDB where pricing for items is dynamically updated in real time. At any given time, multiple updates may occur simultaneously for pricing information on a particular product. This is causing the original editor's changes to be overwritten without a proper review process.  
 Which DynamoDB write option should be selected to prevent this overwriting?
@@ -1678,7 +1678,7 @@ By using **conditional writes**, the developer can prevent overwrites and ensure
 
 </details>
 
-## Question #37 - #54
+## Question #37
 
 A front-end web application is using Amazon Cognito user pools to handle the user authentication flow. A developer is integrating Amazon DynamoDB into the application using the AWS SDK for JavaScript.  
 How would the developer securely call the API without exposing the access or secret keys?
@@ -1724,7 +1724,7 @@ By configuring **Amazon Cognito identity pools** and exchanging the JWT for **te
 
 </details>
 
-## Question #38 - #55
+## Question #38
 
 A Developer must build an application that uses Amazon DynamoDB. The requirements state that the items being stored in the DynamoDB table will be 7KB in size and that reads must be strongly consistent. The maximum read rate is 3 items per second, and the maximum write rate is 10 items per second.  
 How should the Developer size the DynamoDB table to meet these requirements?
@@ -1777,7 +1777,7 @@ By sizing the DynamoDB table with **6 RCUs** and **70 WCUs**, the developer can 
 
 </details>
 
-## Question #39 - #58
+## Question #39
 
 For a deployment using AWS CodeDeploy, what is the run order of the hooks for in-place deployments?
 
