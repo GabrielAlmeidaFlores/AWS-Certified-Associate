@@ -2007,3 +2007,49 @@ The developer aims to enhance performance by capturing trace information—detai
 By building the container from the **amazon/aws-xray-daemon base image and using the AWS X-Ray SDK**, the developer can effectively capture trace information and visualize the microservices architecture, improving performance with a straightforward implementation.
 
 </details>
+
+## Question #44
+
+A developer notices timeouts from the AWS CLI when the developer runs list commands.  
+What should the developer do to avoid these timeouts?
+
+- A. Use the `--page-size` parameter to request a smaller number of items.
+- B. Use shorthand syntax to separate the list by a single space.
+- C. Use the `yaml-stream` output for faster viewing of large datasets.
+- D. Use quotation marks around strings to enclose data structure.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**A. Use the `--page-size` parameter to request a smaller number of items.**
+
+### Explanation
+
+#### **Purpose of Avoiding Timeouts**
+
+The developer is experiencing timeouts when running AWS CLI list commands, likely due to large datasets being retrieved from AWS services (e.g., `aws s3 ls`, `aws ec2 describe-instances`). The goal is to reduce the response time or server load to prevent these timeouts.
+
+#### **Why this option is correct**
+
+- **Pagination Control**: The `--page-size` parameter allows the developer to specify a smaller number of items returned per API call. While the total data retrieved remains the same, smaller pages reduce the server-side processing time per request, making it less likely to hit timeout limits.
+- **Direct Impact on Timeouts**: By requesting fewer items at once (e.g., `--page-size 50` instead of the default `1000`), the AWS CLI can process responses more quickly, avoiding timeouts, especially with services that have large result sets.
+- **AWS CLI Feature**: This is a standard parameter supported across many AWS CLI commands that use pagination, making it a practical and effective solution.
+
+#### **Why other options are incorrect**
+
+- **Option B**: Using shorthand syntax (e.g., separating values with spaces) applies to command input, not output retrieval. It doesn’t affect how data is fetched from AWS services or reduce timeouts, making it irrelevant to this issue.
+- **Option C**: The `yaml-stream` output format streams results as YAML, which might help with viewing large datasets incrementally on the client side, but it doesn’t change the server-side retrieval process or reduce the likelihood of timeouts from the AWS API.
+- **Option D**: Adding quotation marks around strings is a syntax requirement for certain CLI inputs, not a solution for timeouts. It has no impact on the performance of list commands or data retrieval.
+
+#### **Key Takeaways**
+
+- **Efficient Pagination**: The `--page-size` parameter optimizes data retrieval by breaking it into manageable chunks, reducing server load and response time.
+- **Timeout Prevention**: Smaller page sizes directly address the root cause of timeouts in large list operations.
+- **Simple Implementation**: This requires only a minor adjustment to existing commands (e.g., `aws s3 ls --page-size 50`), making it an easy fix.
+
+By using the **`--page-size` parameter to request a smaller number of items**, the developer can avoid timeouts and improve the reliability of AWS CLI list commands.
+
+</details>
