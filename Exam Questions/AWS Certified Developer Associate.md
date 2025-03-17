@@ -2146,3 +2146,50 @@ The developer needs to reduce the load of unauthenticated requests—those with 
 By creating a **`CloudFront` function for the distribution and using the `crypto` module to validate the JWT**, the developer can effectively reduce unauthenticated requests to the API at the earliest point in the request flow.
 
 </details>
+
+## Question #47
+
+A developer has created an `AWS Lambda` function that uses 15 MB of memory. When the developer runs the code natively on a laptop that has 4 cores, the function runs within 100 ms. When the developer deploys the code as an `AWS Lambda` function with 128 MB of memory, the first run takes 3 seconds. Subsequent runs take more than 500 ms to finish.  
+The developer needs to improve the performance of the `AWS Lambda` function so that the function runs consistently in less than 100 ms, excluding the initial startup time.  
+Which solution will meet this requirement?
+
+- A. Increase the reserved concurrency of the `AWS Lambda` function.
+- B. Increase the provisioned concurrency of the `AWS Lambda` function.
+- C. Increase the memory of the `AWS Lambda` function.
+- D. Repackage the `AWS Lambda` function as a container. Redeploy the function.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**C. Increase the memory of the `AWS Lambda` function.**
+
+### Explanation
+
+#### **Purpose of Improving Performance**
+
+The developer aims to optimize the `AWS Lambda` function’s execution time to consistently run in less than 100 ms, excluding the initial cold start (3 seconds). The current setup with 128 MB of memory results in subsequent warm runs taking over 500 ms, compared to 100 ms on a laptop, indicating a performance bottleneck in the Lambda environment.
+
+#### **Why this option is correct**
+
+- **Memory and CPU Correlation**: In `AWS Lambda`, memory allocation directly affects CPU power. At 128 MB, the function gets a fraction of a vCPU, which limits its compute capacity. Increasing memory (e.g., to 256 MB or higher) proportionally increases CPU allocation, enabling faster execution.
+- **Execution Time Impact**: Since the code runs in 100 ms natively with more CPU resources (4 cores), the Lambda function’s 500 ms warm runtime suggests insufficient compute power. Boosting memory addresses this by providing more CPU, likely reducing runtime below 100 ms for subsequent invocations.
+- **Excludes Cold Start**: The requirement focuses on consistent performance after the initial startup (cold start), which is addressed by optimizing warm execution time through memory adjustment, not concurrency settings.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Increasing reserved concurrency sets aside a specific number of execution environments for the function, ensuring availability but not improving individual runtime performance. It doesn’t address the 500 ms warm execution time, failing to meet the sub-100 ms goal.
+- **Option B**: Provisioned concurrency pre-warms execution environments to reduce cold start latency (e.g., the 3-second first run), but it doesn’t enhance the performance of subsequent warm runs, which still take over 500 ms. The requirement excludes cold start time, making this irrelevant.
+- **Option D**: Repackaging as a container allows custom runtimes but doesn’t inherently improve execution speed unless optimized for performance (e.g., with more memory or CPU tweaks). It adds complexity without guaranteeing sub-100 ms runtime, unlike simply increasing memory.
+
+#### **Key Takeaways**
+
+- **Memory Drives Performance**: Higher memory in `AWS Lambda` allocates more CPU, directly reducing execution time for compute-bound tasks.
+- **Warm Run Focus**: Adjusting memory targets the 500 ms warm runtime, aligning it with the 100 ms laptop benchmark.
+- **Simple Solution**: Increasing memory is a configuration change (e.g., from 128 MB to 512 MB), requiring no code or deployment overhaul.
+
+By increasing the memory of the **`AWS Lambda` function**, the developer can enhance its compute power and achieve consistent execution times below 100 ms for subsequent runs, meeting the performance requirement efficiently.
+
+</details>
