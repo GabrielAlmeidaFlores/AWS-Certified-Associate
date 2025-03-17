@@ -2053,3 +2053,50 @@ The developer is experiencing timeouts when running AWS CLI list commands, likel
 By using the **`--page-size` parameter to request a smaller number of items**, the developer can avoid timeouts and improve the reliability of AWS CLI list commands.
 
 </details>
+
+## Question #45
+
+A company has moved a legacy on-premises application to AWS by performing a lift and shift. The application exposes a REST API that can be used to retrieve billing information. The application is running on a single `Amazon EC2` instance. The application code cannot support concurrent invocations. Many clients access the API, and the company adds new clients all the time.  
+A developer is concerned that the application might become overwhelmed by too many requests. The developer needs to limit the number of requests to the API for all current and future clients. The developer must not change the API, the application, or the client code.  
+What should the developer do to meet these requirements?
+
+- A. Place the API behind an `Amazon API Gateway` API. Set the server-side throttling limits.
+- B. Place the API behind a `Network Load Balancer`. Set the target group throttling limits.
+- C. Place the API behind an `Application Load Balancer`. Set the target group throttling limits.
+- D. Place the API behind an `Amazon API Gateway` API. Set the per-client throttling limits.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**A. Place the API behind an `Amazon API Gateway` API. Set the server-side throttling limits.**
+
+### Explanation
+
+#### **Purpose of Request Limiting**
+
+The developer needs to protect a legacy application on a single `Amazon EC2` instance, which cannot handle concurrent invocations, from being overwhelmed by API requests. The solution must limit requests for all clients (current and future) without modifying the application, API, or client code, requiring an external mechanism to enforce throttling.
+
+#### **Why this option is correct**
+
+- **`Amazon API Gateway` Throttling**: `Amazon API Gateway` provides built-in server-side throttling limits, allowing the developer to set a maximum request rate (e.g., requests per second) and burst capacity for the entire API. This applies uniformly to all clients accessing the API through the gateway.
+- **No Code Changes**: By placing the API behind `Amazon API Gateway`, the existing REST API on the `EC2` instance remains unchanged. The gateway acts as a proxy, forwarding requests to the `EC2` instance while enforcing throttling, meeting the constraint of not modifying the application or client code.
+- **Scalability for All Clients**: Server-side throttling ensures a consistent limit across all current and future clients without needing per-client configuration, aligning with the requirement to handle an growing client base.
+
+#### **Why other options are incorrect**
+
+- **Option B**: A `Network Load Balancer` operates at the transport layer (Layer 4) and does not natively support request throttling or rate limiting for APIs. There are no "target group throttling limits" available, making this option invalid for controlling API request rates.
+- **Option C**: An `Application Load Balancer` (Layer 7) can distribute traffic but does not offer built-in throttling or rate-limiting features at the target group level. It’s designed for load distribution, not request limiting, so it doesn’t meet the requirements.
+- **Option D**: While `Amazon API Gateway` supports per-client throttling (via usage plans and API keys), this requires client-specific configuration and potentially modifying clients to include API keys. This conflicts with the requirement to avoid client code changes and handle future clients seamlessly, making server-side throttling (Option A) more appropriate.
+
+#### **Key Takeaways**
+
+- **Effective Throttling**: `Amazon API Gateway`’s server-side throttling protects the application by limiting total request rates, preventing overload on the single-threaded legacy app.
+- **No Modification Needed**: The solution works externally to the application and clients, preserving the lift-and-shift approach.
+- **Universal Application**: Server-side limits apply to all clients without individual setup, ideal for a dynamic client base.
+
+By placing the API behind an **`Amazon API Gateway` API and setting server-side throttling limits**, the developer can safeguard the application from excessive requests while meeting all specified constraints.
+
+</details>
