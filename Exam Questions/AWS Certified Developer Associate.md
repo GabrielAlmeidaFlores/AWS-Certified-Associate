@@ -2100,3 +2100,49 @@ The developer needs to protect a legacy application on a single `Amazon EC2` ins
 By placing the API behind an **`Amazon API Gateway` API and setting server-side throttling limits**, the developer can safeguard the application from excessive requests while meeting all specified constraints.
 
 </details>
+
+## Question #46
+
+A developer has created a web API that uses `Amazon Elastic Container Service` (`Amazon ECS`) and an `Application Load Balancer` (`ALB`). An `Amazon CloudFront` distribution uses the API as an origin for web clients. The application has received millions of requests with a JSON Web Token (JWT) that is not valid in the authorization header. The developer has scaled out the application to handle the unauthenticated requests.  
+What should the developer do to reduce the number of unauthenticated requests to the API?
+
+- A. Add a request routing rule to the `ALB` to return a `401` status code if the authorization header is missing.
+- B. Add a container to the `ECS` task definition to validate JWTs. Set the new container as a dependency of the application container.
+- C. Create a `CloudFront` function for the distribution. Use the `crypto` module in the function to validate the JWT.
+- D. Add a custom authorizer for `AWS Lambda` to the `CloudFront` distribution to validate the JWT.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**C. Create a `CloudFront` function for the distribution. Use the `crypto` module in the function to validate the JWT.**
+
+### Explanation
+
+#### **Purpose of Reducing Unauthenticated Requests**
+
+The developer needs to reduce the load of unauthenticated requests—those with invalid JWTs in the authorization header—reaching the `Amazon ECS`-based API behind the `ALB`. Since the application is scaling to handle these requests, filtering them out earlier in the request pipeline will improve efficiency and reduce costs without modifying the core application.
+
+#### **Why this option is correct**
+
+- **`CloudFront` Functions**: `Amazon CloudFront` supports `CloudFront Functions`, lightweight JavaScript functions that run at the edge. The developer can inspect the `Authorization` header, use the `crypto` module (available in `CloudFront Functions`) to validate the JWT signature, and reject invalid requests with a `401 Unauthorized` response before they reach the origin (`ALB` and `ECS`).
+- **Early Filtering**: By validating JWTs at the `CloudFront` edge, unauthenticated requests are blocked globally across CloudFront’s edge locations, significantly reducing the number of requests hitting the `ALB` and `ECS`, thus minimizing scaling needs and costs.
+- **No Application Changes**: This solution requires no modifications to the existing `ECS` application or `ALB` configuration, aligning with a low-impact approach to address the issue.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Adding a rule to the `ALB` to return a `401` status code if the `Authorization` header is missing doesn’t fully address the problem. The issue is invalid JWTs, not missing headers. The `ALB` cannot validate JWT signatures natively, so this only catches a subset of unauthenticated requests, allowing invalid JWTs to still reach the application.
+- **Option B**: Adding a container to the `ECS` task definition to validate JWTs and setting it as a dependency shifts the validation burden to the application layer. While effective, it requires redeploying the `ECS` service, managing container dependencies, and still allows requests to reach the `ALB` and `ECS`, increasing operational complexity and not reducing traffic as efficiently as edge filtering.
+- **Option D**: Adding an `AWS Lambda` custom authorizer to the `CloudFront` distribution is feasible but overkill. `Lambda@Edge` can validate JWTs, but it’s heavier and more expensive than `CloudFront Functions`, which are designed for simple request manipulation tasks like this. Additionally, `CloudFront` doesn’t natively integrate authorizers the way `API Gateway` does, making this less straightforward.
+
+#### **Key Takeaways**
+
+- **Edge Validation**: Using a `CloudFront` function with the `crypto` module validates JWTs at the edge, stopping unauthenticated requests before they reach the origin.
+- **Efficiency**: Reduces the load on `ALB` and `ECS`, avoiding unnecessary scaling and lowering costs.
+- **Simplicity**: Requires minimal setup—a small JavaScript function—without altering the existing infrastructure or application.
+
+By creating a **`CloudFront` function for the distribution and using the `crypto` module to validate the JWT**, the developer can effectively reduce unauthenticated requests to the API at the earliest point in the request flow.
+
+</details>
