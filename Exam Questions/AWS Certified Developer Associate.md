@@ -1961,3 +1961,49 @@ The company requires a deployment approach that allows a gradual exposure of 10%
 By using **blue/green with canary**, the company can efficiently manage the initial traffic exposure and fully transition to the new version with confidence.
 
 </details>
+
+## Question #43
+
+A microservices application is deployed across multiple containers in Amazon Elastic Container Service (Amazon ECS). To improve performance, a developer wants to capture trace information between the microservices and visualize the microservices architecture.  
+Which solution will meet these requirements?
+
+- A. Build the container from the amazon/aws-xray-daemon base image. Use the AWS X-Ray SDK to instrument the application.
+- B. Install the Amazon CloudWatch agent on the container image. Use the CloudWatch SDK to publish custom metrics from each of the microservices.
+- C. Install the AWS X-Ray daemon on each of the ECS instances.
+- D. Configure AWS CloudTrail data events to capture the traffic between the microservices.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**A. Build the container from the amazon/aws-xray-daemon base image. Use the AWS X-Ray SDK to instrument the application.**
+
+### Explanation
+
+#### **Purpose of Tracing and Visualization**
+
+The developer aims to enhance performance by capturing trace information—details of how requests flow between microservices—and visualizing the architecture to identify bottlenecks and dependencies. This requires a solution that tracks request paths across containers and provides a graphical representation of the microservices.
+
+#### **Why this option is correct**
+
+- **AWS X-Ray Integration**: AWS X-Ray is purpose-built for tracing requests across distributed systems like microservices and generating service maps for visualization. Building the container from the `amazon/aws-xray-daemon` base image includes the X-Ray daemon, which collects trace data, while the AWS X-Ray SDK instruments the application to generate and send this data.
+- **Comprehensive Solution**: This approach ensures both components (daemon and SDK) work together within the container, capturing traces and enabling visualization via the X-Ray console’s service map, directly meeting the requirements.
+- **ECS Compatibility**: Works seamlessly with ECS, whether on EC2 or Fargate, as the tracing logic is embedded in the container, simplifying deployment for developers.
+
+#### **Why other options are incorrect**
+
+- **Option B**: Installing the Amazon CloudWatch agent and using the CloudWatch SDK focuses on collecting metrics and logs, not tracing request paths across microservices. While useful for monitoring, CloudWatch lacks the detailed tracing and service map visualization provided by X-Ray, failing to meet the requirements.
+- **Option C**: Installing the AWS X-Ray daemon on each ECS instance assumes an EC2-based setup and doesn’t work with Fargate, where instances are abstracted. Additionally, it requires separate application instrumentation (not mentioned), making it incomplete and less universal compared to Option A.
+- **Option D**: AWS CloudTrail captures API calls to AWS services for auditing, not application-level traffic between microservices. It offers no tracing or visualization capabilities relevant to this use case, rendering it unsuitable.
+
+#### **Key Takeaways**
+
+- **Tracing with X-Ray**: The combination of the X-Ray daemon and SDK provides end-to-end request tracing across microservices.
+- **Visualization**: AWS X-Ray’s service map visually represents the architecture, aiding performance optimization.
+- **Simplified Setup**: Building the container with the daemon and SDK offers a developer-friendly, self-contained solution for ECS.
+
+By building the container from the **amazon/aws-xray-daemon base image and using the AWS X-Ray SDK**, the developer can effectively capture trace information and visualize the microservices architecture, improving performance with a straightforward implementation.
+
+</details>
