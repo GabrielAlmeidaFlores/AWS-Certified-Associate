@@ -1915,3 +1915,49 @@ The developer needs to handle cases where the avatar generator Lambda function t
 By setting the **image resize Lambda function as a destination for failed events**, the developer can implement the fallback mechanism with minimal effort.
 
 </details>
+
+## Question #42
+
+A company is running an application on Amazon Elastic Container Service (Amazon ECS). When the company deploys a new version of the application, the company initially needs to expose 10% of live traffic to the new version. After a period of time, the company needs to immediately route all the remaining live traffic to the new version.  
+Which ECS deployment should the company use to meet these requirements?
+
+- A. Rolling update
+- B. Blue/green with canary
+- C. Blue/green with all at once
+- D. Blue/green with linear
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Blue/green with canary**
+
+### Explanation
+
+#### **Purpose of the Deployment Strategy**
+
+The company requires a deployment approach that allows a gradual exposure of 10% of live traffic to the new application version for testing, followed by an immediate shift of all remaining traffic to the new version once validated.
+
+#### **Why this option is correct**
+
+- **Blue/Green with Canary**: In a blue/green deployment, two environments (blue and green) run simultaneously. The canary variant enables routing a small percentage of traffic (e.g., 10%) to the new version (green) while the old version (blue) handles the rest. After a validation period, all traffic can be instantly switched to the new version.
+- **ECS Integration**: Amazon ECS supports blue/green deployments with AWS CodeDeploy, which offers a canary option to precisely control traffic distribution and perform an immediate full switch when ready.
+- **Meets Requirements**: This approach satisfies both the initial 10% traffic exposure and the subsequent immediate full traffic shift with minimal manual intervention.
+
+#### **Why other options are incorrect**
+
+- **Option A**: A rolling update replaces tasks incrementally based on health checks and percentages, but it doesn’t allow precise traffic control (e.g., exactly 10%) or an immediate full switch, making it unsuitable.
+- **Option C**: Blue/green with all-at-once shifts all traffic to the new version instantly after deployment, skipping the 10% gradual exposure phase, which fails the first requirement.
+- **Option D**: Blue/green with linear gradually increases traffic to the new version (e.g., 10% every few minutes), but it doesn’t support an immediate full switch after the initial phase, conflicting with the second requirement.
+
+#### **Key Takeaways**
+
+- **Controlled Rollout**: The canary approach ensures safe testing with 10% traffic exposure before full deployment.
+- **Instant Switch**: Blue/green enables an immediate traffic shift to the new version after validation.
+- **ECS Compatibility**: Leverages AWS CodeDeploy’s canary feature for seamless execution on ECS.
+
+By using **blue/green with canary**, the company can efficiently manage the initial traffic exposure and fully transition to the new version with confidence.
+
+</details>
