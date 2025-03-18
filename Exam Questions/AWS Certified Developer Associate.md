@@ -2478,3 +2478,49 @@ The team wants to upload different versions of an application to `AWS Elastic Be
 By uploading the application's source code or source bundle in the **`Elastic Beanstalk` console**, the team can manage different versions of their application in the simplest possible way, leveraging `AWS Elastic Beanstalk`’s built-in functionality.
 
 </details>
+
+## Question #54
+
+You are working as a Senior Software Developer for a large pharmaceutical company. Your lead has asked you to work on a new module in which you need to query an `Amazon DynamoDB` table with multiple Partition Key values at once and store the result in CSV format on `Amazon S3`.  
+Which operation will you use to achieve the same?
+
+- A. `Scan`
+- B. `Query`
+- c. `GetItem`
+- D. `BatchGetItem`
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. `BatchGetItem`**
+
+### Explanation
+
+#### **Purpose of Querying Multiple Partition Keys**
+
+The task requires querying an `Amazon DynamoDB` table for multiple Partition Key values in a single operation, then storing the results in CSV format on `Amazon S3`. This implies an efficient, batch-oriented approach to retrieve specific items based on their primary keys, followed by processing and export.
+
+#### **Why this option is correct**
+
+- **`BatchGetItem` Functionality**: The `BatchGetItem` operation in `Amazon DynamoDB` allows you to retrieve multiple items (up to 100 items or 16 MB of data) by specifying their Partition Key values (and Sort Key values, if applicable) in a single request. This is ideal for fetching data across multiple Partition Keys at once, as required.
+- **Efficiency**: Unlike operations that retrieve one item at a time or scan the entire table, `BatchGetItem` targets specific keys, reducing latency and throughput consumption, making it suitable for the module’s needs.
+- **Post-Processing**: After retrieving the items, you can process the results in your application code (e.g., using an `AWS SDK`) to format them as CSV and upload the file to `Amazon S3`, fulfilling the storage requirement.
+
+#### **Why other options are incorrect**
+
+- **Option A**: `Scan` reads every item in the table and filters them based on conditions, which is inefficient and costly for retrieving specific Partition Key values. It’s not designed for targeted queries and would return unnecessary data, failing the requirement for multiple specific keys.
+- **Option B**: `Query` retrieves items based on a single Partition Key value and optional Sort Key conditions. It cannot query multiple Partition Keys at once in a single operation, making it unsuitable for this use case.
+- **Option c**: `GetItem` fetches a single item by its Partition Key (and Sort Key, if applicable) in one request. It doesn’t support multiple Partition Keys simultaneously, requiring separate calls for each key, which is less efficient than `BatchGetItem`.
+
+#### **Key Takeaways**
+
+- **Batch Retrieval**: `BatchGetItem` efficiently queries multiple Partition Key values in one operation, meeting the requirement directly.
+- **Targeted Access**: It avoids the overhead of scanning or querying irrelevant data, optimizing performance for specific key lookups.
+- **Integration with S3**: The retrieved data can be easily formatted as CSV and stored in `Amazon S3` using standard coding practices.
+
+By using **`BatchGetItem`**, you can query the `Amazon DynamoDB` table with multiple Partition Key values at once and store the result in CSV format on `Amazon S3`, achieving the module’s objectives efficiently.
+
+</details>
