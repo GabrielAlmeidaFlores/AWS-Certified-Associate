@@ -2524,3 +2524,49 @@ The task requires querying an `Amazon DynamoDB` table for multiple Partition Key
 By using **`BatchGetItem`**, you can query the `Amazon DynamoDB` table with multiple Partition Key values at once and store the result in CSV format on `Amazon S3`, achieving the module’s objectives efficiently.
 
 </details>
+
+## Question #55
+
+You are a developer who is supporting a containerized application. You are told to set up dynamic port mapping for `Amazon ECS` and load balancing.  
+What statement is true in this case?
+
+- A. `Classic Load Balancer` allows you to run multiple copies of a task on the same instance
+- B. `Application Load Balancer` uses static port mapping on a container instance
+- C. After creating an `Amazon ECS` service, you add the load balancer configuration
+- D. If dynamic port mapping is set up correctly, then you see the registered targets and the assigned port for the task
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**D. If dynamic port mapping is set up correctly, then you see the registered targets and the assigned port for the task**
+
+### Explanation
+
+#### **Purpose of Dynamic Port Mapping and Load Balancing**
+
+The task involves configuring dynamic port mapping for an `Amazon ECS` service with load balancing, typically using an `Application Load Balancer` (`ALB`). Dynamic port mapping allows `ECS` to assign ephemeral ports to container tasks, enabling flexible scaling and load distribution without requiring fixed port assignments.
+
+#### **Why this option is correct**
+
+- **Dynamic Port Mapping Behavior**: When dynamic port mapping is enabled in an `ECS` task definition (e.g., by setting the container’s host port to `0`), `ECS` automatically assigns a random available port on the container instance. The `ALB` integrates with this by registering the task as a target, associating it with the dynamically assigned port.
+- **Visibility in Targets**: If set up correctly, the `ALB` target group shows the registered targets (the `ECS` tasks) along with their dynamically assigned ports (e.g., 32768–65535 range). This can be verified in the `AWS Management Console` or via the `describe-target-health` API, confirming proper configuration.
+- **Load Balancing Integration**: The `ALB` routes traffic to these dynamic ports, ensuring the application is accessible, which aligns with the setup requirement.
+
+#### **Why other options are incorrect**
+
+- **Option A**: The `Classic Load Balancer` (CLB) doesn’t inherently support running multiple copies of a task on the same instance with dynamic port mapping in `ECS`. While it can work with static ports, `ECS` prefers `ALB` for dynamic mapping, and CLB is a legacy option not optimized for this use case, making this statement misleading.
+- **Option B**: The `Application Load Balancer` (`ALB`) supports dynamic port mapping, not static port mapping, in `ECS`. Static port mapping requires predefined host ports, whereas `ALB` with `ECS` uses dynamic ports assigned by the service, so this statement is false.
+- **Option C**: In `Amazon ECS`, the load balancer configuration (e.g., `ALB` target group) must be specified when creating the service, not added afterward. The service definition links the task to the load balancer during creation via the `loadBalancers` parameter, making this statement incorrect.
+
+#### **Key Takeaways**
+
+- **Dynamic Mapping Confirmation**: Correct setup of dynamic port mapping in `ECS` with an `ALB` results in visible registered targets and their assigned ports in the target group.
+- **Load Balancer Fit**: `ALB` is the standard choice for dynamic port mapping in `ECS`, supporting flexible task scaling.
+- **Setup Timing**: Load balancer integration is part of the `ECS` service creation, not a post-creation step.
+
+If dynamic port mapping is set up correctly, then you see the registered targets and the assigned port for the task, making **D** the true statement in this context for `Amazon ECS` and load balancing.
+
+</details>
