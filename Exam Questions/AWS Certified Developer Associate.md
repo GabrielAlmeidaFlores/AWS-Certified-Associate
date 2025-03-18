@@ -2193,3 +2193,49 @@ The developer aims to optimize the `AWS Lambda` function’s execution time to c
 By increasing the memory of the **`AWS Lambda` function**, the developer can enhance its compute power and achieve consistent execution times below 100 ms for subsequent runs, meeting the performance requirement efficiently.
 
 </details>
+
+## Question #48
+
+`Amazon Kinesis` is used to load data into a stock market monitoring application. The `Kinesis` stream cannot keep up with the incoming data during simulated peak data rates testing.  
+What step will enable `Kinesis` to handle peak-hour traffic?
+
+- A. Install the `Kinesis Producer Library` (`KPL`) for ingesting data into the stream.
+- B. Reduce the data retention period to allow for more data ingestion using `DecreaseStreamRetentionPeriod`.
+- C. Increase the shard count of the stream using `UpdateShardCount`.
+- D. Ingest multiple records into the stream in a single call using `PutRecords`.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**C. Increase the shard count of the stream using `UpdateShardCount`.**
+
+### Explanation
+
+#### **Purpose of Handling Peak Traffic**
+
+The `Amazon Kinesis` stream is failing to process incoming data during peak simulated rates, indicating that its throughput capacity is insufficient. The goal is to enhance the stream’s ability to ingest and process data to accommodate high traffic volumes, such as during peak stock market activity.
+
+#### **Why this option is correct**
+
+- **Shard-Based Throughput**: In `Amazon Kinesis Data Streams`, throughput is determined by the number of shards. Each shard supports up to 1 MB/s or 1,000 records/s for ingestion and 2 MB/s for consumption. If the stream can’t keep up, it’s likely hitting these limits, and adding shards increases capacity proportionally.
+- **`UpdateShardCount`**: The `UpdateShardCount` API allows the developer to dynamically increase the number of shards in the stream, directly boosting ingestion and processing capacity to handle peak-hour traffic without changing the application or producer logic.
+- **Direct Solution**: This addresses the root cause—insufficient stream capacity—ensuring `Kinesis` can scale to meet demand during testing and real-world peaks.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Installing the `Kinesis Producer Library` (`KPL`) improves producer efficiency by batching and compressing data, but it doesn’t increase the stream’s inherent capacity. If the stream’s shard limits are already saturated, `KPL` won’t resolve the bottleneck.
+- **Option B**: Reducing the data retention period via `DecreaseStreamRetentionPeriod` (e.g., from 24 hours to 1 hour) frees up storage but has no impact on ingestion throughput or shard capacity. It’s irrelevant to handling peak traffic rates.
+- **Option D**: Using `PutRecords` to ingest multiple records in a single call optimizes producer-side efficiency by reducing API calls, but it doesn’t expand the stream’s capacity. If the shard ingestion limit (1 MB/s or 1,000 records/s) is exceeded, this won’t prevent the stream from falling behind.
+
+#### **Key Takeaways**
+
+- **Scalability with Shards**: Increasing the shard count via `UpdateShardCount` directly scales `Kinesis` throughput to match peak data rates.
+- **Capacity Focus**: The solution targets the stream’s ability to ingest data, not just producer efficiency or retention settings.
+- **Simple Adjustment**: This requires a single API call or configuration change, minimizing operational overhead.
+
+By increasing the shard count of the stream using **`UpdateShardCount`**, the developer can enable `Amazon Kinesis` to handle peak-hour traffic effectively, ensuring the stock market monitoring application processes data without delays.
+
+</details>
