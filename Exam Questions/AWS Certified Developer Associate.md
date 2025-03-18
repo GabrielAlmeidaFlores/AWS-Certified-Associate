@@ -2340,3 +2340,49 @@ The company’s `Amazon S3` bucket, with versioning and encryption enabled, is e
 By using **`Amazon S3 Inventory`**, the developer can diagnose the `HTTP 503` errors by analyzing the impact of versioning and high `PUT` operation volumes on the bucket over time, addressing the issue effectively within the given context.
 
 </details>
+
+## Question #51
+
+Your company has an application that is interacting with an `Amazon DynamoDB` table. After reviewing the logs for the application, it has been noticed that there are quite a few `ProvisionedThroughputExceededException` errors occurring in the logs.  
+Which of the following can be implemented to overcome these errors?
+
+- A. Implement global tables
+- B. Use exponential backoff in the program
+- C. Ensure the correct permissions are set for the instance profile for the instance hosting the application
+- D. Ensure to use indexes instead
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Use exponential backoff in the program**
+
+### Explanation
+
+#### **Purpose of Overcoming Throughput Errors**
+
+The application interacting with an `Amazon DynamoDB` table is encountering `ProvisionedThroughputExceededException` errors, indicating that the request rate exceeds the table’s provisioned read or write capacity units (RCUs/WCUs). The solution must mitigate these errors by managing request rates effectively without necessarily increasing costs or changing the table’s structure immediately.
+
+#### **Why this option is correct**
+
+- **Exponential Backoff Mechanism**: Implementing exponential backoff in the application involves retrying failed `DynamoDB` requests with increasing delays (e.g., 50 ms, 100 ms, 200 ms) after a `ProvisionedThroughputExceededException`. This reduces the immediate retry rate, allowing the table’s provisioned capacity to handle the load over time.
+- **Error Mitigation**: `DynamoDB` throttles requests when capacity is exceeded, and backoff helps smooth out request spikes, preventing repeated failures and giving the table breathing room to process requests within its limits.
+- **AWS SDK Support**: The `AWS SDK` (e.g., for Python, Java) includes built-in retry logic with exponential backoff for `DynamoDB` operations, making this a straightforward code-level fix without altering infrastructure.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Implementing global tables replicates the `DynamoDB` table across multiple `AWS` regions for low-latency access and disaster recovery. However, it doesn’t increase the provisioned throughput of the table in the primary region or address local capacity limits, so it won’t resolve the throughput exceptions.
+- **Option C**: Ensuring correct permissions via the instance profile fixes authentication/authorization issues (e.g., `AccessDeniedException`), but `ProvisionedThroughputExceededException` is a capacity issue, not a permissions problem, making this irrelevant.
+- **Option D**: Using indexes (e.g., Global Secondary Indexes or Local Secondary Indexes) optimizes query patterns but doesn’t inherently increase the table’s base throughput capacity. Indexes have their own provisioned capacity, and without adjusting it, throttling can still occur.
+
+#### **Key Takeaways**
+
+- **Rate Management**: Exponential backoff reduces the application’s request rate during throttling, aligning it with the table’s provisioned capacity.
+- **Code-Level Fix**: This solution requires only a programming change, avoiding infrastructure modifications or additional costs (unlike increasing RCUs/WCUs).
+- **Best Practice**: Backoff is an `AWS`-recommended strategy for handling `DynamoDB` throttling, enhancing application resilience.
+
+By using **exponential backoff in the program**, the developer can overcome `ProvisionedThroughputExceededException` errors, ensuring the application interacts with the `Amazon DynamoDB` table reliably within its capacity limits.
+
+</details>
