@@ -91,7 +91,7 @@ Users can choose to include additional metadata fields such as encryption status
 
 ### Example Configuration Using AWS CLI
 
-```JSON
+```sh
 aws s3api put-bucket-inventory-configuration \
     --bucket source-bucket-name \
     --id inventory-config-id \
