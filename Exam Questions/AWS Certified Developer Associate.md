@@ -2239,3 +2239,58 @@ The `Amazon Kinesis` stream is failing to process incoming data during peak simu
 By increasing the shard count of the stream using **`UpdateShardCount`**, the developer can enable `Amazon Kinesis` to handle peak-hour traffic effectively, ensuring the stock market monitoring application processes data without delays.
 
 </details>
+
+## Question #49
+
+A developer must install a serverless RESTful API on `AWS` regularly and consistently.  
+Which strategies will be effective? (Select two.)
+
+- A. Define a `Swagger` file. Use `AWS Elastic Beanstalk` to deploy the `Swagger` file.
+- B. Define a `Swagger` file. Use `AWS CodeDeploy` to deploy the `Swagger` file.
+- C. Deploy a `SAM` template with an inline `Swagger` definition.
+- D. Define a `Swagger` file. Deploy a `SAM` template that references the `Swagger` file.
+- E. Define an inline `Swagger` definition in a `Lambda` function. Invoke the `Lambda` function.
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answers are:
+
+**C. Deploy a `SAM` template with an inline `Swagger` definition.**  
+**D. Define a `Swagger` file. Deploy a `SAM` template that references the `Swagger` file.**
+
+### Explanation
+
+#### **Purpose of Serverless API Deployment**
+
+The developer needs to install a serverless RESTful API on `AWS` in a regular and consistent manner, implying a repeatable, automated process suitable for serverless architecture (e.g., `AWS Lambda` and `Amazon API Gateway`). Effective strategies must leverage tools designed for serverless deployments and support API definitions like `Swagger` (OpenAPI).
+
+#### **Why these options are correct**
+
+- **Option C: `SAM` with Inline `Swagger`**
+
+  - **`AWS SAM` Advantage**: The `AWS Serverless Application Model` (`SAM`) is purpose-built for deploying serverless applications, including `AWS Lambda` functions and `Amazon API Gateway` APIs. It supports defining RESTful APIs directly in the template.
+  - **Inline `Swagger`**: Including a `Swagger` definition within the `SAM` template (e.g., under the `DefinitionBody` property of an `AWS::Serverless::Api` resource) allows the developer to specify the API’s endpoints, methods, and `Lambda` integrations in a single, consistent file. This ensures repeatable deployments via `SAM` CLI or CI/CD pipelines.
+  - **Consistency**: The inline approach keeps everything self-contained, reducing external dependencies and simplifying version control.
+
+- **Option D: `SAM` Referencing `Swagger` File**
+  - **External `Swagger` File**: Defining the API in a separate `Swagger` file and referencing it in the `SAM` template (via the `DefinitionUri` property) separates API design from infrastructure code, promoting modularity.
+  - **`SAM` Deployment**: `SAM` still handles the deployment of `Lambda` and `API Gateway`, using the referenced `Swagger` file to configure the API. This method is consistent and repeatable, leveraging `SAM`’s serverless capabilities while allowing the `Swagger` file to be maintained independently.
+  - **Regular Use**: The developer can update the `Swagger` file and redeploy with `SAM`, ensuring regular, predictable updates.
+
+#### **Why other options are incorrect**
+
+- **Option A**: `AWS Elastic Beanstalk` is designed for traditional web applications (e.g., containers or VMs), not serverless architectures. It doesn’t natively support `Swagger` for `API Gateway` or serverless deployments, making it unsuitable for this requirement.
+- **Option B**: `AWS CodeDeploy` is for deploying code to `EC2`, `ECS`, or `Lambda`, but it doesn’t directly manage `API Gateway` or interpret `Swagger` files for serverless RESTful APIs. It’s not a complete or consistent solution for this use case.
+- **Option E**: Defining a `Swagger` definition inside a `Lambda` function and invoking it doesn’t deploy a RESTful API. `Swagger` is a specification for API structure, not executable code, and this approach misunderstands its purpose, failing to create an API endpoint.
+
+#### **Key Takeaways**
+
+- **Serverless Focus**: Both `SAM`-based options (C and D) align with `AWS` serverless best practices, using `Lambda` and `API Gateway` effectively.
+- **Consistency**: `SAM` templates ensure repeatable deployments, whether `Swagger` is inline or referenced, supporting regular updates.
+- **Flexibility**: Option C is self-contained, while Option D separates API design, both meeting the goal with minimal overhead.
+
+By deploying a **`SAM` template with an inline `Swagger` definition** (C) or defining a `Swagger` file and deploying a **`SAM` template that references it** (D), the developer can install a serverless RESTful API on `AWS` regularly and consistently.
+
+</details>
