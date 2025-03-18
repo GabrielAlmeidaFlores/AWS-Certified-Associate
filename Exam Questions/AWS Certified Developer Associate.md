@@ -2386,3 +2386,49 @@ The application interacting with an `Amazon DynamoDB` table is encountering `Pro
 By using **exponential backoff in the program**, the developer can overcome `ProvisionedThroughputExceededException` errors, ensuring the application interacts with the `Amazon DynamoDB` table reliably within its capacity limits.
 
 </details>
+
+## Question #52
+
+You are part of a development team that is in charge of creating `AWS CloudFormation` templates. These templates need to be created across multiple accounts with the least amount of effort.  
+Which of the following would assist in accomplishing this?
+
+- A. Creating `CloudFormation` ChangeSets
+- B. Creating `CloudFormation` StackSets
+- c. Make use of Nested stacks
+- D. Use `CloudFormation` artifacts
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. Creating `CloudFormation` StackSets**
+
+### Explanation
+
+#### **Purpose of Multi-Account Template Deployment**
+
+The team needs to deploy `AWS CloudFormation` templates across multiple `AWS` accounts efficiently, minimizing effort. This requires a solution that automates and centralizes the deployment process across accounts, rather than manually applying templates in each one.
+
+#### **Why this option is correct**
+
+- **`CloudFormation` StackSets**: `AWS CloudFormation StackSets` allows the team to deploy a single `CloudFormation` template (or stack) across multiple accounts and regions from a central management account. It automates the creation and management of stacks, ensuring consistency and reducing manual effort.
+- **Least Effort**: With `StackSets`, the team defines the template once and specifies target accounts and regions. `AWS` handles the deployment, updates, and drift detection across all specified accounts, eliminating the need to replicate work manually.
+- **Scalability**: As the number of accounts grows, `StackSets` scales effortlessly, making it ideal for multi-account environments like those in an `AWS Organizations` setup.
+
+#### **Why other options are incorrect**
+
+- **Option A**: `CloudFormation` ChangeSets preview changes to an existing stack within a single account before applying them. They don’t assist in deploying templates across multiple accounts, failing the multi-account requirement.
+- **Option c**: Nested stacks organize complex templates by breaking them into reusable sub-stacks within a single account or region. While useful for modularity, they don’t address deployment across multiple accounts, requiring additional effort for each account.
+- **Option D**: `CloudFormation` artifacts typically refer to files (e.g., templates, Lambda code) stored in `Amazon S3` for deployment. While artifacts support template creation, they don’t inherently facilitate multi-account deployment, leaving the effort of applying them to each account unchanged.
+
+#### **Key Takeaways**
+
+- **Centralized Deployment**: `CloudFormation StackSets` streamlines template deployment across multiple accounts from a single point of control.
+- **Effort Reduction**: It automates the process, minimizing manual intervention compared to deploying stacks individually.
+- **Multi-Account Design**: Built for scenarios like this, `StackSets` aligns with `AWS` best practices for cross-account infrastructure management.
+
+By creating **`CloudFormation` StackSets**, the development team can deploy `AWS CloudFormation` templates across multiple accounts with the least amount of effort, meeting the requirement efficiently.
+
+</details>
