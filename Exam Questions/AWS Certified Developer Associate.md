@@ -2294,3 +2294,49 @@ The developer needs to install a serverless RESTful API on `AWS` in a regular an
 By deploying a **`SAM` template with an inline `Swagger` definition** (C) or defining a `Swagger` file and deploying a **`SAM` template that references it** (D), the developer can install a serverless RESTful API on `AWS` regularly and consistently.
 
 </details>
+
+## Question #50
+
+Your company has a bucket that has versioning and encryption enabled. The bucket receives thousands of `PUT` operations per day. After 6 months, a significant number of `HTTP 503` error codes are being received.  
+Which of the following can be used to diagnose the error?
+
+- A. `AWS Config`
+- B. `AWS CloudTrail`
+- C. `Amazon S3 Inventory`
+- D. `AWS Trusted Advisor`
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**C. `Amazon S3 Inventory`**
+
+### Explanation
+
+#### **Purpose of Diagnosing HTTP 503 Errors**
+
+The company’s `Amazon S3` bucket, with versioning and encryption enabled, is experiencing `HTTP 503 Service Unavailable` errors after 6 months of thousands of daily `PUT` operations. A `503` error often indicates throttling due to excessive request rates per prefix, exacerbated by versioning, which generates additional object versions. The goal is to diagnose the issue, and the question does not require real-time analysis, allowing for a broader interpretation of diagnostic tools.
+
+#### **Why this option is correct**
+
+- **`Amazon S3 Inventory` Capabilities**: `Amazon S3 Inventory` generates periodic reports (e.g., daily or weekly) listing all objects and their versions in the bucket, including metadata like size, version ID, and encryption status. Over 6 months, versioning could have led to a massive accumulation of object versions, increasing the complexity of `PUT` operations and contributing to throttling.
+- **Diagnosing Versioning Impact**: By analyzing the inventory report, the developer can assess the number of versions per object or prefix, identifying if excessive versioning is causing `S3` to hit performance limits (e.g., 3,500 `PUT` requests per second per prefix with versioning). This insight helps diagnose whether the `503` errors stem from prefix overload or version sprawl.
+- **No Real-Time Requirement**: Since the question doesn’t mandate real-time analysis, `S3 Inventory`’s scheduled reporting is sufficient to investigate historical trends leading to the errors, aligning with the long-term context (6 months).
+
+#### **Why other options are incorrect**
+
+- **Option A**: `AWS Config` monitors configuration changes to `AWS` resources (e.g., bucket settings) but doesn’t provide data on object versions, request rates, or `503` errors, making it unsuitable for diagnosing this issue.
+- **Option B**: `AWS CloudTrail` logs API calls, including `PUT` operations and `503` responses, offering real-time diagnostics. However, without a real-time requirement, its focus on request-level detail is less directly tied to versioning’s cumulative impact compared to `S3 Inventory` in this context.
+- **Option D**: `AWS Trusted Advisor` offers high-level recommendations (e.g., performance checks) but lacks detailed diagnostics for `S3` versioning or throttling issues, rendering it ineffective here.
+
+#### **Key Takeaways**
+
+- **Versioning Insight**: `Amazon S3 Inventory` reveals the extent of version accumulation, a potential cause of `503` errors under high `PUT` loads.
+- **Diagnostic Fit**: It provides a historical view of bucket contents, suitable for diagnosing issues built up over 6 months without needing real-time data.
+- **Practical Approach**: The developer can use inventory reports to identify problematic prefixes or version counts, informing mitigation like lifecycle policies.
+
+By using **`Amazon S3 Inventory`**, the developer can diagnose the `HTTP 503` errors by analyzing the impact of versioning and high `PUT` operation volumes on the bucket over time, addressing the issue effectively within the given context.
+
+</details>
