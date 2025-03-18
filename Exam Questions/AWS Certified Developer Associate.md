@@ -2432,3 +2432,49 @@ The team needs to deploy `AWS CloudFormation` templates across multiple `AWS` ac
 By creating **`CloudFormation` StackSets**, the development team can deploy `AWS CloudFormation` templates across multiple accounts with the least amount of effort, meeting the requirement efficiently.
 
 </details>
+
+## Question #53
+
+Your team is looking towards uploading different versions of an application using `AWS Elastic Beanstalk`.  
+How can they achieve this in the easiest possible way?
+
+- A. Create multiple applications in `Elastic Beanstalk`
+- B. Create multiple environments in `Elastic Beanstalk`
+- c. Upload the application's source code or source bundle in the `Elastic Beanstalk` console
+- D. Use `AWS CodePipeline` to streamline the various application versions
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**c. Upload the application's source code or source bundle in the `Elastic Beanstalk` console**
+
+### Explanation
+
+#### **Purpose of Uploading Application Versions**
+
+The team wants to upload different versions of an application to `AWS Elastic Beanstalk` in the simplest way possible. This implies a straightforward method to manage and deploy multiple versions without unnecessary complexity or additional infrastructure setup.
+
+#### **Why this option is correct**
+
+- **Direct Upload Process**: Uploading the application’s source code or source bundle (e.g., a `.zip` file) via the `Elastic Beanstalk` console is the easiest built-in method. In the console, the team can navigate to an existing application, select the “Versions” tab, and upload a new version, which `Elastic Beanstalk` stores and tracks automatically.
+- **Minimal Effort**: This approach requires no additional configuration beyond preparing the source bundle. Once uploaded, the team can deploy the version to an existing environment with a single click, making it ideal for quick iteration and testing of different versions.
+- **`Elastic Beanstalk` Native Support**: `Elastic Beanstalk` inherently supports versioning, storing each uploaded bundle in an `Amazon S3` bucket managed by the service, and allowing easy switching between versions without creating new applications or environments.
+
+#### **Why other options are incorrect**
+
+- **Option A**: Creating multiple applications in `Elastic Beanstalk` means setting up entirely separate application entities, each with its own environments and configurations. This is overkill for managing versions of the same application and adds unnecessary complexity.
+- **Option B**: Creating multiple environments (e.g., dev, test, prod) within an application allows running different versions simultaneously, but it’s not the easiest way to _upload_ versions. It requires additional setup and management compared to simply uploading via the console.
+- **Option D**: Using `AWS CodePipeline` integrates `Elastic Beanstalk` with a CI/CD pipeline, automating deployments of various versions. While powerful, it involves configuring a pipeline, source repository, and build stages, which is more complex and not the easiest method for basic version uploads.
+
+#### **Key Takeaways**
+
+- **Simplicity**: Uploading via the `Elastic Beanstalk` console is a manual, user-friendly process requiring no advanced setup or tools.
+- **Version Management**: `Elastic Beanstalk` handles version tracking natively, making it easy to deploy or roll back to any uploaded version.
+- **Immediate Use**: The team can achieve their goal directly through the console, aligning with the requirement for the easiest approach.
+
+By uploading the application's source code or source bundle in the **`Elastic Beanstalk` console**, the team can manage different versions of their application in the simplest possible way, leveraging `AWS Elastic Beanstalk`’s built-in functionality.
+
+</details>
