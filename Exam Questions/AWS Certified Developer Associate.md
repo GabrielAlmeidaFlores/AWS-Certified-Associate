@@ -883,7 +883,6 @@ By **installing the AWS CLI** and **configuring it with an IAM user access key a
 
 ## Question #20
 
-Topic 1  
 A developer needs to use Amazon DynamoDB to store customer orders. The developer's company requires all customer data to be encrypted at rest with a key that the company generates.  
 What should the developer do to meet these requirements?
 
