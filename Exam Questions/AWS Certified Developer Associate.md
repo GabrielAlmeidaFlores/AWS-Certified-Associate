@@ -2569,3 +2569,48 @@ The task involves configuring dynamic port mapping for an `Amazon ECS` service w
 If dynamic port mapping is set up correctly, then you see the registered targets and the assigned port for the task, making **D** the true statement in this context for `Amazon ECS` and load balancing.
 
 </details>
+
+## Question #56
+
+Which of the following is true regarding the default sampling rule configured using the `AWS X-Ray` Console?
+
+- A. Two requests per second & ten percent of any additional request per host
+- B. One request per second & five percent of any additional requests per host
+- C. Two requests per second & five percent of any additional requests por host
+- D. One request per second & ten percent of any additional requests per host
+
+<details>
+<summary>Answer</summary>
+<br>
+
+The correct answer is:
+
+**B. One request per second & five percent of any additional requests per host**
+
+### Explanation
+
+#### **Purpose of Sampling Rules in AWS X-Ray**
+
+`AWS X-Ray` uses sampling rules to determine which requests to trace, balancing detailed diagnostics with cost and performance overhead. The default sampling rule in the `AWS X-Ray` Console defines a baseline rate and a percentage for additional requests, applied per host (e.g., per `X-Ray` daemon instance).
+
+#### **Why this option is correct**
+
+- **Default Sampling Rule**: The default sampling rule configured via the `AWS X-Ray` Console is set to trace **one request per second** (the reservoir) and **five percent of any additional requests** beyond that per host. This is documented in the `AWS X-Ray` Developer Guide and reflected in the console’s default settings.
+- **How It Works**: The reservoir ensures a fixed number of requests (1 per second) are always traced, while the 5% rate samples a fraction of requests exceeding that limit, providing a representative sample without overwhelming the system.
+- **Per Host Scope**: The rule applies per host running the `X-Ray` daemon, meaning each instance or container independently enforces this sampling logic.
+
+#### **Why other options are incorrect**
+
+- **Option A**: “Two requests per second & ten percent of any additional request per host” overestimates both the reservoir (2 vs. 1) and the sampling rate (10% vs. 5%), deviating from the default configuration.
+- **Option C**: “Two requests per second & five percent of any additional requests por host” incorrectly specifies the reservoir as 2 (instead of 1) and contains a typo (“por” instead of “per”), but even corrected, it doesn’t match the default rule.
+- **Option D**: “One request per second & ten percent of any additional requests per host” gets the reservoir right (1 per second) but incorrectly states the sampling rate as 10% instead of the default 5%.
+
+#### **Key Takeaways**
+
+- **Default Settings**: The `AWS X-Ray` default sampling rule is precisely **1 request per second and 5% of additional requests per host**, as per `AWS` standards.
+- **Balanced Tracing**: This rule ensures consistent tracing for low traffic and scalable sampling for high traffic, optimizing cost and insight.
+- **Console Default**: Option B accurately reflects what you’d see when creating a sampling rule without customization in the `X-Ray` Console.
+
+The true statement regarding the default sampling rule configured using the **`AWS X-Ray` Console** is **B: One request per second & five percent of any additional requests per host**.
+
+</details>
